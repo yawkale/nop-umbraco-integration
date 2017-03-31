@@ -1,0 +1,23 @@
+﻿<div ng-controller="Tagliatelle.PropertyEditors.tagliatelleTagEditor" class="umb-editor umb-tags">
+    <div class="row">
+        <input type="text"
+               ng-keydown="addTagOnKeyPress($event)"
+               placeholder="Type to add tags..."
+               ng-model="tagToAdd" class="span4" />
+        <div class="span6">
+            <span ng-repeat="tag in currentTags" ng-click="removeTag(tag)" class="label label-primary tag">{{tag}} <i class="icon icon-delete"></i></span>
+            <div class="hide">
+                <span ng-repeat="tag in currentTagIds">{{tag}}</span>
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <a id="tagliatelleToggle" ng-click="showTags($event)" style="cursor: pointer;">Show/hide tags</a>
+        <ul id="tagliatelleTags" ng-hide="hideTags">
+            <li ng-repeat="tag in tags" class="label label-primary tag">
+                <a class="tagliatelleTag" data-tag="{{tag}}" ng-click="addFromTagList($event)">{{tag}} <i class="icon icon-add"></i></a>
+            </li>
+        </ul>
+    </div>
+</div>

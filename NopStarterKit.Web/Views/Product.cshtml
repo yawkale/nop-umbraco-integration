@@ -1,0 +1,21 @@
+﻿@inherits Umbraco.Web.Mvc.UmbracoTemplatePage
+@using ContentModels = Umbraco.Web.PublishedContentModels;
+@{
+    Layout = "_Layout.cshtml";
+}
+
+<h1>Product: @Model.Content.Name</h1>
+<div>Nop Id: @Model.Content.GetPropertyValue("nopId")</div>
+@if (Model.Content.HasValue("productImage"))
+{
+    var image = Umbraco.TypedMedia(Model.Content.GetPropertyValue<int>("productImage"));
+    <img src="@image.Url" alt="@Model.Content.Name" />
+}
+<div>
+    Tags:
+    @foreach (var tag in Model.Content.GetPropertyValue<IEnumerable<IPublishedContent>>("tags"))
+    {
+        @tag.Name
+    }
+
+</div>

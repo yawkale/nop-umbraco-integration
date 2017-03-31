@@ -1,0 +1,5 @@
+﻿<div ng-controller="Tagliatelle.PropertyEditors.tagliatelleDoctypeSelector" class="umb-editor">
+    <select ng-model="model.value">
+        <option ng-repeat="type in documentTypes" value="{{type.Alias}}" ng-selected="model.value == type.Alias">{{type.Name}}</option>
+    </select>
+</div>

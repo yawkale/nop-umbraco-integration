@@ -1,0 +1,50 @@
+﻿@inherits Umbraco.Web.Mvc.UmbracoTemplatePage
+@using ContentModels = Umbraco.Web.PublishedContentModels;
+@{
+    Layout = "_Layout.cshtml";
+    var products = Model.Content.Children().Where(x => x.IsVisible());
+    var categoryPage = Model.Content.AncestorOrSelf(1).Descendants("categoryOverview").FirstOrDefault();
+    var categories = categoryPage.Children();
+}
+
+<div class="container">
+    <div class="col-md-4">
+        <h2>Category:</h2>
+        @foreach (var category in categories)
+        {
+            <div>
+                @category.Name
+                @foreach (var tag in category.Children())
+                {
+                    <div>@tag.Name</div>
+                }
+            </div>
+        }
+    </div>
+    <div class="col-md-8">
+        @if (products != null && products.Any())
+        {
+            foreach (var item in products)
+            {
+
+                if (item.HasValue("productImage"))
+                {
+                    var image = Umbraco.TypedMedia(item.GetPropertyValue<int>("productImage"));
+                    <img src="@image.Url" alt="@item.Name" />
+                }
+                <div>NopeId: @item.GetPropertyValue("nopId")</div>
+
+                var tags = item.GetPropertyValue<IEnumerable<IPublishedContent>>("tags");
+                <div>
+                    Tags:
+                    @foreach (var tag in tags)
+                    {
+                        @tag.Name 
+                    }
+                </div>
+
+            }
+        }
+    </div>
+
+</div>

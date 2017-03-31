@@ -1,0 +1,55 @@
+﻿{
+    propertyEditors: [
+		{
+            alias: "tagliatelle.doctypeSelector",
+            name: "Tagliatelle Document Type Selector",
+            hideLabel: false,
+            valueType: "STRING",
+            editor: {
+                view: "~/App_Plugins/Tagliatelle/PropertyEditors/tagliatelleDoctypeSelector.html?v1.0"
+            }
+        },
+        {
+            alias: "tagliatelle.tagEditor",
+            name: "Tagliatelle Tag Editor",
+            hideLabel: false,
+            valueType: "INT",
+            editor: {
+                view: "~/App_Plugins/Tagliatelle/PropertyEditors/tagliatelleTagEditor.html?v1.0"
+            },
+
+			prevalues: {
+				fields: [
+					{
+						label: "Tag container",
+						description: "Select the parent node under which you want Tagliatelle to create content.",
+						key: "parentContainer",
+						view: "treepicker",
+						validation: [
+							{
+								type: "Required"
+							}
+						]
+					},
+					{
+						label: "Document type",
+						description: "The document type alias of the content page that should be created.",
+						key: "documentTypeAlias",
+						view: "~/App_Plugins/Tagliatelle/PropertyEditors/tagliatelleDoctypeSelector.html?v1.0",
+						validation: [
+							{
+								type: "Required"
+							}
+						]
+					}
+				]
+			}
+        }
+
+    ],
+    
+    javascript: [
+		"~/App_Plugins/Tagliatelle/PropertyEditors/tagliatelleDoctypeSelector.controller.js?v1.0",
+        "~/App_Plugins/Tagliatelle/PropertyEditors/tagliatelleTagEditor.controller.js?v1.0"
+    ]
+}
