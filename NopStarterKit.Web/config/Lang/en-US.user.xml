@@ -1,0 +1,39 @@
+﻿<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<language>
+	<area alias="cdfHealthCheck">
+		<!-- the cache is old -->
+		<key alias="OldCacheTitle">Client Dependency Cache is old</key>
+		<key alias="OldCacheMessage"><![CDATA[
+      <p>
+        There are files in the client dependency cache are older than those in the scripts and css folders.
+      </p>
+      <p>
+        This might mean that recent changes to your site are not being shown.
+      </p>
+      <p>
+        You can increment the client version or clear the client dependency cache to ensure updates are included.
+      </p>
+      <ul>
+        <li> Oldest Cache Files: %0% </li>
+        <li> Newest script/css file: %1%</li>
+      </ul>
+      ]]>
+		</key>
+		<!-- when things are ok -->
+		<key alias="CacheUptoDateTitle">Client Dependenct cache is upto date</key>
+		<key alias="CacheUptoDateMessage"><![CDATA[
+      <p>
+        The files in the client depdendency cache are more recent than those in the scripts or css folders
+      </p>
+      <em>
+        This check only compares the files in the css and scripts folders, other folders might have files that affect how the
+        client dependency cache is built.
+      </em>
+      ]]>
+		</key>
+		<key alias="FolderCleared">Client Dependency Cache folder cleared</key>
+		<key alias="CacheIncrements">Client Dependency Framework version incremented to %0%</key>
+		<key alias="CmdIncrement">Increment cache version</key>
+		<key alias="CmdClear">Clear cache folder</key>
+	</area>
+</language>
