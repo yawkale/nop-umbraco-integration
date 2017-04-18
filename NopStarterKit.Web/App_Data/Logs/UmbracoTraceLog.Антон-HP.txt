@@ -8957,3 +8957,151 @@ System.OutOfMemoryException: Exception of type 'System.OutOfMemoryException' was
  2017-04-18 19:25:17,668 [P2900/D3/T23] INFO  umbraco.content - Saved Xml to file.
  2017-04-18 19:25:18,597 [P2900/D3/T72] WARN  Umbraco.Web.UmbracoModule - Status code is 404 yet TrySkipIisCustomErrors is false - IIS will take over.
  2017-04-18 19:25:22,016 [P2900/D3/T53] WARN  Umbraco.Web.UmbracoModule - Status code is 404 yet TrySkipIisCustomErrors is false - IIS will take over.
+ 2017-04-18 19:26:05,819 [P2900/D3/T53] INFO  Umbraco.Web.Scheduling.BackgroundTaskRunner - [ScheduledPublishing] Terminating
+ 2017-04-18 19:26:05,835 [P2900/D3/T53] INFO  Umbraco.Web.Scheduling.BackgroundTaskRunner - [ScheduledPublishing] Waiting for tasks to complete
+ 2017-04-18 19:26:05,835 [P2900/D3/T53] INFO  Umbraco.Web.Scheduling.BackgroundTaskRunner - [LogScrubber] Terminating
+ 2017-04-18 19:26:05,835 [P2900/D3/T53] INFO  Umbraco.Web.Scheduling.BackgroundTaskRunner - [LogScrubber] Waiting for tasks to complete
+ 2017-04-18 19:26:05,835 [P2900/D3/T53] INFO  Umbraco.Web.Scheduling.BackgroundTaskRunner - [Umbraco.Web.Scheduling.IBackgroundTask] Terminating
+ 2017-04-18 19:26:05,835 [P2900/D3/T53] INFO  Umbraco.Web.Scheduling.BackgroundTaskRunner - [Umbraco.Web.Scheduling.IBackgroundTask] Waiting for tasks to complete
+ 2017-04-18 19:26:05,835 [P2900/D3/T53] INFO  Umbraco.Web.Scheduling.BackgroundTaskRunner - [Umbraco.Web.Scheduling.IBackgroundTask] Tasks completed, terminated
+ 2017-04-18 19:26:05,835 [P2900/D3/T53] INFO  Umbraco.Web.Scheduling.BackgroundTaskRunner - [KeepAlive] Terminating
+ 2017-04-18 19:26:05,835 [P2900/D3/T53] INFO  Umbraco.Web.Scheduling.BackgroundTaskRunner - [KeepAlive] Waiting for tasks to complete
+ 2017-04-18 19:26:05,835 [P2900/D3/T53] INFO  Umbraco.Web.Scheduling.BackgroundTaskRunner - [ScheduledTasks] Terminating
+ 2017-04-18 19:26:05,853 [P2900/D3/T53] INFO  Umbraco.Web.Scheduling.BackgroundTaskRunner - [ScheduledTasks] Waiting for tasks to complete
+ 2017-04-18 19:26:05,853 [P2900/D3/T124] INFO  Umbraco.Web.Scheduling.BackgroundTaskRunner - [LogScrubber] Tasks completed, terminated
+ 2017-04-18 19:26:05,853 [P2900/D3/T120] INFO  Umbraco.Web.Scheduling.BackgroundTaskRunner - [KeepAlive] Tasks completed, terminated
+ 2017-04-18 19:26:05,853 [P2900/D3/T120] INFO  Umbraco.Web.Scheduling.BackgroundTaskRunner - [ScheduledPublishing] Tasks completed, terminated
+ 2017-04-18 19:26:05,853 [P2900/D3/T120] INFO  Umbraco.Web.Scheduling.BackgroundTaskRunner - [ScheduledTasks] Tasks completed, terminated
+ 2017-04-18 19:26:05,853 [P2900/D3/T53] INFO  Umbraco.Core.MainDom - Stopping...
+ 2017-04-18 19:26:05,897 [P2900/D3/T53] INFO  Umbraco.Core.MainDom - Released MainDom.
+ 2017-04-18 19:26:21,994 [P2900/D4/T97] INFO  Umbraco.Core.CoreBootManager - Umbraco 7.6.0-RC application starting on АНТОН-HP
+ 2017-04-18 19:26:22,009 [P2900/D4/T97] INFO  Umbraco.Core.PluginManager - Determining hash of code files on disk
+ 2017-04-18 19:26:22,009 [P2900/D4/T97] INFO  Umbraco.Core.PluginManager - Hash determined (took 10ms)
+ 2017-04-18 19:26:22,040 [P2900/D4/T97] INFO  Umbraco.Core.MainDom - Acquiring MainDom...
+ 2017-04-18 19:26:22,056 [P2900/D4/T97] INFO  Umbraco.Core.MainDom - Acquired MainDom.
+ 2017-04-18 19:26:22,078 [P2900/D4/T97] INFO  Umbraco.Core.PluginManager - Resolving umbraco.interfaces.IDiscoverable
+ 2017-04-18 19:26:22,279 [P2900/D4/T97] INFO  Umbraco.Core.PluginManager - Resolved umbraco.interfaces.IDiscoverable (took 201ms)
+ 2017-04-18 19:26:22,279 [P2900/D4/T97] INFO  Umbraco.Core.PluginManager - Resolving umbraco.interfaces.IApplicationStartupHandler
+ 2017-04-18 19:26:22,279 [P2900/D4/T97] INFO  Umbraco.Core.PluginManager - Resolved umbraco.interfaces.IApplicationStartupHandler (took 1ms)
+ 2017-04-18 19:26:22,310 [P2900/D4/T97] INFO  Umbraco.Core.PluginManager - Resolving umbraco.interfaces.IDiscoverable
+ 2017-04-18 19:26:22,310 [P2900/D4/T97] INFO  Umbraco.Core.PluginManager - Resolved umbraco.interfaces.IDiscoverable (took 0ms)
+ 2017-04-18 19:26:22,310 [P2900/D4/T97] INFO  Umbraco.Core.PluginManager - Resolving Umbraco.Core.PropertyEditors.IPropertyEditorValueConverter
+ 2017-04-18 19:26:22,310 [P2900/D4/T97] INFO  Umbraco.Core.PluginManager - Resolved Umbraco.Core.PropertyEditors.IPropertyEditorValueConverter (took 0ms)
+ 2017-04-18 19:26:22,310 [P2900/D4/T97] INFO  Umbraco.Core.PluginManager - Resolving umbraco.interfaces.IDiscoverable
+ 2017-04-18 19:26:22,310 [P2900/D4/T97] INFO  Umbraco.Core.PluginManager - Resolved umbraco.interfaces.IDiscoverable (took 0ms)
+ 2017-04-18 19:26:22,310 [P2900/D4/T97] INFO  Umbraco.Core.PluginManager - Resolving Umbraco.Core.PropertyEditors.IPropertyValueConverter
+ 2017-04-18 19:26:22,310 [P2900/D4/T97] INFO  Umbraco.Core.PluginManager - Resolved Umbraco.Core.PropertyEditors.IPropertyValueConverter (took 2ms)
+ 2017-04-18 19:26:22,326 [P2900/D4/T97] INFO  Umbraco.Core.PluginManager - Resolving umbraco.interfaces.IDiscoverable
+ 2017-04-18 19:26:22,326 [P2900/D4/T97] INFO  Umbraco.Core.PluginManager - Resolved umbraco.interfaces.IDiscoverable (took 0ms)
+ 2017-04-18 19:26:22,326 [P2900/D4/T97] INFO  Umbraco.Core.PluginManager - Resolving Umbraco.Web.Mvc.SurfaceController
+ 2017-04-18 19:26:22,326 [P2900/D4/T97] INFO  Umbraco.Core.PluginManager - Resolved Umbraco.Web.Mvc.SurfaceController (took 1ms)
+ 2017-04-18 19:26:22,326 [P2900/D4/T97] INFO  Umbraco.Core.PluginManager - Resolving umbraco.interfaces.IDiscoverable
+ 2017-04-18 19:26:22,341 [P2900/D4/T97] INFO  Umbraco.Core.PluginManager - Resolved umbraco.interfaces.IDiscoverable (took 0ms)
+ 2017-04-18 19:26:22,341 [P2900/D4/T97] INFO  Umbraco.Core.PluginManager - Resolving Umbraco.Web.WebApi.UmbracoApiController
+ 2017-04-18 19:26:22,341 [P2900/D4/T97] INFO  Umbraco.Core.PluginManager - Resolved Umbraco.Web.WebApi.UmbracoApiController (took 1ms)
+ 2017-04-18 19:26:23,351 [P2900/D4/T97] INFO  Umbraco.Core.DatabaseContext - CanConnect = True
+ 2017-04-18 19:26:23,567 [P2900/D4/T97] INFO  Umbraco.Web.Cache.CacheRefresherEventHandler - Initializing Umbraco internal event handlers for cache refreshing
+ 2017-04-18 19:26:23,651 [P2900/D4/T97] INFO  Umbraco.Web.Search.ExamineEvents - Initializing Examine and binding to business logic events
+ 2017-04-18 19:26:23,767 [P2900/D4/T97] INFO  Umbraco.Web.Search.ExamineEvents - Adding examine event handlers for index providers: 3
+ 2017-04-18 19:26:23,836 [P2900/D4/T97] INFO  Umbraco.Core.CoreBootManager - Umbraco application startup complete (took 1927ms)
+ 2017-04-18 19:26:25,000 [P2900/D4/T39] INFO  Umbraco.Core.Sync.ApplicationUrlHelper - ApplicationUrl: http://localhost:64146/umbraco (UmbracoModule request)
+ 2017-04-18 19:26:27,936 [P2900/D4/T39] INFO  Umbraco.Core.MainDom - Stopping...
+ 2017-04-18 19:26:27,940 [P2900/D4/T39] INFO  Umbraco.Core.MainDom - Released MainDom.
+ 2017-04-18 19:26:27,942 [P2900/D4/T39] INFO  Umbraco.Web.Scheduling.BackgroundTaskRunner - [Umbraco.Web.Scheduling.IBackgroundTask] Terminating
+ 2017-04-18 19:26:27,942 [P2900/D4/T39] INFO  Umbraco.Web.Scheduling.BackgroundTaskRunner - [Umbraco.Web.Scheduling.IBackgroundTask] Waiting for tasks to complete
+ 2017-04-18 19:26:27,943 [P2900/D4/T39] INFO  Umbraco.Web.Scheduling.BackgroundTaskRunner - [Umbraco.Web.Scheduling.IBackgroundTask] Tasks completed, terminated
+ 2017-04-18 19:26:27,947 [P2900/D4/T39] INFO  Umbraco.Web.Scheduling.BackgroundTaskRunner - [ScheduledPublishing] Terminating
+ 2017-04-18 19:26:27,948 [P2900/D4/T39] INFO  Umbraco.Web.Scheduling.BackgroundTaskRunner - [ScheduledPublishing] Waiting for tasks to complete
+ 2017-04-18 19:26:27,948 [P2900/D4/T39] INFO  Umbraco.Web.Scheduling.BackgroundTaskRunner - [ScheduledPublishing] Tasks completed, terminated
+ 2017-04-18 19:26:27,953 [P2900/D4/T39] INFO  Umbraco.Web.Scheduling.BackgroundTaskRunner - [LogScrubber] Terminating
+ 2017-04-18 19:26:27,953 [P2900/D4/T39] INFO  Umbraco.Web.Scheduling.BackgroundTaskRunner - [LogScrubber] Waiting for tasks to complete
+ 2017-04-18 19:26:27,953 [P2900/D4/T39] INFO  Umbraco.Web.Scheduling.BackgroundTaskRunner - [LogScrubber] Tasks completed, terminated
+ 2017-04-18 19:26:27,953 [P2900/D4/T39] INFO  Umbraco.Web.Scheduling.BackgroundTaskRunner - [KeepAlive] Terminating
+ 2017-04-18 19:26:27,954 [P2900/D4/T39] INFO  Umbraco.Web.Scheduling.BackgroundTaskRunner - [KeepAlive] Waiting for tasks to complete
+ 2017-04-18 19:26:27,954 [P2900/D4/T39] INFO  Umbraco.Web.Scheduling.BackgroundTaskRunner - [KeepAlive] Tasks completed, terminated
+ 2017-04-18 19:26:27,954 [P2900/D4/T39] INFO  Umbraco.Web.Scheduling.BackgroundTaskRunner - [ScheduledTasks] Terminating
+ 2017-04-18 19:26:27,954 [P2900/D4/T39] INFO  Umbraco.Web.Scheduling.BackgroundTaskRunner - [ScheduledTasks] Waiting for tasks to complete
+ 2017-04-18 19:26:27,954 [P2900/D4/T39] INFO  Umbraco.Web.Scheduling.BackgroundTaskRunner - [ScheduledTasks] Tasks completed, terminated
+ 2017-04-18 19:26:36,300 [P2900/D3/T53] INFO  Umbraco.Core.UmbracoApplicationBase - Application shutdown. Details: ConfigurationChange
+
+_shutDownMessage=Change in App_Offline.htm
+HostingEnvironment initiated shutdown
+Change in App_Offline.htm
+Change in App_Offline.htm
+Change in App_Offline.htm
+Change in App_Offline.htm
+Change in App_Offline.htm
+HostingEnvironment вызвало отключение
+
+_shutDownStack=   в System.Environment.GetStackTrace(Exception e, Boolean needFileInfo)
+   в System.Environment.get_StackTrace()
+   в System.Web.Hosting.HostingEnvironment.InitiateShutdownInternal()
+   в System.Web.Hosting.HostingEnvironment.InitiateShutdownWithoutDemand()
+   в System.Web.HttpRuntime.ShutdownAppDomain(String stackTrace)
+   в System.Web.HttpRuntime.OnAppOfflineFileChange(Object sender, FileChangeEvent e)
+   в System.Web.DirectoryMonitor.FireNotifications()
+   в System.Web.Util.WorkItem.CallCallbackWithAssert(WorkItemCallback callback)
+   в System.Web.Util.WorkItem.OnQueueUserWorkItemCompletion(Object state)
+   в System.Threading.QueueUserWorkItemCallback.WaitCallback_Context(Object state)
+   в System.Threading.ExecutionContext.RunInternal(ExecutionContext executionContext, ContextCallback callback, Object state, Boolean preserveSyncCtx)
+   в System.Threading.ExecutionContext.Run(ExecutionContext executionContext, ContextCallback callback, Object state, Boolean preserveSyncCtx)
+   в System.Threading.QueueUserWorkItemCallback.System.Threading.IThreadPoolWorkItem.ExecuteWorkItem()
+   в System.Threading.ThreadPoolWorkQueue.Dispatch()
+   в System.Threading._ThreadPoolWaitCallback.PerformWaitCallback()
+ 2017-04-18 19:26:58,036 [P2900/D4/T85] INFO  Umbraco.Core.UmbracoApplicationBase - Application shutdown. Details: ConfigurationChange
+
+_shutDownMessage=Change in App_Offline.htm
+HostingEnvironment initiated shutdown
+Change in App_Offline.htm
+Change in App_Offline.htm
+Change in App_Offline.htm
+Change in App_Offline.htm
+Change in App_Offline.htm
+HostingEnvironment вызвало отключение
+
+_shutDownStack=   в System.Environment.GetStackTrace(Exception e, Boolean needFileInfo)
+   в System.Environment.get_StackTrace()
+   в System.Web.Hosting.HostingEnvironment.InitiateShutdownInternal()
+   в System.Web.Hosting.HostingEnvironment.InitiateShutdownWithoutDemand()
+   в System.Web.HttpRuntime.ShutdownAppDomain(String stackTrace)
+   в System.Web.HttpRuntime.OnAppOfflineFileChange(Object sender, FileChangeEvent e)
+   в System.Web.DirectoryMonitor.FireNotifications()
+   в System.Web.Util.WorkItem.CallCallbackWithAssert(WorkItemCallback callback)
+   в System.Web.Util.WorkItem.OnQueueUserWorkItemCompletion(Object state)
+   в System.Threading.QueueUserWorkItemCallback.WaitCallback_Context(Object state)
+   в System.Threading.ExecutionContext.RunInternal(ExecutionContext executionContext, ContextCallback callback, Object state, Boolean preserveSyncCtx)
+   в System.Threading.ExecutionContext.Run(ExecutionContext executionContext, ContextCallback callback, Object state, Boolean preserveSyncCtx)
+   в System.Threading.QueueUserWorkItemCallback.System.Threading.IThreadPoolWorkItem.ExecuteWorkItem()
+   в System.Threading.ThreadPoolWorkQueue.Dispatch()
+   в System.Threading._ThreadPoolWaitCallback.PerformWaitCallback()
+ 2017-04-18 19:26:59,617 [P2900/D5/T97] INFO  Umbraco.Core.CoreBootManager - Umbraco 7.6.0-RC application starting on АНТОН-HP
+ 2017-04-18 19:26:59,637 [P2900/D5/T97] INFO  Umbraco.Core.PluginManager - Determining hash of code files on disk
+ 2017-04-18 19:26:59,639 [P2900/D5/T97] INFO  Umbraco.Core.PluginManager - Hash determined (took 8ms)
+ 2017-04-18 19:26:59,655 [P2900/D5/T97] INFO  Umbraco.Core.MainDom - Acquiring MainDom...
+ 2017-04-18 19:26:59,655 [P2900/D5/T97] INFO  Umbraco.Core.MainDom - Acquired MainDom.
+ 2017-04-18 19:26:59,686 [P2900/D5/T97] INFO  Umbraco.Core.PluginManager - Resolving umbraco.interfaces.IDiscoverable
+ 2017-04-18 19:26:59,870 [P2900/D5/T97] INFO  Umbraco.Core.PluginManager - Resolved umbraco.interfaces.IDiscoverable (took 182ms)
+ 2017-04-18 19:26:59,870 [P2900/D5/T97] INFO  Umbraco.Core.PluginManager - Resolving umbraco.interfaces.IApplicationStartupHandler
+ 2017-04-18 19:26:59,870 [P2900/D5/T97] INFO  Umbraco.Core.PluginManager - Resolved umbraco.interfaces.IApplicationStartupHandler (took 1ms)
+ 2017-04-18 19:26:59,902 [P2900/D5/T97] INFO  Umbraco.Core.PluginManager - Resolving umbraco.interfaces.IDiscoverable
+ 2017-04-18 19:26:59,902 [P2900/D5/T97] INFO  Umbraco.Core.PluginManager - Resolved umbraco.interfaces.IDiscoverable (took 1ms)
+ 2017-04-18 19:26:59,902 [P2900/D5/T97] INFO  Umbraco.Core.PluginManager - Resolving Umbraco.Core.PropertyEditors.IPropertyEditorValueConverter
+ 2017-04-18 19:26:59,902 [P2900/D5/T97] INFO  Umbraco.Core.PluginManager - Resolved Umbraco.Core.PropertyEditors.IPropertyEditorValueConverter (took 0ms)
+ 2017-04-18 19:26:59,902 [P2900/D5/T97] INFO  Umbraco.Core.PluginManager - Resolving umbraco.interfaces.IDiscoverable
+ 2017-04-18 19:26:59,902 [P2900/D5/T97] INFO  Umbraco.Core.PluginManager - Resolved umbraco.interfaces.IDiscoverable (took 0ms)
+ 2017-04-18 19:26:59,902 [P2900/D5/T97] INFO  Umbraco.Core.PluginManager - Resolving Umbraco.Core.PropertyEditors.IPropertyValueConverter
+ 2017-04-18 19:26:59,902 [P2900/D5/T97] INFO  Umbraco.Core.PluginManager - Resolved Umbraco.Core.PropertyEditors.IPropertyValueConverter (took 2ms)
+ 2017-04-18 19:26:59,917 [P2900/D5/T97] INFO  Umbraco.Core.PluginManager - Resolving umbraco.interfaces.IDiscoverable
+ 2017-04-18 19:26:59,917 [P2900/D5/T97] INFO  Umbraco.Core.PluginManager - Resolved umbraco.interfaces.IDiscoverable (took 0ms)
+ 2017-04-18 19:26:59,917 [P2900/D5/T97] INFO  Umbraco.Core.PluginManager - Resolving Umbraco.Web.Mvc.SurfaceController
+ 2017-04-18 19:26:59,917 [P2900/D5/T97] INFO  Umbraco.Core.PluginManager - Resolved Umbraco.Web.Mvc.SurfaceController (took 0ms)
+ 2017-04-18 19:26:59,917 [P2900/D5/T97] INFO  Umbraco.Core.PluginManager - Resolving umbraco.interfaces.IDiscoverable
+ 2017-04-18 19:26:59,917 [P2900/D5/T97] INFO  Umbraco.Core.PluginManager - Resolved umbraco.interfaces.IDiscoverable (took 0ms)
+ 2017-04-18 19:26:59,917 [P2900/D5/T97] INFO  Umbraco.Core.PluginManager - Resolving Umbraco.Web.WebApi.UmbracoApiController
+ 2017-04-18 19:26:59,917 [P2900/D5/T97] INFO  Umbraco.Core.PluginManager - Resolved Umbraco.Web.WebApi.UmbracoApiController (took 1ms)
+ 2017-04-18 19:27:02,547 [P2900/D5/T97] INFO  Umbraco.Core.DatabaseContext - CanConnect = True
+ 2017-04-18 19:27:02,695 [P2900/D5/T97] INFO  Umbraco.Web.Cache.CacheRefresherEventHandler - Initializing Umbraco internal event handlers for cache refreshing
+ 2017-04-18 19:27:02,747 [P2900/D5/T97] INFO  Umbraco.Web.Search.ExamineEvents - Initializing Examine and binding to business logic events
+ 2017-04-18 19:27:02,831 [P2900/D5/T97] INFO  Umbraco.Web.Search.ExamineEvents - Adding examine event handlers for index providers: 3
+ 2017-04-18 19:27:02,894 [P2900/D5/T97] INFO  Umbraco.Core.CoreBootManager - Umbraco application startup complete (took 3357ms)
+ 2017-04-18 19:27:04,080 [P2900/D5/T85] INFO  Umbraco.Core.Sync.ApplicationUrlHelper - ApplicationUrl: http://localhost:64146/umbraco (UmbracoModule request)
