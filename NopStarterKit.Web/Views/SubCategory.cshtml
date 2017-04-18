@@ -4,6 +4,14 @@
     Layout = "_Layout.cshtml";
     var root = Model.Content.AncestorOrSelf(1);
     var products = root.Descendants("productsOverview").FirstOrDefault().Children().Where(x => x.IsVisible());
+
+    var pageSize = 6;
+
+    int pageSelect;
+    if (int.TryParse(Request.QueryString["pageSize"], out pageSelect))
+    {
+        pageSize = pageSelect;
+    }
 }
 
 <div class="master-column-wrapper">
@@ -35,9 +43,9 @@
                     <div class="product-page-size">
                         <span>Display</span>
                         <select id="products-pagesize" name="products-pagesize" onchange="setLocation(this.value);">
-                            <option value="http://test-nop.uteam-dev.com/desktops?pagesize=3">3</option>
-                            <option selected="selected" value="http://test-nop.uteam-dev.com/desktops?pagesize=6">6</option>
-                            <option value="http://test-nop.uteam-dev.com/desktops?pagesize=9">9</option>
+                            <option @(pageSize == 3 ? "selected" : "") value="@(Model.Content.Url)?pagesize=3">3</option>
+                            <option @(pageSize == 6 ? "selected" : "") value="@(Model.Content.Url)?pagesize=6">6</option>
+                            <option @(pageSize == 9 ? "selected" : "") value="@(Model.Content.Url)?pagesize=9">9</option>
                         </select>
                         <span>per page</span>
                     </div>
