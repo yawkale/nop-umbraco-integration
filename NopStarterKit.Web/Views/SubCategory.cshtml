@@ -1,0 +1,95 @@
+﻿@inherits Umbraco.Web.Mvc.UmbracoTemplatePage
+@using ContentModels = Umbraco.Web.PublishedContentModels;
+@{
+    Layout = "_Layout.cshtml";
+    var root = Model.Content.AncestorOrSelf(1);
+    var products = root.Descendants("productsOverview").FirstOrDefault().Children().Where(x => x.IsVisible());
+}
+
+<div class="master-column-wrapper">
+ @Html.Partial("Categories")
+    <div class="center-2">
+        <div class="page category-page">
+            <div class="page-title">
+                <h1>@Model.Content.GetPropertyValue("pageTitle", Model.Content.Name)</h1>
+            </div>
+            <div class="page-body">
+                <div class="product-selectors">
+
+                    <div class="product-viewmode">
+                        <span>View as</span>
+                        <a class="viewmode-icon grid selected" href="http://test-nop.uteam-dev.com/desktops?viewmode=grid" title="Grid">Grid</a>
+                        <a class="viewmode-icon list " href="http://test-nop.uteam-dev.com/desktops?viewmode=list" title="List">List</a>
+                    </div>
+                    <div class="product-sorting">
+                        <span>Sort by</span>
+                        <select id="products-orderby" name="products-orderby" onchange="setLocation(this.value);">
+                            <option selected="selected" value="http://test-nop.uteam-dev.com/desktops?orderby=0">Position</option>
+                            <option value="http://test-nop.uteam-dev.com/desktops?orderby=5">Name: A to Z</option>
+                            <option value="http://test-nop.uteam-dev.com/desktops?orderby=6">Name: Z to A</option>
+                            <option value="http://test-nop.uteam-dev.com/desktops?orderby=10">Price: Low to High</option>
+                            <option value="http://test-nop.uteam-dev.com/desktops?orderby=11">Price: High to Low</option>
+                            <option value="http://test-nop.uteam-dev.com/desktops?orderby=15">Created on</option>
+                        </select>
+                    </div>
+                    <div class="product-page-size">
+                        <span>Display</span>
+                        <select id="products-pagesize" name="products-pagesize" onchange="setLocation(this.value);">
+                            <option value="http://test-nop.uteam-dev.com/desktops?pagesize=3">3</option>
+                            <option selected="selected" value="http://test-nop.uteam-dev.com/desktops?pagesize=6">6</option>
+                            <option value="http://test-nop.uteam-dev.com/desktops?pagesize=9">9</option>
+                        </select>
+                        <span>per page</span>
+                    </div>
+                </div>
+                <div class="product-grid">
+                    <div class="item-grid">
+                        @foreach (var product in products)
+                        {
+                            var category = product.GetPropertyValue<IEnumerable<IPublishedContent>>("category").Where(x => x.Id == Model.Content.Id);
+                            if (category.Any())
+                            {
+                                <div class="item-box">
+                                    <div class="product-item" data-productid="1">
+                                        @if (product.HasValue("productImage"))
+                                        {
+                                            var imagesList = product.GetPropertyValue<IEnumerable<IPublishedContent>>("productImage");
+                                            <div class="picture">
+                                                <a href="@product.Url" title="@product.Name">
+                                                    <img alt="@product.Name" src="@imagesList.FirstOrDefault().Url" title="@product.Name" />
+                                                </a>
+                                            </div>
+                                        }
+                                        <div class="details">
+                                            <h2 class="product-title">
+                                                <a href="@product.Url">@product.Name</a>
+                                            </h2>
+                                            <div class="description">
+                                                Build it
+                                            </div>
+                                            <div class="add-info">
+                                                <div class="prices">
+                                                    <span class="price actual-price">$1,200.00</span>
+                                                </div>
+                                                <div class="buttons">
+                                                    <input type="button" value="Add to cart" class="button-2 product-box-add-to-cart-button" onclick="AjaxCart.addproducttocart_catalog('/addproducttocart/catalog/1/1/1');return false;" />
+                                                    <input type="button" value="Add to compare list" title="Add to compare list" class="button-2 add-to-compare-list-button" onclick="AjaxCart.addproducttocomparelist('/compareproducts/add/1');return false;" />
+                                                    <input type="button" value="Add to wishlist" title="Add to wishlist" class="button-2 add-to-wishlist-button" onclick="AjaxCart.addproducttocart_catalog('/addproducttocart/catalog/1/2/1');return false;" />
+                                                </div>
+
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            }
+                        }
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+

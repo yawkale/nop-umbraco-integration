@@ -29,19 +29,26 @@
 
                 if (item.HasValue("productImage"))
                 {
-                    var image = Umbraco.TypedMedia(item.GetPropertyValue<int>("productImage"));
+                    var image = item.GetPropertyValue<IEnumerable<IPublishedContent>>("productImage").FirstOrDefault();
                     <img src="@image.Url" alt="@item.Name" />
                 }
                 <div>NopeId: @item.GetPropertyValue("nopId")</div>
 
-                var tags = item.GetPropertyValue<IEnumerable<IPublishedContent>>("tags");
-                <div>
-                    Tags:
-                    @foreach (var tag in tags)
+                if (item.HasValue("category"))
+                {
+                    var categoryListValue = item.GetPropertyValue<string>("category");
+                    var categoryList = categoryListValue.Split(new string[] { "," }, StringSplitOptions.RemoveEmptyEntries).Select(int.Parse);
+                    var categoryCollection = Umbraco.TypedContent(categoryList).Where(x => x != null);
+                    foreach (var subItem in categoryCollection)
                     {
-                        @tag.Name 
+                        <p>@item.Name</p>
+                        <div>
+                            Computers:
+                        </div>
                     }
-                </div>
+                }
+
+
 
             }
         }

@@ -1,21 +1,183 @@
-﻿@inherits Umbraco.Web.Mvc.UmbracoTemplatePage
-@using ContentModels = Umbraco.Web.PublishedContentModels;
+﻿@inherits UmbracoTemplatePage
 @{
     Layout = "_Layout.cshtml";
+    var root = Model.Content.AncestorOrSelf(1);
+    var relatedProducts = Model.Content.GetPropertyValue<IEnumerable<IPublishedContent>>("relatedProducts");
 }
 
-<h1>Product: @Model.Content.Name</h1>
-<div>Nop Id: @Model.Content.GetPropertyValue("nopId")</div>
-@if (Model.Content.HasValue("productImage"))
-{
-    var image = Umbraco.TypedMedia(Model.Content.GetPropertyValue<int>("productImage"));
-    <img src="@image.Url" alt="@Model.Content.Name" />
-}
-<div>
-    Tags:
-    @foreach (var tag in Model.Content.GetPropertyValue<IEnumerable<IPublishedContent>>("tags"))
-    {
-        @tag.Name
-    }
+<div class="master-column-wrapper">
+    <div class="center-1">
+        <div class="page product-details-page">
+            <div class="page-body">
+                <form action="/adidas-consortium-campus-80s-running-shoes" id="product-details-form" method="post">
+                    <div itemscope itemtype="http://schema.org/Product" data-productid="25">
+                        <div class="product-essential">
 
+                            <div class="gallery">
+                                @if (Model.Content.HasValue("productImage"))
+                                {
+                                    var imagesList = Model.Content.GetPropertyValue<IEnumerable<IPublishedContent>>("productImage");
+                                    <div class="picture">
+                                        <img alt="@Model.Content.Name" src="@imagesList.FirstOrDefault().Url" title="@Model.Content.Name" itemprop="image" id="main-product-img-25" />
+                                    </div>
+                                    if (imagesList.Count() > 1)
+                                    {
+                                        <div class="picture-thumbs">
+                                            @foreach (var image in imagesList)
+                                            {
+                                                <a class="thumb-popup-link" href="@image.Url" title="@Model.Content.Name">
+                                                    <img src="@image.Url" alt="@Model.Content.Name" title="@Model.Content.Name" />
+                                                </a>
+                                            }
+                                        </div>
+                                    }
+
+                                }
+                            </div>
+                            <div class="overview">
+                                <div class="product-name">
+                                    <h1 itemprop="name">
+                                        @Model.Content.Name
+                                    </h1>
+                                </div>
+                                <div class="short-description">
+                                    @Model.Content.GetPropertyValue("description")
+                                </div>
+
+                                <div class="prices" itemprop="offers" itemscope itemtype="http://schema.org/Offer">
+                                    <div class="product-price">
+                                        <span itemprop="price" content="27.56" class="price-value-25">
+                                            $27.56
+                                        </span>
+                                    </div>
+                                    <meta itemprop="priceCurrency" content="USD" />
+                                </div>
+
+                                <div class="add-to-cart">
+                                    <div class="add-to-cart-panel">
+                                        <label class="qty-label" for="addtocart_25_EnteredQuantity">Qty:</label>
+                                        <input class="qty-input" data-val="true" data-val-number="The field Qty must be a number." id="addtocart_25_EnteredQuantity" name="addtocart_25.EnteredQuantity" type="text" value="1" />
+                                        <input type="button" id="add-to-cart-button-25" class="button-1 add-to-cart-button" value="Add to cart" data-productid="25" onclick="AjaxCart.addproducttocart_details('/addproducttocart/details/25/1', '#product-details-form');return false;" />
+                                    </div>
+                                </div>
+
+                                <!--wishlist, compare, email a friend-->
+                                <div class="overview-buttons">
+
+                                    <div class="add-to-wishlist">
+                                        <input type="button" id="add-to-wishlist-button-25" class="button-2 add-to-wishlist-button" value="Add to wishlist" data-productid="25" onclick="AjaxCart.addproducttocart_details('/addproducttocart/details/25/2', '#product-details-form');return false;" />
+                                    </div>
+
+
+                                    <div class="compare-products">
+                                        <input type="button" value="Add to compare list" class="button-2 add-to-compare-list-button" onclick="AjaxCart.addproducttocomparelist('/compareproducts/add/25');return false;" />
+                                    </div>
+
+                                    <div class="email-a-friend">
+                                        <input type="button" value="Email a friend" class="button-2 email-a-friend-button" onclick="setLocation('/productemailafriend/25')" />
+                                    </div>
+
+
+                                </div>
+
+                                <div class="product-share-button">
+                                    <!-- AddThis Button BEGIN --><div class="addthis_toolbox addthis_default_style "><a class="addthis_button_preferred_1"></a><a class="addthis_button_preferred_2"></a><a class="addthis_button_preferred_3"></a><a class="addthis_button_preferred_4"></a><a class="addthis_button_compact"></a><a class="addthis_counter addthis_bubble_style"></a></div>
+                                    <script type="text/javascript" src="http://s7.addthis.com/js/250/addthis_widget.js#pubid=nopsolutions"></script><!-- AddThis Button END -->
+                                </div>
+
+
+                            </div>
+                            <div class="full-description" itemprop="description">
+                                @Model.Content.GetPropertyValue("productDescription")
+                            </div>
+                        </div>
+
+                        <div class="product-collateral">
+
+                            <div class="product-tags-box">
+                                <div class="title">
+                                    <strong>Product tags</strong>
+                                </div>
+                                <div class="product-tags-list">
+                                    <ul>
+                                        <li class="tag">
+                                            <a href="/producttag/3/cool" class="producttag">
+                                                cool
+                                            </a> <span>(17)</span>
+                                        </li>
+                                        <li class="separator">,</li>
+                                        <li class="tag">
+                                            <a href="/producttag/4/apparel" class="producttag">
+                                                apparel
+                                            </a> <span>(9)</span>
+                                        </li>
+                                        <li class="separator">,</li>
+                                        <li class="tag">
+                                            <a href="/producttag/7/shoes" class="producttag">
+                                                shoes
+                                            </a> <span>(2)</span>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+
+                        </div>
+
+                        <div class="related-products-grid product-grid">
+                            <div class="title">
+                                <strong>Related products</strong>
+                            </div>
+                            <div class="item-grid">
+
+                                @foreach (var productPage in relatedProducts)
+                                {
+                                    var product = Umbraco.TypedContent(productPage.Id);
+                                    if (product != null)
+                                    {
+                                        <div class="item-box">
+                                            <div class="product-item" data-productid="30">
+                                                @if (product.HasValue("productImage"))
+                                                {
+                                                    var imagesList = product.GetPropertyValue<IEnumerable<IPublishedContent>>("productImage");
+                                                    <div class="picture">
+                                                        <a href="@product.Url" title="@product.Name">
+                                                            <img alt="@product.Name" src="@imagesList.FirstOrDefault().Url" title="@product.Name" />
+                                                        </a>
+                                                    </div>
+
+                                                }
+                                                <div class="details">
+                                                    <h2 class="product-title">
+                                                        <a href="@product.Url">@product.Name</a>
+                                                    </h2>
+                                                    <div class="description">
+                                                        @product.GetPropertyValue("description")
+                                                    </div>
+                                                    <div class="add-info">
+                                                        <div class="prices">
+                                                            <span class="price actual-price">From $35.00</span>
+                                                        </div>
+
+                                                        <div class="buttons">
+
+                                                            <input type="button" value="Add to cart" class="button-2 product-box-add-to-cart-button" onclick="AjaxCart.addproducttocart_catalog('/addproducttocart/catalog/30/1/1');return false;" />
+                                                            <input type="button" value="Add to compare list" title="Add to compare list" class="button-2 add-to-compare-list-button" onclick="AjaxCart.addproducttocomparelist('/compareproducts/add/30');return false;" />
+                                                            <input type="button" value="Add to wishlist" title="Add to wishlist" class="button-2 add-to-wishlist-button" onclick="AjaxCart.addproducttocart_catalog('/addproducttocart/catalog/30/2/1');return false;" />
+                                                        </div>
+
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    }
+
+                                }
+                            </div>
+                        </div>
+
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
 </div>

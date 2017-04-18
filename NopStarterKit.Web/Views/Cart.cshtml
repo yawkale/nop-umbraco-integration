@@ -1,0 +1,617 @@
+﻿@inherits Umbraco.Web.Mvc.UmbracoTemplatePage<ContentModels.Cart>
+@using ContentModels = Umbraco.Web.PublishedContentModels;
+@{
+    Layout = "_Layout.cshtml";
+}
+
+<div class="master-column-wrapper">
+    <div class="center-1">
+        <div class="page shopping-cart-page">
+            <div class="page-title">
+                <h1>Shopping cart</h1>
+            </div>
+            <div class="page-body">
+                <div class="order-summary-content">
+                    <form action="/cart" enctype="multipart/form-data" id="shopping-cart-form" method="post" novalidate="novalidate">
+                        <input name="__RequestVerificationToken" type="hidden" value="T8KlU4Lr2uBV6rBkjluUtVvCu9hCZaWw4Yu469MGFHpLdUWC-FCGiWbGXqw4yeWgNLX8OXKNYYnCwc2B0fZBCn8ODUGVSryODjd7TD2q6EM1">       <div class="table-wrapper">
+                            <table class="cart">
+                                <colgroup>
+                                    <col width="1">
+                                    <col width="1">
+                                    <col>
+                                    <col width="1">
+                                    <col width="1">
+                                    <col width="1">
+                                </colgroup>
+                                <thead>
+                                    <tr>
+                                        <th class="remove-from-cart">
+                                            Remove
+                                        </th>
+                                        <th class="product-picture">
+                                            Image
+                                        </th>
+                                        <th class="product">
+                                            Product(s)
+                                        </th>
+                                        <th class="unit-price">
+                                            Price
+                                        </th>
+                                        <th class="quantity">
+                                            Qty.
+                                        </th>
+                                        <th class="subtotal">
+                                            Total
+                                        </th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td class="remove-from-cart">
+                                            <label class="td-title">Remove:</label>
+                                            <input type="checkbox" name="removefromcart" value="25">
+                                        </td>
+                                        <td class="product-picture">
+                                            <a href="/build-your-own-computer"><img alt="Picture of Build your own computer" src="http://test-nop.uteam-dev.com/content/images/thumbs/0000020_build-your-own-computer_80.jpeg" title="Show details for Build your own computer"></a>
+                                        </td>
+                                        <td class="product">
+                                            <a href="/build-your-own-computer" class="product-name">Build your own computer</a>
+                                            <div class="attributes">
+                                                Processor: 2.5 GHz Intel Pentium Dual-Core E2200 [+$15.00]<br>RAM: 2 GB<br>HDD: 320 GB<br>OS: Vista Home [+$50.00]<br>Software: Microsoft Office [+$50.00]
+                                            </div>
+                                            <div class="edit-item">
+                                                <a href="/build-your-own-computer?updatecartitemid=25">Edit</a>
+                                            </div>
+                                        </td>
+                                        <td class="unit-price">
+                                            <label class="td-title">Price:</label>
+                                            <span class="product-unit-price">$1,315.00</span>
+                                        </td>
+                                        <td class="quantity">
+                                            <label class="td-title">Qty.:</label>
+                                            <input name="itemquantity25" type="text" value="1" class="qty-input">
+                                        </td>
+                                        <td class="subtotal">
+                                            <label class="td-title">Total:</label>
+                                            <span class="product-subtotal">$1,315.00</span>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td class="remove-from-cart">
+                                            <label class="td-title">Remove:</label>
+                                            <input type="checkbox" name="removefromcart" value="26">
+                                        </td>
+                                        <td class="product-picture">
+                                            <a href="/build-your-own-computer"><img alt="Picture of Build your own computer" src="http://test-nop.uteam-dev.com/content/images/thumbs/0000020_build-your-own-computer_80.jpeg" title="Show details for Build your own computer"></a>
+                                        </td>
+                                        <td class="product">
+                                            <a href="/build-your-own-computer" class="product-name">Build your own computer</a>
+                                            <div class="attributes">
+                                                Processor: 2.5 GHz Intel Pentium Dual-Core E2200 [+$15.00]<br>RAM: 2 GB<br>HDD: 400 GB [+$100.00]<br>OS: Vista Home [+$50.00]<br>Software: Microsoft Office [+$50.00]
+                                            </div>
+                                            <div class="edit-item">
+                                                <a href="/build-your-own-computer?updatecartitemid=26">Edit</a>
+                                            </div>
+                                        </td>
+                                        <td class="unit-price">
+                                            <label class="td-title">Price:</label>
+                                            <span class="product-unit-price">$1,415.00</span>
+                                        </td>
+                                        <td class="quantity">
+                                            <label class="td-title">Qty.:</label>
+                                            <input name="itemquantity26" type="text" value="1" class="qty-input">
+                                        </td>
+                                        <td class="subtotal">
+                                            <label class="td-title">Total:</label>
+                                            <span class="product-subtotal">$1,415.00</span>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                        <div class="cart-options">
+                            <div class="common-buttons">
+                                <input type="submit" name="updatecart" value="Update shopping cart" class="button-2 update-cart-button">
+                                <input type="submit" name="continueshopping" value="Continue shopping" class="button-2 continue-shopping-button">
+                            </div>
+                            <div class="checkout-attributes">
+                                <dl>
+                                    <dt id="checkout_attribute_label_1">
+                                        <label class="text-prompt">
+                                            Gift wrapping
+                                        </label>
+                                        <span class="required">*</span>
+                                    </dt>
+                                    <dd id="checkout_attribute_input_1">
+                                        <select name="checkout_attribute_1" id="checkout_attribute_1">
+                                            <option selected="selected" value="1">No</option>
+                                            <option value="2">Yes [+$10.00]</option>
+                                        </select>
+                                    </dd>
+                                </dl>
+                            </div>
+                            <script type="text/javascript">
+                                $(document).ready(function () {
+                                    checkoutAttributeChange();
+                                    $('#checkout_attribute_1').change(function () { checkoutAttributeChange(); });
+
+                                });
+
+                                function checkoutAttributeChange() {
+                                    $.ajax({
+                                        cache: false,
+                                        url: '/shoppingcart/checkoutattributechange',
+                                        data: $('#shopping-cart-form').serialize(),
+                                        type: 'post',
+                                        success: function (data) {
+                                            if (data.enabledattributeids) {
+                                                for (var i = 0; i < data.enabledattributeids.length; i++) {
+                                                    $('#checkout_attribute_label_' + data.enabledattributeids[i]).show();
+                                                    $('#checkout_attribute_input_' + data.enabledattributeids[i]).show();
+                                                }
+                                            }
+                                            if (data.disabledattributeids) {
+                                                for (var i = 0; i < data.disabledattributeids.length; i++) {
+                                                    $('#checkout_attribute_label_' + data.disabledattributeids[i]).hide();
+                                                    $('#checkout_attribute_input_' + data.disabledattributeids[i]).hide();
+                                                }
+                                            }
+                                        }
+                                    });
+                                }
+                            </script>
+                            <div class="selected-checkout-attributes">
+                                Gift wrapping: No
+                            </div>
+                        </div>
+                        <div class="cart-footer">
+
+                            <div class="cart-collaterals">
+                                <div class="deals">
+                                    <div class="coupon-box">
+                                        <div class="title">
+                                            <strong>Discount Code</strong>
+                                        </div>
+                                        <div class="hint">
+                                            Enter your coupon here
+                                        </div>
+                                        <div class="coupon-code">
+                                            <input name="discountcouponcode" type="text" class="discount-coupon-code">
+                                            <input type="submit" name="applydiscountcouponcode" value="Apply coupon" class="button-2 apply-discount-coupon-code-button">
+                                        </div>
+                                    </div>
+
+                                    <div class="giftcard-box">
+                                        <div class="title">
+                                            <strong>Gift Cards</strong>
+                                        </div>
+                                        <div class="hint">Enter gift card code</div>
+                                        <div class="coupon-code">
+                                            <input name="giftcardcouponcode" type="text" class="gift-card-coupon-code">
+                                            <input type="submit" name="applygiftcardcouponcode" value="Add gift card" class="button-2 apply-gift-card-coupon-code-button">
+                                        </div>
+                                    </div>
+
+
+                                </div>
+                                <div class="shipping">
+                                    <script type="text/javascript">
+                                        $(document).ready(function () {
+                                            $("#CountryId").change(function () {
+                                                var selectedItem = $(this).val();
+                                                var ddlStates = $("#StateProvinceId");
+                                                var estimateProgress = $("#estimate-shipping-loading-progress");
+                                                estimateProgress.show();
+                                                $.ajax({
+                                                    cache: false,
+                                                    type: "GET",
+                                                    url: "/country/getstatesbycountryid",
+                                                    data: { "countryId": selectedItem, "addSelectStateItem": "false" },
+                                                    success: function (data) {
+                                                        ddlStates.html('');
+                                                        $.each(data, function (id, option) {
+                                                            ddlStates.append($('<option></option>').val(option.id).html(option.name));
+                                                        });
+                                                        estimateProgress.hide();
+                                                    },
+                                                    error: function (xhr, ajaxOptions, thrownError) {
+                                                        alert('Failed to retrieve states.');
+                                                        estimateProgress.hide();
+                                                    }
+                                                });
+                                            });
+                                        });
+                                    </script>
+
+                                    <div class="estimate-shipping">
+                                        <div class="title">
+                                            <strong>Estimate shipping</strong>
+                                        </div>
+                                        <div class="hint">Enter your destination to get a shipping estimate</div>
+                                        <div class="shipping-options">
+                                            <div class="inputs">
+                                                <label for="CountryId">Country:</label>
+                                                <select class="country-input" data-val="true" data-val-number="The field Country must be a number." id="CountryId" name="CountryId">
+                                                    <option value="0">Select country</option>
+                                                    <option value="1">United States</option>
+                                                    <option value="88">Afghanistan</option>
+                                                    <option value="89">Albania</option>
+                                                    <option value="90">Algeria</option>
+                                                    <option value="91">American Samoa</option>
+                                                    <option value="92">Andorra</option>
+                                                    <option value="93">Angola</option>
+                                                    <option value="94">Anguilla</option>
+                                                    <option value="95">Antarctica</option>
+                                                    <option value="96">Antigua and Barbuda</option>
+                                                    <option value="3">Argentina</option>
+                                                    <option value="4">Armenia</option>
+                                                    <option value="5">Aruba</option>
+                                                    <option value="6">Australia</option>
+                                                    <option value="7">Austria</option>
+                                                    <option value="8">Azerbaijan</option>
+                                                    <option value="9">Bahamas</option>
+                                                    <option value="97">Bahrain</option>
+                                                    <option value="10">Bangladesh</option>
+                                                    <option value="98">Barbados</option>
+                                                    <option value="11">Belarus</option>
+                                                    <option value="12">Belgium</option>
+                                                    <option value="13">Belize</option>
+                                                    <option value="99">Benin</option>
+                                                    <option value="14">Bermuda</option>
+                                                    <option value="100">Bhutan</option>
+                                                    <option value="15">Bolivia</option>
+                                                    <option value="16">Bosnia and Herzegowina</option>
+                                                    <option value="101">Botswana</option>
+                                                    <option value="102">Bouvet Island</option>
+                                                    <option value="17">Brazil</option>
+                                                    <option value="103">British Indian Ocean Territory</option>
+                                                    <option value="104">Brunei Darussalam</option>
+                                                    <option value="18">Bulgaria</option>
+                                                    <option value="105">Burkina Faso</option>
+                                                    <option value="106">Burundi</option>
+                                                    <option value="107">Cambodia</option>
+                                                    <option value="108">Cameroon</option>
+                                                    <option value="2">Canada</option>
+                                                    <option value="109">Cape Verde</option>
+                                                    <option value="19">Cayman Islands</option>
+                                                    <option value="110">Central African Republic</option>
+                                                    <option value="111">Chad</option>
+                                                    <option value="20">Chile</option>
+                                                    <option value="21">China</option>
+                                                    <option value="112">Christmas Island</option>
+                                                    <option value="113">Cocos (Keeling) Islands</option>
+                                                    <option value="22">Colombia</option>
+                                                    <option value="114">Comoros</option>
+                                                    <option value="115">Congo</option>
+                                                    <option value="116">Congo (Democratic Republic of the)</option>
+                                                    <option value="117">Cook Islands</option>
+                                                    <option value="23">Costa Rica</option>
+                                                    <option value="118">Cote D'Ivoire</option>
+                                                    <option value="24">Croatia</option>
+                                                    <option value="25">Cuba</option>
+                                                    <option value="26">Cyprus</option>
+                                                    <option value="27">Czech Republic</option>
+                                                    <option value="28">Denmark</option>
+                                                    <option value="119">Djibouti</option>
+                                                    <option value="120">Dominica</option>
+                                                    <option value="29">Dominican Republic</option>
+                                                    <option value="30">East Timor</option>
+                                                    <option value="31">Ecuador</option>
+                                                    <option value="32">Egypt</option>
+                                                    <option value="121">El Salvador</option>
+                                                    <option value="122">Equatorial Guinea</option>
+                                                    <option value="123">Eritrea</option>
+                                                    <option value="124">Estonia</option>
+                                                    <option value="125">Ethiopia</option>
+                                                    <option value="126">Falkland Islands (Malvinas)</option>
+                                                    <option value="127">Faroe Islands</option>
+                                                    <option value="128">Fiji</option>
+                                                    <option value="33">Finland</option>
+                                                    <option value="34">France</option>
+                                                    <option value="129">French Guiana</option>
+                                                    <option value="130">French Polynesia</option>
+                                                    <option value="131">French Southern Territories</option>
+                                                    <option value="132">Gabon</option>
+                                                    <option value="133">Gambia</option>
+                                                    <option value="35">Georgia</option>
+                                                    <option value="36">Germany</option>
+                                                    <option value="134">Ghana</option>
+                                                    <option value="37">Gibraltar</option>
+                                                    <option value="38">Greece</option>
+                                                    <option value="135">Greenland</option>
+                                                    <option value="136">Grenada</option>
+                                                    <option value="137">Guadeloupe</option>
+                                                    <option value="138">Guam</option>
+                                                    <option value="39">Guatemala</option>
+                                                    <option value="139">Guinea</option>
+                                                    <option value="140">Guinea-bissau</option>
+                                                    <option value="141">Guyana</option>
+                                                    <option value="142">Haiti</option>
+                                                    <option value="143">Heard and Mc Donald Islands</option>
+                                                    <option value="144">Honduras</option>
+                                                    <option value="40">Hong Kong</option>
+                                                    <option value="41">Hungary</option>
+                                                    <option value="145">Iceland</option>
+                                                    <option value="42">India</option>
+                                                    <option value="43">Indonesia</option>
+                                                    <option value="146">Iran (Islamic Republic of)</option>
+                                                    <option value="147">Iraq</option>
+                                                    <option value="44">Ireland</option>
+                                                    <option value="45">Israel</option>
+                                                    <option value="46">Italy</option>
+                                                    <option value="47">Jamaica</option>
+                                                    <option value="48">Japan</option>
+                                                    <option value="49">Jordan</option>
+                                                    <option value="50">Kazakhstan</option>
+                                                    <option value="148">Kenya</option>
+                                                    <option value="149">Kiribati</option>
+                                                    <option value="150">Korea</option>
+                                                    <option value="51">Korea, Democratic People's Republic of</option>
+                                                    <option value="52">Kuwait</option>
+                                                    <option value="151">Kyrgyzstan</option>
+                                                    <option value="152">Lao People's Democratic Republic</option>
+                                                    <option value="153">Latvia</option>
+                                                    <option value="154">Lebanon</option>
+                                                    <option value="155">Lesotho</option>
+                                                    <option value="156">Liberia</option>
+                                                    <option value="157">Libyan Arab Jamahiriya</option>
+                                                    <option value="158">Liechtenstein</option>
+                                                    <option value="159">Lithuania</option>
+                                                    <option value="160">Luxembourg</option>
+                                                    <option value="161">Macau</option>
+                                                    <option value="162">Macedonia</option>
+                                                    <option value="163">Madagascar</option>
+                                                    <option value="164">Malawi</option>
+                                                    <option value="53">Malaysia</option>
+                                                    <option value="165">Maldives</option>
+                                                    <option value="166">Mali</option>
+                                                    <option value="167">Malta</option>
+                                                    <option value="168">Marshall Islands</option>
+                                                    <option value="169">Martinique</option>
+                                                    <option value="170">Mauritania</option>
+                                                    <option value="171">Mauritius</option>
+                                                    <option value="172">Mayotte</option>
+                                                    <option value="54">Mexico</option>
+                                                    <option value="173">Micronesia</option>
+                                                    <option value="174">Moldova</option>
+                                                    <option value="175">Monaco</option>
+                                                    <option value="176">Mongolia</option>
+                                                    <option value="177">Montenegro</option>
+                                                    <option value="178">Montserrat</option>
+                                                    <option value="179">Morocco</option>
+                                                    <option value="180">Mozambique</option>
+                                                    <option value="181">Myanmar</option>
+                                                    <option value="182">Namibia</option>
+                                                    <option value="183">Nauru</option>
+                                                    <option value="184">Nepal</option>
+                                                    <option value="55">Netherlands</option>
+                                                    <option value="185">Netherlands Antilles</option>
+                                                    <option value="186">New Caledonia</option>
+                                                    <option value="56">New Zealand</option>
+                                                    <option value="187">Nicaragua</option>
+                                                    <option value="188">Niger</option>
+                                                    <option value="189">Nigeria</option>
+                                                    <option value="190">Niue</option>
+                                                    <option value="191">Norfolk Island</option>
+                                                    <option value="192">Northern Mariana Islands</option>
+                                                    <option value="57">Norway</option>
+                                                    <option value="193">Oman</option>
+                                                    <option value="58">Pakistan</option>
+                                                    <option value="194">Palau</option>
+                                                    <option value="59">Palestine</option>
+                                                    <option value="195">Panama</option>
+                                                    <option value="196">Papua New Guinea</option>
+                                                    <option value="60">Paraguay</option>
+                                                    <option value="61">Peru</option>
+                                                    <option value="62">Philippines</option>
+                                                    <option value="197">Pitcairn</option>
+                                                    <option value="63">Poland</option>
+                                                    <option value="64">Portugal</option>
+                                                    <option value="65">Puerto Rico</option>
+                                                    <option value="66">Qatar</option>
+                                                    <option value="198">Reunion</option>
+                                                    <option value="67">Romania</option>
+                                                    <option value="68">Russian Federation</option>
+                                                    <option value="199">Rwanda</option>
+                                                    <option value="200">Saint Kitts and Nevis</option>
+                                                    <option value="201">Saint Lucia</option>
+                                                    <option value="202">Saint Vincent and the Grenadines</option>
+                                                    <option value="203">Samoa</option>
+                                                    <option value="204">San Marino</option>
+                                                    <option value="205">Sao Tome and Principe</option>
+                                                    <option value="69">Saudi Arabia</option>
+                                                    <option value="206">Senegal</option>
+                                                    <option value="87">Serbia</option>
+                                                    <option value="207">Seychelles</option>
+                                                    <option value="208">Sierra Leone</option>
+                                                    <option value="70">Singapore</option>
+                                                    <option value="71">Slovakia (Slovak Republic)</option>
+                                                    <option value="72">Slovenia</option>
+                                                    <option value="209">Solomon Islands</option>
+                                                    <option value="210">Somalia</option>
+                                                    <option value="73">South Africa</option>
+                                                    <option value="211">South Georgia &amp; South Sandwich Islands</option>
+                                                    <option value="212">South Sudan</option>
+                                                    <option value="74">Spain</option>
+                                                    <option value="213">Sri Lanka</option>
+                                                    <option value="214">St. Helena</option>
+                                                    <option value="215">St. Pierre and Miquelon</option>
+                                                    <option value="216">Sudan</option>
+                                                    <option value="217">Suriname</option>
+                                                    <option value="218">Svalbard and Jan Mayen Islands</option>
+                                                    <option value="219">Swaziland</option>
+                                                    <option value="75">Sweden</option>
+                                                    <option value="76">Switzerland</option>
+                                                    <option value="220">Syrian Arab Republic</option>
+                                                    <option value="77">Taiwan</option>
+                                                    <option value="221">Tajikistan</option>
+                                                    <option value="222">Tanzania</option>
+                                                    <option value="78">Thailand</option>
+                                                    <option value="223">Togo</option>
+                                                    <option value="224">Tokelau</option>
+                                                    <option value="225">Tonga</option>
+                                                    <option value="226">Trinidad and Tobago</option>
+                                                    <option value="227">Tunisia</option>
+                                                    <option value="79">Turkey</option>
+                                                    <option value="228">Turkmenistan</option>
+                                                    <option value="229">Turks and Caicos Islands</option>
+                                                    <option value="230">Tuvalu</option>
+                                                    <option value="231">Uganda</option>
+                                                    <option value="80">Ukraine</option>
+                                                    <option value="81">United Arab Emirates</option>
+                                                    <option value="82">United Kingdom</option>
+                                                    <option value="83">United States minor outlying islands</option>
+                                                    <option value="84">Uruguay</option>
+                                                    <option value="85">Uzbekistan</option>
+                                                    <option value="232">Vanuatu</option>
+                                                    <option value="233">Vatican City State (Holy See)</option>
+                                                    <option value="86">Venezuela</option>
+                                                    <option value="234">Viet Nam</option>
+                                                    <option value="235">Virgin Islands (British)</option>
+                                                    <option value="236">Virgin Islands (U.S.)</option>
+                                                    <option value="237">Wallis and Futuna Islands</option>
+                                                    <option value="238">Western Sahara</option>
+                                                    <option value="239">Yemen</option>
+                                                    <option value="240">Zambia</option>
+                                                    <option value="241">Zimbabwe</option>
+                                                </select>
+                                                <span class="required">*</span>
+                                            </div>
+                                            <div class="inputs">
+                                                <label for="StateProvinceId">State / province:</label>
+                                                <select class="state-input" data-val="true" data-val-number="The field State / province must be a number." id="StateProvinceId" name="StateProvinceId">
+                                                    <option value="0">Other (Non US)</option>
+                                                </select>
+                                                <span id="estimate-shipping-loading-progress" style="display: none;" class="please-wait">Wait...</span>
+                                            </div>
+                                            <div class="inputs">
+                                                <label for="ZipPostalCode">Zip / postal code:</label>
+                                                <input class="zip-input" id="ZipPostalCode" name="ZipPostalCode" type="text" value="">
+                                            </div>
+                                            <div class="buttons">
+                                                <input id="estimate-shipping-button" type="button" value="Estimate shipping" class="button-2 estimate-shipping-button">
+                                            </div>
+                                        </div>
+                                        <div class="estimate-shipping-result"></div>
+                                    </div>
+                                </div>
+                                <script type="text/javascript">
+                                    $(document).ready(function () {
+                                        $('#estimate-shipping-button').click(function () {
+                                            displayAjaxLoading(true);
+                                            $.ajax({
+                                                cache: false,
+                                                type: "POST",
+                                                url: "/cart/estimateshipping",
+                                                data: $("#shopping-cart-form").serialize(),
+                                                success: function (data) {
+                                                    displayAjaxLoading();
+                                                    $('.estimate-shipping-result').html(data);
+                                                },
+                                                error: function (xhr, ajaxOptions, thrownError) {
+                                                    displayAjaxLoading();
+                                                    alert('Failed to retrieve estimate shipping.');
+                                                }
+                                            });
+                                        });
+                                    });
+                                </script>
+                            </div>
+                            <div class="totals">
+                                <div class="total-info">
+                                    <table class="cart-total">
+                                        <tbody>
+                                            <tr class="order-subtotal">
+                                                <td class="cart-total-left">
+                                                    <label>Sub-Total:</label>
+                                                </td>
+                                                <td class="cart-total-right">
+                                                    <span class="value-summary">$2,730.00</span>
+                                                </td>
+                                            </tr>
+                                            <tr class="shipping-cost">
+                                                <td class="cart-total-left">
+                                                    <label>Shipping:</label>
+                                                </td>
+                                                <td class="cart-total-right">
+                                                    <span class="value-summary">$0.00</span>
+                                                </td>
+                                            </tr>
+                                            <tr class="tax-value">
+                                                <td class="cart-total-left">
+                                                    <label>Tax:</label>
+                                                </td>
+                                                <td class="cart-total-right">
+                                                    <span class="value-summary">$0.00</span>
+                                                </td>
+                                            </tr>
+                                            <tr class="order-total">
+                                                <td class="cart-total-left">
+                                                    <label>Total:</label>
+                                                </td>
+                                                <td class="cart-total-right">
+                                                    <span class="value-summary"><strong>$2,730.00</strong></span>
+                                                </td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+
+                                <div id="terms-of-service-warning-box" title="Terms of service" style="display: none;">
+                                    <p>Please accept the terms of service before the next step.</p>
+                                </div>
+                                <div class="terms-of-service">
+                                    <input id="termsofservice" type="checkbox" name="termsofservice">
+                                    <span>
+                                        I agree with the terms of service and I adhere to them unconditionally
+                                        <a class="read" id="read-terms">
+                                            (read)
+                                        </a>
+                                    </span>
+                                    <script>
+                                        $(document).ready(function () {
+                                            $('#read-terms').on('click', function (e) {
+                                                e.preventDefault();
+                                                displayPopupContentFromUrl('/t-popup/conditionsofuse', 'Terms of service');
+                                            });
+                                        });
+                                    </script>
+                                </div>
+                                <div class="checkout-buttons">
+                                    <script type="text/javascript">
+                                        $(document).ready(function () {
+                                            $('#checkout').click(function () {
+                                                //terms of service
+                                                var termOfServiceOk = true;
+                                                if ($('#termsofservice').length > 0) {
+                                                    //terms of service element exists
+                                                    if (!$('#termsofservice').is(':checked')) {
+                                                        $("#terms-of-service-warning-box").dialog();
+                                                        termOfServiceOk = false;
+                                                    } else {
+                                                        termOfServiceOk = true;
+                                                    }
+                                                }
+                                                return termOfServiceOk;
+                                            });
+                                        });
+                                    </script>
+                                    <button type="submit" id="checkout" name="checkout" value="checkout" class="button-1 checkout-button">
+                                        Checkout
+                                    </button>
+                                </div>
+                                <div class="addon-buttons">
+
+
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+
+    </div>
+
+</div>

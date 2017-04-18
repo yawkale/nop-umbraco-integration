@@ -610,11 +610,17 @@ function codefileResource($q, $http, umbDataFormatter, umbRequestHelper) {
          */
 
         getScaffold: function (type, id, snippetName) {
+
+            var queryString = "?type=" + type + "&id=" + id;
+            if (snippetName) {
+                queryString += "&snippetName=" + snippetName;
+            }
+
             return umbRequestHelper.resourcePromise(
                  $http.get(
                      umbRequestHelper.getApiUrl(
-                         "codeFileApiBaseUrl",
-                         "GetScaffold?type=" + type + "&id=" + id + "&snippetName=" + snippetName)),
+                        "codeFileApiBaseUrl",
+                        "GetScaffold" + queryString)),
                 "Failed to get scaffold for" + type);
         },
 
@@ -2867,13 +2873,13 @@ angular.module('umbraco.resources').factory('logResource', logResource);
     * @ngdoc service
     * @name umbraco.resources.macroResource
     * @description Deals with data for macros
-    * 
+    *
     **/
 function macroResource($q, $http, umbRequestHelper) {
 
     //the factory object returned
     return {
-        
+
         /**
          * @ngdoc method
          * @name umbraco.resources.macroResource#getMacroParameters
@@ -2885,7 +2891,7 @@ function macroResource($q, $http, umbRequestHelper) {
          * @param {int} macroId The macro id to get parameters for
          *
          */
-        getMacroParameters: function (macroId) {            
+        getMacroParameters: function (macroId) {
             return umbRequestHelper.resourcePromise(
                $http.get(
                    umbRequestHelper.getApiUrl(
@@ -2894,7 +2900,7 @@ function macroResource($q, $http, umbRequestHelper) {
                        [{ macroId: macroId }])),
                'Failed to retrieve macro parameters for macro with id  ' + macroId);
         },
-        
+
         /**
          * @ngdoc method
          * @name umbraco.resources.macroResource#getMacroResult
@@ -2920,6 +2926,27 @@ function macroResource($q, $http, umbRequestHelper) {
                         macroParams: macroParamDictionary
                     }),
                 'Failed to retrieve macro result for macro with alias  ' + macroAlias);
+        },
+
+        /**
+         *
+         * @param {} filename
+         * @returns {}
+         */
+        createPartialViewMacroWithFile: function(virtualPath, filename) {
+
+            return umbRequestHelper.resourcePromise(
+                $http.post(
+                    umbRequestHelper.getApiUrl(
+                        "macroApiBaseUrl",
+                        "CreatePartialViewMacroWithFile"), {
+                            virtualPath: virtualPath,
+                            filename: filename
+                        }
+                ),
+                'Failed to create macro "' + filename + '"'
+            );
+
         }
     };
 }
@@ -4941,9 +4968,14 @@ function treeResource($q, $http, umbRequestHelper) {
             if (!options.isDialog) {
                 options.isDialog = false;
             }
-          
+
             //create the query string for the tree request, these are the mandatory options:
             var query = "application=" + options.section + "&tree=" + options.tree + "&isDialog=" + options.isDialog;
+
+            //if you need to load a not initialized tree set this value to false - default is true
+            if (options.onlyinitialized) {
+                query += "&onlyInitialized=" + options.onlyinitialized;
+            }
 
             //the options can contain extra query string parameters
             if (options.queryString) {

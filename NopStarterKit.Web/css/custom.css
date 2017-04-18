@@ -1,0 +1,21 @@
+﻿
+.pager li.PagedList-skipToPrevious a, .pager li.PagedList-skipToNext a {
+    background-position: center;
+    background-repeat: no-repeat;
+    font-size: 0;
+    color: #fff;
+}
+
+.pager li.PagedList-skipToPrevious a {
+    background-image: url(../images/prev.png);
+}
+
+.pager li.PagedList-skipToNext a {
+    background-image: url(../images/next.png);
+}
+
+.pager li.active a{
+    border-color: transparent;
+    background-color: #4ab2f1;
+    color: #fff;
+}

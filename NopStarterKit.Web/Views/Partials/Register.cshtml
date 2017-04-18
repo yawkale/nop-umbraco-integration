@@ -1,0 +1,93 @@
+﻿@inherits Umbraco.Web.Mvc.UmbracoTemplatePage
+
+
+@using System.Web.Mvc.Html
+@using ClientDependency.Core.Mvc
+@using Umbraco.Web
+@using Umbraco.Web.Controllers
+
+@{
+
+    var registerModel = Members.CreateRegistrationModel();
+
+    Html.EnableClientValidation();
+    Html.EnableUnobtrusiveJavaScript();
+    Html.RequiresJs("/umbraco_client/ui/jquery.js");
+    Html.RequiresJs("/umbraco_client/Application/JQuery/jquery.validate.min.js");
+    Html.RequiresJs("/umbraco_client/Application/JQuery/jquery.validate.unobtrusive.min.js");
+
+    var success = TempData["FormSuccess"] != null;
+}
+
+@Html.RenderJsHere()
+
+<div class="master-column-wrapper">
+    <div class="center-1">
+
+        @if (success)
+        {
+            <p>Registration succeeeded.</p>
+        }
+        else
+        {
+            using (Html.BeginUmbracoForm<UmbRegisterController>("HandleRegisterMember"))
+            {
+                @Html.ValidationSummary("registerModel", true)
+                <div class="page registration-page">
+                    <div class="page-title">
+                        <h1>Register</h1>
+                    </div>
+                    <div class="page-body">
+                        <div class="fieldset">
+                            <div class="title">
+                                <strong>Your Personal Details</strong>
+                            </div>
+                            <div class="form-fields">
+                                <div class="inputs">
+                                    @Html.LabelFor(m => registerModel.Name)
+                                    @Html.TextBoxFor(m => registerModel.Name, new { @id = "Name", })
+                                    @Html.ValidationMessageFor(m => registerModel.Name)
+                                </div>
+                                <div class="inputs">
+                                    @Html.LabelFor(m => registerModel.Email)
+                                    @Html.TextBoxFor(m => registerModel.Email, new { @id = "Email" })
+                                    @Html.ValidationMessageFor(m => registerModel.Email)
+                                </div>
+                                <div class="inputs">
+                                    @Html.LabelFor(m => registerModel.Password)
+                                    @Html.PasswordFor(m => registerModel.Password, new { @id = "Password" })
+                                    @Html.ValidationMessageFor(m => registerModel.Password)
+                                </div>
+                               
+                                    @if (registerModel.MemberProperties != null)
+                                    {
+                                        for (var i = 0; i < registerModel.MemberProperties.Count; i++)
+                                        {
+                                            <div class="inputs">
+                                                @Html.LabelFor(m => registerModel.MemberProperties[i].Value, registerModel.MemberProperties[i].Name)
+                                                @Html.EditorFor(m => registerModel.MemberProperties[i].Value)
+                                                @Html.HiddenFor(m => registerModel.MemberProperties[i].Alias)
+                                            </div>
+                                         
+                                        }
+                                    }
+
+                                    @Html.HiddenFor(m => registerModel.MemberTypeAlias)
+                                    @Html.HiddenFor(m => registerModel.RedirectUrl)
+                                    @Html.HiddenFor(m => registerModel.UsernameIsEmail)
+                                </div>
+                        </div>
+                        <div class="buttons">
+                            <input type="submit" id="register-button" class="button-1 register-next-step-button" value="Register" name="register-button">
+                        </div>
+                    </div>
+                </div>
+
+
+            }
+        }
+    </div>
+</div>
+
+
+

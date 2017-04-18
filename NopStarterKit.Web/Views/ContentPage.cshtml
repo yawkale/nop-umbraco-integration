@@ -1,5 +1,18 @@
-﻿@inherits Umbraco.Web.Mvc.UmbracoTemplatePage<ContentModels.ContentPage>
+﻿@inherits Umbraco.Web.Mvc.UmbracoTemplatePage
 @using ContentModels = Umbraco.Web.PublishedContentModels;
 @{
 	Layout = "_Layout.cshtml";
 }
+
+<div class="master-column-wrapper">
+    <div class="center-1">
+        <div class="page topic-page" id="ph-topic">
+            <div class="page-title" id="ph-title">
+                <h1>@Model.Content.GetPropertyValue("pageTitle", Model.Content.Name)</h1>
+            </div>
+            <div class="page-body">
+               @Html.Raw(Model.Content.GetPropertyValue("pageContent"))
+            </div>
+        </div>
+    </div>
+</div>

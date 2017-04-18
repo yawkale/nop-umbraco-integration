@@ -1,0 +1,84 @@
+﻿ 2017-04-01 16:59:10,406 [P18856/D3/T1] INFO  Umbraco.Core.CoreBootManager - Umbraco 7.6.0-beta application starting on АНТОН-HP
+ 2017-04-01 16:59:10,476 [P18856/D3/T1] INFO  Umbraco.Core.PluginManager - Determining hash of code files on disk
+ 2017-04-01 16:59:10,530 [P18856/D3/T1] INFO  Umbraco.Core.PluginManager - Hash determined (took 54ms)
+ 2017-04-01 16:59:10,602 [P18856/D3/T1] INFO  Umbraco.Core.MainDom - Acquiring MainDom...
+ 2017-04-01 16:59:10,603 [P18856/D3/T1] INFO  Umbraco.Core.MainDom - Acquired MainDom.
+ 2017-04-01 16:59:10,617 [P18856/D3/T1] INFO  Umbraco.Core.PluginManager - Starting resolution types of umbraco.interfaces.IApplicationStartupHandler
+ 2017-04-01 16:59:10,965 [P18856/D3/T1] INFO  Umbraco.Core.PluginManager - Completed resolution of types of umbraco.interfaces.IApplicationStartupHandler, found 0 (took 347ms)
+ 2017-04-01 16:59:11,267 [P18856/D3/T1] INFO  Umbraco.Core.PluginManager - Starting resolution types of Umbraco.Core.PropertyEditors.IPropertyEditorValueConverter
+ 2017-04-01 16:59:11,268 [P18856/D3/T1] INFO  Umbraco.Core.PluginManager - Completed resolution of types of Umbraco.Core.PropertyEditors.IPropertyEditorValueConverter, found 0 (took 1ms)
+ 2017-04-01 16:59:11,269 [P18856/D3/T1] INFO  Umbraco.Core.PluginManager - Starting resolution types of Umbraco.Core.PropertyEditors.IPropertyValueConverter
+ 2017-04-01 16:59:11,996 [P18856/D3/T1] INFO  Umbraco.Core.PluginManager - Completed resolution of types of Umbraco.Core.PropertyEditors.IPropertyValueConverter, found 0 (took 726ms)
+ 2017-04-01 16:59:12,019 [P18856/D3/T1] INFO  Umbraco.Core.PluginManager - Starting resolution types of Umbraco.Web.Mvc.SurfaceController
+ 2017-04-01 16:59:12,024 [P18856/D3/T1] INFO  Umbraco.Core.PluginManager - Completed resolution of types of Umbraco.Web.Mvc.SurfaceController, found 0 (took 5ms)
+ 2017-04-01 16:59:12,025 [P18856/D3/T1] INFO  Umbraco.Core.PluginManager - Starting resolution types of Umbraco.Web.WebApi.UmbracoApiController
+ 2017-04-01 16:59:12,100 [P18856/D3/T1] INFO  Umbraco.Core.PluginManager - Completed resolution of types of Umbraco.Web.WebApi.UmbracoApiController, found 0 (took 74ms)
+ 2017-04-01 16:59:12,473 [P18856/D3/T1] INFO  Umbraco.Core.PluginManager - Starting resolution types of Umbraco.Core.Media.IThumbnailProvider
+ 2017-04-01 16:59:12,475 [P18856/D3/T1] INFO  Umbraco.Core.PluginManager - Completed resolution of types of Umbraco.Core.Media.IThumbnailProvider, found 0 (took 1ms)
+ 2017-04-01 16:59:12,476 [P18856/D3/T1] INFO  Umbraco.Core.PluginManager - Starting resolution types of Umbraco.Core.Media.IImageUrlProvider
+ 2017-04-01 16:59:12,477 [P18856/D3/T1] INFO  Umbraco.Core.PluginManager - Completed resolution of types of Umbraco.Core.Media.IImageUrlProvider, found 0 (took 1ms)
+ 2017-04-01 16:59:16,044 [P18856/D3/T1] INFO  Umbraco.Core.DatabaseContext - CanConnect = True
+ 2017-04-01 16:59:16,514 [P18856/D3/T1] INFO  Umbraco.Web.Cache.CacheRefresherEventHandler - Initializing Umbraco internal event handlers for cache refreshing
+ 2017-04-01 16:59:16,882 [P18856/D3/T1] INFO  Umbraco.Web.Search.ExamineEvents - Initializing Examine and binding to business logic events
+ 2017-04-01 16:59:17,188 [P18856/D3/T1] INFO  Umbraco.Web.Search.ExamineEvents - Adding examine event handlers for index providers: 3
+ 2017-04-01 16:59:17,828 [P18856/D3/T1] INFO  Umbraco.Core.CoreBootManager - Umbraco application startup complete (took 7580ms)
+ 2017-04-01 16:59:25,698 [P18856/D3/T210] INFO  Umbraco.Core.Sync.ApplicationUrlHelper - ApplicationUrl: http://localhost:64146/umbraco (UmbracoModule request)
+ 2017-04-01 16:59:28,340 [P18856/D3/T210] INFO  umbraco.content - Load Xml from file...
+ 2017-04-01 16:59:28,342 [P18856/D3/T210] INFO  umbraco.content - Loaded Xml from file.
+ 2017-04-01 16:59:32,356 [P18856/D3/T95] INFO  Umbraco.Core.PluginManager - Starting resolution types of Umbraco.Core.PropertyEditors.IParameterEditor
+ 2017-04-01 16:59:32,358 [P18856/D3/T95] INFO  Umbraco.Core.PluginManager - Completed resolution of types of Umbraco.Core.PropertyEditors.IParameterEditor, found 0 (took 2ms)
+ 2017-04-01 16:59:35,277 [P18856/D3/T210] INFO  Umbraco.Core.PluginManager - Starting resolution types of Umbraco.Core.Deploy.IServiceConnector
+ 2017-04-01 16:59:35,289 [P18856/D3/T210] INFO  Umbraco.Core.PluginManager - Completed resolution of types of Umbraco.Core.Deploy.IServiceConnector, found 0 (took 12ms)
+ 2017-04-01 16:59:37,518 [P18856/D3/T210] ERROR Umbraco.Core.UmbracoApplicationBase - An unhandled exception occurred
+System.NullReferenceException: Object reference not set to an instance of an object.
+   at StackExchange.Profiling.MiniProfiler.StopImpl() in c:\Code\github\SamSaffron\MiniProfiler\StackExchange.Profiling\MiniProfiler.cs:line 437
+   at StackExchange.Profiling.BaseProfilerProvider.StopProfiler(MiniProfiler profiler) in c:\Code\github\SamSaffron\MiniProfiler\StackExchange.Profiling\BaseProfilerProvider.cs:line 63
+   at StackExchange.Profiling.WebRequestProfilerProvider.Stop(Boolean discardResults) in c:\Code\github\SamSaffron\MiniProfiler\StackExchange.Profiling\WebRequestProfilerProvider.cs:line 79
+   at StackExchange.Profiling.MiniProfiler.Stop(Boolean discardResults) in c:\Code\github\SamSaffron\MiniProfiler\StackExchange.Profiling\MiniProfiler.cs:line 264
+   at Umbraco.Web.Profiling.WebProfiler.UmbracoApplicationEndRequest(Object sender, EventArgs e)
+   at System.Web.HttpApplication.SyncEventExecutionStep.System.Web.HttpApplication.IExecutionStep.Execute()
+   at System.Web.HttpApplication.ExecuteStep(IExecutionStep step, Boolean& completedSynchronously)
+ 2017-04-01 16:59:43,473 [P18856/D3/T97] ERROR Umbraco.Core.Persistence.UmbracoDatabase - Exception (ca419835).
+System.Data.SqlClient.SqlException (0x80131904): Invalid object name 'umbracoLock'.
+   at System.Data.SqlClient.SqlConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   at System.Data.SqlClient.SqlInternalConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   at System.Data.SqlClient.TdsParser.ThrowExceptionAndWarning(TdsParserStateObject stateObj, Boolean callerHasConnectionLock, Boolean asyncClose)
+   at System.Data.SqlClient.TdsParser.TryRun(RunBehavior runBehavior, SqlCommand cmdHandler, SqlDataReader dataStream, BulkCopySimpleResultSet bulkCopyHandler, TdsParserStateObject stateObj, Boolean& dataReady)
+   at System.Data.SqlClient.SqlCommand.FinishExecuteReader(SqlDataReader ds, RunBehavior runBehavior, String resetOptionsString, Boolean isInternal, Boolean forDescribeParameterEncryption)
+   at System.Data.SqlClient.SqlCommand.RunExecuteReaderTds(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, Boolean async, Int32 timeout, Task& task, Boolean asyncWrite, Boolean inRetry, SqlDataReader ds, Boolean describeParameterEncryptionRequest)
+   at System.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, String method, TaskCompletionSource`1 completion, Int32 timeout, Task& task, Boolean& usedCache, Boolean asyncWrite, Boolean inRetry)
+   at System.Data.SqlClient.SqlCommand.InternalExecuteNonQuery(TaskCompletionSource`1 completion, String methodName, Boolean sendToPipe, Int32 timeout, Boolean& usedCache, Boolean asyncWrite, Boolean inRetry)
+   at System.Data.SqlClient.SqlCommand.ExecuteNonQuery()
+   at StackExchange.Profiling.Data.ProfiledDbCommand.ExecuteNonQuery() in c:\Code\github\SamSaffron\MiniProfiler\StackExchange.Profiling\Data\ProfiledDbCommand.cs:line 266
+   at Umbraco.Core.Persistence.PetaPocoCommandExtensions.<>c__DisplayClass1.<ExecuteNonQueryWithRetry>b__0()
+   at Umbraco.Core.Persistence.FaultHandling.RetryPolicy.ExecuteAction[TResult](Func`1 func)
+   at Umbraco.Core.Persistence.PetaPocoCommandExtensions.ExecuteNonQueryWithRetry(IDbCommand command, RetryPolicy cmdRetryPolicy, RetryPolicy conRetryPolicy)
+   at Umbraco.Core.Persistence.PetaPocoCommandExtensions.ExecuteNonQueryWithRetry(IDbCommand command, RetryPolicy retryPolicy)
+   at Umbraco.Core.Persistence.PetaPocoCommandExtensions.ExecuteNonQueryWithRetry(IDbCommand command)
+   at Umbraco.Core.Persistence.Database.Execute(String sql, Object[] args)
+ClientConnectionId:b3f9f9b4-51df-4a16-824a-32257192477a
+Error Number:208,State:1,Class:16
+ 2017-04-01 16:59:43,510 [P18856/D3/T97] ERROR Umbraco.Web.Strategies.ServerRegistrationEventHandler - Failed to update server record in database.
+System.Data.SqlClient.SqlException (0x80131904): Invalid object name 'umbracoLock'.
+   at System.Data.SqlClient.SqlConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   at System.Data.SqlClient.SqlInternalConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   at System.Data.SqlClient.TdsParser.ThrowExceptionAndWarning(TdsParserStateObject stateObj, Boolean callerHasConnectionLock, Boolean asyncClose)
+   at System.Data.SqlClient.TdsParser.TryRun(RunBehavior runBehavior, SqlCommand cmdHandler, SqlDataReader dataStream, BulkCopySimpleResultSet bulkCopyHandler, TdsParserStateObject stateObj, Boolean& dataReady)
+   at System.Data.SqlClient.SqlCommand.FinishExecuteReader(SqlDataReader ds, RunBehavior runBehavior, String resetOptionsString, Boolean isInternal, Boolean forDescribeParameterEncryption)
+   at System.Data.SqlClient.SqlCommand.RunExecuteReaderTds(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, Boolean async, Int32 timeout, Task& task, Boolean asyncWrite, Boolean inRetry, SqlDataReader ds, Boolean describeParameterEncryptionRequest)
+   at System.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, String method, TaskCompletionSource`1 completion, Int32 timeout, Task& task, Boolean& usedCache, Boolean asyncWrite, Boolean inRetry)
+   at System.Data.SqlClient.SqlCommand.InternalExecuteNonQuery(TaskCompletionSource`1 completion, String methodName, Boolean sendToPipe, Int32 timeout, Boolean& usedCache, Boolean asyncWrite, Boolean inRetry)
+   at System.Data.SqlClient.SqlCommand.ExecuteNonQuery()
+   at StackExchange.Profiling.Data.ProfiledDbCommand.ExecuteNonQuery() in c:\Code\github\SamSaffron\MiniProfiler\StackExchange.Profiling\Data\ProfiledDbCommand.cs:line 266
+   at Umbraco.Core.Persistence.PetaPocoCommandExtensions.<>c__DisplayClass1.<ExecuteNonQueryWithRetry>b__0()
+   at Umbraco.Core.Persistence.FaultHandling.RetryPolicy.ExecuteAction[TResult](Func`1 func)
+   at Umbraco.Core.Persistence.PetaPocoCommandExtensions.ExecuteNonQueryWithRetry(IDbCommand command, RetryPolicy cmdRetryPolicy, RetryPolicy conRetryPolicy)
+   at Umbraco.Core.Persistence.PetaPocoCommandExtensions.ExecuteNonQueryWithRetry(IDbCommand command, RetryPolicy retryPolicy)
+   at Umbraco.Core.Persistence.PetaPocoCommandExtensions.ExecuteNonQueryWithRetry(IDbCommand command)
+   at Umbraco.Core.Persistence.Database.Execute(String sql, Object[] args)
+   at Umbraco.Core.Persistence.DatabaseNodeLockExtensions.AcquireLockNodeWriteLock(UmbracoDatabase database, Int32 nodeId)
+   at Umbraco.Core.Persistence.LockingRepository`1.WithWriteLocked(Action`1 action, Boolean autoCommit)
+   at Umbraco.Core.Services.ServerRegistrationService.TouchServer(String serverAddress, String serverIdentity, TimeSpan staleTimeout)
+   at Umbraco.Web.Strategies.ServerRegistrationEventHandler.TouchServerTask.PerformRun()
+ClientConnectionId:b3f9f9b4-51df-4a16-824a-32257192477a
+Error Number:208,State:1,Class:16
