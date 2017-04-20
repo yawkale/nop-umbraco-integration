@@ -25,7 +25,7 @@
     var categories = root.Descendants("categoryOverview").FirstOrDefault().Children().Where(x => x.IsVisible());
     var products = root.Descendants("productsOverview").FirstOrDefault().Children().OrderBy(x => x.CreateDate);
 
-    var list = products.Where(x => x.GetPropertyValue<IEnumerable<IPublishedContent>>("category").Any(y => y.Parent.Id == Model.Content.Id));
+    var list = products.Where(x => x.GetPropertyValue<IEnumerable<IPublishedContent>>("category").Any(y => y.Parent.Id == Model.Content.Id || y.Id == Model.Content.Id));
 
     var totalPages = (int)Math.Ceiling((double)list.Count() / (double)pageSize);
 
@@ -41,7 +41,7 @@
 
     var currentlist = list.Skip((page - 1) * pageSize).Take(pageSize);
 
-}
+            }
 
 
 
@@ -116,7 +116,7 @@
                     <div class="product-grid">
                         <div class="item-grid">
                             @foreach (var product in currentlist)
-                            {
+    {
 
                                 <div class="item-box">
                                     <div class="product-item" data-productid="10">
@@ -157,10 +157,10 @@
 
                         var list2 = new StaticPagedList<IPublishedContent>(currentlist, page, pageSize, list.Count());
 
-                        @Html.PagedListPager(list2, nextPage => Request.Path + "?page=" + nextPage + "&pagesize=" + pageSize,
+    @Html.PagedListPager(list2, nextPage => Request.Path + "?page=" + nextPage + "&pagesize=" + pageSize,
                                                     new PagedListRenderOptions()
-                                                    {
-                                                        ContainerDivClasses = new[] { "pager" },
+    {
+        ContainerDivClasses = new[] { "pager" },
                                                         UlElementClasses = new[] { "paging-list" },
                                                         DisplayLinkToPreviousPage = PagedListDisplayMode.IfNeeded,
                                                         DisplayLinkToNextPage = PagedListDisplayMode.IfNeeded,
