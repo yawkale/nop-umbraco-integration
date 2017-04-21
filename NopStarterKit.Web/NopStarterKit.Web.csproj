@@ -489,6 +489,7 @@
     <Content Include="Views\NewsOverview.cshtml" />
     <Content Include="Views\Partials\ShoppingCart.cshtml" />
     <Content Include="Views\Shared\Price.cshtml" />
+    <Content Include="Views\Partials\LoginStatus.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

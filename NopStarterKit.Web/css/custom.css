@@ -14,7 +14,7 @@
     background-image: url(../images/next.png);
 }
 
-.pager li.active a{
+.pager li.active a {
     border-color: transparent;
     background-color: #4ab2f1;
     color: #fff;
@@ -22,4 +22,15 @@
 
 tbody .product-picture img {
     width: 80px;
+}
+
+.header-links .ico-logout.btn {
+    border: none;
+    background-color: inherit;
+    color: inherit;
+    font-size: 12px;
+}
+
+.header-links .ico-logout.btn:hover {
+   color: #4ab2f1;
 }

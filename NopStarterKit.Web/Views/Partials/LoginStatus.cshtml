@@ -1,0 +1,42 @@
+﻿@inherits Umbraco.Web.Mvc.UmbracoTemplatePage
+@using System.Web.Mvc.Html
+@using ClientDependency.Core.Mvc
+@using Umbraco.Web
+@using Umbraco.Web.Models
+@using Umbraco.Web.Controllers
+
+@{
+    var loginStatusModel = Members.GetCurrentLoginStatus();
+
+    Html.EnableClientValidation();
+    Html.EnableUnobtrusiveJavaScript();
+    Html.RequiresJs("/umbraco_client/ui/jquery.js");
+    Html.RequiresJs("/umbraco_client/Application/JQuery/jquery.validate.min.js");
+    Html.RequiresJs("/umbraco_client/Application/JQuery/jquery.validate.unobtrusive.min.js");
+
+    var logoutModel = new PostRedirectModel();
+    var root = Model.Content.AncestorOrSelf(1);
+
+}
+
+@Html.RenderJsHere()
+
+@if (loginStatusModel.IsLoggedIn)
+{
+    <li><a class="ico-account">@loginStatusModel.Name</a></li>
+    <li>
+        @using (Html.BeginUmbracoForm<UmbLoginStatusController>("HandleLogout"))
+        {
+            <legend>Logout</legend>
+            <button class="ico-logout btn">Logout</button>
+
+            @Html.HiddenFor(m => logoutModel.RedirectUrl)
+
+            if (Request.RawUrl != root.Url)
+            {
+                Response.Redirect(root.Url);
+            }
+        }
+    </li>
+}
+
