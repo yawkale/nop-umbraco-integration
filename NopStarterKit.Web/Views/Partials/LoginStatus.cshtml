@@ -15,7 +15,7 @@
     Html.RequiresJs("/umbraco_client/Application/JQuery/jquery.validate.unobtrusive.min.js");
 
     var logoutModel = new PostRedirectModel();
-    var root = Model.Content.AncestorOrSelf(1);
+    logoutModel.RedirectUrl = "/";
 
 }
 
@@ -31,11 +31,6 @@
             <button class="ico-logout btn">Logout</button>
 
             @Html.HiddenFor(m => logoutModel.RedirectUrl)
-
-            if (Request.RawUrl != root.Url)
-            {
-                Response.Redirect(root.Url);
-            }
         }
     </li>
 }

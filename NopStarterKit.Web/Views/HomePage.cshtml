@@ -3,6 +3,7 @@
 @using RJP.MultiUrlPicker.Models
 @using Umbraco.Web;
 @using ContentModels = Umbraco.Web.PublishedContentModels;
+@using NopStarterKit.Web.Helpers
 @{
     Layout = "_Layout.cshtml";
     var root = Model.Content.AncestorOrSelf(1);
@@ -90,6 +91,7 @@
                             @foreach (var item in products)
                             {
                                 var title = item.GetPropertyValue("pageTitle", item.Name);
+                                var nopId = Convert.ToInt32(item.GetPropertyValue("nopId"));
                                 <div class="item-box">
                                     <div class="product-item" data-productid="43">
                                         @if (item.HasValue("productImage"))
@@ -110,7 +112,7 @@
                                             </div>
                                             <div class="add-info">
                                                 <div class="prices">
-                                                    <span class="price actual-price">$25.00</span>
+                                                    <span class="price actual-price">$@Price.GetPrice(nopId)</span>
                                                 </div>
                                                 <div class="buttons">
                                                     <input type="button" value="Add to cart" class="button-2 product-box-add-to-cart-button" onclick="AjaxCart.addproducttocart_catalog('/addproducttocart/catalog/43/1/1');return false;">
@@ -172,3 +174,15 @@
         </div>
     </div>
 </div>
+
+<script>
+    function addProductToCart(nopId) {
+        AjaxCart.addproducttocart_details('/umbraco/surface/NopShoppingCard/AddToShoppingCart?productId=' + nopId + '&quantity=' + 1, '#product-details-form')
+    }
+
+    $(document).ready(function () {
+        $@*.get('/umbraco/surface/NopProduct/GetProductPrice?id=' + '@Model.Content.GetPropertyValue("nopId")').done(function (response) {
+            $('.product-price span').html('$' + response.slice(0, -2))
+        })*@
+    })
+</script>
