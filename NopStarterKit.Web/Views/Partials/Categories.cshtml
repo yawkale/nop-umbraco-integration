@@ -13,12 +13,13 @@
             <ul class="list">
                 @foreach (var category in categories)
                 {
+                    var isCategory = category.Id == Model.Content.Id || category.Children().Any(x => x.Id == Model.Content.Id);
                     <li class="@(Model.Content.Id == category.Id ? "active last" : "inactive")">
                         <a href="@category.Url">
                             @category.Name
                         </a>
                         <ul class="sublist">
-                            @if (category.Children().Any())
+                            @if (category.Children().Any() && isCategory)
                             {
                                 foreach (var subCategory in category.Children().Where(x => x.IsVisible()))
                                 {

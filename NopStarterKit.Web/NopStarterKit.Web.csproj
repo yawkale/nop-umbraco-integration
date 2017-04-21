@@ -436,7 +436,9 @@
     <Content Include="Views\Web.config" />
     <Content Include="config\UrlRewriting.config" />
     <Content Include="config\Dashboard.config" />
-    <Content Include="config\ClientDependency.config" />
+    <Content Include="config\ClientDependency.config">
+      <SubType>Designer</SubType>
+    </Content>
     <Content Include="Views\ContentPage.cshtml" />
     <Content Include="Views\HomePage.cshtml" />
     <Content Include="Views\PageNotFound.cshtml" />
@@ -483,6 +485,8 @@
     <Content Include="Views\Login.cshtml" />
     <Content Include="Views\Registration.cshtml" />
     <Content Include="images\pdf\privacy.pdf" />
+    <Content Include="Views\News.cshtml" />
+    <Content Include="Views\NewsOverview.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

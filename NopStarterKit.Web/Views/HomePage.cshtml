@@ -5,7 +5,8 @@
 @using ContentModels = Umbraco.Web.PublishedContentModels;
 @{
     Layout = "_Layout.cshtml";
-    var news = Model.Content.GetPropertyValue<ArchetypeModel>("news");
+    var root = Model.Content.AncestorOrSelf(1);
+    var news = root.Descendants("newsOverview").FirstOrDefault();
     var slider = Model.Content.GetPropertyValue<ArchetypeModel>("slider");
 
 }
@@ -125,55 +126,46 @@
                     </div>
                 }
 
-                @if (news != null && news.Any())
+                @if (Model.Content.HasValue("relatedNews"))
                 {
+                    var relatedNews = Model.Content.GetPropertyValue<IEnumerable<IPublishedContent>>("relatedNews").Take(3);
                     <div class="news-list-homepage">
                         <div class="title">
                             <strong>@Model.Content.GetPropertyValue("newsTitle")</strong>
                         </div>
                         <div class="news-items">
-                            @foreach (var item in news)
+                            @foreach (var item in relatedNews)
                             {
                                 DateTime date;
                                 string dateFormat = "";
                                 if (item.HasValue("date"))
                                 {
-                                    date = item.GetValue<DateTime>("date");
+                                    date = item.GetPropertyValue<DateTime>("date");
                                     dateFormat = string.Format(date.ToString("-dddd, MMMM dd, yyyy"));
                                 }
 
                                 <div class="news-item">
                                     <div class="news-head">
-                                        @if (item.HasValue("link"))
-                                        {
-                                            var link = item.GetValue<MultiUrls>("link").FirstOrDefault();
-                                            <a class="news-title" href="@link.Url" target="@link.Target">@link.Name</a>
-                                        }
+
+                                        <a class="news-title" href="@item.Url">@item.Name</a>
                                         @if (dateFormat != "")
                                         {
                                             <span class="news-date">@dateFormat</span>
                                         }
                                     </div>
                                     <div class="news-body">
-                                        @item.GetValue("description")
+                                        @item.GetPropertyValue("description")
                                     </div>
-                                    @if (item.HasValue("link"))
-                                    {
-                                        var link = item.GetValue<MultiUrls>("link").FirstOrDefault();
-                                        <div class="buttons">
-                                            <a href="@link.Url" target="@link.Target" class="read-more">details</a>
-                                        </div>
-                                    }
+                                    <div class="buttons">
+                                        <a href="@item.Url" class="read-more">details</a>
+                                    </div>
                                 </div>
                             }
                         </div>
-                        @if (Model.Content.HasValue("newsBottomLink"))
-                        {
-                            var newsBottomLink = Model.Content.GetPropertyValue<MultiUrls>("newsBottomLink").FirstOrDefault();
+                       
                             <div class="view-all">
-                                <a href="@newsBottomLink.Url" target="@newsBottomLink.Target">@newsBottomLink.Name</a>
+                                <a href="@news.Url">@news.GetPropertyValue("pageTitle", news.Name)</a>
                             </div>
-                        }
                     </div>
                 }
             </div>
