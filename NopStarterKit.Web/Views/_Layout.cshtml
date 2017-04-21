@@ -8,6 +8,8 @@
     Html.RequiresCss("~/css/jquery-ui-1.10.3.custom.min.css");
     Html.RequiresCss("~/css/magnific-popup.css");
     Html.RequiresCss("~/css/styles.css");
+    Html.RequiresCss("~/css/nivo-slider.css");
+    Html.RequiresCss("~/css/nivo-slider-custom.css");
     Html.RequiresCss("~/css/custom.css");
 
     Html.RequiresJs("~/scripts/jquery-1.10.2.min.js", 0);
@@ -18,8 +20,8 @@
     Html.RequiresJs("~/scripts/jquery.validate.unobtrusive.min.js", 5);
     Html.RequiresJs("~/scripts/public.ajaxcart.js", 6);
     Html.RequiresJs("~/scripts/public.common.js", 7);
-    Html.RequiresJs("~/scripts/custom.js", 7);
-
+    Html.RequiresJs("~/scripts/jquery.nivo.slider.js", 8);
+    Html.RequiresJs("~/scripts/custom.js", 9);
     var title = Model.Content.GetPropertyValue("title", Model.Content.Name);
     var root = Model.Content.AncestorOrSelf(1);
     var footer = root.GetPropertyValue<ArchetypeModel>("footer");
@@ -173,23 +175,23 @@
                         <ul class="networks">
                             @if (root.HasValue("facebook"))
                             {
-                                <li class="facebook"><a href="@root.GetPropertyValue("facebook")" target="_blank">Facebook</a></li>
+                            <li class="facebook"><a href="@root.GetPropertyValue("facebook")" target="_blank">Facebook</a></li>
                             }
                             @if (root.HasValue("twitter"))
                             {
-                                <li class="twitter"><a href="@root.GetPropertyValue("twitter")" target="_blank">Twitter</a></li>
+                            <li class="twitter"><a href="@root.GetPropertyValue("twitter")" target="_blank">Twitter</a></li>
                             }
                             @if (root.HasValue("rss"))
                             {
-                                <li class="rss"><a href="@root.GetPropertyValue("rss")">RSS</a></li>
+                            <li class="rss"><a href="@root.GetPropertyValue("rss")">RSS</a></li>
                             }
                             @if (root.HasValue("youtube"))
                             {
-                                <li class="youtube"><a href="@root.GetPropertyValue("youtube")" target="_blank">YouTube</a></li>
+                            <li class="youtube"><a href="@root.GetPropertyValue("youtube")" target="_blank">YouTube</a></li>
                             }
                             @if (root.HasValue("googlePlus"))
                             {
-                                <li class="google-plus"><a href="@root.GetPropertyValue("googlePlus")" target="_blank">Google+</a></li>
+                            <li class="google-plus"><a href="@root.GetPropertyValue("googlePlus")" target="_blank">Google+</a></li>
                             }
                         </ul>
                     </div>

@@ -84,6 +84,10 @@
       <HintPath>..\packages\Examine.0.1.82\lib\net45\Examine.dll</HintPath>
       <Private>True</Private>
     </Reference>
+    <Reference Include="Ghostscript.NET, Version=1.2.1.0, Culture=neutral, PublicKeyToken=f85051de34525b59, processorArchitecture=MSIL">
+      <HintPath>..\packages\Ghostscript.NET.1.2.1\lib\net40\Ghostscript.NET.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="HtmlAgilityPack, Version=1.4.9.5, Culture=neutral, PublicKeyToken=bd319b19eaf3b43a, processorArchitecture=MSIL">
       <HintPath>..\packages\HtmlAgilityPack.1.4.9.5\lib\Net45\HtmlAgilityPack.dll</HintPath>
       <Private>True</Private>
@@ -94,6 +98,10 @@
     </Reference>
     <Reference Include="ImageProcessor, Version=2.5.2.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\ImageProcessor.2.5.2\lib\net45\ImageProcessor.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="ImageProcessor.Plugins.Pdf, Version=1.1.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\ImageProcessor.Plugins.PDF.1.1.0\lib\net452\ImageProcessor.Plugins.Pdf.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="ImageProcessor.Web, Version=4.8.2.0, Culture=neutral, processorArchitecture=MSIL">
@@ -391,6 +399,8 @@
     <Content Include="css\custom.css" />
     <Content Include="css\jquery-ui-1.10.3.custom.min.css" />
     <Content Include="css\magnific-popup.css" />
+    <Content Include="css\nivo-slider-custom.css" />
+    <Content Include="css\nivo-slider.css" />
     <Content Include="css\styles.css" />
     <Content Include="default.aspx" />
     <Content Include="Global.asax" />
@@ -417,6 +427,7 @@
     <Content Include="scripts\jquery-migrate-1.2.1.min.js" />
     <Content Include="scripts\jquery-ui-1.10.3.custom.min.js" />
     <Content Include="scripts\jquery.magnific-popup.min.js" />
+    <Content Include="scripts\jquery.nivo.slider.js" />
     <Content Include="scripts\jquery.validate.min.js" />
     <Content Include="scripts\jquery.validate.unobtrusive.min.js" />
     <Content Include="scripts\public.ajaxcart.js" />
@@ -471,6 +482,7 @@
     <Content Include="Views\Partials\Register.cshtml" />
     <Content Include="Views\Login.cshtml" />
     <Content Include="Views\Registration.cshtml" />
+    <Content Include="images\pdf\privacy.pdf" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
