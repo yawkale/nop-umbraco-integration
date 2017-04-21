@@ -91,3 +91,82 @@
 
 
 
+@*@inherits Umbraco.Web.Mvc.UmbracoTemplatePage
+
+
+@using System.Web.Mvc.Html
+@using ClientDependency.Core.Mvc
+@using Umbraco.Web
+@using Umbraco.Web.Controllers
+
+@{
+
+    var model = new Commerce.Site.Models.CustomerModel();
+
+    Html.EnableClientValidation();
+    Html.EnableUnobtrusiveJavaScript();
+    Html.RequiresJs("/umbraco_client/ui/jquery.js");
+    Html.RequiresJs("/umbraco_client/Application/JQuery/jquery.validate.min.js");
+    Html.RequiresJs("/umbraco_client/Application/JQuery/jquery.validate.unobtrusive.min.js");
+
+    var success = TempData["FormSuccess"] != null;
+}
+
+@Html.RenderJsHere()
+
+<div class="master-column-wrapper">
+    <div class="center-1">
+
+        @if (success)
+        {
+            <p>Registration succeeeded.</p>
+        }
+        else
+        {
+            using (Html.BeginForm("Create", "NopCustomer", FormMethod.Post, new { @class = "form-horizontal register-form", role = "form" }))
+            {
+                @Html.ValidationSummary("registerModel", true)
+                <div class="page registration-page">
+                    <div class="page-title">
+                        <h1>Register</h1>
+                    </div>
+                    <div class="page-body">
+                        <div class="fieldset">
+                            <div class="title">
+                                <strong>Your Personal Details</strong>
+                            </div>
+                            <div class="form-fields">
+                                <div class="inputs">
+                                    @Html.LabelFor(m => model.FirstName)
+                                    @Html.TextBoxFor(m => model.FirstName, new { @id = "FirstName", })
+                                    @Html.ValidationMessageFor(m => model.FirstName)
+                                </div>
+                                <div class="inputs">
+                                    @Html.LabelFor(m => model.LastName)
+                                    @Html.TextBoxFor(m => model.LastName, new { @id = "LastName", })
+                                    @Html.ValidationMessageFor(m => model.LastName)
+                                </div>
+                                <div class="inputs">
+                                    @Html.LabelFor(m => model.Email)
+                                    @Html.TextBoxFor(m => model.Email, new { @id = "Email" })
+                                    @Html.ValidationMessageFor(m => model.Email)
+                                </div>
+                                <div class="inputs">
+                                    @Html.LabelFor(m => model.Password)
+                                    @Html.PasswordFor(m => model.Password, new { @id = "Password" })
+                                    @Html.ValidationMessageFor(m => model.Password)
+                                </div>
+
+                            </div>
+                        </div>
+                        <div class="buttons">
+                            <input type="submit" id="register-button" class="button-1 register-next-step-button" value="Register" name="register-button">
+                        </div>
+                    </div>
+                </div>
+
+
+            }
+        }
+    </div>
+</div>*@

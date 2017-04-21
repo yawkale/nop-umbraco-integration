@@ -1,8 +1,10 @@
 ﻿@inherits UmbracoTemplatePage
+@using NopStarterKit.Web.Helpers
 @{
     Layout = "_Layout.cshtml";
     var root = Model.Content.AncestorOrSelf(1);
     var relatedProducts = Model.Content.GetPropertyValue<IEnumerable<IPublishedContent>>("relatedProducts");
+     var nopId = Convert.ToInt32(Model.Content.GetPropertyValue("nopId"));
 }
 
 <div class="master-column-wrapper">
@@ -47,7 +49,8 @@
                                 <div class="prices" itemprop="offers" itemscope itemtype="http://schema.org/Offer">
                                     <div class="product-price">
                                         <span itemprop="price" content="27.56" class="price-value-25">
-                                            $27.56
+                                            &nbsp;
+                                            $@Price.GetPrice(nopId)
                                         </span>
                                     </div>
                                     <meta itemprop="priceCurrency" content="USD" />
@@ -57,7 +60,7 @@
                                     <div class="add-to-cart-panel">
                                         <label class="qty-label" for="addtocart_25_EnteredQuantity">Qty:</label>
                                         <input class="qty-input" data-val="true" data-val-number="The field Qty must be a number." id="addtocart_25_EnteredQuantity" name="addtocart_25.EnteredQuantity" type="text" value="1" />
-                                        <input type="button" id="add-to-cart-button-25" class="button-1 add-to-cart-button" value="Add to cart" data-productid="25" onclick="AjaxCart.addproducttocart_details('/addproducttocart/details/25/1', '#product-details-form');return false;" />
+                                        <input type="button" id="add-to-cart-button-25" class="button-1 add-to-cart-button" value="Add to cart" data-productid="25" onclick="addProductToCart(); return false;" />
                                     </div>
                                 </div>
 
@@ -181,3 +184,19 @@
         </div>
     </div>
 </div>
+@*<div id="bar-notification" class="bar-notification success" style="display: block;">
+    <span class="close" title="Close">&nbsp;</span>
+    <p class="content">The product has been added to your <a href="/cart">shopping cart</a></p>
+</div>*@
+<script>
+    function addProductToCart() {
+        var count = $('.qty-input').val();
+        AjaxCart.addproducttocart_details('/umbraco/surface/NopShoppingCard/AddToShoppingCart?productId=' + @(Model.Content.GetPropertyValue("nopId")) + '&quantity=' + count, '#product-details-form')
+    }
+
+    $(document).ready(function () {
+        $@*.get('/umbraco/surface/NopProduct/GetProductPrice?id=' + '@Model.Content.GetPropertyValue("nopId")').done(function (response) {
+            $('.product-price span').html('$' + response.slice(0, -2))
+        })*@
+    })
+</script>

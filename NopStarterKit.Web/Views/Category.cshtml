@@ -2,6 +2,7 @@
 @using ContentModels = Umbraco.Web.PublishedContentModels;
 @using PagedList
 @using PagedList.Mvc
+@using NopStarterKit.Web.Helpers
 @{
     Layout = "_Layout.cshtml";
 
@@ -117,7 +118,7 @@
                         <div class="item-grid">
                             @foreach (var product in currentlist)
                             {
-
+                                var nopId = Convert.ToInt32(product.GetPropertyValue("nopId"));
                                 <div class="item-box">
                                     <div class="product-item" data-productid="10">
                                         @if (product.HasValue("productImage"))
@@ -138,10 +139,10 @@
                                             </div>
                                             <div class="add-info">
                                                 <div class="prices">
-                                                    <span class="price actual-price">$75.00</span>
+                                                    <span class="price actual-price">$@Price.GetPrice(nopId)</span>
                                                 </div>
                                                 <div class="buttons">
-                                                    <input type="button" value="Add to cart" class="button-2 product-box-add-to-cart-button" onclick="AjaxCart.addproducttocart_catalog('/addproducttocart/catalog/10/1/1');return false;" />
+                                                    <input type="button" value="Add to cart" class="button-2 product-box-add-to-cart-button" onclick="addProductToCart('@nopId'); return false;" />
                                                     <input type="button" value="Add to compare list" title="Add to compare list" class="button-2 add-to-compare-list-button" onclick="AjaxCart.addproducttocomparelist('/compareproducts/add/10');return false;" />
                                                     <input type="button" value="Add to wishlist" title="Add to wishlist" class="button-2 add-to-wishlist-button" onclick="AjaxCart.addproducttocart_catalog('/addproducttocart/catalog/10/2/1');return false;" />
                                                 </div>
@@ -191,3 +192,14 @@
         </div>
     </div>
 </div>
+<script>
+    function addProductToCart(nopId) {
+        AjaxCart.addproducttocart_details('/umbraco/surface/NopShoppingCard/AddToShoppingCart?productId=' + nopId + '&quantity=' + 1, '#product-details-form')
+    }
+
+    $(document).ready(function () {
+        $@*.get('/umbraco/surface/NopProduct/GetProductPrice?id=' + '@Model.Content.GetPropertyValue("nopId")').done(function (response) {
+            $('.product-price span').html('$' + response.slice(0, -2))
+        })*@
+    })
+</script>

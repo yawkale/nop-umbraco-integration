@@ -1,5 +1,6 @@
 ﻿@inherits Umbraco.Web.Mvc.UmbracoTemplatePage
 @using ContentModels = Umbraco.Web.PublishedContentModels;
+@using NopStarterKit.Web.Helpers
 @{
     Layout = "_Layout.cshtml";
     var root = Model.Content.AncestorOrSelf(1);
@@ -12,6 +13,7 @@
     {
         pageSize = pageSelect;
     }
+
 }
 
 <div class="master-column-wrapper">
@@ -54,6 +56,7 @@
                     <div class="item-grid">
                         @foreach (var product in products)
                         {
+                            var nopId = Convert.ToInt32(product.GetPropertyValue("nopId"));
                             var category = product.GetPropertyValue<IEnumerable<IPublishedContent>>("category").Where(x => x.Id == Model.Content.Id);
                             if (category.Any())
                             {
@@ -77,10 +80,10 @@
                                             </div>
                                             <div class="add-info">
                                                 <div class="prices">
-                                                    <span class="price actual-price">$1,200.00</span>
+                                                    <span class="price actual-price">$@Price.GetPrice(nopId)</span>
                                                 </div>
                                                 <div class="buttons">
-                                                    <input type="button" value="Add to cart" class="button-2 product-box-add-to-cart-button" onclick="AjaxCart.addproducttocart_catalog('/addproducttocart/catalog/1/1/1');return false;" />
+                                                    <input type="button" value="Add to cart" class="button-2 product-box-add-to-cart-button" onclick="addProductToCart('@nopId'); return false;" />
                                                     <input type="button" value="Add to compare list" title="Add to compare list" class="button-2 add-to-compare-list-button" onclick="AjaxCart.addproducttocomparelist('/compareproducts/add/1');return false;" />
                                                     <input type="button" value="Add to wishlist" title="Add to wishlist" class="button-2 add-to-wishlist-button" onclick="AjaxCart.addproducttocart_catalog('/addproducttocart/catalog/1/2/1');return false;" />
                                                 </div>
@@ -98,6 +101,10 @@
     </div>
 </div>
 
-
+<script>
+    function addProductToCart(nopId) {
+        AjaxCart.addproducttocart_details('/umbraco/surface/NopShoppingCard/AddToShoppingCart?productId=' + nopId + '&quantity=' + 1, '#product-details-form')
+    }
+</script>
 
 

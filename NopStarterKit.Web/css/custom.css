@@ -19,3 +19,7 @@
     background-color: #4ab2f1;
     color: #fff;
 }
+
+tbody .product-picture img {
+    width: 80px;
+}
