@@ -101,6 +101,44 @@ $(document).ready(function () {
         }
     });
 
+    $('#vote-poll-1').click(function () {
+        var pollAnswerId = $("input:radio[name=pollanswers-1]:checked").val();
+        if (typeof (pollAnswerId) == 'undefined') {
+            alert('Please select an answer');
+        }
+        else {
+            var voteProgress = $("#poll-voting-progress-1");
+            voteProgress.show();
+            $.ajax({
+                cache: false,
+                type: "POST",
+                url: "/poll/vote",
+                data: { "pollAnswerId": pollAnswerId },
+                success: function (data) {
+                    voteProgress.hide();
+
+                    if (data.error) {
+                        $("#block-poll-vote-error-1").html(data.error);
+                        $('#block-poll-vote-error-1').fadeIn("slow").delay(2000).fadeOut("slow");
+                    }
+
+                    if (data.html) {
+                        $("#poll-block-1").replaceWith(data.html);
+                    }
+                },
+                error: function (xhr, ajaxOptions, thrownError) {
+                    alert('Failed to vote.');
+                    voteProgress.hide();
+                }
+            });
+        }
+        return false;
+    });
+
+});
+
+$(window).load(function () {
+    $('#nivo-slider').nivoSlider();
 });
 
 $("#small-search-box-form").submit(function (event) {

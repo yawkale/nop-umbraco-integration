@@ -26,7 +26,7 @@
     var categories = root.Descendants("categoryOverview").FirstOrDefault().Children().Where(x => x.IsVisible());
     var products = root.Descendants("productsOverview").FirstOrDefault().Children().OrderBy(x => x.CreateDate);
 
-    var list = products.Where(x => x.GetPropertyValue<IEnumerable<IPublishedContent>>("category").Any(y => y.Parent.Id == Model.Content.Id));
+    var list = products.Where(x => x.GetPropertyValue<IEnumerable<IPublishedContent>>("category").Any(y => y.Parent.Id == Model.Content.Id || y.Id == Model.Content.Id));
 
     var totalPages = (int)Math.Ceiling((double)list.Count() / (double)pageSize);
 
@@ -42,9 +42,7 @@
 
     var currentlist = list.Skip((page - 1) * pageSize).Take(pageSize);
 
-}
-
-
+            }
 
 
 <div class="master-column-wrapper">
@@ -143,8 +141,8 @@
                                                 </div>
                                                 <div class="buttons">
                                                     <input type="button" value="Add to cart" class="button-2 product-box-add-to-cart-button" onclick="addProductToCart('@nopId'); return false;" />
-                                                    <input type="button" value="Add to compare list" title="Add to compare list" class="button-2 add-to-compare-list-button" onclick="AjaxCart.addproducttocomparelist('/compareproducts/add/10');return false;" />
-                                                    <input type="button" value="Add to wishlist" title="Add to wishlist" class="button-2 add-to-wishlist-button" onclick="AjaxCart.addproducttocart_catalog('/addproducttocart/catalog/10/2/1');return false;" />
+                                                    @*<input type="button" value="Add to compare list" title="Add to compare list" class="button-2 add-to-compare-list-button" onclick="AjaxCart.addproducttocomparelist('/compareproducts/add/10');return false;" />
+                                                    <input type="button" value="Add to wishlist" title="Add to wishlist" class="button-2 add-to-wishlist-button" onclick="AjaxCart.addproducttocart_catalog('/addproducttocart/catalog/10/2/1');return false;" />*@
                                                 </div>
                                             </div>
                                         </div>
@@ -158,10 +156,10 @@
 
                         var list2 = new StaticPagedList<IPublishedContent>(currentlist, page, pageSize, list.Count());
 
-                        @Html.PagedListPager(list2, nextPage => Request.Path + "?page=" + nextPage + "&pagesize=" + pageSize,
+    @Html.PagedListPager(list2, nextPage => Request.Path + "?page=" + nextPage + "&pagesize=" + pageSize,
                                                     new PagedListRenderOptions()
-                                                    {
-                                                        ContainerDivClasses = new[] { "pager" },
+    {
+        ContainerDivClasses = new[] { "pager" },
                                                         UlElementClasses = new[] { "paging-list" },
                                                         DisplayLinkToPreviousPage = PagedListDisplayMode.IfNeeded,
                                                         DisplayLinkToNextPage = PagedListDisplayMode.IfNeeded,

@@ -1,5 +1,174 @@
-﻿@inherits Umbraco.Web.Mvc.UmbracoTemplatePage<ContentModels.HomePage>
+﻿@inherits Umbraco.Web.Mvc.UmbracoTemplatePage
+@using Archetype.Models
+@using RJP.MultiUrlPicker.Models
+@using Umbraco.Web;
 @using ContentModels = Umbraco.Web.PublishedContentModels;
 @{
-	Layout = "_Layout.cshtml";
+    Layout = "_Layout.cshtml";
+    var root = Model.Content.AncestorOrSelf(1);
+    var news = root.Descendants("newsOverview").FirstOrDefault();
+    var slider = Model.Content.GetPropertyValue<ArchetypeModel>("slider");
+
 }
+
+<div class="master-column-wrapper">
+    <div class="center-1">
+        <div class="page home-page">
+            <div class="page-body">
+                @if (slider != null && slider.Any())
+                {
+                    <div class="slider-wrapper theme-custom">
+                        <div id="nivo-slider" class="nivoSlider">
+                            @foreach (var item in slider)
+                            {
+                                if (item.HasValue("image") && item.HasValue("link"))
+                                {
+                                    var link = item.GetValue<MultiUrls>("link").FirstOrDefault();
+                                    var image = item.GetValue<IPublishedContent>("image");
+
+                                    <a href="@link.Url" target="@link.Target" class="nivo-imageLink" style="display: block;">
+                                        <img src="@image.Url" data-thumb="@image.Url" data-transition="" alt="@link.Name" title="" style="width: 1200px; visibility: hidden; display: inline;">
+                                    </a>
+                                }
+                            }
+                        </div>
+                    </div>
+                }
+
+                @if (Model.Content.HasValue("topicTitle") || Model.Content.HasValue("topicText"))
+                {
+                    <div class="topic-block">
+                        <div class="topic-block-title">
+                            <h2>@Model.Content.GetPropertyValue("topicTitle")</h2>
+                        </div>
+                        <div class="topic-block-body">
+                            @Model.Content.GetPropertyValue("topicText")
+                        </div>
+                    </div>
+                }
+
+                @if (Model.Content.HasValue("relatedCategory"))
+                {
+                    var category = Model.Content.GetPropertyValue<IEnumerable<IPublishedContent>>("relatedCategory").Take(3);
+                    <div class="category-grid home-page-category-grid">
+                        <div class="item-grid">
+                            @foreach (var item in category)
+                            {
+                                var title = item.GetPropertyValue("pageTitle", item.Name);
+                                <div class="item-box">
+                                    <div class="category-item">
+                                        <h2 class="title">
+                                            <a href="@item.Url" title="@title">
+                                                @item.Name
+                                            </a>
+                                        </h2>
+                                        @if (item.HasValue("previewImage"))
+                                        {
+                                            var image = Umbraco.TypedMedia(item.GetPropertyValue<int>("previewImage"));
+                                            <div class="picture">
+                                                <a href="@item.Url" title="@title">
+                                                    <img alt="@title" src="@image.Url" title="@title">
+                                                </a>
+                                            </div>
+                                        }
+                                    </div>
+                                </div>
+                            }
+                        </div>
+                    </div>
+                }
+
+                @if (Model.Content.HasValue("relatedProducts"))
+                {
+                    var products = Model.Content.GetPropertyValue<IEnumerable<IPublishedContent>>("relatedProducts").Take(4);
+
+                    <div class="product-grid home-page-product-grid">
+                        <div class="title">
+                            <strong>Featured products</strong>
+                        </div>
+                        <div class="item-grid">
+                            @foreach (var item in products)
+                            {
+                                var title = item.GetPropertyValue("pageTitle", item.Name);
+                                <div class="item-box">
+                                    <div class="product-item" data-productid="43">
+                                        @if (item.HasValue("productImage"))
+                                        {
+                                            var image = item.GetPropertyValue<IEnumerable<IPublishedContent>>("productImage").FirstOrDefault();
+                                            <div class="picture">
+                                                <a href="@item.Url" title="@title">
+                                                    <img alt="@title" src="@image.Url" title="@title">
+                                                </a>
+                                            </div>
+                                        }
+                                        <div class="details">
+                                            <h2 class="product-title">
+                                                <a href="/25-virtual-gift-card">@item.Name</a>
+                                            </h2>
+                                            <div class="description">
+                                                @item.GetPropertyValue("description")
+                                            </div>
+                                            <div class="add-info">
+                                                <div class="prices">
+                                                    <span class="price actual-price">$25.00</span>
+                                                </div>
+                                                <div class="buttons">
+                                                    <input type="button" value="Add to cart" class="button-2 product-box-add-to-cart-button" onclick="AjaxCart.addproducttocart_catalog('/addproducttocart/catalog/43/1/1');return false;">
+                                                    @*<input type="button" value="Add to compare list" title="Add to compare list" class="button-2 add-to-compare-list-button" onclick="AjaxCart.addproducttocomparelist('/compareproducts/add/43');return false;">
+                                                    <input type="button" value="Add to wishlist" title="Add to wishlist" class="button-2 add-to-wishlist-button" onclick="AjaxCart.addproducttocart_catalog('/addproducttocart/catalog/43/2/1');return false;">*@
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            }
+                        </div>
+                    </div>
+                }
+
+                @if (Model.Content.HasValue("relatedNews"))
+                {
+                    var relatedNews = Model.Content.GetPropertyValue<IEnumerable<IPublishedContent>>("relatedNews").Take(3);
+                    <div class="news-list-homepage">
+                        <div class="title">
+                            <strong>@Model.Content.GetPropertyValue("newsTitle")</strong>
+                        </div>
+                        <div class="news-items">
+                            @foreach (var item in relatedNews)
+                            {
+                                DateTime date;
+                                string dateFormat = "";
+                                if (item.HasValue("date"))
+                                {
+                                    date = item.GetPropertyValue<DateTime>("date");
+                                    dateFormat = string.Format(date.ToString("-dddd, MMMM dd, yyyy"));
+                                }
+
+                                <div class="news-item">
+                                    <div class="news-head">
+
+                                        <a class="news-title" href="@item.Url">@item.Name</a>
+                                        @if (dateFormat != "")
+                                        {
+                                            <span class="news-date">@dateFormat</span>
+                                        }
+                                    </div>
+                                    <div class="news-body">
+                                        @item.GetPropertyValue("description")
+                                    </div>
+                                    <div class="buttons">
+                                        <a href="@item.Url" class="read-more">details</a>
+                                    </div>
+                                </div>
+                            }
+                        </div>
+                       
+                            <div class="view-all">
+                                <a href="@news.Url">@news.GetPropertyValue("pageTitle", news.Name)</a>
+                            </div>
+                    </div>
+                }
+            </div>
+        </div>
+    </div>
+</div>
