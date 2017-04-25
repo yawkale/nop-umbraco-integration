@@ -1,0 +1,20 @@
+﻿@model Nop.Integration.Umbraco.Models.ProductAttributeMapping
+
+<dt id="product_attribute_label_4">
+    <label class="text-prompt">
+        @Model.ProductAttributeName @if (Model.IsRequired)
+        { <span class="required">*</span> }
+    </label>
+</dt>
+
+<dd id="product_attribute_input_4">
+    <ul class="option-list">
+        @foreach (var option in Model.ProductAttributeValues)
+        {
+            <li>
+                <input id="product_attribute_@(string.Format("{0}_{1}", Model.Id, option.Id))" type="radio" name="product_attribute_@Model.Id" value="@option.Id" checked="checked">
+                <label for="product_attribute_@(string.Format("{0}_{1}", Model.Id, option.Id))">@option.Name</label>
+            </li>
+        }
+    </ul>
+</dd>

@@ -19,8 +19,19 @@ namespace Nop.Integration.Umbraco.Models
 
         [JsonProperty("images")]
         public List<Image> Images { get; set; }
-        
+
         [JsonProperty("attributes")]
         public List<ProductAttributeMapping> Attributes { get; set; }
+
+        [JsonProperty("order_minimum_quantity")]
+        public int MinQuantity { get; set; }
+
+        public bool Redirect
+        {
+            get
+            {
+                return (Attributes.Any() || MinQuantity > 1) ? true : false;
+            }
+        }
     }
 }

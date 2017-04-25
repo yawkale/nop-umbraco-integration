@@ -3,6 +3,8 @@
 @using PagedList
 @using PagedList.Mvc
 @using NopStarterKit.Web.Helpers
+@using Nop.Integration.Umbraco.Nop
+
 @{
     Layout = "_Layout.cshtml";
 
@@ -41,8 +43,8 @@
     }
 
     var currentlist = list.Skip((page - 1) * pageSize).Take(pageSize);
-
-            }
+    var _nopService = new NopApiService();
+}
 
 
 <div class="master-column-wrapper">
@@ -117,6 +119,7 @@
                             @foreach (var product in currentlist)
                             {
                                 var nopId = Convert.ToInt32(product.GetPropertyValue("nopId"));
+                                var prod = _nopService.GetProduct(nopId);
                                 <div class="item-box">
                                     <div class="product-item" data-productid="10">
                                         @if (product.HasValue("productImage"))
@@ -140,9 +143,9 @@
                                                     <span class="price actual-price">$@Price.GetPrice(nopId)</span>
                                                 </div>
                                                 <div class="buttons">
-                                                    <input type="button" value="Add to cart" class="button-2 product-box-add-to-cart-button" onclick="addProductToCart('@nopId'); return false;" />
+                                                    <input type="button" value="Add to cart" class="button-2 product-box-add-to-cart-button" onclick="addProductToCart('@nopId','@product.Url','@prod.Redirect.ToString()'); return false;" />
                                                     @*<input type="button" value="Add to compare list" title="Add to compare list" class="button-2 add-to-compare-list-button" onclick="AjaxCart.addproducttocomparelist('/compareproducts/add/10');return false;" />
-                                                    <input type="button" value="Add to wishlist" title="Add to wishlist" class="button-2 add-to-wishlist-button" onclick="AjaxCart.addproducttocart_catalog('/addproducttocart/catalog/10/2/1');return false;" />*@
+                                                        <input type="button" value="Add to wishlist" title="Add to wishlist" class="button-2 add-to-wishlist-button" onclick="AjaxCart.addproducttocart_catalog('/addproducttocart/catalog/10/2/1');return false;" />*@
                                                 </div>
                                             </div>
                                         </div>
@@ -156,10 +159,10 @@
 
                         var list2 = new StaticPagedList<IPublishedContent>(currentlist, page, pageSize, list.Count());
 
-    @Html.PagedListPager(list2, nextPage => Request.Path + "?page=" + nextPage + "&pagesize=" + pageSize,
+                        @Html.PagedListPager(list2, nextPage => Request.Path + "?page=" + nextPage + "&pagesize=" + pageSize,
                                                     new PagedListRenderOptions()
-    {
-        ContainerDivClasses = new[] { "pager" },
+                                                    {
+                                                        ContainerDivClasses = new[] { "pager" },
                                                         UlElementClasses = new[] { "paging-list" },
                                                         DisplayLinkToPreviousPage = PagedListDisplayMode.IfNeeded,
                                                         DisplayLinkToNextPage = PagedListDisplayMode.IfNeeded,
@@ -191,7 +194,11 @@
     </div>
 </div>
 <script>
-    function addProductToCart(nopId) {
+    function addProductToCart(nopId, url, isRedirect) {
+        if (isRedirect == "True") {
+            window.location.href = url;
+            return;
+        }
         AjaxCart.addproducttocart_details('/umbraco/surface/NopShoppingCard/AddToShoppingCart?productId=' + nopId + '&quantity=' + 1, '#product-details-form')
     }
 

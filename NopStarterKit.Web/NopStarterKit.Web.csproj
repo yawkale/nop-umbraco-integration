@@ -490,6 +490,16 @@
     <Content Include="Views\Partials\ShoppingCart.cshtml" />
     <Content Include="Views\Shared\Price.cshtml" />
     <Content Include="Views\Partials\LoginStatus.cshtml" />
+    <Content Include="Views\Shared\EditorTemplates\Checkboxes.cshtml" />
+    <Content Include="Views\Shared\EditorTemplates\ColorSquares.cshtml" />
+    <Content Include="Views\Shared\EditorTemplates\Datepicker.cshtml" />
+    <Content Include="Views\Shared\EditorTemplates\DropdownList.cshtml" />
+    <Content Include="Views\Shared\EditorTemplates\FileUpload.cshtml" />
+    <Content Include="Views\Shared\EditorTemplates\ImageSquares.cshtml" />
+    <Content Include="Views\Shared\EditorTemplates\MultilineTextbox.cshtml" />
+    <Content Include="Views\Shared\EditorTemplates\RadioList.cshtml" />
+    <Content Include="Views\Shared\EditorTemplates\ReadonlyCheckboxes.cshtml" />
+    <Content Include="Views\Shared\EditorTemplates\TextBox.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

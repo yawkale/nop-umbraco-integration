@@ -1,6 +1,7 @@
 ﻿@inherits Umbraco.Web.Mvc.UmbracoTemplatePage
 @using ContentModels = Umbraco.Web.PublishedContentModels;
 @using NopStarterKit.Web.Helpers
+@using Nop.Integration.Umbraco.Nop
 @{
     Layout = "_Layout.cshtml";
     var root = Model.Content.AncestorOrSelf(1);
@@ -13,7 +14,8 @@
     {
         pageSize = pageSelect;
     }
-
+    var _nopService = new NopApiService();
+ 
 }
 
 <div class="master-column-wrapper">
@@ -56,7 +58,8 @@
                     <div class="item-grid">
                         @foreach (var product in products)
                         {
-                            var nopId = Convert.ToInt32(product.GetPropertyValue("nopId"));
+                            var nopId = product.GetPropertyValue<int>("nopId");
+                            var prod = _nopService.GetProduct(nopId);
                             var category = product.GetPropertyValue<IEnumerable<IPublishedContent>>("category").Where(x => x.Id == Model.Content.Id);
                             if (category.Any())
                             {
@@ -83,7 +86,7 @@
                                                     <span class="price actual-price">$@Price.GetPrice(nopId)</span>
                                                 </div>
                                                 <div class="buttons">
-                                                    <input type="button" value="Add to cart" class="button-2 product-box-add-to-cart-button" onclick="addProductToCart('@nopId'); return false;" />
+                                                    <input type="button" value="Add to cart" class="button-2 product-box-add-to-cart-button" onclick="addProductToCart('@nopId','@product.Url','@prod.Redirect.ToString()'); return false;" />
                                                     @*<input type="button" value="Add to compare list" title="Add to compare list" class="button-2 add-to-compare-list-button" onclick="AjaxCart.addproducttocomparelist('/compareproducts/add/1');return false;" />
                                                     <input type="button" value="Add to wishlist" title="Add to wishlist" class="button-2 add-to-wishlist-button" onclick="AjaxCart.addproducttocart_catalog('/addproducttocart/catalog/1/2/1');return false;" />*@
                                                 </div>
@@ -102,7 +105,11 @@
 </div>
 
 <script>
-    function addProductToCart(nopId) {
+    function addProductToCart(nopId, url, isRedirect) {
+        if (isRedirect == "True") {
+            window.location.href = url;
+            return;
+        }
         AjaxCart.addproducttocart_details('/umbraco/surface/NopShoppingCard/AddToShoppingCart?productId=' + nopId + '&quantity=' + 1, '#product-details-form')
     }
 </script>

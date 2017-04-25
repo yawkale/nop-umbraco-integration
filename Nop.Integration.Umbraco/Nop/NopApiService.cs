@@ -11,7 +11,7 @@ namespace Nop.Integration.Umbraco.Nop
 {
     public interface INopApiService
     {
-        Product GetProduct(string id);
+        Product GetProduct(int id);
 
         decimal GetProductPrice(int id);
 
@@ -37,9 +37,9 @@ namespace Nop.Integration.Umbraco.Nop
            _nopApiClient = new ApiClient(AccessProvider._token, AccessProvider._serverUrl);
         }
 
-        public Product GetProduct(string id)
+        public Product GetProduct(int id)
         {
-            string jsonUrl = $"/api/products/{id}?fields=id,name,price,category_id,images,attributes";
+            string jsonUrl = $"/api/products/{id}?fields=id,name,price,category_id,images,attributes,order_minimum_quantity";
 
             object productData = _nopApiClient.Get(jsonUrl);
 

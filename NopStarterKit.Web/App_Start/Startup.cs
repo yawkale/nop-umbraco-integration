@@ -56,7 +56,7 @@ namespace UteamTemplate.App_Start
 
                     string customerId = "";
                     
-                    if (HttpContext.Current.Request.Cookies["NopCustomerId"] == null)
+                    if (string.IsNullOrEmpty(HttpContext.Current.Request.Cookies["NopCustomerId"]?.Value))
                     {
                         customerId = _nopService.CreateCustomer(customer);
                         HttpContext.Current.Response.SetCookie(new HttpCookie("NopCustomerId") { Value = customerId });

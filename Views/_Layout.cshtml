@@ -1,0 +1,225 @@
+﻿@inherits Umbraco.Web.Mvc.UmbracoTemplatePage
+@using ClientDependency.Core.Mvc
+@using Archetype.Models
+@using RJP.MultiUrlPicker.Models
+@{
+    Layout = null;
+
+    Html.RequiresCss("~/css/jquery-ui-1.10.3.custom.min.css");
+    Html.RequiresCss("~/css/magnific-popup.css");
+    Html.RequiresCss("~/css/styles.css");
+    Html.RequiresCss("~/css/custom.css");
+
+    Html.RequiresJs("~/scripts/jquery-1.10.2.min.js", 0);
+    Html.RequiresJs("~/scripts/jquery-migrate-1.2.1.min.js", 1);
+    Html.RequiresJs("~/scripts/jquery-ui-1.10.3.custom.min.js", 2);
+    Html.RequiresJs("~/scripts/jquery.magnific-popup.min.js", 3);
+    Html.RequiresJs("~/scripts/jquery.validate.min.js", 4);
+    Html.RequiresJs("~/scripts/jquery.validate.unobtrusive.min.js", 5);
+    Html.RequiresJs("~/scripts/public.ajaxcart.js", 6);
+    Html.RequiresJs("~/scripts/public.common.js", 7);
+    Html.RequiresJs("~/scripts/custom.js", 7);
+
+    var title = Model.Content.GetPropertyValue("title", Model.Content.Name);
+    var root = Model.Content.AncestorOrSelf(1);
+    var footer = root.GetPropertyValue<ArchetypeModel>("footer");
+}
+
+
+
+
+
+<!DOCTYPE html>
+<html class="html-product-details-page">
+<head>
+    <title>@title</title>
+    <meta http-equiv="Content-type" content="text/html;charset=UTF-8" />
+    <meta name="description" content="adidas Consortium Campus 80s Primeknit Light Maroon/Running Shoes" />
+    <meta name="keywords" content="" />
+    <meta name="generator" content="nopCommerce" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta property="og:type" content="product" />
+    <meta property="og:title" content="adidas Consortium Campus 80s Running Shoes" />
+    <meta property="og:description" content="adidas Consortium Campus 80s Primeknit Light Maroon/Running Shoes" />
+    <meta property="og:image" content="http://test-nop.uteam-dev.com/content/images/thumbs/0000053_adidas-consortium-campus-80s-running-shoes_550.jpg" />
+    <meta property="og:url" content="http://test-nop.uteam-dev.com/adidas-consortium-campus-80s-running-shoes" />
+    <meta property="og:site_name" content="Your store name" />
+    <meta property="twitter:card" content="summary" />
+    <meta property="twitter:site" content="Your store name" />
+    <meta property="twitter:title" content="adidas Consortium Campus 80s Running Shoes" />
+    <meta property="twitter:description" content="adidas Consortium Campus 80s Primeknit Light Maroon/Running Shoes" />
+    <meta property="twitter:image" content="http://test-nop.uteam-dev.com/content/images/thumbs/0000053_adidas-consortium-campus-80s-running-shoes_550.jpg" />
+    <meta property="twitter:url" content="http://test-nop.uteam-dev.com/adidas-consortium-campus-80s-running-shoes" />
+
+    @Html.RenderCssHere()
+    @Html.RenderJsHere()
+
+
+    <link rel="shortcut icon" href="http://test-nop.uteam-dev.com/favicon.ico" />
+    <!--Powered by nopCommerce - http://www.nopCommerce.com-->
+</head>
+<body>
+
+    <div class="ajax-loading-block-window" style="display: none">
+    </div>
+    <div id="dialog-notifications-success" title="Notification" style="display:none;">
+    </div>
+    <div id="dialog-notifications-error" title="Error" style="display:none;">
+    </div>
+    <div id="bar-notification" class="bar-notification">
+        <span class="close" title="Close">&nbsp;</span>
+    </div>
+
+    <!--[if lte IE 7]>
+        <div style="clear:both;height:59px;text-align:center;position:relative;">
+            <a href="http://www.microsoft.com/windows/internet-explorer/default.aspx" target="_blank">
+                <img src="/Themes/DefaultClean/Content/images/ie_warning.jpg" height="42" width="820" alt="You are using an outdated browser. For a faster, safer browsing experience, upgrade for free today." />
+            </a>
+        </div>
+    <![endif]-->
+
+
+    <div class="master-wrapper-page">
+        <div class="header">
+            <div class="header-upper">
+                <div class="header-selectors-wrapper">
+                    <div class="currency-selector">
+                        <select id="customerCurrency" name="customerCurrency" onchange="setLocation(this.value);">
+                            <option selected="selected" value="/changecurrency/1?returnurl=%2fadidas-consortium-campus-80s-running-shoes">US Dollar</option>
+                            <option value="/changecurrency/6?returnurl=%2fadidas-consortium-campus-80s-running-shoes">Euro</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="header-links-wrapper">
+                    <div class="header-links">
+                        <ul>
+                            <li><a href="/register" class="ico-register">Register</a></li>
+                            <li><a href="/login" class="ico-login">Log in</a></li>
+                            <li>
+                                <a href="/wishlist" class="ico-wishlist">
+                                    <span class="wishlist-label">Wishlist</span>
+                                    <span class="wishlist-qty">(0)</span>
+                                </a>
+                            </li>
+                            <li id="topcartlink">
+                                <a href="/cart" class="ico-cart">
+                                    <span class="cart-label">Shopping cart</span>
+                                    <span class="cart-qty">(0)</span>
+                                </a>
+                            </li>
+
+                        </ul>
+                    </div>
+
+                    <div id="flyout-cart" class="flyout-cart">
+                        <div class="mini-shopping-cart">
+                            <div class="count">
+                                You have no items in your shopping cart.
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+            <div class="header-lower">
+                <div class="header-logo">
+                    <a href="/">
+                        <img title="" alt="Your store name" src="http://test-nop.uteam-dev.com/Themes/DefaultClean/Content/images/logo.png">
+                    </a>
+                </div>
+                <div class="search-box store-search-box">
+                    <form action="/search" id="small-search-box-form" method="get">
+                        <input type="text" class="search-box-text" id="small-searchterms" autocomplete="off" name="q" placeholder="Search store" />
+                        <input type="submit" class="button-1 search-box-button" value="Search" />
+                    </form>
+                </div>
+            </div>
+        </div>
+
+        <script type="text/javascript">
+            AjaxCart.init(false, '.header-links .cart-qty', '.header-links .wishlist-qty', '#flyout-cart');
+        </script>
+        @Html.Partial("TopNavigation")
+        <div class="master-wrapper-content">
+
+            @Html.Partial("Breadcrumb")
+            @RenderBody()
+        </div>
+        <div class="footer">
+            <div class="footer-upper">
+                @foreach (var item in footer)
+                {
+                    <div class="footer-block information">
+                        <div class="title">
+                            <strong>@item.GetValue("title")</strong>
+                        </div>
+                        @if (item.HasValue("links"))
+                        {
+                            var links = item.GetValue<MultiUrls>("links");
+                            <ul class="list">
+                                @foreach (var link in links)
+                                {
+                                    <li><a href="@link.Url" target="@link.Target">@link.Name</a></li>
+                                }
+                            </ul>
+                        }
+                    </div>
+                }
+                <div class="footer-block follow-us">
+                    <div class="social">
+                        <div class="title">
+                            <strong>Follow us</strong>
+                        </div>
+                        <ul class="networks">
+                            @if (root.HasValue("facebook"))
+                            {
+                                <li class="facebook"><a href="@root.GetPropertyValue("facebook")" target="_blank">Facebook</a></li>
+                            }
+                            @if (root.HasValue("twitter"))
+                            {
+                                <li class="twitter"><a href="@root.GetPropertyValue("twitter")" target="_blank">Twitter</a></li>
+                            }
+                            @if (root.HasValue("rss"))
+                            {
+                                <li class="rss"><a href="@root.GetPropertyValue("rss")">RSS</a></li>
+                            }
+                            @if (root.HasValue("youtube"))
+                            {
+                                <li class="youtube"><a href="@root.GetPropertyValue("youtube")" target="_blank">YouTube</a></li>
+                            }
+                            @if (root.HasValue("googlePlus"))
+                            {
+                                <li class="google-plus"><a href="@root.GetPropertyValue("googlePlus")" target="_blank">Google+</a></li>
+                            }
+                        </ul>
+                    </div>
+                    <div class="newsletter">
+                        <div class="title">
+                            <strong>Newsletter</strong>
+                        </div>
+                        <div class="newsletter-subscribe" id="newsletter-subscribe-block">
+                            <div class="newsletter-email">
+                                <input class="newsletter-subscribe-text" id="newsletter-email" name="NewsletterEmail" placeholder="Enter your email here..." type="text" value="" />
+                                <input type="button" value="Subscribe" id="newsletter-subscribe-button" class="button-1 newsletter-subscribe-button" />
+                            </div>
+                            <div class="newsletter-validation">
+                                <span id="subscribe-loading-progress" style="display: none;" class="please-wait">Wait...</span>
+                                <span class="field-validation-valid" data-valmsg-for="NewsletterEmail" data-valmsg-replace="true"></span>
+                            </div>
+                        </div>
+                        <div class="newsletter-result" id="newsletter-result-block"></div>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-lower">
+                <div class="footer-info">
+                    <span class="footer-disclaimer">@root.GetPropertyValue("copyright")</span>
+                </div>
+                <div class="footer-powered-by">
+                    Powered by <a href="http://www.nopcommerce.com/">nopCommerce</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

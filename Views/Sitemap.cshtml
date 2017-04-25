@@ -1,0 +1,77 @@
+﻿@inherits Umbraco.Web.Mvc.UmbracoTemplatePage
+@using ContentModels = Umbraco.Web.PublishedContentModels;
+@{
+	Layout = "_Layout.cshtml";
+}
+
+<div class="master-column-wrapper">
+    <div class="center-1">
+        <div class="page sitemap-page">
+            <div class="page-title">
+                <h1>@Model.Content.GetPropertyValue("title", Model.Content.Name)</h1>
+            </div>
+            <div class="page-body">
+                <div class="description">
+                   @Html.Raw(Model.Content.GetPropertyValue("description"))
+                </div>
+
+                <div class="entity">
+                    <div class="entity-title">
+                        <h2>General</h2>
+                    </div>
+                    <div class="entity-body">
+                        <ul>
+                            <li><a href="/">Home page</a></li>
+                            <li><a href="/search">Search</a></li>
+                            <li><a href="/news">News</a></li>
+                            <li><a href="/blog">Blog</a></li>
+                            <li><a href="/contactus">Contact us</a></li>
+                            <li><a href="/customer/info">My account</a></li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="entity">
+                    <div class="entity-title">
+                        <h2>Categories</h2>
+                    </div>
+                    <div class="entity-body">
+                        <ul>
+                            <li><a href="/computers">Computers</a></li>
+                            <li><a href="/desktops">Desktops</a></li>
+                            <li><a href="/notebooks">Notebooks</a></li>
+                            <li><a href="/software">Software</a></li>
+                            <li><a href="/electronics">Electronics</a></li>
+                            <li><a href="/camera-photo">Camera &amp; photo</a></li>
+                            <li><a href="/cell-phones">Cell phones</a></li>
+                            <li><a href="/others">Others</a></li>
+                            <li><a href="/apparel">Apparel</a></li>
+                            <li><a href="/shoes">Shoes</a></li>
+                            <li><a href="/clothing">Clothing</a></li>
+                            <li><a href="/accessories">Accessories</a></li>
+                            <li><a href="/digital-downloads">Digital downloads</a></li>
+                            <li><a href="/books">Books</a></li>
+                            <li><a href="/jewelry">Jewelry</a></li>
+                            <li><a href="/gift-cards">Gift Cards</a></li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="entity">
+                    <div class="entity-title">
+                        <h2>Manufacturers</h2>
+                    </div>
+                    <div class="entity-body">
+                        <ul>
+                            <li><a href="/apple">Apple</a></li>
+                            <li><a href="/hp">HP</a></li>
+                            <li><a href="/nike">Nike</a></li>
+                        </ul>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+
+    </div>
+
+</div>

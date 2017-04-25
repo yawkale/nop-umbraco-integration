@@ -13,6 +13,8 @@ using System.Collections.Generic;
 using System.Linq;
 using Nop.Integration.Umbraco.Nop;
 using Nop.Integration.Umbraco.Models;
+using Umbraco.Core.Models;
+using Umbraco.Core;
 
 namespace Archimedicx.Cms.Controllers
 {
@@ -27,23 +29,71 @@ namespace Archimedicx.Cms.Controllers
 
         public override ActionResult Index(RenderModel model)
         {
-            if (Request.Cookies["NopCustomerId"] == null)
+            var currentUser = Members.GetCurrentMember();
+
+            if (currentUser != null)
             {
-                var customer = new Customer()
-                {
-                    roles = new List<int>() { 3 },
-                    FirstName = "Temp",
-                    LastName = "Temp",
-                    Password = "Aa123@",
-                    Email = "temp@temp.temp"
-                };
-
-                var cust = _nopService.CreateCustomer(customer);
-
-                Response.Cookies.Add(new HttpCookie("NopCustomerId") { Value = cust });
+                SetCurrentMemberNopId(currentUser);
+            }
+            else if (Request.Cookies["NopCustomerId"] == null)
+            {
+                CreateTemporalNopCustomer();
             }
 
             return base.Index(model);
+        }
+
+        public void CreateTemporalNopCustomer()
+        {
+            var customer = new Customer()
+            {
+                roles = new List<int>() { 3 },
+                FirstName = "Temp",
+                LastName = "Temp",
+                Password = Guid.NewGuid().ToString(),
+                Email = "temp@temp.temp"
+            };
+
+            var cust = _nopService.CreateCustomer(customer);
+
+            Response.Cookies.Add(new HttpCookie("NopCustomerId") { Value = cust });
+        }
+
+
+        public void SetCurrentMemberNopId(IPublishedContent member)
+        {
+            var nopCustomerId = member.GetProperty("nopCustomerId")?.Value.ToString();
+
+            if (string.IsNullOrEmpty(nopCustomerId.ToString()))
+            {
+                CreateNopCustomer(member);
+            }
+            else
+            {
+                Response.Cookies.Add(new HttpCookie("NopCustomerId") { Value = nopCustomerId });
+            }
+        }
+
+        public void CreateNopCustomer(IPublishedContent member)
+        {
+            var memberService = Services.MemberService;
+
+            var currentMember = memberService.GetById(member.Id);
+
+            var customer = new Customer()
+            {
+                roles = new List<int>() { 3 },
+                FirstName = currentMember.Name,
+                LastName = currentMember.Name,
+                Password = Guid.NewGuid().ToString(),
+                Email = currentMember.Email
+            };
+
+            var customerId = _nopService.CreateCustomer(customer);
+
+            currentMember.SetValue("NopCustomerId", customerId);
+
+            memberService.Save(currentMember);
         }
     }
 }

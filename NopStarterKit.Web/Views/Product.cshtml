@@ -1,10 +1,13 @@
 ﻿@inherits UmbracoTemplatePage
 @using NopStarterKit.Web.Helpers
+@using Nop.Integration.Umbraco.Nop
 @{
     Layout = "_Layout.cshtml";
     var root = Model.Content.AncestorOrSelf(1);
     var relatedProducts = Model.Content.GetPropertyValue<IEnumerable<IPublishedContent>>("relatedProducts");
-     var nopId = Convert.ToInt32(Model.Content.GetPropertyValue("nopId"));
+    var nopId = Model.Content.GetPropertyValue<int>("nopId");
+    var _nopService = new NopApiService();
+    var prod = _nopService.GetProduct(nopId);
 }
 
 <div class="master-column-wrapper">
@@ -44,6 +47,13 @@
                                 </div>
                                 <div class="short-description">
                                     @Model.Content.GetPropertyValue("description")
+                                </div>
+
+                                <div class="attributes">
+                                    @foreach (var attribute in prod.Attributes)
+                                    {
+                                        @Html.EditorFor(a => attribute, attribute.AttributeControlType)
+                                    }
                                 </div>
 
                                 <div class="prices" itemprop="offers" itemscope itemtype="http://schema.org/Offer">

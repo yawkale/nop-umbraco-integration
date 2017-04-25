@@ -34,7 +34,7 @@ namespace NopStarterKit.Web.Controllers
             return View("~/Views/Partials/ShoppingCart.cshtml", products);
         }
 
-        public void Updt(FormCollection form)
+        public void Update(FormCollection form)
         {
             var toRemove = form.Get("removefromcart")?.Split(',').ToList().ConvertAll(s => Int32.Parse(s));
 
@@ -82,7 +82,7 @@ namespace NopStarterKit.Web.Controllers
             {
                 success = true,
                 message = "The product has been added to your \u003ca href=\"/cart\"\u003eshopping cart\u003c/a\u003e",
-                updatetopcartsectionhtml = "(13)",
+                updatetopcartsectionhtml = "(0)",
                 updateflyoutcartsectionhtml = ""
         });
 
