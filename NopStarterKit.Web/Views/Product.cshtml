@@ -8,6 +8,7 @@
     var nopId = Model.Content.GetPropertyValue<int>("nopId");
     var _nopService = new NopApiService();
     var prod = _nopService.GetProduct(nopId);
+    var minQuantityRequired = prod.MinQuantity > 1;
 }
 
 <div class="master-column-wrapper">
@@ -55,37 +56,132 @@
                                         @Html.EditorFor(a => attribute, attribute.AttributeControlType)
                                     }
                                 </div>
-
-                                <div class="prices" itemprop="offers" itemscope itemtype="http://schema.org/Offer">
-                                    <div class="product-price">
-                                        <span itemprop="price" content="27.56" class="price-value-25">
-                                            &nbsp;
-                                            $@Price.GetPrice(nopId)
-                                        </span>
+                                @if (prod.IsGiftCard)
+                                {
+                                    @Html.Partial("giftCard", prod)
+                                }
+                                @if (!prod.CustomerEnterPrice)
+                                {
+                                    <div class="prices" itemprop="offers" itemscope itemtype="http://schema.org/Offer">
+                                        <div class="product-price">
+                                            <span itemprop="price" content="27.56" class="price-value-25">
+                                                &nbsp;
+                                                $@Price.GetPrice(nopId)
+                                            </span>
+                                        </div>
+                                        <meta itemprop="priceCurrency" content="USD" />
                                     </div>
-                                    <meta itemprop="priceCurrency" content="USD" />
-                                </div>
-
+                                }
+                                @if (prod.IsDownload)
+                                {
+                                    <div class="download-sample">
+                                        <a class="button-2 download-sample-button" href="/download/sample/35">Download sample</a>
+                                    </div>
+                                }
                                 <div class="add-to-cart">
+                                    @if (minQuantityRequired)
+                                    {
+                                        <div class="min-qty-notification">This product has a minimum quantity of @prod.MinQuantity</div>
+                                    }
+                                    @if (prod.CustomerEnterPrice)
+                                    {
+                                        <div class="customer-entered-price">
+                                            <div class="price-input">
+                                                <label class="enter-price-label" for="addtocart_@(prod.Id)_CustomerEnteredPrice">Please enter your price:</label>
+
+                                                <input class="enter-price-input valid" data-val="true" data-val-number="The field Please enter your price must be a number." id="addtocart_@(prod.Id)_CustomerEnteredPrice" name="addtocart_@(prod.Id).CustomerEnteredPrice" type="text" value="1">
+                                            </div>
+                                            <div class="price-range">
+                                                The price must be from $0.50 to $100.00
+                                            </div>
+                                        </div>
+                                    }
+                                    @if (prod.IsRental)
+                                    {
+                                        <div class="attributes rental-attributes">
+                                            <div class="attribute-item">
+                                                <div class="attribute-label">
+                                                    <label class="text-prompt">
+                                                        Start date:
+                                                        <span class="required">*</span>
+                                                    </label>
+                                                </div>
+                                                <div class="attribute-data">
+                                                    <input id="rental_start_date_@prod.Id" name="rental_start_date_@prod.Id" type="text" class="datepicker hasDatepicker">
+                                                    <script>
+                                                        $(document).ready(function () {
+                                                            $("#rental_start_date_'@prod.Id'").datepicker({ dateFormat: "mm/dd/yy", onSelect: onRentalDatePickerSelect });
+                                                        });
+                                                    </script>
+                                                </div>
+                                            </div>
+                                            <div class="attribute-item">
+                                                <div class="attribute-label">
+                                                    <label class="text-prompt">
+                                                        End date:
+                                                        <span class="required">*</span>
+                                                    </label>
+                                                </div>
+                                                <div class="attribute-data">
+                                                    <input id="rental_end_date_@prod.Id" name="rental_end_date_@prod.Id" type="text" class="datepicker hasDatepicker">
+                                                    <script>
+                                                        $(document).ready(function () {
+                                                            $("#rental_end_date_@prod.Id").datepicker({ dateFormat: "mm/dd/yy", onSelect: onRentalDatePickerSelect });
+                                                        });
+                                                    </script>
+                                                </div>
+                                            </div>
+
+
+                                            <script>
+                                                function onRentalDatePickerSelect() {
+
+                                                    //$.ajax({
+                                                    //    cache: false,
+                                                    //    url: '/shoppingcart/productdetails_attributechange?productId=40&validateAttributeConditions=False&loadPicture=False',
+                                                    //    data: $('#product-details-form').serialize(),
+                                                    //    type: 'post',
+                                                    //    success: function (data) {
+                                                    //        if (data.sku) {
+                                                    //            $('#sku-40').text(data.sku);
+                                                    //        }
+                                                    //        if (data.mpn) {
+                                                    //            $('#mpn-40').text(data.mpn);
+                                                    //        }
+                                                    //        if (data.gtin) {
+                                                    //            $('#gtin-40').text(data.gtin);
+                                                    //        }
+                                                    //        if (data.price) {
+                                                    //            $('.price-value-40').text(data.price);
+                                                    //        }
+                                                    //    }
+                                                    //});
+
+
+                                                }
+                                            </script>
+                                        </div>
+                                    }
+
                                     <div class="add-to-cart-panel">
                                         <label class="qty-label" for="addtocart_25_EnteredQuantity">Qty:</label>
-                                        <input class="qty-input" data-val="true" data-val-number="The field Qty must be a number." id="addtocart_25_EnteredQuantity" name="addtocart_25.EnteredQuantity" type="text" value="1" />
+                                        <input class="qty-input" data-val="true" data-val-number="The field Qty must be a number." id="addtocart_25_EnteredQuantity" name="addtocart_25.EnteredQuantity" type="text" value="@(minQuantityRequired ? prod.MinQuantity : 1)" />
                                         <input type="button" id="add-to-cart-button-25" class="button-1 add-to-cart-button" value="Add to cart" data-productid="25" onclick="addProductToCart(); return false;" />
                                     </div>
                                 </div>
 
                                 <!--wishlist, compare, email a friend-->
                                 @*<div class="overview-buttons">
-                                    <div class="add-to-wishlist">
-                                        <input type="button" id="add-to-wishlist-button-25" class="button-2 add-to-wishlist-button" value="Add to wishlist" data-productid="25" onclick="AjaxCart.addproducttocart_details('/addproducttocart/details/25/2', '#product-details-form');return false;" />
-                                    </div>
-                                    <div class="compare-products">
-                                        <input type="button" value="Add to compare list" class="button-2 add-to-compare-list-button" onclick="AjaxCart.addproducttocomparelist('/compareproducts/add/25');return false;" />
-                                    </div>
-                                    <div class="email-a-friend">
-                                        <input type="button" value="Email a friend" class="button-2 email-a-friend-button" onclick="setLocation('/productemailafriend/25')" />
-                                    </div>
-                                </div>*@
+                                        <div class="add-to-wishlist">
+                                            <input type="button" id="add-to-wishlist-button-25" class="button-2 add-to-wishlist-button" value="Add to wishlist" data-productid="25" onclick="AjaxCart.addproducttocart_details('/addproducttocart/details/25/2', '#product-details-form');return false;" />
+                                        </div>
+                                        <div class="compare-products">
+                                            <input type="button" value="Add to compare list" class="button-2 add-to-compare-list-button" onclick="AjaxCart.addproducttocomparelist('/compareproducts/add/25');return false;" />
+                                        </div>
+                                        <div class="email-a-friend">
+                                            <input type="button" value="Email a friend" class="button-2 email-a-friend-button" onclick="setLocation('/productemailafriend/25')" />
+                                        </div>
+                                    </div>*@
 
                                 <div class="product-share-button">
                                     <!-- AddThis Button BEGIN --><div class="addthis_toolbox addthis_default_style "><a class="addthis_button_preferred_1"></a><a class="addthis_button_preferred_2"></a><a class="addthis_button_preferred_3"></a><a class="addthis_button_preferred_4"></a><a class="addthis_button_compact"></a><a class="addthis_counter addthis_bubble_style"></a></div>
@@ -167,7 +263,7 @@
                                                         <div class="buttons">
                                                             <input type="button" value="Add to cart" class="button-2 product-box-add-to-cart-button" onclick="AjaxCart.addproducttocart_catalog('/addproducttocart/catalog/30/1/1');return false;" />
                                                             @*<input type="button" value="Add to compare list" title="Add to compare list" class="button-2 add-to-compare-list-button" onclick="AjaxCart.addproducttocomparelist('/compareproducts/add/30');return false;" />
-                                                            <input type="button" value="Add to wishlist" title="Add to wishlist" class="button-2 add-to-wishlist-button" onclick="AjaxCart.addproducttocart_catalog('/addproducttocart/catalog/30/2/1');return false;" />*@
+                                                                <input type="button" value="Add to wishlist" title="Add to wishlist" class="button-2 add-to-wishlist-button" onclick="AjaxCart.addproducttocart_catalog('/addproducttocart/catalog/30/2/1');return false;" />*@
                                                         </div>
 
                                                     </div>
@@ -187,9 +283,9 @@
     </div>
 </div>
 @*<div id="bar-notification" class="bar-notification success" style="display: block;">
-    <span class="close" title="Close">&nbsp;</span>
-    <p class="content">The product has been added to your <a href="/cart">shopping cart</a></p>
-</div>*@
+        <span class="close" title="Close">&nbsp;</span>
+        <p class="content">The product has been added to your <a href="/cart">shopping cart</a></p>
+    </div>*@
 <script>
     function addProductToCart() {
         var count = $('.qty-input').val();

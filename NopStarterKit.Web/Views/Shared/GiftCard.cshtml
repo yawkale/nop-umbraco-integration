@@ -1,0 +1,29 @@
+﻿
+@model Nop.Integration.Umbraco.Models.Product
+
+@{
+    Layout = null;
+}
+
+<div class="giftcard">
+    <div>
+        <label for="giftcard_@(Model.Id)_RecipientName">Recipient's Name:</label>
+        <input class="recipient-name" id="giftcard_@(Model.Id)_RecipientName" name="giftcard_@(Model.Id).RecipientName" type="text" value="">
+    </div>
+    <div>
+        <label for="giftcard_@(Model.Id)_RecipientEmail">Recipient's Email:</label>
+        <input class="recipient-email" id="giftcard_@(Model.Id)_RecipientEmail" name="giftcard_@(Model.Id).RecipientEmail" type="text" value="">
+    </div>
+    <div>
+        <label for="giftcard_@(Model.Id)_SenderName">Your Name:</label>
+        <input class="sender-name" id="giftcard_@(Model.Id)_SenderName" name="giftcard_@(Model.Id).SenderName" type="text" value="">
+    </div>
+    <div>
+        <label for="giftcard_@(Model.Id)_SenderEmail">Your Email:</label>
+        <input class="sender-email" id="giftcard_@(Model.Id)_SenderEmail" name="giftcard_@(Model.Id).SenderEmail" type="text" value="">
+    </div>
+    <div>
+        <label for="giftcard_@(Model.Id)_Message">Message:</label>
+        <textarea class="message" cols="20" id="giftcard_@(Model.Id)_Message" name="giftcard_@(Model.Id).Message" rows="2"></textarea>
+    </div>
+</div>

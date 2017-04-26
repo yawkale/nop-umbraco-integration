@@ -1,5 +1,40 @@
 ﻿@model Nop.Integration.Umbraco.Models.ProductAttributeMapping
 
 
+<dt id="product_attribute_label_@Model.Id">
+    <label class="text-prompt">
+        @Model.ProductAttributeName
+        @if (Model.IsRequired)
+        { <span class="required">*</span> }
+    </label>
+</dt>
+
+<dd id="product_attribute_input_@Model.Id">
+    <ul class="option-list color-squares" id="color-squares-@Model.Id">
+        @foreach (var attr in Model.ProductAttributeValues)
+        {
+            <li>
+                <label for="product_attribute_@(string.Format("{0}_{1}", Model.Id, attr.Id))">
+                    <span class="color-container">
+                        <span class="color" style="background: url('@attr.ImageSquaresImage.Src.Replace(".jpg", "_32.jpg")') 50% 50% no-repeat;">&nbsp;</span>
+                    </span>
+                    <input id="product_attribute_@(string.Format("{0}_{1}", Model.Id, attr.Id))" type="radio" name="product_attribute_@Model.Id" value="@attr.Id">
+                </label>
+                <div class="tooltip-container">
+                    <div class="tooltip-header">Natural</div>
+                    <div class="tooltip-body"><img src="@attr.ImageSquaresImage.Src" alt="Natural"></div>
+                </div>
+            </li>
+        }
+    </ul>
+    <script type="text/javascript">
+        $(document).ready(function() {
+            $(".attributes #color-squares-'@Model.Id'").delegate('input', 'click', function(event) {
+                $(".attributes #color-squares-'@Model.Id'").find('li').removeClass('selected-value');
+            $(this).closest('li').addClass('selected-value');
+        });
+        });
+    </script>
+</dd>
 
 

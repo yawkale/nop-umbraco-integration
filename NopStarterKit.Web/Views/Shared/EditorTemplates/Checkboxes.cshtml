@@ -1,6 +1,6 @@
 ﻿@model Nop.Integration.Umbraco.Models.ProductAttributeMapping
 
-<dt id="product_attribute_label_5">
+<dt id="product_attribute_label_@Model.Id">
     <label class="text-prompt">
         @Model.ProductAttributeName
         @if (Model.IsRequired)
@@ -8,7 +8,7 @@
     </label>
 </dt>
 
-<dd id="product_attribute_input_5">
+<dd id="product_attribute_input_@Model.Id">
     <ul class="option-list">
         @foreach (var option in Model.ProductAttributeValues)
         {

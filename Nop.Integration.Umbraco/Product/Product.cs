@@ -26,11 +26,23 @@ namespace Nop.Integration.Umbraco.Models
         [JsonProperty("order_minimum_quantity")]
         public int MinQuantity { get; set; }
 
+        [JsonProperty("is_gift_card")]
+        public bool IsGiftCard { get; set; }
+
+        [JsonProperty("is_download")]
+        public bool IsDownload { get; set; }
+
+        [JsonProperty("customer_enters_price")]
+        public bool CustomerEnterPrice { get; set; }
+
+        [JsonProperty("is_rental")]
+        public bool IsRental { get; set; }
+
         public bool Redirect
         {
             get
             {
-                return (Attributes.Any() || MinQuantity > 1) ? true : false;
+                return (Attributes.Any() || MinQuantity > 1 || IsGiftCard || IsDownload || CustomerEnterPrice || IsRental) ? true : false;
             }
         }
     }

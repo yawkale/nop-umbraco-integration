@@ -73,7 +73,6 @@ namespace NopStarterKit.Web.Controllers
                 ProductId = productId,
                 Quantity = quantity,
                 CartType = "ShoppingCart",
-                attribute = "8"
             };
 
             _nopService.CreateShoppingCart(shoppingCart);

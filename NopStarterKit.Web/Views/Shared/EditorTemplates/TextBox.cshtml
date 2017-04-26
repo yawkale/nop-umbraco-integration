@@ -1,1 +1,14 @@
 ﻿@model Nop.Integration.Umbraco.Models.ProductAttributeMapping
+
+
+<dt id="product_attribute_label_@Model.Id">
+    <label class="text-prompt">
+        @Model.ProductAttributeName
+        @if (Model.IsRequired)
+        { <span class="required">*</span> }
+    </label>
+</dt>
+
+<dd id="product_attribute_input_@Model.Id">
+    <input name="product_attribute_@Model.Id" type="text" class="textbox" id="product_attribute_@Model.Id">
+</dd>

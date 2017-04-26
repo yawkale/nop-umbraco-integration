@@ -33,10 +33,12 @@ namespace Archimedicx.Cms.Controllers
 
             if (currentUser != null)
             {
+                Response.Cookies.Add(new HttpCookie("NopCustomerType") { Value = "active" });
                 SetCurrentMemberNopId(currentUser);
             }
-            else if (Request.Cookies["NopCustomerId"] == null)
+            else if (Request.Cookies["NopCustomerId"] == null || Request.Cookies["NopCustomerType"]?.Value != "temporal")
             {
+                Response.Cookies.Add(new HttpCookie("NopCustomerType") { Value = "temporal" });
                 CreateTemporalNopCustomer();
             }
 
@@ -72,6 +74,7 @@ namespace Archimedicx.Cms.Controllers
             {
                 Response.Cookies.Add(new HttpCookie("NopCustomerId") { Value = nopCustomerId });
             }
+
         }
 
         public void CreateNopCustomer(IPublishedContent member)

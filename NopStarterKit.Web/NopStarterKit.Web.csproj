@@ -500,6 +500,7 @@
     <Content Include="Views\Shared\EditorTemplates\RadioList.cshtml" />
     <Content Include="Views\Shared\EditorTemplates\ReadonlyCheckboxes.cshtml" />
     <Content Include="Views\Shared\EditorTemplates\TextBox.cshtml" />
+    <Content Include="Views\Shared\GiftCard.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

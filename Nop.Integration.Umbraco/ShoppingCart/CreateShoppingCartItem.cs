@@ -22,9 +22,5 @@ namespace Nop.Integration.Umbraco.Models
 
         [JsonProperty("customer_id")]
         public string CustomerId { get; set; }
-
-        [JsonProperty("product_attribute_6")]
-        public string attribute { get; set; }
-
     }
 }

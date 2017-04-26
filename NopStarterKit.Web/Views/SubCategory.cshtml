@@ -58,7 +58,7 @@
                     <div class="item-grid">
                         @foreach (var product in products)
                         {
-                            var nopId = product.GetPropertyValue<int>("nopId");
+                            var nopId = Convert.ToInt32(product.GetPropertyValue("nopId"));
                             var prod = _nopService.GetProduct(nopId);
                             var category = product.GetPropertyValue<IEnumerable<IPublishedContent>>("category").Where(x => x.Id == Model.Content.Id);
                             if (category.Any())

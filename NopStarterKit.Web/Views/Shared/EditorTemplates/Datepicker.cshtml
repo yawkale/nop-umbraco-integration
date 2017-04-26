@@ -1,5 +1,70 @@
 ﻿@model Nop.Integration.Umbraco.Models.ProductAttributeMapping
 
+<div class="attributes rental-attributes">
+    <div class="attribute-item">
+        <div class="attribute-label">
+            <label class="text-prompt">
+                Start date:
+                @if (Model.IsRequired)
+                { <span class="required">*</span> }
+            </label>
+        </div>
+        <div class="attribute-data">
+            <input id="rental_start_date_@Model.Id" name="rental_start_date_@Model.Id" type="text" class="datepicker hasDatepicker">
+            <script>
+                        $(document).ready(function () {
+                            $("#rental_start_date_'@Model.Id'").datepicker({ dateFormat: "mm/dd/yy", onSelect: onRentalDatePickerSelect });
+                        });
+            </script>
+        </div>
+    </div>
+    <div class="attribute-item">
+        <div class="attribute-label">
+            <label class="text-prompt">
+                End date:
+                @if (Model.IsRequired)
+                { <span class="required">*</span> }
+            </label>
+            <span class="required">*</span>
+        </div>
+        <div class="attribute-data">
+            <input id="rental_end_date_@Model.Id" name="rental_end_date_@Model.Id" type="text" class="datepicker hasDatepicker">
+            <script>
+                        $(document).ready(function () {
+                            $("#rental_end_date_@Model.Id").datepicker({ dateFormat: "mm/dd/yy", onSelect: onRentalDatePickerSelect });
+                        });
+            </script>
+        </div>
+    </div>
 
+
+    <script>
+            function onRentalDatePickerSelect() {
+
+                        $.ajax({
+                            cache: false,
+                            url: '/shoppingcart/productdetails_attributechange?productId=40&validateAttributeConditions=False&loadPicture=False',
+                            data: $('#product-details-form').serialize(),
+                            type: 'post',
+                            success: function(data) {
+                                if (data.sku) {
+                                    $('#sku-40').text(data.sku);
+                                }
+                                if (data.mpn) {
+                                    $('#mpn-40').text(data.mpn);
+                                }
+                                if (data.gtin) {
+                                    $('#gtin-40').text(data.gtin);
+                                }
+                                if (data.price) {
+                                    $('.price-value-40').text(data.price);
+                                }
+                            }
+                        });
+
+
+            }
+    </script>
+</div>
 
 

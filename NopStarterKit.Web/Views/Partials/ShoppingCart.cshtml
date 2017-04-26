@@ -373,6 +373,9 @@
                 window.location.reload()
             })
         })
+        $(".continue-shopping-button").click(function () {
+            window.location.href = '@(string.IsNullOrEmpty(Request.UrlReferrer.ToString()) ? "/" : Request.UrlReferrer.ToString())'
+        })
         $('.update').click(function () {
             var _this = this;
             var count = $(_this).closest('tr').find('.count').val();
