@@ -72,6 +72,49 @@
                                         <meta itemprop="priceCurrency" content="USD" />
                                     </div>
                                 }
+                                @if (prod.HasTierPrices)
+                                {
+                                    <div class="tier-prices">
+                                        <div class="title">
+                                            <strong>PRICE BREAKS - The more you buy, the more you save</strong>
+                                        </div>
+                                        <div class="table-wrapper">
+                                            <table class="prices-table">
+                                                <tbody>
+                                                    <tr>
+                                                        <td class="field-header">
+                                                            Quantity
+                                                        </td>
+                                                        <td class="item-quantity">
+                                                            2+
+                                                        </td>
+                                                        <td class="item-quantity">
+                                                            5+
+                                                        </td>
+                                                        <td class="item-quantity">
+                                                            10+
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td class="field-header">
+                                                            Price
+                                                        </td>
+                                                        <td class="item-price">
+                                                            $19.00
+                                                        </td>
+                                                        <td class="item-price">
+                                                            $17.00
+                                                        </td>
+                                                        <td class="item-price">
+                                                            $15.00
+                                                        </td>
+                                                    </tr>
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                    </div>
+                                }
+
                                 @if (prod.IsDownload)
                                 {
                                     <div class="download-sample">
@@ -110,7 +153,7 @@
                                                     <input id="rental_start_date_@prod.Id" name="rental_start_date_@prod.Id" type="text" class="datepicker hasDatepicker">
                                                     <script>
                                                         $(document).ready(function () {
-                                                            $("#rental_start_date_'@prod.Id'").datepicker({ dateFormat: "mm/dd/yy", onSelect: onRentalDatePickerSelect });
+                                                            $("#rental_start_date_@prod.Id").datepicker({ dateFormat: "mm/dd/yy", onSelect: onRentalDatePickerSelect });
                                                         });
                                                     </script>
                                                 </div>

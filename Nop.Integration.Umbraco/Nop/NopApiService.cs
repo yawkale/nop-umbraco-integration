@@ -39,7 +39,7 @@ namespace Nop.Integration.Umbraco.Nop
 
         public Product GetProduct(int id)
         {
-            string jsonUrl = $"/api/products/{id}?fields=id,name,price,category_id,images,attributes,order_minimum_quantity,is_gift_card,is_download,customer_enters_price,is_rental";
+            string jsonUrl = $"/api/products/{id}?fields=id,name,price,category_id,images,attributes,order_minimum_quantity,is_gift_card,is_download,customer_enters_price,is_rental,has_tier_prices";
 
             object productData = _nopApiClient.Get(jsonUrl);
 

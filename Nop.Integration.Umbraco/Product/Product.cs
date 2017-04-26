@@ -38,11 +38,14 @@ namespace Nop.Integration.Umbraco.Models
         [JsonProperty("is_rental")]
         public bool IsRental { get; set; }
 
+        [JsonProperty("has_tier_prices")]
+        public bool HasTierPrices { get; set; }
+
         public bool Redirect
         {
             get
             {
-                return (Attributes.Any() || MinQuantity > 1 || IsGiftCard || IsDownload || CustomerEnterPrice || IsRental) ? true : false;
+                return (Attributes.Any() || MinQuantity > 1 || IsGiftCard || IsDownload || CustomerEnterPrice || IsRental || HasTierPrices) ? true : false;
             }
         }
     }
