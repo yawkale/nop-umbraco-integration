@@ -6,6 +6,7 @@
     Layout = null;
 
     Html.RequiresCss("~/css/jquery-ui-1.10.3.custom.min.css");
+    Html.RequiresCss("~/css/bootstrap.min.css");
     Html.RequiresCss("~/css/magnific-popup.css");
     Html.RequiresCss("~/css/styles.css");
     Html.RequiresCss("~/css/nivo-slider.css");
@@ -25,6 +26,7 @@
     var title = Model.Content.GetPropertyValue("title", Model.Content.Name);
     var root = Model.Content.AncestorOrSelf(1);
     var footer = root.GetPropertyValue<ArchetypeModel>("footer");
+    var search = root.DescendantOrSelf("search");
 }
 
 
@@ -154,7 +156,8 @@
                 </a>
             </div>
             <div class="search-box store-search-box">
-                <form action="/search" id="small-search-box-form" method="get">
+                <form action="@search.Url" id="small-search-box-form" method="get">
+                    <label for="small-searchterms" class="sr-only">Search store</label>
                     <input type="text" class="search-box-text" id="small-searchterms" autocomplete="off" name="q" placeholder="Search store"/>
                     <input type="submit" class="button-1 search-box-button" value="Search"/>
                 </form>

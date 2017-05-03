@@ -1,5 +1,279 @@
-﻿@inherits Umbraco.Web.Mvc.UmbracoTemplatePage<ContentModels.Search>
+﻿@inherits Umbraco.Web.Mvc.UmbracoTemplatePage
 @using ContentModels = Umbraco.Web.PublishedContentModels;
+
+@using Archetype.Models
+@using Lucene.Net;
+@using Examine;
+@using Examine.LuceneEngine.SearchCriteria;
+@using Examine.Providers;
+@using Examine.SearchCriteria;
+@using Lucene.Net.Search
+@using NopStarterKit.Web.Search
+@using NopStarterKit.Web.Helpers
+@using Nop.Integration.Umbraco.Nop
+
 @{
-	Layout = "_Layout.cshtml";
+    Layout = "_Layout.cshtml";
+
+
+    int showByDefault = 8;
+    bool isAll = (Context.Request.QueryString["viewAllResults"] == "true");
+    string searchTerm = Context.Request.QueryString["q"];
+    Examine.Providers.BaseSearchProvider baseSearchProvider = ExamineManager.Instance.SearchProviderCollection["ExternalSearcher"];
+    IEnumerable<SearchResult> nodes = null;
+    Lucene.Net.Search.Searcher luceneSearcher = null;
+
+    int totalNodes = 0;
+
+    if (!String.IsNullOrEmpty(searchTerm))
+    {
+        var searchCriteria = Examine.ExamineManager.Instance.CreateSearchCriteria("content", Examine.SearchCriteria.BooleanOperation.And);
+        searchCriteria.Field("path", string.Format("-1,{0}", Model.Content.AncestorOrSelf(1).Id).MultipleCharacterWildcard()).Not().Field("template", "0");
+        var searchTerms = searchTerm.Split(new char[] { ' ' }, StringSplitOptions.RemoveEmptyEntries);
+
+        foreach (var p in searchTerms)
+        {
+            searchCriteria.GroupedOr(new string[] { "nodeName", "englishName", "metaKeywords", "pageText" }, p.MultipleCharacterWildcard(), p.Fuzzy(0.7f));
+        }
+
+        ISearchCriteria query;
+        query = searchCriteria.OrderBy("rank").Not().NodeTypeAlias("Category").Compile();
+        var results = baseSearchProvider.Search(query);
+        luceneSearcher = ((Examine.LuceneEngine.SearchResults)results).LuceneSearcher;
+        nodes = results.OrderByDescending(x => x.Score);
+        totalNodes = nodes.Count();
+
+        if (totalNodes == 0)
+        {
+            TempData["resultsCount"] = "zero";
+        }
+
+        if (isAll)
+        {
+            showByDefault = totalNodes;
+        }
+
+    }
 }
+
+<div class="master-wrapper-content">
+    <div class="master-column-wrapper">
+        <div class="">
+            @*<script type="text/javascript">
+                    $(document).ready(function () {
+
+                        $("#adv").click(toggleAdvancedSearch);
+
+                        toggleAdvancedSearch();
+                    });
+
+                    function toggleAdvancedSearch() {
+
+                        if ($('#adv').is(':checked')) {
+                            $('#advanced-search-block').show();
+                        }
+                        else {
+                            $('#advanced-search-block').hide();
+                        }
+                    }
+                </script>*@
+            <div class="page search-page">
+                <div class="page-title">
+                    <h1>@Model.Content.GetPropertyValue("pageTitle", Model.Content.Name)</h1>
+                </div>
+                <div class="page-body">
+                    <div class="search-input">
+                        <form action="@Model.Content.Url" method="get" novalidate="novalidate">
+                            <div class="fieldset">
+                                <div class="form-fields">
+                                    <div class="basic-search">
+                                        <div class="inputs">
+                                            <label for="q">Search keyword:</label>
+                                            <input class="search-text" id="q" name="q" type="text" value="@searchTerm">
+                                        </div>
+
+                                        <div class="inputs reversed">
+                                            <input id="adv" name="adv" type="checkbox" value="true"><input name="adv" type="hidden" value="false">
+                                            <label for="adv">Advanced search</label>
+                                        </div>
+                                    </div>
+                                    <div class="advanced-search" id="advanced-search-block" style="display: none;">
+                                        <div class="inputs">
+                                            <label for="cid">Category:</label>
+                                            <select data-val="true" data-val-number="The field Category must be a number." id="cid" name="cid">
+                                                <option selected="selected" value="0">All</option>
+                                                <option value="1">Computers</option>
+                                                <option value="2">Computers &gt;&gt; Desktops</option>
+                                                <option value="3">Computers &gt;&gt; Notebooks</option>
+                                                <option value="4">Computers &gt;&gt; Software</option>
+                                                <option value="5">Electronics</option>
+                                                <option value="6">Electronics &gt;&gt; Camera &amp; photo</option>
+                                                <option value="7">Electronics &gt;&gt; Cell phones</option>
+                                                <option value="8">Electronics &gt;&gt; Others</option>
+                                                <option value="9">Apparel</option>
+                                                <option value="10">Apparel &gt;&gt; Shoes</option>
+                                                <option value="11">Apparel &gt;&gt; Clothing</option>
+                                                <option value="12">Apparel &gt;&gt; Accessories</option>
+                                                <option value="13">Digital downloads</option>
+                                                <option value="14">Books</option>
+                                                <option value="15">Jewelry</option>
+                                                <option value="16">Gift Cards</option>
+                                            </select>
+                                        </div>
+                                        <div class="inputs reversed">
+                                            <input id="isc" name="isc" type="checkbox" value="true"><input name="isc" type="hidden" value="false">
+                                            <label for="isc">Automatically search sub categories</label>
+                                        </div>
+                                        <div class="inputs">
+                                            <label for="mid">Manufacturer:</label>
+                                            <select data-val="true" data-val-number="The field Manufacturer must be a number." id="mid" name="mid">
+                                                <option selected="selected" value="0">All</option>
+                                                <option value="1">Apple</option>
+                                                <option value="2">HP</option>
+                                                <option value="3">Nike</option>
+                                            </select>
+                                        </div>
+                                        <div class="inputs">
+                                            <label>Price range:</label>
+                                            <span class="price-range">
+                                                From
+                                                <input class="price-from" id="pf" name="pf" type="text" value="">
+                                                to
+                                                <input class="price-to" id="pt" name="pt" type="text" value="">
+                                            </span>
+                                        </div>
+                                        <div class="inputs reversed">
+                                            <input id="sid" name="sid" type="checkbox" value="true"><input name="sid" type="hidden" value="false">
+                                            <label for="sid">Search In product descriptions</label>
+                                        </div>
+
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="buttons">
+                                <input type="submit" class="button-1 search-button" value="Search">
+                            </div>
+                        </form>
+                    </div>
+                    @if (totalNodes != 0)
+                    {
+                        <div class="product-selectors">
+
+                            <div class="product-viewmode">
+                                <span>View as</span>
+                                <a class="viewmode-icon grid selected" href="http://test-nop.uteam-dev.com/search?q=computer&amp;viewmode=grid" title="Grid">Grid</a>
+                                <a class="viewmode-icon list " href="http://test-nop.uteam-dev.com/search?q=computer&amp;viewmode=list" title="List">List</a>
+                            </div>
+                            <div class="product-sorting">
+                                <span>Sort by</span>
+                                <select id="products-orderby" name="products-orderby" onchange="setLocation(this.value);">
+                                    <option selected="selected" value="http://test-nop.uteam-dev.com/search?q=computer&amp;orderby=0">Position</option>
+                                    <option value="http://test-nop.uteam-dev.com/search?q=computer&amp;orderby=5">Name: A to Z</option>
+                                    <option value="http://test-nop.uteam-dev.com/search?q=computer&amp;orderby=6">Name: Z to A</option>
+                                    <option value="http://test-nop.uteam-dev.com/search?q=computer&amp;orderby=10">Price: Low to High</option>
+                                    <option value="http://test-nop.uteam-dev.com/search?q=computer&amp;orderby=11">Price: High to Low</option>
+                                    <option value="http://test-nop.uteam-dev.com/search?q=computer&amp;orderby=15">Created on</option>
+                                </select>
+                            </div>
+                            <div class="product-page-size">
+                                <span>Display</span>
+                                <select id="products-pagesize" name="products-pagesize" onchange="setLocation(this.value);">
+                                    <option value="http://test-nop.uteam-dev.com/search?q=computer&amp;pagesize=3">3</option>
+                                    <option selected="selected" value="http://test-nop.uteam-dev.com/search?q=computer&amp;pagesize=6">6</option>
+                                    <option value="http://test-nop.uteam-dev.com/search?q=computer&amp;pagesize=9">9</option>
+                                    <option value="http://test-nop.uteam-dev.com/search?q=computer&amp;pagesize=18">18</option>
+                                </select>
+                                <span>per page</span>
+                            </div>
+                        </div>
+                    }
+
+                    <div class="search-results">
+                        @if (totalNodes != 0)
+                        {
+                            <div class="product-grid">
+                                <div class="item-grid">
+
+                                    @foreach (var item in nodes.Take(showByDefault))
+                                    {
+                                        if (item.Fields.ContainsKey("id"))
+                                        {
+                                            var pageContent = Umbraco.TypedContent(item.Fields["id"]);
+
+                                            var nopId = pageContent.GetPropertyValue<int>("nopId");
+                                            var _nopService = new NopApiService();
+                                            var prod = _nopService.GetProduct(nopId);
+                                            var minQuantityRequired = prod.MinQuantity > 1;
+
+                                            <div class="item-box">
+                                                <div class="product-item" data-productid="1">
+                                                    @if (pageContent.HasValue("productImage"))
+                                                    {
+                                                        var imagesList = pageContent.GetPropertyValue<IEnumerable<IPublishedContent>>("productImage");
+                                                        <div class="picture">
+                                                            <a href="@Umbraco.NiceUrl(Convert.ToInt32(item.Fields["id"]))" title="@pageContent.Name">
+                                                                <img alt="@pageContent.Name" src="@imagesList.FirstOrDefault().Url" title="@pageContent.Name">
+                                                            </a>
+                                                        </div>
+                                                    }
+                                                    <div class="details">
+                                                        <h2 class="product-title">
+                                                            <a href="@Umbraco.NiceUrl(Convert.ToInt32(item.Fields["id"]))">@item.Fields["nodeName"]</a>
+                                                        </h2>
+                                                        <div class="product-rating-box" title="1 review(s)">
+                                                            <div class="rating">
+                                                                <div style="width: 100%">
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="description">
+                                                            @pageContent.GetPropertyValue("description")
+                                                        </div>
+                                                        <div class="add-info">
+                                                            <div class="prices">
+                                                                <span class="price actual-price">
+                                                                    $@Price.GetPrice(nopId)
+                                                                </span>
+                                                            </div>
+                                                            <div class="buttons">
+                                                                <input type="button" value="Add to cart" class="button-2 product-box-add-to-cart-button" onclick="addProductToCart('@nopId','@pageContent.Url','@prod.Redirect.ToString()'); return false;">
+                                                                @*<input type="button" value="Add to compare list" title="Add to compare list" class="button-2 add-to-compare-list-button" onclick="AjaxCart.addproducttocomparelist('/compareproducts/add/1');return false;">
+                                                                    <input type="button" value="Add to wishlist" title="Add to wishlist" class="button-2 add-to-wishlist-button" onclick="AjaxCart.addproducttocart_catalog('/addproducttocart/catalog/1/2/1');return false;">*@
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        }
+
+                                    }
+                                </div>
+                            </div>
+
+                        }
+                        else
+                        {
+                            <div class="no-result">
+                                No products were found that matched your criteria.
+                            </div>
+                        }
+
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script>
+    function addProductToCart() {
+        var count = $('.qty-input').val();
+        AjaxCart.addproducttocart_details('/umbraco/surface/NopShoppingCard/AddToShoppingCart?productId=' + @(Model.Content.GetPropertyValue("nopId")) + '&quantity=' + count, '#product-details-form')
+    }
+
+    $(document).ready(function () {
+        $@*.get('/umbraco/surface/NopProduct/GetProductPrice?id=' + '@Model.Content.GetPropertyValue("nopId")').done(function (response) {
+            $('.product-price span').html('$' + response.slice(0, -2))
+        })*@
+    })
+</script>
