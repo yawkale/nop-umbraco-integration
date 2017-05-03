@@ -1,4 +1,4 @@
-﻿using Commerce.Api.Adapter;
+﻿using Nop.Api.Adapter;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 using Nop.Integration.Umbraco.Models;
@@ -34,7 +34,7 @@ namespace Nop.Integration.Umbraco.Nop
 
         public NopApiService()
         {
-           _nopApiClient = new ApiClient(AccessProvider._token, AccessProvider._serverUrl);
+           _nopApiClient = new ApiClient();
         }
 
         public Product GetProduct(int id)
@@ -149,11 +149,9 @@ namespace Nop.Integration.Umbraco.Nop
 
         public void RemoveShoppingCartItem(int shoppingCartItemId)
         {
-            var nopApiClient = new ApiClient(AccessProvider._token, AccessProvider._serverUrl);
-
             string jsonUrl = $"/api/shopping_cart_items/{shoppingCartItemId}";
 
-            nopApiClient.Delete(jsonUrl);
+            _nopApiClient.Delete(jsonUrl);
         }
     }
 }

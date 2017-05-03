@@ -2,8 +2,8 @@
 using System.Net;
 using System.Web.Mvc;
 using Newtonsoft.Json;
-using Commerce.Api.Adapter;
-using Commerce.Api.Adapter.Managers;
+using Nop.Api.Adapter;
+using Nop.Api.Adapter.Managers;
 using Umbraco.Web.Mvc;
 
 namespace NopStarterKit.Web.Controllers
@@ -18,10 +18,10 @@ namespace NopStarterKit.Web.Controllers
             {
                 try
                 {
-                    string clientId = AccessProvider._clientId;
-                    string clientSecret = AccessProvider._clientSecret;
-                    string serverUrl = AccessProvider._serverUrl;
-                    string redirectUrl = AccessProvider._redirectUrl;
+                    string clientId = AccessProvider.ClientId;
+                    string clientSecret = AccessProvider.ClientSecret;
+                    string serverUrl = AccessProvider.ServerUrl;
+                    string redirectUrl = AccessProvider.RedirectUrl;
 
                     var authParameters = new AuthParameters()
                     {
@@ -33,16 +33,15 @@ namespace NopStarterKit.Web.Controllers
                         Code = code
                     };
 
-                    var nopAuthorizationManager = new Commerce.Api.Adapter.Managers.AuthorizationManager();
+                    var nopAuthorizationManager = new Nop.Api.Adapter.Managers.AuthorizationManager();
 
                     string responseJson = nopAuthorizationManager.GetAuthorizationData(authParameters);
 
                     Nop.Integration.Umbraco.Models.Authorization authorizationModel = JsonConvert.DeserializeObject<Nop.Integration.Umbraco.Models.Authorization>(responseJson);
 
-                    AccessProvider._token = authorizationModel.AccessToken;
-                    //Session["accessToken"] = authorizationModel.AccessToken;
+                    AccessProvider.Token = authorizationModel.AccessToken;
                 }
-                catch(Exception e)
+                catch (Exception e)
                 {
                     throw new Exception("error");
                 }

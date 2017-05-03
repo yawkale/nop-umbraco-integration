@@ -1,20 +1,19 @@
-﻿using Commerce.Api.Adapter;
+﻿using Nop.Api.Adapter;
 using System;
 
 
-namespace Commerce.Api.Adapter.Managers
+namespace Nop.Api.Adapter.Managers
 {
     public class AuthorizationManager
     {
         private readonly ApiAuthorizer _apiAuthorizer;
 
         public AuthorizationManager() {
-            _apiAuthorizer = new ApiAuthorizer(AccessProvider._clientId, AccessProvider._clientSecret, AccessProvider._serverUrl);
+            _apiAuthorizer = new ApiAuthorizer(AccessProvider.ClientId, AccessProvider.ClientSecret, AccessProvider.ServerUrl);
         }
 
         public string BuildAuthUrl(string redirectUrl, string[] requestedPermissions, string state = null)
         {
-            // this is the URL where nopCommerce should return the authorization code
             var returnUrl = new Uri(redirectUrl);
 
             // get the Authorization URL and redirect the user

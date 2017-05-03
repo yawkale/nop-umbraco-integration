@@ -1,26 +1,20 @@
 ﻿using System;
-using System.Net;
 using System.Web.Mvc;
-using Newtonsoft.Json;
-using Commerce.Api.Adapter;
-using Commerce.Api.Adapter.Managers;
 using Umbraco.Web.Mvc;
-using System.Web.UI;
 using Umbraco.Web.Models;
 using System.Web;
-using Newtonsoft.Json.Linq;
 using System.Collections.Generic;
-using System.Linq;
 using Nop.Integration.Umbraco.Nop;
 using Nop.Integration.Umbraco.Models;
 using Umbraco.Core.Models;
-using Umbraco.Core;
 
 namespace Archimedicx.Cms.Controllers
 {
     public class DefaultController : RenderMvcController
     {
         private readonly NopApiService _nopService;
+        private const string CustomerType = "NopCustomerType";
+        private const string CustomerId = "NopCustomerId";
 
         public DefaultController()
         {
@@ -33,12 +27,12 @@ namespace Archimedicx.Cms.Controllers
 
             if (currentUser != null)
             {
-                Response.Cookies.Add(new HttpCookie("NopCustomerType") { Value = "active" });
+                Response.Cookies.Add(new HttpCookie(CustomerType) { Value = "active" });
                 SetCurrentMemberNopId(currentUser);
             }
-            else if (Request.Cookies["NopCustomerId"] == null || Request.Cookies["NopCustomerType"]?.Value != "temporal")
+            else if (Request.Cookies[CustomerId] == null || Request.Cookies[CustomerType]?.Value != "temporary")
             {
-                Response.Cookies.Add(new HttpCookie("NopCustomerType") { Value = "temporal" });
+                Response.Cookies.Add(new HttpCookie(CustomerType) { Value = "temporary" });
                 CreateTemporalNopCustomer();
             }
 

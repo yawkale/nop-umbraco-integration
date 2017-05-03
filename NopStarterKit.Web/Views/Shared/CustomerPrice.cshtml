@@ -1,0 +1,17 @@
+﻿
+@model Nop.Integration.Umbraco.Models.Product
+
+@{
+    Layout = null;
+}
+
+<div class="customer-entered-price">
+    <div class="price-input">
+        <label class="enter-price-label" for="addtocart_@(Model.Id)_CustomerEnteredPrice">Please enter your price:</label>
+
+        <input class="enter-price-input valid" data-val="true" data-val-number="The field Please enter your price must be a number." id="addtocart_@(Model.Id)_CustomerEnteredPrice" name="addtocart_@(Model.Id).CustomerEnteredPrice" type="text" value="1">
+    </div>
+    <div class="price-range">
+        The price must be from $0.50 to $100.00
+    </div>
+</div>

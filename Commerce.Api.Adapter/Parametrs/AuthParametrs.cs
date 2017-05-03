@@ -1,4 +1,4 @@
-﻿namespace Commerce.Api.Adapter.Managers
+﻿namespace Nop.Api.Adapter.Managers
 {
     public class AuthParameters
     {

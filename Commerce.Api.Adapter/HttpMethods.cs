@@ -1,4 +1,4 @@
-﻿namespace Commerce.Api.Adapter
+﻿namespace Nop.Api.Adapter
 {
     public enum HttpMethods
     {

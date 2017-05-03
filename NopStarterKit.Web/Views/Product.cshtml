@@ -62,6 +62,8 @@
                                 }
                                 @if (!prod.CustomerEnterPrice)
                                 {
+                                    
+
                                     <div class="prices" itemprop="offers" itemscope itemtype="http://schema.org/Offer">
                                         <div class="product-price">
                                             <span itemprop="price" content="27.56" class="price-value-25">
@@ -128,82 +130,11 @@
                                     }
                                     @if (prod.CustomerEnterPrice)
                                     {
-                                        <div class="customer-entered-price">
-                                            <div class="price-input">
-                                                <label class="enter-price-label" for="addtocart_@(prod.Id)_CustomerEnteredPrice">Please enter your price:</label>
-
-                                                <input class="enter-price-input valid" data-val="true" data-val-number="The field Please enter your price must be a number." id="addtocart_@(prod.Id)_CustomerEnteredPrice" name="addtocart_@(prod.Id).CustomerEnteredPrice" type="text" value="1">
-                                            </div>
-                                            <div class="price-range">
-                                                The price must be from $0.50 to $100.00
-                                            </div>
-                                        </div>
+                                        @Html.Partial("customerPrice", prod)
                                     }
                                     @if (prod.IsRental)
                                     {
-                                        <div class="attributes rental-attributes">
-                                            <div class="attribute-item">
-                                                <div class="attribute-label">
-                                                    <label class="text-prompt">
-                                                        Start date:
-                                                        <span class="required">*</span>
-                                                    </label>
-                                                </div>
-                                                <div class="attribute-data">
-                                                    <input id="rental_start_date_@prod.Id" name="rental_start_date_@prod.Id" type="text" class="datepicker hasDatepicker">
-                                                    <script>
-                                                        $(document).ready(function () {
-                                                            $("#rental_start_date_@prod.Id").datepicker({ dateFormat: "mm/dd/yy", onSelect: onRentalDatePickerSelect });
-                                                        });
-                                                    </script>
-                                                </div>
-                                            </div>
-                                            <div class="attribute-item">
-                                                <div class="attribute-label">
-                                                    <label class="text-prompt">
-                                                        End date:
-                                                        <span class="required">*</span>
-                                                    </label>
-                                                </div>
-                                                <div class="attribute-data">
-                                                    <input id="rental_end_date_@prod.Id" name="rental_end_date_@prod.Id" type="text" class="datepicker hasDatepicker">
-                                                    <script>
-                                                        $(document).ready(function () {
-                                                            $("#rental_end_date_@prod.Id").datepicker({ dateFormat: "mm/dd/yy", onSelect: onRentalDatePickerSelect });
-                                                        });
-                                                    </script>
-                                                </div>
-                                            </div>
-
-
-                                            <script>
-                                                function onRentalDatePickerSelect() {
-
-                                                    //$.ajax({
-                                                    //    cache: false,
-                                                    //    url: '/shoppingcart/productdetails_attributechange?productId=40&validateAttributeConditions=False&loadPicture=False',
-                                                    //    data: $('#product-details-form').serialize(),
-                                                    //    type: 'post',
-                                                    //    success: function (data) {
-                                                    //        if (data.sku) {
-                                                    //            $('#sku-40').text(data.sku);
-                                                    //        }
-                                                    //        if (data.mpn) {
-                                                    //            $('#mpn-40').text(data.mpn);
-                                                    //        }
-                                                    //        if (data.gtin) {
-                                                    //            $('#gtin-40').text(data.gtin);
-                                                    //        }
-                                                    //        if (data.price) {
-                                                    //            $('.price-value-40').text(data.price);
-                                                    //        }
-                                                    //    }
-                                                    //});
-
-
-                                                }
-                                            </script>
-                                        </div>
+                                        @Html.Partial("rental", prod)
                                     }
 
                                     <div class="add-to-cart-panel">

@@ -5,11 +5,11 @@ using System.Runtime.InteropServices;
 // General Information about an assembly is controlled through the following 
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
-[assembly: AssemblyTitle("Nop.Api.Adapter")]
+[assembly: AssemblyTitle("Nop.Integration.Umbraco.Core")]
 [assembly: AssemblyDescription("")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("Microsoft")]
-[assembly: AssemblyProduct("Nop.Api.Adapter")]
+[assembly: AssemblyProduct("Nop.Integration.Umbraco.Core")]
 [assembly: AssemblyCopyright("Copyright © Microsoft 2017")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
@@ -20,7 +20,7 @@ using System.Runtime.InteropServices;
 [assembly: ComVisible(false)]
 
 // The following GUID is for the ID of the typelib if this project is exposed to COM
-[assembly: Guid("4610675e-85f6-4608-9c7a-65157397f91e")]
+[assembly: Guid("2b954321-dda1-45e4-a87e-93d5a77ab96e")]
 
 // Version information for an assembly consists of the following four values:
 //

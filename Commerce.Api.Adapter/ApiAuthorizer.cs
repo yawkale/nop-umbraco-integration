@@ -4,7 +4,7 @@ using System.Net;
 using System.Text;
 using System.Web;
 
-namespace Commerce.Api.Adapter
+namespace Nop.Api.Adapter
 {
     public class ApiAuthorizer
     {

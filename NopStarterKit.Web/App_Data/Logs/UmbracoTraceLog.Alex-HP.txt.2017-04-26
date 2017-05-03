@@ -1,0 +1,547 @@
+﻿ 2017-04-26 11:39:37,973 [P3948/D2/T1] INFO  Umbraco.Core.CoreBootManager - Umbraco 7.6.0-RC application starting on ALEX-HP
+ 2017-04-26 11:39:37,991 [P3948/D2/T1] INFO  Umbraco.Core.PluginManager - Determining hash of code files on disk
+ 2017-04-26 11:39:38,003 [P3948/D2/T1] INFO  Umbraco.Core.PluginManager - Hash determined (took 12ms)
+ 2017-04-26 11:39:38,059 [P3948/D2/T1] INFO  Umbraco.Core.MainDom - Acquiring MainDom...
+ 2017-04-26 11:39:38,061 [P3948/D2/T1] INFO  Umbraco.Core.MainDom - Acquired MainDom.
+ 2017-04-26 11:39:38,063 [P3948/D2/T1] INFO  Umbraco.Core.PluginManager - Resolving umbraco.interfaces.IDiscoverable
+ 2017-04-26 11:39:38,364 [P3948/D2/T1] INFO  Umbraco.Core.PluginManager - Resolved umbraco.interfaces.IDiscoverable (took 301ms)
+ 2017-04-26 11:39:38,365 [P3948/D2/T1] INFO  Umbraco.Core.PluginManager - Resolving umbraco.interfaces.IApplicationStartupHandler
+ 2017-04-26 11:39:38,374 [P3948/D2/T1] INFO  Umbraco.Core.PluginManager - Resolved umbraco.interfaces.IApplicationStartupHandler (took 8ms)
+ 2017-04-26 11:39:38,389 [P3948/D2/T1] INFO  Umbraco.Core.PluginManager - Resolving umbraco.interfaces.IDiscoverable
+ 2017-04-26 11:39:38,390 [P3948/D2/T1] INFO  Umbraco.Core.PluginManager - Resolved umbraco.interfaces.IDiscoverable (took 1ms)
+ 2017-04-26 11:39:38,391 [P3948/D2/T1] INFO  Umbraco.Core.PluginManager - Resolving Umbraco.Core.PropertyEditors.IPropertyEditorValueConverter
+ 2017-04-26 11:39:38,400 [P3948/D2/T1] INFO  Umbraco.Core.PluginManager - Resolved Umbraco.Core.PropertyEditors.IPropertyEditorValueConverter (took 9ms)
+ 2017-04-26 11:39:38,402 [P3948/D2/T1] INFO  Umbraco.Core.PluginManager - Resolving umbraco.interfaces.IDiscoverable
+ 2017-04-26 11:39:38,402 [P3948/D2/T1] INFO  Umbraco.Core.PluginManager - Resolved umbraco.interfaces.IDiscoverable (took 0ms)
+ 2017-04-26 11:39:38,402 [P3948/D2/T1] INFO  Umbraco.Core.PluginManager - Resolving Umbraco.Core.PropertyEditors.IPropertyValueConverter
+ 2017-04-26 11:39:38,411 [P3948/D2/T1] INFO  Umbraco.Core.PluginManager - Resolved Umbraco.Core.PropertyEditors.IPropertyValueConverter (took 8ms)
+ 2017-04-26 11:39:38,424 [P3948/D2/T1] INFO  Umbraco.Core.PluginManager - Resolving umbraco.interfaces.IDiscoverable
+ 2017-04-26 11:39:38,425 [P3948/D2/T1] INFO  Umbraco.Core.PluginManager - Resolved umbraco.interfaces.IDiscoverable (took 0ms)
+ 2017-04-26 11:39:38,425 [P3948/D2/T1] INFO  Umbraco.Core.PluginManager - Resolving Umbraco.Web.Mvc.SurfaceController
+ 2017-04-26 11:39:38,434 [P3948/D2/T1] INFO  Umbraco.Core.PluginManager - Resolved Umbraco.Web.Mvc.SurfaceController (took 8ms)
+ 2017-04-26 11:39:38,435 [P3948/D2/T1] INFO  Umbraco.Core.PluginManager - Resolving umbraco.interfaces.IDiscoverable
+ 2017-04-26 11:39:38,436 [P3948/D2/T1] INFO  Umbraco.Core.PluginManager - Resolved umbraco.interfaces.IDiscoverable (took 1ms)
+ 2017-04-26 11:39:38,436 [P3948/D2/T1] INFO  Umbraco.Core.PluginManager - Resolving Umbraco.Web.WebApi.UmbracoApiController
+ 2017-04-26 11:39:38,443 [P3948/D2/T1] INFO  Umbraco.Core.PluginManager - Resolved Umbraco.Web.WebApi.UmbracoApiController (took 6ms)
+ 2017-04-26 11:39:39,483 [P3948/D2/T1] INFO  Umbraco.Core.DatabaseContext - CanConnect = True
+ 2017-04-26 11:39:39,671 [P3948/D2/T1] INFO  Umbraco.Web.Cache.CacheRefresherEventHandler - Initializing Umbraco internal event handlers for cache refreshing
+ 2017-04-26 11:39:39,718 [P3948/D2/T1] INFO  Umbraco.Web.Search.ExamineEvents - Initializing Examine and binding to business logic events
+ 2017-04-26 11:39:39,839 [P3948/D2/T1] INFO  Umbraco.Web.Search.ExamineEvents - Adding examine event handlers for index providers: 3
+ 2017-04-26 11:39:39,865 [P3948/D2/T1] INFO  Umbraco.Core.CoreBootManager - Umbraco application startup complete (took 1983ms)
+ 2017-04-26 11:39:40,035 [P3948/D2/T13] INFO  Umbraco.Core.Sync.ApplicationUrlHelper - ApplicationUrl: http://localhost:64146/umbraco (UmbracoModule request)
+ 2017-04-26 11:39:40,359 [P3948/D2/T13] INFO  umbraco.content - Load Xml from file...
+ 2017-04-26 11:39:40,364 [P3948/D2/T13] INFO  umbraco.content - Loaded Xml from file.
+ 2017-04-26 11:39:41,746 [P3948/D2/T13] INFO  Umbraco.Core.PluginManager - Resolving umbraco.interfaces.IDiscoverable
+ 2017-04-26 11:39:41,746 [P3948/D2/T13] INFO  Umbraco.Core.PluginManager - Resolved umbraco.interfaces.IDiscoverable (took 0ms)
+ 2017-04-26 11:39:41,747 [P3948/D2/T13] INFO  Umbraco.Core.PluginManager - Resolving Umbraco.Core.PropertyEditors.IParameterEditor
+ 2017-04-26 11:39:41,754 [P3948/D2/T13] INFO  Umbraco.Core.PluginManager - Resolved Umbraco.Core.PropertyEditors.IParameterEditor (took 7ms)
+ 2017-04-26 11:39:42,026 [P3948/D2/T13] INFO  Umbraco.Core.PluginManager - Resolving umbraco.interfaces.IDiscoverable
+ 2017-04-26 11:39:42,026 [P3948/D2/T13] INFO  Umbraco.Core.PluginManager - Resolved umbraco.interfaces.IDiscoverable (took 0ms)
+ 2017-04-26 11:39:42,026 [P3948/D2/T13] INFO  Umbraco.Core.PluginManager - Resolving [Umbraco.Core.Persistence.Mappers.MapperForAttribute]Umbraco.Core.Persistence.Mappers.BaseMapper
+ 2017-04-26 11:39:42,034 [P3948/D2/T13] INFO  Umbraco.Core.PluginManager - Resolved [Umbraco.Core.Persistence.Mappers.MapperForAttribute]Umbraco.Core.Persistence.Mappers.BaseMapper (took 7ms)
+ 2017-04-26 11:58:49,247 [P3948/D2/T12] ERROR Umbraco.Core.Persistence.UmbracoDatabase - Exception (064d9d72).
+System.Data.SqlClient.SqlException (0x80131904): Invalid object name 'umbracoLock'.
+   at System.Data.SqlClient.SqlConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   at System.Data.SqlClient.SqlInternalConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   at System.Data.SqlClient.TdsParser.ThrowExceptionAndWarning(TdsParserStateObject stateObj, Boolean callerHasConnectionLock, Boolean asyncClose)
+   at System.Data.SqlClient.TdsParser.TryRun(RunBehavior runBehavior, SqlCommand cmdHandler, SqlDataReader dataStream, BulkCopySimpleResultSet bulkCopyHandler, TdsParserStateObject stateObj, Boolean& dataReady)
+   at System.Data.SqlClient.SqlCommand.FinishExecuteReader(SqlDataReader ds, RunBehavior runBehavior, String resetOptionsString)
+   at System.Data.SqlClient.SqlCommand.RunExecuteReaderTds(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, Boolean async, Int32 timeout, Task& task, Boolean asyncWrite, SqlDataReader ds, Boolean describeParameterEncryptionRequest)
+   at System.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, String method, TaskCompletionSource`1 completion, Int32 timeout, Task& task, Boolean asyncWrite)
+   at System.Data.SqlClient.SqlCommand.InternalExecuteNonQuery(TaskCompletionSource`1 completion, String methodName, Boolean sendToPipe, Int32 timeout, Boolean asyncWrite)
+   at System.Data.SqlClient.SqlCommand.ExecuteNonQuery()
+   at StackExchange.Profiling.Data.ProfiledDbCommand.ExecuteNonQuery() in c:\Code\github\SamSaffron\MiniProfiler\StackExchange.Profiling\Data\ProfiledDbCommand.cs:line 279
+   at Umbraco.Core.Persistence.PetaPocoCommandExtensions.<>c__DisplayClass1.<ExecuteNonQueryWithRetry>b__0()
+   at Umbraco.Core.Persistence.FaultHandling.RetryPolicy.ExecuteAction[TResult](Func`1 func)
+   at Umbraco.Core.Persistence.PetaPocoCommandExtensions.ExecuteNonQueryWithRetry(IDbCommand command, RetryPolicy cmdRetryPolicy, RetryPolicy conRetryPolicy)
+   at Umbraco.Core.Persistence.PetaPocoCommandExtensions.ExecuteNonQueryWithRetry(IDbCommand command, RetryPolicy retryPolicy)
+   at Umbraco.Core.Persistence.PetaPocoCommandExtensions.ExecuteNonQueryWithRetry(IDbCommand command)
+   at Umbraco.Core.Persistence.Database.Execute(String sql, Object[] args)
+ClientConnectionId:9e185ec6-880f-46b3-8c95-c148f339531c
+Error Number:208,State:1,Class:16
+ 2017-04-26 11:58:49,264 [P3948/D2/T12] ERROR Umbraco.Web.Strategies.ServerRegistrationEventHandler - Failed to update server record in database.
+System.Data.SqlClient.SqlException (0x80131904): Invalid object name 'umbracoLock'.
+   at System.Data.SqlClient.SqlConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   at System.Data.SqlClient.SqlInternalConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   at System.Data.SqlClient.TdsParser.ThrowExceptionAndWarning(TdsParserStateObject stateObj, Boolean callerHasConnectionLock, Boolean asyncClose)
+   at System.Data.SqlClient.TdsParser.TryRun(RunBehavior runBehavior, SqlCommand cmdHandler, SqlDataReader dataStream, BulkCopySimpleResultSet bulkCopyHandler, TdsParserStateObject stateObj, Boolean& dataReady)
+   at System.Data.SqlClient.SqlCommand.FinishExecuteReader(SqlDataReader ds, RunBehavior runBehavior, String resetOptionsString)
+   at System.Data.SqlClient.SqlCommand.RunExecuteReaderTds(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, Boolean async, Int32 timeout, Task& task, Boolean asyncWrite, SqlDataReader ds, Boolean describeParameterEncryptionRequest)
+   at System.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, String method, TaskCompletionSource`1 completion, Int32 timeout, Task& task, Boolean asyncWrite)
+   at System.Data.SqlClient.SqlCommand.InternalExecuteNonQuery(TaskCompletionSource`1 completion, String methodName, Boolean sendToPipe, Int32 timeout, Boolean asyncWrite)
+   at System.Data.SqlClient.SqlCommand.ExecuteNonQuery()
+   at StackExchange.Profiling.Data.ProfiledDbCommand.ExecuteNonQuery() in c:\Code\github\SamSaffron\MiniProfiler\StackExchange.Profiling\Data\ProfiledDbCommand.cs:line 279
+   at Umbraco.Core.Persistence.PetaPocoCommandExtensions.<>c__DisplayClass1.<ExecuteNonQueryWithRetry>b__0()
+   at Umbraco.Core.Persistence.FaultHandling.RetryPolicy.ExecuteAction[TResult](Func`1 func)
+   at Umbraco.Core.Persistence.PetaPocoCommandExtensions.ExecuteNonQueryWithRetry(IDbCommand command, RetryPolicy cmdRetryPolicy, RetryPolicy conRetryPolicy)
+   at Umbraco.Core.Persistence.PetaPocoCommandExtensions.ExecuteNonQueryWithRetry(IDbCommand command, RetryPolicy retryPolicy)
+   at Umbraco.Core.Persistence.PetaPocoCommandExtensions.ExecuteNonQueryWithRetry(IDbCommand command)
+   at Umbraco.Core.Persistence.Database.Execute(String sql, Object[] args)
+   at Umbraco.Core.Persistence.DatabaseNodeLockExtensions.AcquireLockNodeWriteLock(UmbracoDatabase database, Int32 nodeId)
+   at Umbraco.Core.Persistence.LockingRepository`1.WithWriteLocked(Action`1 action, Boolean autoCommit)
+   at Umbraco.Core.Services.ServerRegistrationService.TouchServer(String serverAddress, String serverIdentity, TimeSpan staleTimeout)
+   at Umbraco.Web.Strategies.ServerRegistrationEventHandler.TouchServerTask.PerformRun()
+ClientConnectionId:9e185ec6-880f-46b3-8c95-c148f339531c
+Error Number:208,State:1,Class:16
+ 2017-04-26 11:59:55,788 [P3948/D2/T13] INFO  Umbraco.Core.PluginManager - Resolving umbraco.interfaces.IDiscoverable
+ 2017-04-26 11:59:55,788 [P3948/D2/T13] INFO  Umbraco.Core.PluginManager - Resolved umbraco.interfaces.IDiscoverable (took 0ms)
+ 2017-04-26 11:59:55,788 [P3948/D2/T13] INFO  Umbraco.Core.PluginManager - Resolving Umbraco.Core.Deploy.IServiceConnector
+ 2017-04-26 11:59:55,795 [P3948/D2/T13] INFO  Umbraco.Core.PluginManager - Resolved Umbraco.Core.Deploy.IServiceConnector (took 6ms)
+ 2017-04-26 13:17:50,303 [P3948/D2/T13] ERROR Umbraco.Core.UmbracoApplicationBase - An unhandled exception occurred
+System.NullReferenceException: Object reference not set to an instance of an object.
+   at ASP._Page_Views_Shared_EditorTemplates_ColorSquares_cshtml.Execute() in c:\Projects\nopumbstarter\NopStarterKit.Web\Views\Shared\EditorTemplates\ColorSquares.cshtml:line 15
+   at System.Web.WebPages.WebPageBase.ExecutePageHierarchy()
+   at System.Web.Mvc.WebViewPage.ExecutePageHierarchy()
+   at System.Web.WebPages.WebPageBase.ExecutePageHierarchy(WebPageContext pageContext, TextWriter writer, WebPageRenderingBase startPage)
+   at System.Web.Mvc.RazorView.RenderView(ViewContext viewContext, TextWriter writer, Object instance)
+   at System.Web.Mvc.BuildManagerCompiledView.Render(ViewContext viewContext, TextWriter writer)
+   at Umbraco.Core.Profiling.ProfilingView.Render(ViewContext viewContext, TextWriter writer)
+   at System.Web.Mvc.Html.TemplateHelpers.ExecuteTemplate(HtmlHelper html, ViewDataDictionary viewData, String templateName, DataBoundControlMode mode, GetViewNamesDelegate getViewNames, GetDefaultActionsDelegate getDefaultActions)
+   at System.Web.Mvc.Html.TemplateHelpers.TemplateHelper(HtmlHelper html, ModelMetadata metadata, String htmlFieldName, String templateName, DataBoundControlMode mode, Object additionalViewData, ExecuteTemplateDelegate executeTemplate)
+   at System.Web.Mvc.Html.TemplateHelpers.TemplateHelper(HtmlHelper html, ModelMetadata metadata, String htmlFieldName, String templateName, DataBoundControlMode mode, Object additionalViewData)
+   at System.Web.Mvc.Html.TemplateHelpers.TemplateFor[TContainer,TValue](HtmlHelper`1 html, Expression`1 expression, String templateName, String htmlFieldName, DataBoundControlMode mode, Object additionalViewData, TemplateHelperDelegate templateHelper)
+   at System.Web.Mvc.Html.TemplateHelpers.TemplateFor[TContainer,TValue](HtmlHelper`1 html, Expression`1 expression, String templateName, String htmlFieldName, DataBoundControlMode mode, Object additionalViewData)
+   at System.Web.Mvc.Html.EditorExtensions.EditorFor[TModel,TValue](HtmlHelper`1 html, Expression`1 expression, String templateName)
+   at ASP._Page_Views_Product_cshtml.Execute() in c:\Projects\nopumbstarter\NopStarterKit.Web\Views\Product.cshtml:line 56
+   at System.Web.WebPages.WebPageBase.ExecutePageHierarchy()
+   at System.Web.Mvc.WebViewPage.ExecutePageHierarchy()
+   at System.Web.WebPages.WebPageBase.ExecutePageHierarchy(WebPageContext pageContext, TextWriter writer, WebPageRenderingBase startPage)
+   at System.Web.Mvc.RazorView.RenderView(ViewContext viewContext, TextWriter writer, Object instance)
+   at System.Web.Mvc.BuildManagerCompiledView.Render(ViewContext viewContext, TextWriter writer)
+   at Umbraco.Core.Profiling.ProfilingView.Render(ViewContext viewContext, TextWriter writer)
+   at System.Web.Mvc.ViewResultBase.ExecuteResult(ControllerContext context)
+   at System.Web.Mvc.ControllerActionInvoker.InvokeActionResult(ControllerContext controllerContext, ActionResult actionResult)
+   at System.Web.Mvc.ControllerActionInvoker.InvokeActionResultFilterRecursive(IList`1 filters, Int32 filterIndex, ResultExecutingContext preContext, ControllerContext controllerContext, ActionResult actionResult)
+   at System.Web.Mvc.ControllerActionInvoker.InvokeActionResultFilterRecursive(IList`1 filters, Int32 filterIndex, ResultExecutingContext preContext, ControllerContext controllerContext, ActionResult actionResult)
+   at System.Web.Mvc.ControllerActionInvoker.InvokeActionResultFilterRecursive(IList`1 filters, Int32 filterIndex, ResultExecutingContext preContext, ControllerContext controllerContext, ActionResult actionResult)
+   at System.Web.Mvc.ControllerActionInvoker.InvokeActionResultFilterRecursive(IList`1 filters, Int32 filterIndex, ResultExecutingContext preContext, ControllerContext controllerContext, ActionResult actionResult)
+   at System.Web.Mvc.ControllerActionInvoker.InvokeActionResultWithFilters(ControllerContext controllerContext, IList`1 filters, ActionResult actionResult)
+   at System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass21.<>c__DisplayClass2b.<BeginInvokeAction>b__1c()
+   at System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass21.<BeginInvokeAction>b__1e(IAsyncResult asyncResult)
+   at System.Web.Mvc.Async.AsyncResultWrapper.WrappedAsyncResult`1.CallEndDelegate(IAsyncResult asyncResult)
+   at System.Web.Mvc.Async.AsyncResultWrapper.WrappedAsyncResultBase`1.End()
+   at System.Web.Mvc.Async.AsyncControllerActionInvoker.EndInvokeAction(IAsyncResult asyncResult)
+   at System.Web.Mvc.Controller.<BeginExecuteCore>b__1d(IAsyncResult asyncResult, ExecuteCoreState innerState)
+   at System.Web.Mvc.Async.AsyncResultWrapper.WrappedAsyncVoid`1.CallEndDelegate(IAsyncResult asyncResult)
+   at System.Web.Mvc.Async.AsyncResultWrapper.WrappedAsyncResultBase`1.End()
+   at System.Web.Mvc.Controller.EndExecuteCore(IAsyncResult asyncResult)
+   at System.Web.Mvc.Controller.<BeginExecute>b__15(IAsyncResult asyncResult, Controller controller)
+   at System.Web.Mvc.Async.AsyncResultWrapper.WrappedAsyncVoid`1.CallEndDelegate(IAsyncResult asyncResult)
+   at System.Web.Mvc.Async.AsyncResultWrapper.WrappedAsyncResultBase`1.End()
+   at System.Web.Mvc.Controller.EndExecute(IAsyncResult asyncResult)
+   at System.Web.Mvc.Controller.System.Web.Mvc.Async.IAsyncController.EndExecute(IAsyncResult asyncResult)
+   at System.Web.Mvc.MvcHandler.<BeginProcessRequest>b__5(IAsyncResult asyncResult, ProcessRequestState innerState)
+   at System.Web.Mvc.Async.AsyncResultWrapper.WrappedAsyncVoid`1.CallEndDelegate(IAsyncResult asyncResult)
+   at System.Web.Mvc.Async.AsyncResultWrapper.WrappedAsyncResultBase`1.End()
+   at System.Web.Mvc.MvcHandler.EndProcessRequest(IAsyncResult asyncResult)
+   at System.Web.Mvc.MvcHandler.System.Web.IHttpAsyncHandler.EndProcessRequest(IAsyncResult result)
+   at System.Web.HttpApplication.CallHandlerExecutionStep.System.Web.HttpApplication.IExecutionStep.Execute()
+   at System.Web.HttpApplication.ExecuteStep(IExecutionStep step, Boolean& completedSynchronously)
+ 2017-04-26 13:18:57,493 [P3948/D2/T103] ERROR Umbraco.Core.UmbracoApplicationBase - An unhandled exception occurred
+System.NullReferenceException: Object reference not set to an instance of an object.
+   at ASP._Page_Views_Shared_EditorTemplates_ColorSquares_cshtml.Execute() in c:\Projects\nopumbstarter\NopStarterKit.Web\Views\Shared\EditorTemplates\ColorSquares.cshtml:line 15
+   at System.Web.WebPages.WebPageBase.ExecutePageHierarchy()
+   at System.Web.Mvc.WebViewPage.ExecutePageHierarchy()
+   at System.Web.WebPages.WebPageBase.ExecutePageHierarchy(WebPageContext pageContext, TextWriter writer, WebPageRenderingBase startPage)
+   at System.Web.Mvc.RazorView.RenderView(ViewContext viewContext, TextWriter writer, Object instance)
+   at System.Web.Mvc.BuildManagerCompiledView.Render(ViewContext viewContext, TextWriter writer)
+   at Umbraco.Core.Profiling.ProfilingView.Render(ViewContext viewContext, TextWriter writer)
+   at System.Web.Mvc.Html.TemplateHelpers.ExecuteTemplate(HtmlHelper html, ViewDataDictionary viewData, String templateName, DataBoundControlMode mode, GetViewNamesDelegate getViewNames, GetDefaultActionsDelegate getDefaultActions)
+   at System.Web.Mvc.Html.TemplateHelpers.TemplateHelper(HtmlHelper html, ModelMetadata metadata, String htmlFieldName, String templateName, DataBoundControlMode mode, Object additionalViewData, ExecuteTemplateDelegate executeTemplate)
+   at System.Web.Mvc.Html.TemplateHelpers.TemplateHelper(HtmlHelper html, ModelMetadata metadata, String htmlFieldName, String templateName, DataBoundControlMode mode, Object additionalViewData)
+   at System.Web.Mvc.Html.TemplateHelpers.TemplateFor[TContainer,TValue](HtmlHelper`1 html, Expression`1 expression, String templateName, String htmlFieldName, DataBoundControlMode mode, Object additionalViewData, TemplateHelperDelegate templateHelper)
+   at System.Web.Mvc.Html.TemplateHelpers.TemplateFor[TContainer,TValue](HtmlHelper`1 html, Expression`1 expression, String templateName, String htmlFieldName, DataBoundControlMode mode, Object additionalViewData)
+   at System.Web.Mvc.Html.EditorExtensions.EditorFor[TModel,TValue](HtmlHelper`1 html, Expression`1 expression, String templateName)
+   at ASP._Page_Views_Product_cshtml.Execute() in c:\Projects\nopumbstarter\NopStarterKit.Web\Views\Product.cshtml:line 56
+   at System.Web.WebPages.WebPageBase.ExecutePageHierarchy()
+   at System.Web.Mvc.WebViewPage.ExecutePageHierarchy()
+   at System.Web.WebPages.WebPageBase.ExecutePageHierarchy(WebPageContext pageContext, TextWriter writer, WebPageRenderingBase startPage)
+   at System.Web.Mvc.RazorView.RenderView(ViewContext viewContext, TextWriter writer, Object instance)
+   at System.Web.Mvc.BuildManagerCompiledView.Render(ViewContext viewContext, TextWriter writer)
+   at Umbraco.Core.Profiling.ProfilingView.Render(ViewContext viewContext, TextWriter writer)
+   at System.Web.Mvc.ViewResultBase.ExecuteResult(ControllerContext context)
+   at System.Web.Mvc.ControllerActionInvoker.InvokeActionResult(ControllerContext controllerContext, ActionResult actionResult)
+   at System.Web.Mvc.ControllerActionInvoker.InvokeActionResultFilterRecursive(IList`1 filters, Int32 filterIndex, ResultExecutingContext preContext, ControllerContext controllerContext, ActionResult actionResult)
+   at System.Web.Mvc.ControllerActionInvoker.InvokeActionResultFilterRecursive(IList`1 filters, Int32 filterIndex, ResultExecutingContext preContext, ControllerContext controllerContext, ActionResult actionResult)
+   at System.Web.Mvc.ControllerActionInvoker.InvokeActionResultFilterRecursive(IList`1 filters, Int32 filterIndex, ResultExecutingContext preContext, ControllerContext controllerContext, ActionResult actionResult)
+   at System.Web.Mvc.ControllerActionInvoker.InvokeActionResultFilterRecursive(IList`1 filters, Int32 filterIndex, ResultExecutingContext preContext, ControllerContext controllerContext, ActionResult actionResult)
+   at System.Web.Mvc.ControllerActionInvoker.InvokeActionResultWithFilters(ControllerContext controllerContext, IList`1 filters, ActionResult actionResult)
+   at System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass21.<>c__DisplayClass2b.<BeginInvokeAction>b__1c()
+   at System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass21.<BeginInvokeAction>b__1e(IAsyncResult asyncResult)
+   at System.Web.Mvc.Async.AsyncResultWrapper.WrappedAsyncResult`1.CallEndDelegate(IAsyncResult asyncResult)
+   at System.Web.Mvc.Async.AsyncResultWrapper.WrappedAsyncResultBase`1.End()
+   at System.Web.Mvc.Async.AsyncControllerActionInvoker.EndInvokeAction(IAsyncResult asyncResult)
+   at System.Web.Mvc.Controller.<BeginExecuteCore>b__1d(IAsyncResult asyncResult, ExecuteCoreState innerState)
+   at System.Web.Mvc.Async.AsyncResultWrapper.WrappedAsyncVoid`1.CallEndDelegate(IAsyncResult asyncResult)
+   at System.Web.Mvc.Async.AsyncResultWrapper.WrappedAsyncResultBase`1.End()
+   at System.Web.Mvc.Controller.EndExecuteCore(IAsyncResult asyncResult)
+   at System.Web.Mvc.Controller.<BeginExecute>b__15(IAsyncResult asyncResult, Controller controller)
+   at System.Web.Mvc.Async.AsyncResultWrapper.WrappedAsyncVoid`1.CallEndDelegate(IAsyncResult asyncResult)
+   at System.Web.Mvc.Async.AsyncResultWrapper.WrappedAsyncResultBase`1.End()
+   at System.Web.Mvc.Controller.EndExecute(IAsyncResult asyncResult)
+   at System.Web.Mvc.Controller.System.Web.Mvc.Async.IAsyncController.EndExecute(IAsyncResult asyncResult)
+   at System.Web.Mvc.MvcHandler.<BeginProcessRequest>b__5(IAsyncResult asyncResult, ProcessRequestState innerState)
+   at System.Web.Mvc.Async.AsyncResultWrapper.WrappedAsyncVoid`1.CallEndDelegate(IAsyncResult asyncResult)
+   at System.Web.Mvc.Async.AsyncResultWrapper.WrappedAsyncResultBase`1.End()
+   at System.Web.Mvc.MvcHandler.EndProcessRequest(IAsyncResult asyncResult)
+   at System.Web.Mvc.MvcHandler.System.Web.IHttpAsyncHandler.EndProcessRequest(IAsyncResult result)
+   at System.Web.HttpApplication.CallHandlerExecutionStep.System.Web.HttpApplication.IExecutionStep.Execute()
+   at System.Web.HttpApplication.ExecuteStep(IExecutionStep step, Boolean& completedSynchronously)
+ 2017-04-26 13:19:53,917 [P3948/D2/T102] ERROR Umbraco.Core.UmbracoApplicationBase - An unhandled exception occurred
+System.NullReferenceException: Object reference not set to an instance of an object.
+   at ASP._Page_Views_Shared_EditorTemplates_ColorSquares_cshtml.Execute() in c:\Projects\nopumbstarter\NopStarterKit.Web\Views\Shared\EditorTemplates\ColorSquares.cshtml:line 15
+   at System.Web.WebPages.WebPageBase.ExecutePageHierarchy()
+   at System.Web.Mvc.WebViewPage.ExecutePageHierarchy()
+   at System.Web.WebPages.WebPageBase.ExecutePageHierarchy(WebPageContext pageContext, TextWriter writer, WebPageRenderingBase startPage)
+   at System.Web.Mvc.RazorView.RenderView(ViewContext viewContext, TextWriter writer, Object instance)
+   at System.Web.Mvc.BuildManagerCompiledView.Render(ViewContext viewContext, TextWriter writer)
+   at Umbraco.Core.Profiling.ProfilingView.Render(ViewContext viewContext, TextWriter writer)
+   at System.Web.Mvc.Html.TemplateHelpers.ExecuteTemplate(HtmlHelper html, ViewDataDictionary viewData, String templateName, DataBoundControlMode mode, GetViewNamesDelegate getViewNames, GetDefaultActionsDelegate getDefaultActions)
+   at System.Web.Mvc.Html.TemplateHelpers.TemplateHelper(HtmlHelper html, ModelMetadata metadata, String htmlFieldName, String templateName, DataBoundControlMode mode, Object additionalViewData, ExecuteTemplateDelegate executeTemplate)
+   at System.Web.Mvc.Html.TemplateHelpers.TemplateHelper(HtmlHelper html, ModelMetadata metadata, String htmlFieldName, String templateName, DataBoundControlMode mode, Object additionalViewData)
+   at System.Web.Mvc.Html.TemplateHelpers.TemplateFor[TContainer,TValue](HtmlHelper`1 html, Expression`1 expression, String templateName, String htmlFieldName, DataBoundControlMode mode, Object additionalViewData, TemplateHelperDelegate templateHelper)
+   at System.Web.Mvc.Html.TemplateHelpers.TemplateFor[TContainer,TValue](HtmlHelper`1 html, Expression`1 expression, String templateName, String htmlFieldName, DataBoundControlMode mode, Object additionalViewData)
+   at System.Web.Mvc.Html.EditorExtensions.EditorFor[TModel,TValue](HtmlHelper`1 html, Expression`1 expression, String templateName)
+   at ASP._Page_Views_Product_cshtml.Execute() in c:\Projects\nopumbstarter\NopStarterKit.Web\Views\Product.cshtml:line 56
+   at System.Web.WebPages.WebPageBase.ExecutePageHierarchy()
+   at System.Web.Mvc.WebViewPage.ExecutePageHierarchy()
+   at System.Web.WebPages.WebPageBase.ExecutePageHierarchy(WebPageContext pageContext, TextWriter writer, WebPageRenderingBase startPage)
+   at System.Web.Mvc.RazorView.RenderView(ViewContext viewContext, TextWriter writer, Object instance)
+   at System.Web.Mvc.BuildManagerCompiledView.Render(ViewContext viewContext, TextWriter writer)
+   at Umbraco.Core.Profiling.ProfilingView.Render(ViewContext viewContext, TextWriter writer)
+   at System.Web.Mvc.ViewResultBase.ExecuteResult(ControllerContext context)
+   at System.Web.Mvc.ControllerActionInvoker.InvokeActionResult(ControllerContext controllerContext, ActionResult actionResult)
+   at System.Web.Mvc.ControllerActionInvoker.InvokeActionResultFilterRecursive(IList`1 filters, Int32 filterIndex, ResultExecutingContext preContext, ControllerContext controllerContext, ActionResult actionResult)
+   at System.Web.Mvc.ControllerActionInvoker.InvokeActionResultFilterRecursive(IList`1 filters, Int32 filterIndex, ResultExecutingContext preContext, ControllerContext controllerContext, ActionResult actionResult)
+   at System.Web.Mvc.ControllerActionInvoker.InvokeActionResultFilterRecursive(IList`1 filters, Int32 filterIndex, ResultExecutingContext preContext, ControllerContext controllerContext, ActionResult actionResult)
+   at System.Web.Mvc.ControllerActionInvoker.InvokeActionResultFilterRecursive(IList`1 filters, Int32 filterIndex, ResultExecutingContext preContext, ControllerContext controllerContext, ActionResult actionResult)
+   at System.Web.Mvc.ControllerActionInvoker.InvokeActionResultWithFilters(ControllerContext controllerContext, IList`1 filters, ActionResult actionResult)
+   at System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass21.<>c__DisplayClass2b.<BeginInvokeAction>b__1c()
+   at System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass21.<BeginInvokeAction>b__1e(IAsyncResult asyncResult)
+   at System.Web.Mvc.Async.AsyncResultWrapper.WrappedAsyncResult`1.CallEndDelegate(IAsyncResult asyncResult)
+   at System.Web.Mvc.Async.AsyncResultWrapper.WrappedAsyncResultBase`1.End()
+   at System.Web.Mvc.Async.AsyncControllerActionInvoker.EndInvokeAction(IAsyncResult asyncResult)
+   at System.Web.Mvc.Controller.<BeginExecuteCore>b__1d(IAsyncResult asyncResult, ExecuteCoreState innerState)
+   at System.Web.Mvc.Async.AsyncResultWrapper.WrappedAsyncVoid`1.CallEndDelegate(IAsyncResult asyncResult)
+   at System.Web.Mvc.Async.AsyncResultWrapper.WrappedAsyncResultBase`1.End()
+   at System.Web.Mvc.Controller.EndExecuteCore(IAsyncResult asyncResult)
+   at System.Web.Mvc.Controller.<BeginExecute>b__15(IAsyncResult asyncResult, Controller controller)
+   at System.Web.Mvc.Async.AsyncResultWrapper.WrappedAsyncVoid`1.CallEndDelegate(IAsyncResult asyncResult)
+   at System.Web.Mvc.Async.AsyncResultWrapper.WrappedAsyncResultBase`1.End()
+   at System.Web.Mvc.Controller.EndExecute(IAsyncResult asyncResult)
+   at System.Web.Mvc.Controller.System.Web.Mvc.Async.IAsyncController.EndExecute(IAsyncResult asyncResult)
+   at System.Web.Mvc.MvcHandler.<BeginProcessRequest>b__5(IAsyncResult asyncResult, ProcessRequestState innerState)
+   at System.Web.Mvc.Async.AsyncResultWrapper.WrappedAsyncVoid`1.CallEndDelegate(IAsyncResult asyncResult)
+   at System.Web.Mvc.Async.AsyncResultWrapper.WrappedAsyncResultBase`1.End()
+   at System.Web.Mvc.MvcHandler.EndProcessRequest(IAsyncResult asyncResult)
+   at System.Web.Mvc.MvcHandler.System.Web.IHttpAsyncHandler.EndProcessRequest(IAsyncResult result)
+   at System.Web.HttpApplication.CallHandlerExecutionStep.System.Web.HttpApplication.IExecutionStep.Execute()
+   at System.Web.HttpApplication.ExecuteStep(IExecutionStep step, Boolean& completedSynchronously)
+ 2017-04-26 15:07:27,299 [P11596/D2/T1] INFO  Umbraco.Core.CoreBootManager - Umbraco 7.6.0-RC application starting on ALEX-HP
+ 2017-04-26 15:07:27,328 [P11596/D2/T1] INFO  Umbraco.Core.PluginManager - Determining hash of code files on disk
+ 2017-04-26 15:07:27,348 [P11596/D2/T1] INFO  Umbraco.Core.PluginManager - Hash determined (took 20ms)
+ 2017-04-26 15:07:27,503 [P11596/D2/T1] INFO  Umbraco.Core.MainDom - Acquiring MainDom...
+ 2017-04-26 15:07:27,505 [P11596/D2/T1] INFO  Umbraco.Core.MainDom - Acquired MainDom.
+ 2017-04-26 15:07:27,510 [P11596/D2/T1] INFO  Umbraco.Core.PluginManager - Resolving umbraco.interfaces.IDiscoverable
+ 2017-04-26 15:07:28,013 [P11596/D2/T1] INFO  Umbraco.Core.PluginManager - Resolved umbraco.interfaces.IDiscoverable (took 502ms)
+ 2017-04-26 15:07:28,016 [P11596/D2/T1] INFO  Umbraco.Core.PluginManager - Resolving umbraco.interfaces.IApplicationStartupHandler
+ 2017-04-26 15:07:28,035 [P11596/D2/T1] INFO  Umbraco.Core.PluginManager - Resolved umbraco.interfaces.IApplicationStartupHandler (took 18ms)
+ 2017-04-26 15:07:28,065 [P11596/D2/T1] INFO  Umbraco.Core.PluginManager - Resolving umbraco.interfaces.IDiscoverable
+ 2017-04-26 15:07:28,065 [P11596/D2/T1] INFO  Umbraco.Core.PluginManager - Resolved umbraco.interfaces.IDiscoverable (took 0ms)
+ 2017-04-26 15:07:28,065 [P11596/D2/T1] INFO  Umbraco.Core.PluginManager - Resolving Umbraco.Core.PropertyEditors.IPropertyEditorValueConverter
+ 2017-04-26 15:07:28,072 [P11596/D2/T1] INFO  Umbraco.Core.PluginManager - Resolved Umbraco.Core.PropertyEditors.IPropertyEditorValueConverter (took 7ms)
+ 2017-04-26 15:07:28,073 [P11596/D2/T1] INFO  Umbraco.Core.PluginManager - Resolving umbraco.interfaces.IDiscoverable
+ 2017-04-26 15:07:28,074 [P11596/D2/T1] INFO  Umbraco.Core.PluginManager - Resolved umbraco.interfaces.IDiscoverable (took 0ms)
+ 2017-04-26 15:07:28,074 [P11596/D2/T1] INFO  Umbraco.Core.PluginManager - Resolving Umbraco.Core.PropertyEditors.IPropertyValueConverter
+ 2017-04-26 15:07:28,089 [P11596/D2/T1] INFO  Umbraco.Core.PluginManager - Resolved Umbraco.Core.PropertyEditors.IPropertyValueConverter (took 14ms)
+ 2017-04-26 15:07:28,107 [P11596/D2/T1] INFO  Umbraco.Core.PluginManager - Resolving umbraco.interfaces.IDiscoverable
+ 2017-04-26 15:07:28,110 [P11596/D2/T1] INFO  Umbraco.Core.PluginManager - Resolved umbraco.interfaces.IDiscoverable (took 2ms)
+ 2017-04-26 15:07:28,111 [P11596/D2/T1] INFO  Umbraco.Core.PluginManager - Resolving Umbraco.Web.Mvc.SurfaceController
+ 2017-04-26 15:07:28,127 [P11596/D2/T1] INFO  Umbraco.Core.PluginManager - Resolved Umbraco.Web.Mvc.SurfaceController (took 16ms)
+ 2017-04-26 15:07:28,128 [P11596/D2/T1] INFO  Umbraco.Core.PluginManager - Resolving umbraco.interfaces.IDiscoverable
+ 2017-04-26 15:07:28,128 [P11596/D2/T1] INFO  Umbraco.Core.PluginManager - Resolved umbraco.interfaces.IDiscoverable (took 0ms)
+ 2017-04-26 15:07:28,128 [P11596/D2/T1] INFO  Umbraco.Core.PluginManager - Resolving Umbraco.Web.WebApi.UmbracoApiController
+ 2017-04-26 15:07:28,135 [P11596/D2/T1] INFO  Umbraco.Core.PluginManager - Resolved Umbraco.Web.WebApi.UmbracoApiController (took 6ms)
+ 2017-04-26 15:07:29,781 [P11596/D2/T1] INFO  Umbraco.Core.DatabaseContext - CanConnect = True
+ 2017-04-26 15:07:30,057 [P11596/D2/T1] INFO  Umbraco.Web.Cache.CacheRefresherEventHandler - Initializing Umbraco internal event handlers for cache refreshing
+ 2017-04-26 15:07:30,128 [P11596/D2/T1] INFO  Umbraco.Web.Search.ExamineEvents - Initializing Examine and binding to business logic events
+ 2017-04-26 15:07:30,306 [P11596/D2/T1] INFO  Umbraco.Web.Search.ExamineEvents - Adding examine event handlers for index providers: 3
+ 2017-04-26 15:07:30,335 [P11596/D2/T1] INFO  Umbraco.Core.CoreBootManager - Umbraco application startup complete (took 3143ms)
+ 2017-04-26 15:07:30,632 [P11596/D2/T6] INFO  Umbraco.Core.Sync.ApplicationUrlHelper - ApplicationUrl: http://localhost:64146/umbraco (UmbracoModule request)
+ 2017-04-26 15:07:31,102 [P11596/D2/T6] INFO  umbraco.content - Load Xml from file...
+ 2017-04-26 15:07:31,107 [P11596/D2/T6] INFO  umbraco.content - Loaded Xml from file.
+ 2017-04-26 15:07:33,176 [P11596/D2/T6] INFO  Umbraco.Core.PluginManager - Resolving umbraco.interfaces.IDiscoverable
+ 2017-04-26 15:07:33,176 [P11596/D2/T6] INFO  Umbraco.Core.PluginManager - Resolved umbraco.interfaces.IDiscoverable (took 0ms)
+ 2017-04-26 15:07:33,176 [P11596/D2/T6] INFO  Umbraco.Core.PluginManager - Resolving Umbraco.Core.PropertyEditors.IParameterEditor
+ 2017-04-26 15:07:33,182 [P11596/D2/T6] INFO  Umbraco.Core.PluginManager - Resolved Umbraco.Core.PropertyEditors.IParameterEditor (took 6ms)
+ 2017-04-26 15:07:33,710 [P11596/D2/T6] INFO  Umbraco.Core.PluginManager - Resolving umbraco.interfaces.IDiscoverable
+ 2017-04-26 15:07:33,710 [P11596/D2/T6] INFO  Umbraco.Core.PluginManager - Resolved umbraco.interfaces.IDiscoverable (took 0ms)
+ 2017-04-26 15:07:33,710 [P11596/D2/T6] INFO  Umbraco.Core.PluginManager - Resolving [Umbraco.Core.Persistence.Mappers.MapperForAttribute]Umbraco.Core.Persistence.Mappers.BaseMapper
+ 2017-04-26 15:07:33,723 [P11596/D2/T6] INFO  Umbraco.Core.PluginManager - Resolved [Umbraco.Core.Persistence.Mappers.MapperForAttribute]Umbraco.Core.Persistence.Mappers.BaseMapper (took 12ms)
+ 2017-04-26 15:07:46,455 [P11596/D2/T5] ERROR Umbraco.Core.Persistence.UmbracoDatabase - Exception (97e4d3b2).
+System.Data.SqlClient.SqlException (0x80131904): Invalid object name 'umbracoLock'.
+   at System.Data.SqlClient.SqlConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   at System.Data.SqlClient.SqlInternalConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   at System.Data.SqlClient.TdsParser.ThrowExceptionAndWarning(TdsParserStateObject stateObj, Boolean callerHasConnectionLock, Boolean asyncClose)
+   at System.Data.SqlClient.TdsParser.TryRun(RunBehavior runBehavior, SqlCommand cmdHandler, SqlDataReader dataStream, BulkCopySimpleResultSet bulkCopyHandler, TdsParserStateObject stateObj, Boolean& dataReady)
+   at System.Data.SqlClient.SqlCommand.FinishExecuteReader(SqlDataReader ds, RunBehavior runBehavior, String resetOptionsString)
+   at System.Data.SqlClient.SqlCommand.RunExecuteReaderTds(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, Boolean async, Int32 timeout, Task& task, Boolean asyncWrite, SqlDataReader ds, Boolean describeParameterEncryptionRequest)
+   at System.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, String method, TaskCompletionSource`1 completion, Int32 timeout, Task& task, Boolean asyncWrite)
+   at System.Data.SqlClient.SqlCommand.InternalExecuteNonQuery(TaskCompletionSource`1 completion, String methodName, Boolean sendToPipe, Int32 timeout, Boolean asyncWrite)
+   at System.Data.SqlClient.SqlCommand.ExecuteNonQuery()
+   at StackExchange.Profiling.Data.ProfiledDbCommand.ExecuteNonQuery() in c:\Code\github\SamSaffron\MiniProfiler\StackExchange.Profiling\Data\ProfiledDbCommand.cs:line 266
+   at Umbraco.Core.Persistence.PetaPocoCommandExtensions.<>c__DisplayClass1.<ExecuteNonQueryWithRetry>b__0()
+   at Umbraco.Core.Persistence.FaultHandling.RetryPolicy.ExecuteAction[TResult](Func`1 func)
+   at Umbraco.Core.Persistence.PetaPocoCommandExtensions.ExecuteNonQueryWithRetry(IDbCommand command, RetryPolicy cmdRetryPolicy, RetryPolicy conRetryPolicy)
+   at Umbraco.Core.Persistence.PetaPocoCommandExtensions.ExecuteNonQueryWithRetry(IDbCommand command, RetryPolicy retryPolicy)
+   at Umbraco.Core.Persistence.PetaPocoCommandExtensions.ExecuteNonQueryWithRetry(IDbCommand command)
+   at Umbraco.Core.Persistence.Database.Execute(String sql, Object[] args)
+ClientConnectionId:f7c95027-1e77-45b5-9c9e-804f34b79998
+Error Number:208,State:1,Class:16
+ 2017-04-26 15:07:46,558 [P11596/D2/T5] ERROR Umbraco.Web.Strategies.ServerRegistrationEventHandler - Failed to update server record in database.
+System.Data.SqlClient.SqlException (0x80131904): Invalid object name 'umbracoLock'.
+   at System.Data.SqlClient.SqlConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   at System.Data.SqlClient.SqlInternalConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   at System.Data.SqlClient.TdsParser.ThrowExceptionAndWarning(TdsParserStateObject stateObj, Boolean callerHasConnectionLock, Boolean asyncClose)
+   at System.Data.SqlClient.TdsParser.TryRun(RunBehavior runBehavior, SqlCommand cmdHandler, SqlDataReader dataStream, BulkCopySimpleResultSet bulkCopyHandler, TdsParserStateObject stateObj, Boolean& dataReady)
+   at System.Data.SqlClient.SqlCommand.FinishExecuteReader(SqlDataReader ds, RunBehavior runBehavior, String resetOptionsString)
+   at System.Data.SqlClient.SqlCommand.RunExecuteReaderTds(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, Boolean async, Int32 timeout, Task& task, Boolean asyncWrite, SqlDataReader ds, Boolean describeParameterEncryptionRequest)
+   at System.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, String method, TaskCompletionSource`1 completion, Int32 timeout, Task& task, Boolean asyncWrite)
+   at System.Data.SqlClient.SqlCommand.InternalExecuteNonQuery(TaskCompletionSource`1 completion, String methodName, Boolean sendToPipe, Int32 timeout, Boolean asyncWrite)
+   at System.Data.SqlClient.SqlCommand.ExecuteNonQuery()
+   at StackExchange.Profiling.Data.ProfiledDbCommand.ExecuteNonQuery() in c:\Code\github\SamSaffron\MiniProfiler\StackExchange.Profiling\Data\ProfiledDbCommand.cs:line 266
+   at Umbraco.Core.Persistence.PetaPocoCommandExtensions.<>c__DisplayClass1.<ExecuteNonQueryWithRetry>b__0()
+   at Umbraco.Core.Persistence.FaultHandling.RetryPolicy.ExecuteAction[TResult](Func`1 func)
+   at Umbraco.Core.Persistence.PetaPocoCommandExtensions.ExecuteNonQueryWithRetry(IDbCommand command, RetryPolicy cmdRetryPolicy, RetryPolicy conRetryPolicy)
+   at Umbraco.Core.Persistence.PetaPocoCommandExtensions.ExecuteNonQueryWithRetry(IDbCommand command, RetryPolicy retryPolicy)
+   at Umbraco.Core.Persistence.PetaPocoCommandExtensions.ExecuteNonQueryWithRetry(IDbCommand command)
+   at Umbraco.Core.Persistence.Database.Execute(String sql, Object[] args)
+   at Umbraco.Core.Persistence.DatabaseNodeLockExtensions.AcquireLockNodeWriteLock(UmbracoDatabase database, Int32 nodeId)
+   at Umbraco.Core.Persistence.LockingRepository`1.WithWriteLocked(Action`1 action, Boolean autoCommit)
+   at Umbraco.Core.Services.ServerRegistrationService.TouchServer(String serverAddress, String serverIdentity, TimeSpan staleTimeout)
+   at Umbraco.Web.Strategies.ServerRegistrationEventHandler.TouchServerTask.PerformRun()
+ClientConnectionId:f7c95027-1e77-45b5-9c9e-804f34b79998
+Error Number:208,State:1,Class:16
+ 2017-04-26 15:08:28,506 [P11596/D2/T13] INFO  Umbraco.Core.PluginManager - Resolving umbraco.interfaces.IDiscoverable
+ 2017-04-26 15:08:28,507 [P11596/D2/T13] INFO  Umbraco.Core.PluginManager - Resolved umbraco.interfaces.IDiscoverable (took 0ms)
+ 2017-04-26 15:08:28,507 [P11596/D2/T13] INFO  Umbraco.Core.PluginManager - Resolving Umbraco.Core.Deploy.IServiceConnector
+ 2017-04-26 15:08:28,522 [P11596/D2/T13] INFO  Umbraco.Core.PluginManager - Resolved Umbraco.Core.Deploy.IServiceConnector (took 14ms)
+ 2017-04-26 15:59:41,665 [P11596/D2/T110] ERROR Umbraco.Core.UmbracoApplicationBase - An unhandled exception occurred
+System.Web.HttpCompileException (0x80004005): c:\Projects\nopumbstarter\NopStarterKit.Web\Views\Product.cshtml(104): error CS1061: 'Umbraco.Web.Models.RenderModel' does not contain a definition for 'IsRequired' and no extension method 'IsRequired' accepting a first argument of type 'Umbraco.Web.Models.RenderModel' could be found (are you missing a using directive or an assembly reference?)
+   at System.Web.Compilation.AssemblyBuilder.Compile()
+   at System.Web.Compilation.BuildProvidersCompiler.PerformBuild()
+   at System.Web.Compilation.BuildManager.CompileWebFile(VirtualPath virtualPath)
+   at System.Web.Compilation.BuildManager.GetVPathBuildResultInternal(VirtualPath virtualPath, Boolean noBuild, Boolean allowCrossApp, Boolean allowBuildInPrecompile, Boolean throwIfNotFound, Boolean ensureIsUpToDate)
+   at System.Web.Compilation.BuildManager.GetVPathBuildResultWithNoAssert(HttpContext context, VirtualPath virtualPath, Boolean noBuild, Boolean allowCrossApp, Boolean allowBuildInPrecompile, Boolean throwIfNotFound, Boolean ensureIsUpToDate)
+   at System.Web.Compilation.BuildManager.GetVirtualPathObjectFactory(VirtualPath virtualPath, HttpContext context, Boolean allowCrossApp, Boolean throwIfNotFound)
+   at System.Web.Compilation.BuildManager.GetCompiledType(VirtualPath virtualPath)
+   at System.Web.Compilation.BuildManager.GetCompiledType(String virtualPath)
+   at System.Web.Mvc.BuildManagerWrapper.System.Web.Mvc.IBuildManager.GetCompiledType(String virtualPath)
+   at System.Web.Mvc.BuildManagerCompiledView.Render(ViewContext viewContext, TextWriter writer)
+   at Umbraco.Core.Profiling.ProfilingView.Render(ViewContext viewContext, TextWriter writer)
+   at System.Web.Mvc.ViewResultBase.ExecuteResult(ControllerContext context)
+   at System.Web.Mvc.ControllerActionInvoker.InvokeActionResult(ControllerContext controllerContext, ActionResult actionResult)
+   at System.Web.Mvc.ControllerActionInvoker.InvokeActionResultFilterRecursive(IList`1 filters, Int32 filterIndex, ResultExecutingContext preContext, ControllerContext controllerContext, ActionResult actionResult)
+   at System.Web.Mvc.ControllerActionInvoker.InvokeActionResultFilterRecursive(IList`1 filters, Int32 filterIndex, ResultExecutingContext preContext, ControllerContext controllerContext, ActionResult actionResult)
+   at System.Web.Mvc.ControllerActionInvoker.InvokeActionResultFilterRecursive(IList`1 filters, Int32 filterIndex, ResultExecutingContext preContext, ControllerContext controllerContext, ActionResult actionResult)
+   at System.Web.Mvc.ControllerActionInvoker.InvokeActionResultFilterRecursive(IList`1 filters, Int32 filterIndex, ResultExecutingContext preContext, ControllerContext controllerContext, ActionResult actionResult)
+   at System.Web.Mvc.ControllerActionInvoker.InvokeActionResultWithFilters(ControllerContext controllerContext, IList`1 filters, ActionResult actionResult)
+   at System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass21.<>c__DisplayClass2b.<BeginInvokeAction>b__1c()
+   at System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass21.<BeginInvokeAction>b__1e(IAsyncResult asyncResult)
+   at System.Web.Mvc.Async.AsyncResultWrapper.WrappedAsyncResult`1.CallEndDelegate(IAsyncResult asyncResult)
+   at System.Web.Mvc.Async.AsyncResultWrapper.WrappedAsyncResultBase`1.End()
+   at System.Web.Mvc.Async.AsyncControllerActionInvoker.EndInvokeAction(IAsyncResult asyncResult)
+   at System.Web.Mvc.Controller.<BeginExecuteCore>b__1d(IAsyncResult asyncResult, ExecuteCoreState innerState)
+   at System.Web.Mvc.Async.AsyncResultWrapper.WrappedAsyncVoid`1.CallEndDelegate(IAsyncResult asyncResult)
+   at System.Web.Mvc.Async.AsyncResultWrapper.WrappedAsyncResultBase`1.End()
+   at System.Web.Mvc.Controller.EndExecuteCore(IAsyncResult asyncResult)
+   at System.Web.Mvc.Controller.<BeginExecute>b__15(IAsyncResult asyncResult, Controller controller)
+   at System.Web.Mvc.Async.AsyncResultWrapper.WrappedAsyncVoid`1.CallEndDelegate(IAsyncResult asyncResult)
+   at System.Web.Mvc.Async.AsyncResultWrapper.WrappedAsyncResultBase`1.End()
+   at System.Web.Mvc.Controller.EndExecute(IAsyncResult asyncResult)
+   at System.Web.Mvc.Controller.System.Web.Mvc.Async.IAsyncController.EndExecute(IAsyncResult asyncResult)
+   at System.Web.Mvc.MvcHandler.<BeginProcessRequest>b__5(IAsyncResult asyncResult, ProcessRequestState innerState)
+   at System.Web.Mvc.Async.AsyncResultWrapper.WrappedAsyncVoid`1.CallEndDelegate(IAsyncResult asyncResult)
+   at System.Web.Mvc.Async.AsyncResultWrapper.WrappedAsyncResultBase`1.End()
+   at System.Web.Mvc.MvcHandler.EndProcessRequest(IAsyncResult asyncResult)
+   at System.Web.Mvc.MvcHandler.System.Web.IHttpAsyncHandler.EndProcessRequest(IAsyncResult result)
+   at System.Web.HttpApplication.CallHandlerExecutionStep.System.Web.HttpApplication.IExecutionStep.Execute()
+   at System.Web.HttpApplication.ExecuteStep(IExecutionStep step, Boolean& completedSynchronously)
+ 2017-04-26 16:15:43,495 [P13268/D2/T1] INFO  Umbraco.Core.CoreBootManager - Umbraco 7.6.0-RC application starting on ALEX-HP
+ 2017-04-26 16:15:43,514 [P13268/D2/T1] INFO  Umbraco.Core.PluginManager - Determining hash of code files on disk
+ 2017-04-26 16:15:43,523 [P13268/D2/T1] INFO  Umbraco.Core.PluginManager - Hash determined (took 9ms)
+ 2017-04-26 16:15:43,593 [P13268/D2/T1] INFO  Umbraco.Core.MainDom - Acquiring MainDom...
+ 2017-04-26 16:15:43,595 [P13268/D2/T1] INFO  Umbraco.Core.MainDom - Acquired MainDom.
+ 2017-04-26 16:15:43,596 [P13268/D2/T1] INFO  Umbraco.Core.PluginManager - Resolving umbraco.interfaces.IDiscoverable
+ 2017-04-26 16:15:43,912 [P13268/D2/T1] INFO  Umbraco.Core.PluginManager - Resolved umbraco.interfaces.IDiscoverable (took 315ms)
+ 2017-04-26 16:15:43,913 [P13268/D2/T1] INFO  Umbraco.Core.PluginManager - Resolving umbraco.interfaces.IApplicationStartupHandler
+ 2017-04-26 16:15:43,922 [P13268/D2/T1] INFO  Umbraco.Core.PluginManager - Resolved umbraco.interfaces.IApplicationStartupHandler (took 9ms)
+ 2017-04-26 16:15:43,937 [P13268/D2/T1] INFO  Umbraco.Core.PluginManager - Resolving umbraco.interfaces.IDiscoverable
+ 2017-04-26 16:15:43,938 [P13268/D2/T1] INFO  Umbraco.Core.PluginManager - Resolved umbraco.interfaces.IDiscoverable (took 1ms)
+ 2017-04-26 16:15:43,939 [P13268/D2/T1] INFO  Umbraco.Core.PluginManager - Resolving Umbraco.Core.PropertyEditors.IPropertyEditorValueConverter
+ 2017-04-26 16:15:43,946 [P13268/D2/T1] INFO  Umbraco.Core.PluginManager - Resolved Umbraco.Core.PropertyEditors.IPropertyEditorValueConverter (took 6ms)
+ 2017-04-26 16:15:43,946 [P13268/D2/T1] INFO  Umbraco.Core.PluginManager - Resolving umbraco.interfaces.IDiscoverable
+ 2017-04-26 16:15:43,950 [P13268/D2/T1] INFO  Umbraco.Core.PluginManager - Resolved umbraco.interfaces.IDiscoverable (took 3ms)
+ 2017-04-26 16:15:43,950 [P13268/D2/T1] INFO  Umbraco.Core.PluginManager - Resolving Umbraco.Core.PropertyEditors.IPropertyValueConverter
+ 2017-04-26 16:15:43,959 [P13268/D2/T1] INFO  Umbraco.Core.PluginManager - Resolved Umbraco.Core.PropertyEditors.IPropertyValueConverter (took 9ms)
+ 2017-04-26 16:15:43,976 [P13268/D2/T1] INFO  Umbraco.Core.PluginManager - Resolving umbraco.interfaces.IDiscoverable
+ 2017-04-26 16:15:43,976 [P13268/D2/T1] INFO  Umbraco.Core.PluginManager - Resolved umbraco.interfaces.IDiscoverable (took 0ms)
+ 2017-04-26 16:15:43,977 [P13268/D2/T1] INFO  Umbraco.Core.PluginManager - Resolving Umbraco.Web.Mvc.SurfaceController
+ 2017-04-26 16:15:43,985 [P13268/D2/T1] INFO  Umbraco.Core.PluginManager - Resolved Umbraco.Web.Mvc.SurfaceController (took 8ms)
+ 2017-04-26 16:15:43,986 [P13268/D2/T1] INFO  Umbraco.Core.PluginManager - Resolving umbraco.interfaces.IDiscoverable
+ 2017-04-26 16:15:43,986 [P13268/D2/T1] INFO  Umbraco.Core.PluginManager - Resolved umbraco.interfaces.IDiscoverable (took 0ms)
+ 2017-04-26 16:15:43,986 [P13268/D2/T1] INFO  Umbraco.Core.PluginManager - Resolving Umbraco.Web.WebApi.UmbracoApiController
+ 2017-04-26 16:15:43,992 [P13268/D2/T1] INFO  Umbraco.Core.PluginManager - Resolved Umbraco.Web.WebApi.UmbracoApiController (took 5ms)
+ 2017-04-26 16:15:45,512 [P13268/D2/T1] INFO  Umbraco.Core.DatabaseContext - CanConnect = True
+ 2017-04-26 16:15:45,743 [P13268/D2/T1] INFO  Umbraco.Web.Cache.CacheRefresherEventHandler - Initializing Umbraco internal event handlers for cache refreshing
+ 2017-04-26 16:15:45,794 [P13268/D2/T1] INFO  Umbraco.Web.Search.ExamineEvents - Initializing Examine and binding to business logic events
+ 2017-04-26 16:15:45,928 [P13268/D2/T1] INFO  Umbraco.Web.Search.ExamineEvents - Adding examine event handlers for index providers: 3
+ 2017-04-26 16:15:45,947 [P13268/D2/T1] INFO  Umbraco.Core.CoreBootManager - Umbraco application startup complete (took 2517ms)
+ 2017-04-26 16:15:46,238 [P13268/D2/T5] INFO  Umbraco.Core.Sync.ApplicationUrlHelper - ApplicationUrl: http://localhost:64146/umbraco (UmbracoModule request)
+ 2017-04-26 16:15:46,549 [P13268/D2/T5] INFO  umbraco.content - Load Xml from file...
+ 2017-04-26 16:15:46,552 [P13268/D2/T5] INFO  umbraco.content - Loaded Xml from file.
+ 2017-04-26 16:15:47,857 [P13268/D2/T5] INFO  Umbraco.Core.PluginManager - Resolving umbraco.interfaces.IDiscoverable
+ 2017-04-26 16:15:47,857 [P13268/D2/T5] INFO  Umbraco.Core.PluginManager - Resolved umbraco.interfaces.IDiscoverable (took 0ms)
+ 2017-04-26 16:15:47,857 [P13268/D2/T5] INFO  Umbraco.Core.PluginManager - Resolving Umbraco.Core.PropertyEditors.IParameterEditor
+ 2017-04-26 16:15:47,865 [P13268/D2/T5] INFO  Umbraco.Core.PluginManager - Resolved Umbraco.Core.PropertyEditors.IParameterEditor (took 7ms)
+ 2017-04-26 16:15:48,167 [P13268/D2/T5] INFO  Umbraco.Core.PluginManager - Resolving umbraco.interfaces.IDiscoverable
+ 2017-04-26 16:15:48,167 [P13268/D2/T5] INFO  Umbraco.Core.PluginManager - Resolved umbraco.interfaces.IDiscoverable (took 0ms)
+ 2017-04-26 16:15:48,168 [P13268/D2/T5] INFO  Umbraco.Core.PluginManager - Resolving [Umbraco.Core.Persistence.Mappers.MapperForAttribute]Umbraco.Core.Persistence.Mappers.BaseMapper
+ 2017-04-26 16:15:48,176 [P13268/D2/T5] INFO  Umbraco.Core.PluginManager - Resolved [Umbraco.Core.Persistence.Mappers.MapperForAttribute]Umbraco.Core.Persistence.Mappers.BaseMapper (took 8ms)
+ 2017-04-26 16:16:01,615 [P13268/D2/T6] ERROR Umbraco.Core.Persistence.UmbracoDatabase - Exception (5ab2f35b).
+System.Data.SqlClient.SqlException (0x80131904): Invalid object name 'umbracoLock'.
+   at System.Data.SqlClient.SqlConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   at System.Data.SqlClient.SqlInternalConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   at System.Data.SqlClient.TdsParser.ThrowExceptionAndWarning(TdsParserStateObject stateObj, Boolean callerHasConnectionLock, Boolean asyncClose)
+   at System.Data.SqlClient.TdsParser.TryRun(RunBehavior runBehavior, SqlCommand cmdHandler, SqlDataReader dataStream, BulkCopySimpleResultSet bulkCopyHandler, TdsParserStateObject stateObj, Boolean& dataReady)
+   at System.Data.SqlClient.SqlCommand.FinishExecuteReader(SqlDataReader ds, RunBehavior runBehavior, String resetOptionsString)
+   at System.Data.SqlClient.SqlCommand.RunExecuteReaderTds(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, Boolean async, Int32 timeout, Task& task, Boolean asyncWrite, SqlDataReader ds, Boolean describeParameterEncryptionRequest)
+   at System.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, String method, TaskCompletionSource`1 completion, Int32 timeout, Task& task, Boolean asyncWrite)
+   at System.Data.SqlClient.SqlCommand.InternalExecuteNonQuery(TaskCompletionSource`1 completion, String methodName, Boolean sendToPipe, Int32 timeout, Boolean asyncWrite)
+   at System.Data.SqlClient.SqlCommand.ExecuteNonQuery()
+   at StackExchange.Profiling.Data.ProfiledDbCommand.ExecuteNonQuery() in c:\Code\github\SamSaffron\MiniProfiler\StackExchange.Profiling\Data\ProfiledDbCommand.cs:line 266
+   at Umbraco.Core.Persistence.PetaPocoCommandExtensions.<>c__DisplayClass1.<ExecuteNonQueryWithRetry>b__0()
+   at Umbraco.Core.Persistence.FaultHandling.RetryPolicy.ExecuteAction[TResult](Func`1 func)
+   at Umbraco.Core.Persistence.PetaPocoCommandExtensions.ExecuteNonQueryWithRetry(IDbCommand command, RetryPolicy cmdRetryPolicy, RetryPolicy conRetryPolicy)
+   at Umbraco.Core.Persistence.PetaPocoCommandExtensions.ExecuteNonQueryWithRetry(IDbCommand command, RetryPolicy retryPolicy)
+   at Umbraco.Core.Persistence.PetaPocoCommandExtensions.ExecuteNonQueryWithRetry(IDbCommand command)
+   at Umbraco.Core.Persistence.Database.Execute(String sql, Object[] args)
+ClientConnectionId:0a701eda-78fd-4f6e-b440-a16204704dbe
+Error Number:208,State:1,Class:16
+ 2017-04-26 16:16:01,629 [P13268/D2/T6] ERROR Umbraco.Web.Strategies.ServerRegistrationEventHandler - Failed to update server record in database.
+System.Data.SqlClient.SqlException (0x80131904): Invalid object name 'umbracoLock'.
+   at System.Data.SqlClient.SqlConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   at System.Data.SqlClient.SqlInternalConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   at System.Data.SqlClient.TdsParser.ThrowExceptionAndWarning(TdsParserStateObject stateObj, Boolean callerHasConnectionLock, Boolean asyncClose)
+   at System.Data.SqlClient.TdsParser.TryRun(RunBehavior runBehavior, SqlCommand cmdHandler, SqlDataReader dataStream, BulkCopySimpleResultSet bulkCopyHandler, TdsParserStateObject stateObj, Boolean& dataReady)
+   at System.Data.SqlClient.SqlCommand.FinishExecuteReader(SqlDataReader ds, RunBehavior runBehavior, String resetOptionsString)
+   at System.Data.SqlClient.SqlCommand.RunExecuteReaderTds(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, Boolean async, Int32 timeout, Task& task, Boolean asyncWrite, SqlDataReader ds, Boolean describeParameterEncryptionRequest)
+   at System.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, String method, TaskCompletionSource`1 completion, Int32 timeout, Task& task, Boolean asyncWrite)
+   at System.Data.SqlClient.SqlCommand.InternalExecuteNonQuery(TaskCompletionSource`1 completion, String methodName, Boolean sendToPipe, Int32 timeout, Boolean asyncWrite)
+   at System.Data.SqlClient.SqlCommand.ExecuteNonQuery()
+   at StackExchange.Profiling.Data.ProfiledDbCommand.ExecuteNonQuery() in c:\Code\github\SamSaffron\MiniProfiler\StackExchange.Profiling\Data\ProfiledDbCommand.cs:line 266
+   at Umbraco.Core.Persistence.PetaPocoCommandExtensions.<>c__DisplayClass1.<ExecuteNonQueryWithRetry>b__0()
+   at Umbraco.Core.Persistence.FaultHandling.RetryPolicy.ExecuteAction[TResult](Func`1 func)
+   at Umbraco.Core.Persistence.PetaPocoCommandExtensions.ExecuteNonQueryWithRetry(IDbCommand command, RetryPolicy cmdRetryPolicy, RetryPolicy conRetryPolicy)
+   at Umbraco.Core.Persistence.PetaPocoCommandExtensions.ExecuteNonQueryWithRetry(IDbCommand command, RetryPolicy retryPolicy)
+   at Umbraco.Core.Persistence.PetaPocoCommandExtensions.ExecuteNonQueryWithRetry(IDbCommand command)
+   at Umbraco.Core.Persistence.Database.Execute(String sql, Object[] args)
+   at Umbraco.Core.Persistence.DatabaseNodeLockExtensions.AcquireLockNodeWriteLock(UmbracoDatabase database, Int32 nodeId)
+   at Umbraco.Core.Persistence.LockingRepository`1.WithWriteLocked(Action`1 action, Boolean autoCommit)
+   at Umbraco.Core.Services.ServerRegistrationService.TouchServer(String serverAddress, String serverIdentity, TimeSpan staleTimeout)
+   at Umbraco.Web.Strategies.ServerRegistrationEventHandler.TouchServerTask.PerformRun()
+ClientConnectionId:0a701eda-78fd-4f6e-b440-a16204704dbe
+Error Number:208,State:1,Class:16
+ 2017-04-26 16:16:06,226 [P13268/D2/T14] INFO  Umbraco.Core.PluginManager - Resolving umbraco.interfaces.IDiscoverable
+ 2017-04-26 16:16:06,227 [P13268/D2/T14] INFO  Umbraco.Core.PluginManager - Resolved umbraco.interfaces.IDiscoverable (took 0ms)
+ 2017-04-26 16:16:06,235 [P13268/D2/T14] INFO  Umbraco.Core.PluginManager - Resolving Umbraco.Core.Deploy.IServiceConnector
+ 2017-04-26 16:16:06,251 [P13268/D2/T14] INFO  Umbraco.Core.PluginManager - Resolved Umbraco.Core.Deploy.IServiceConnector (took 15ms)
+ 2017-04-26 16:31:10,539 [P20172/D2/T1] INFO  Umbraco.Core.CoreBootManager - Umbraco 7.6.0-RC application starting on ALEX-HP
+ 2017-04-26 16:31:10,558 [P20172/D2/T1] INFO  Umbraco.Core.PluginManager - Determining hash of code files on disk
+ 2017-04-26 16:31:10,566 [P20172/D2/T1] INFO  Umbraco.Core.PluginManager - Hash determined (took 8ms)
+ 2017-04-26 16:31:10,686 [P20172/D2/T1] INFO  Umbraco.Core.MainDom - Acquiring MainDom...
+ 2017-04-26 16:31:10,688 [P20172/D2/T1] INFO  Umbraco.Core.MainDom - Acquired MainDom.
+ 2017-04-26 16:31:10,690 [P20172/D2/T1] INFO  Umbraco.Core.PluginManager - Resolving umbraco.interfaces.IDiscoverable
+ 2017-04-26 16:31:11,017 [P20172/D2/T1] INFO  Umbraco.Core.PluginManager - Resolved umbraco.interfaces.IDiscoverable (took 326ms)
+ 2017-04-26 16:31:11,017 [P20172/D2/T1] INFO  Umbraco.Core.PluginManager - Resolving umbraco.interfaces.IApplicationStartupHandler
+ 2017-04-26 16:31:11,027 [P20172/D2/T1] INFO  Umbraco.Core.PluginManager - Resolved umbraco.interfaces.IApplicationStartupHandler (took 9ms)
+ 2017-04-26 16:31:11,048 [P20172/D2/T1] INFO  Umbraco.Core.PluginManager - Resolving umbraco.interfaces.IDiscoverable
+ 2017-04-26 16:31:11,049 [P20172/D2/T1] INFO  Umbraco.Core.PluginManager - Resolved umbraco.interfaces.IDiscoverable (took 0ms)
+ 2017-04-26 16:31:11,049 [P20172/D2/T1] INFO  Umbraco.Core.PluginManager - Resolving Umbraco.Core.PropertyEditors.IPropertyEditorValueConverter
+ 2017-04-26 16:31:11,061 [P20172/D2/T1] INFO  Umbraco.Core.PluginManager - Resolved Umbraco.Core.PropertyEditors.IPropertyEditorValueConverter (took 11ms)
+ 2017-04-26 16:31:11,062 [P20172/D2/T1] INFO  Umbraco.Core.PluginManager - Resolving umbraco.interfaces.IDiscoverable
+ 2017-04-26 16:31:11,063 [P20172/D2/T1] INFO  Umbraco.Core.PluginManager - Resolved umbraco.interfaces.IDiscoverable (took 1ms)
+ 2017-04-26 16:31:11,063 [P20172/D2/T1] INFO  Umbraco.Core.PluginManager - Resolving Umbraco.Core.PropertyEditors.IPropertyValueConverter
+ 2017-04-26 16:31:11,077 [P20172/D2/T1] INFO  Umbraco.Core.PluginManager - Resolved Umbraco.Core.PropertyEditors.IPropertyValueConverter (took 13ms)
+ 2017-04-26 16:31:11,095 [P20172/D2/T1] INFO  Umbraco.Core.PluginManager - Resolving umbraco.interfaces.IDiscoverable
+ 2017-04-26 16:31:11,095 [P20172/D2/T1] INFO  Umbraco.Core.PluginManager - Resolved umbraco.interfaces.IDiscoverable (took 0ms)
+ 2017-04-26 16:31:11,095 [P20172/D2/T1] INFO  Umbraco.Core.PluginManager - Resolving Umbraco.Web.Mvc.SurfaceController
+ 2017-04-26 16:31:11,104 [P20172/D2/T1] INFO  Umbraco.Core.PluginManager - Resolved Umbraco.Web.Mvc.SurfaceController (took 8ms)
+ 2017-04-26 16:31:11,104 [P20172/D2/T1] INFO  Umbraco.Core.PluginManager - Resolving umbraco.interfaces.IDiscoverable
+ 2017-04-26 16:31:11,105 [P20172/D2/T1] INFO  Umbraco.Core.PluginManager - Resolved umbraco.interfaces.IDiscoverable (took 0ms)
+ 2017-04-26 16:31:11,105 [P20172/D2/T1] INFO  Umbraco.Core.PluginManager - Resolving Umbraco.Web.WebApi.UmbracoApiController
+ 2017-04-26 16:31:11,113 [P20172/D2/T1] INFO  Umbraco.Core.PluginManager - Resolved Umbraco.Web.WebApi.UmbracoApiController (took 8ms)
+ 2017-04-26 16:31:12,261 [P20172/D2/T1] INFO  Umbraco.Core.DatabaseContext - CanConnect = True
+ 2017-04-26 16:31:12,460 [P20172/D2/T1] INFO  Umbraco.Web.Cache.CacheRefresherEventHandler - Initializing Umbraco internal event handlers for cache refreshing
+ 2017-04-26 16:31:12,509 [P20172/D2/T1] INFO  Umbraco.Web.Search.ExamineEvents - Initializing Examine and binding to business logic events
+ 2017-04-26 16:31:12,639 [P20172/D2/T1] INFO  Umbraco.Web.Search.ExamineEvents - Adding examine event handlers for index providers: 3
+ 2017-04-26 16:31:12,665 [P20172/D2/T1] INFO  Umbraco.Core.CoreBootManager - Umbraco application startup complete (took 2191ms)
+ 2017-04-26 16:31:12,862 [P20172/D2/T8] INFO  Umbraco.Core.Sync.ApplicationUrlHelper - ApplicationUrl: http://localhost:64146/umbraco (UmbracoModule request)
+ 2017-04-26 16:31:13,170 [P20172/D2/T8] INFO  umbraco.content - Load Xml from file...
+ 2017-04-26 16:31:13,173 [P20172/D2/T8] INFO  umbraco.content - Loaded Xml from file.
+ 2017-04-26 16:31:14,382 [P20172/D2/T8] INFO  Umbraco.Core.PluginManager - Resolving umbraco.interfaces.IDiscoverable
+ 2017-04-26 16:31:14,383 [P20172/D2/T8] INFO  Umbraco.Core.PluginManager - Resolved umbraco.interfaces.IDiscoverable (took 0ms)
+ 2017-04-26 16:31:14,383 [P20172/D2/T8] INFO  Umbraco.Core.PluginManager - Resolving Umbraco.Core.PropertyEditors.IParameterEditor
+ 2017-04-26 16:31:14,390 [P20172/D2/T8] INFO  Umbraco.Core.PluginManager - Resolved Umbraco.Core.PropertyEditors.IParameterEditor (took 7ms)
+ 2017-04-26 16:31:14,639 [P20172/D2/T8] INFO  Umbraco.Core.PluginManager - Resolving umbraco.interfaces.IDiscoverable
+ 2017-04-26 16:31:14,639 [P20172/D2/T8] INFO  Umbraco.Core.PluginManager - Resolved umbraco.interfaces.IDiscoverable (took 0ms)
+ 2017-04-26 16:31:14,640 [P20172/D2/T8] INFO  Umbraco.Core.PluginManager - Resolving [Umbraco.Core.Persistence.Mappers.MapperForAttribute]Umbraco.Core.Persistence.Mappers.BaseMapper
+ 2017-04-26 16:31:14,647 [P20172/D2/T8] INFO  Umbraco.Core.PluginManager - Resolved [Umbraco.Core.Persistence.Mappers.MapperForAttribute]Umbraco.Core.Persistence.Mappers.BaseMapper (took 7ms)
+ 2017-04-26 16:31:28,288 [P20172/D2/T14] ERROR Umbraco.Core.Persistence.UmbracoDatabase - Exception (ba365fd4).
+System.Data.SqlClient.SqlException (0x80131904): Invalid object name 'umbracoLock'.
+   at System.Data.SqlClient.SqlConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   at System.Data.SqlClient.SqlInternalConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   at System.Data.SqlClient.TdsParser.ThrowExceptionAndWarning(TdsParserStateObject stateObj, Boolean callerHasConnectionLock, Boolean asyncClose)
+   at System.Data.SqlClient.TdsParser.TryRun(RunBehavior runBehavior, SqlCommand cmdHandler, SqlDataReader dataStream, BulkCopySimpleResultSet bulkCopyHandler, TdsParserStateObject stateObj, Boolean& dataReady)
+   at System.Data.SqlClient.SqlCommand.FinishExecuteReader(SqlDataReader ds, RunBehavior runBehavior, String resetOptionsString)
+   at System.Data.SqlClient.SqlCommand.RunExecuteReaderTds(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, Boolean async, Int32 timeout, Task& task, Boolean asyncWrite, SqlDataReader ds, Boolean describeParameterEncryptionRequest)
+   at System.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, String method, TaskCompletionSource`1 completion, Int32 timeout, Task& task, Boolean asyncWrite)
+   at System.Data.SqlClient.SqlCommand.InternalExecuteNonQuery(TaskCompletionSource`1 completion, String methodName, Boolean sendToPipe, Int32 timeout, Boolean asyncWrite)
+   at System.Data.SqlClient.SqlCommand.ExecuteNonQuery()
+   at StackExchange.Profiling.Data.ProfiledDbCommand.ExecuteNonQuery() in c:\Code\github\SamSaffron\MiniProfiler\StackExchange.Profiling\Data\ProfiledDbCommand.cs:line 266
+   at Umbraco.Core.Persistence.PetaPocoCommandExtensions.<>c__DisplayClass1.<ExecuteNonQueryWithRetry>b__0()
+   at Umbraco.Core.Persistence.FaultHandling.RetryPolicy.ExecuteAction[TResult](Func`1 func)
+   at Umbraco.Core.Persistence.PetaPocoCommandExtensions.ExecuteNonQueryWithRetry(IDbCommand command, RetryPolicy cmdRetryPolicy, RetryPolicy conRetryPolicy)
+   at Umbraco.Core.Persistence.PetaPocoCommandExtensions.ExecuteNonQueryWithRetry(IDbCommand command, RetryPolicy retryPolicy)
+   at Umbraco.Core.Persistence.PetaPocoCommandExtensions.ExecuteNonQueryWithRetry(IDbCommand command)
+   at Umbraco.Core.Persistence.Database.Execute(String sql, Object[] args)
+ClientConnectionId:b48bea23-ddf7-48a6-bfb7-db021e1c6dbc
+Error Number:208,State:1,Class:16
+ 2017-04-26 16:31:28,304 [P20172/D2/T14] ERROR Umbraco.Web.Strategies.ServerRegistrationEventHandler - Failed to update server record in database.
+System.Data.SqlClient.SqlException (0x80131904): Invalid object name 'umbracoLock'.
+   at System.Data.SqlClient.SqlConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   at System.Data.SqlClient.SqlInternalConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   at System.Data.SqlClient.TdsParser.ThrowExceptionAndWarning(TdsParserStateObject stateObj, Boolean callerHasConnectionLock, Boolean asyncClose)
+   at System.Data.SqlClient.TdsParser.TryRun(RunBehavior runBehavior, SqlCommand cmdHandler, SqlDataReader dataStream, BulkCopySimpleResultSet bulkCopyHandler, TdsParserStateObject stateObj, Boolean& dataReady)
+   at System.Data.SqlClient.SqlCommand.FinishExecuteReader(SqlDataReader ds, RunBehavior runBehavior, String resetOptionsString)
+   at System.Data.SqlClient.SqlCommand.RunExecuteReaderTds(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, Boolean async, Int32 timeout, Task& task, Boolean asyncWrite, SqlDataReader ds, Boolean describeParameterEncryptionRequest)
+   at System.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, String method, TaskCompletionSource`1 completion, Int32 timeout, Task& task, Boolean asyncWrite)
+   at System.Data.SqlClient.SqlCommand.InternalExecuteNonQuery(TaskCompletionSource`1 completion, String methodName, Boolean sendToPipe, Int32 timeout, Boolean asyncWrite)
+   at System.Data.SqlClient.SqlCommand.ExecuteNonQuery()
+   at StackExchange.Profiling.Data.ProfiledDbCommand.ExecuteNonQuery() in c:\Code\github\SamSaffron\MiniProfiler\StackExchange.Profiling\Data\ProfiledDbCommand.cs:line 266
+   at Umbraco.Core.Persistence.PetaPocoCommandExtensions.<>c__DisplayClass1.<ExecuteNonQueryWithRetry>b__0()
+   at Umbraco.Core.Persistence.FaultHandling.RetryPolicy.ExecuteAction[TResult](Func`1 func)
+   at Umbraco.Core.Persistence.PetaPocoCommandExtensions.ExecuteNonQueryWithRetry(IDbCommand command, RetryPolicy cmdRetryPolicy, RetryPolicy conRetryPolicy)
+   at Umbraco.Core.Persistence.PetaPocoCommandExtensions.ExecuteNonQueryWithRetry(IDbCommand command, RetryPolicy retryPolicy)
+   at Umbraco.Core.Persistence.PetaPocoCommandExtensions.ExecuteNonQueryWithRetry(IDbCommand command)
+   at Umbraco.Core.Persistence.Database.Execute(String sql, Object[] args)
+   at Umbraco.Core.Persistence.DatabaseNodeLockExtensions.AcquireLockNodeWriteLock(UmbracoDatabase database, Int32 nodeId)
+   at Umbraco.Core.Persistence.LockingRepository`1.WithWriteLocked(Action`1 action, Boolean autoCommit)
+   at Umbraco.Core.Services.ServerRegistrationService.TouchServer(String serverAddress, String serverIdentity, TimeSpan staleTimeout)
+   at Umbraco.Web.Strategies.ServerRegistrationEventHandler.TouchServerTask.PerformRun()
+ClientConnectionId:b48bea23-ddf7-48a6-bfb7-db021e1c6dbc
+Error Number:208,State:1,Class:16
+ 2017-04-26 16:32:08,259 [P20172/D2/T14] INFO  Umbraco.Core.PluginManager - Resolving umbraco.interfaces.IDiscoverable
+ 2017-04-26 16:32:08,260 [P20172/D2/T14] INFO  Umbraco.Core.PluginManager - Resolved umbraco.interfaces.IDiscoverable (took 0ms)
+ 2017-04-26 16:32:08,260 [P20172/D2/T14] INFO  Umbraco.Core.PluginManager - Resolving Umbraco.Core.Deploy.IServiceConnector
+ 2017-04-26 16:32:08,268 [P20172/D2/T14] INFO  Umbraco.Core.PluginManager - Resolved Umbraco.Core.Deploy.IServiceConnector (took 7ms)

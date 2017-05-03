@@ -61,9 +61,9 @@
     <Compile Include="ShoppingCart\UpdateShoppingCartItem.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Commerce.Api.Adapter\Commerce.Api.Adapter.csproj">
+    <ProjectReference Include="..\Commerce.Api.Adapter\Nop.Api.Adapter.csproj">
       <Project>{4610675e-85f6-4608-9c7a-65157397f91e}</Project>
-      <Name>Commerce.Api.Adapter</Name>
+      <Name>Nop.Api.Adapter</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup />

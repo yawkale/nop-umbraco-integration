@@ -501,6 +501,8 @@
     <Content Include="Views\Shared\EditorTemplates\ReadonlyCheckboxes.cshtml" />
     <Content Include="Views\Shared\EditorTemplates\TextBox.cshtml" />
     <Content Include="Views\Shared\GiftCard.cshtml" />
+    <Content Include="Views\Shared\CustomerPrice.cshtml" />
+    <Content Include="Views\Shared\Rental.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -513,9 +515,6 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App_Start\Startup.cs" />
-    <Compile Include="Controllers\DefaultController.cs" />
-    <Compile Include="Controllers\AuthorizationController.cs" />
-    <Compile Include="Controllers\NopShoppingCardController.cs" />
     <Compile Include="Helpers\Price.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -524,16 +523,22 @@
     <Analyzer Include="..\packages\Microsoft.CodeAnalysis.Analyzers.1.0.0\analyzers\dotnet\cs\Microsoft.CodeAnalysis.CSharp.Analyzers.dll" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Commerce.Api.Adapter\Commerce.Api.Adapter.csproj">
+    <ProjectReference Include="..\Commerce.Api.Adapter\Nop.Api.Adapter.csproj">
       <Project>{4610675e-85f6-4608-9c7a-65157397f91e}</Project>
-      <Name>Commerce.Api.Adapter</Name>
+      <Name>Nop.Api.Adapter</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Nop.Integration.Umbraco.Core\Nop.Integration.Umbraco.Core.csproj">
+      <Project>{2b954321-dda1-45e4-a87e-93d5a77ab96e}</Project>
+      <Name>Nop.Integration.Umbraco.Core</Name>
     </ProjectReference>
     <ProjectReference Include="..\Nop.Integration.Umbraco\Nop.Integration.Umbraco.csproj">
       <Project>{54a9a9a8-f592-41a3-8cd2-abb28cdc4730}</Project>
       <Name>Nop.Integration.Umbraco</Name>
     </ProjectReference>
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Folder Include="Controllers\" />
+  </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
     <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
