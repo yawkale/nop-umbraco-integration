@@ -1,4 +1,5 @@
-﻿using Nop.Integration.Umbraco.Models;
+﻿using Nop.Integration.Umbraco.Core.Services;
+using Nop.Integration.Umbraco.Models;
 using Nop.Integration.Umbraco.Nop;
 using System;
 using System.Collections.Generic;
@@ -12,15 +13,17 @@ namespace NopStarterKit.Web.Controllers
     public class NopShoppingCardController : SurfaceController
     {
         private readonly NopApiService _nopService;
+        private readonly UserContext _userContext;
 
         public NopShoppingCardController()
         {
             _nopService = new NopApiService();
+            _userContext = new UserContext();
         }
 
         public ActionResult GetShoppingCart()
         {
-            var card = _nopService.GetShoppingCart(Request.Cookies["NopCustomerId"]?.Value);
+            var card = _nopService.GetShoppingCart(_userContext.CustomerId());
 
             var products = card.products;
 
@@ -40,7 +43,7 @@ namespace NopStarterKit.Web.Controllers
                 toRemove = new List<int>();
             }
 
-            var card = _nopService.GetShoppingCart(Request.Cookies["NopCustomerId"]?.Value).products.Where(x => !toRemove.Contains(x.Id));
+            var card = _nopService.GetShoppingCart(_userContext.CustomerId()).products.Where(x => !toRemove.Contains(x.Id));
 
             var updatedCard = card.Select(i => { i.Quantity = int.Parse(form.Get(i.Id.ToString())); return i; });
 
@@ -62,7 +65,7 @@ namespace NopStarterKit.Web.Controllers
         {
             var shoppingCart = new CreateShoppingCartItem()
             {
-                CustomerId = Request.Cookies["NopCustomerId"]?.Value,
+                CustomerId = _userContext.CustomerId(),
                 ProductId = productId,
                 Quantity = quantity,
                 CartType = "ShoppingCart",

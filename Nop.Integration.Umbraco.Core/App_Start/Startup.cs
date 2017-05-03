@@ -1,5 +1,6 @@
 ﻿using Archimedicx.Cms.Controllers;
 using Newtonsoft.Json;
+using Nop.Integration.Umbraco.Core.Services;
 using Nop.Integration.Umbraco.Models;
 using Nop.Integration.Umbraco.Nop;
 using System;
@@ -14,10 +15,14 @@ namespace UteamTemplate.App_Start
     public partial class Startup : IApplicationEventHandler
     {
         private readonly NopApiService _nopService;
+        private readonly UserContext _userContext;
+        private const string CustomerId = "NopCustomerId";
+        private const string PropertyTypeAlias = "nopCustomerId";
 
         public Startup()
         {
             _nopService = new NopApiService();
+            _userContext = new UserContext();
         }
 
         public void OnApplicationInitialized(UmbracoApplicationBase umbracoApplication, ApplicationContext applicationContext)
@@ -39,11 +44,9 @@ namespace UteamTemplate.App_Start
 
         private void MemberService_Saved(Umbraco.Core.Services.IMemberService sender, Umbraco.Core.Events.SaveEventArgs<Umbraco.Core.Models.IMember> e)
         {
-            var propertyTypeAlias = "nopCustomerId";
-
             foreach (var member in e.SavedEntities)
             {
-                if (string.IsNullOrEmpty(member.GetValue<string>(propertyTypeAlias)))
+                if (string.IsNullOrEmpty(member.GetValue<string>(PropertyTypeAlias)))
                 {
                     var customer = new Customer()
                     {
@@ -56,18 +59,18 @@ namespace UteamTemplate.App_Start
 
                     string customerId = "";
 
-                    if (string.IsNullOrEmpty(HttpContext.Current.Request.Cookies["NopCustomerId"]?.Value))
+                    if (string.IsNullOrEmpty(_userContext.CustomerId()))
                     {
                         customerId = _nopService.CreateCustomer(customer);
-                        HttpContext.Current.Response.SetCookie(new HttpCookie("NopCustomerId") { Value = customerId });
+                        HttpContext.Current.Response.SetCookie(new HttpCookie(CustomerId) { Value = customerId });
                     }
                     else
                     {
-                        var nopCustomerId = HttpContext.Current.Request.Cookies.Get("NopCustomerId").Value;
+                        var nopCustomerId = _userContext.CustomerId();
                         customerId = _nopService.UpdateCustomer(customer, nopCustomerId);
                     }
 
-                    member.SetValue(propertyTypeAlias, customerId);
+                    member.SetValue(PropertyTypeAlias, customerId);
                 }
             }
         }

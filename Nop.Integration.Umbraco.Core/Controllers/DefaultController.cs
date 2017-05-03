@@ -7,30 +7,33 @@ using System.Collections.Generic;
 using Nop.Integration.Umbraco.Nop;
 using Nop.Integration.Umbraco.Models;
 using Umbraco.Core.Models;
+using Nop.Integration.Umbraco.Core.Services;
 
 namespace Archimedicx.Cms.Controllers
 {
     public class DefaultController : RenderMvcController
     {
         private readonly NopApiService _nopService;
+        private readonly UserContext _userContext;
         private const string CustomerType = "NopCustomerType";
         private const string CustomerId = "NopCustomerId";
 
         public DefaultController()
         {
             _nopService = new NopApiService();
+            _userContext = new UserContext();
         }
 
         public override ActionResult Index(RenderModel model)
         {
             var currentUser = Members.GetCurrentMember();
-
+          
             if (currentUser != null)
             {
                 Response.Cookies.Add(new HttpCookie(CustomerType) { Value = "active" });
                 SetCurrentMemberNopId(currentUser);
             }
-            else if (Request.Cookies[CustomerId] == null || Request.Cookies[CustomerType]?.Value != "temporary")
+            else if (_userContext.CustomerId() == null || _userContext.CustomerType() != "temporary")
             {
                 Response.Cookies.Add(new HttpCookie(CustomerType) { Value = "temporary" });
                 CreateTemporalNopCustomer();
@@ -52,7 +55,7 @@ namespace Archimedicx.Cms.Controllers
 
             var cust = _nopService.CreateCustomer(customer);
 
-            Response.Cookies.Add(new HttpCookie("NopCustomerId") { Value = cust });
+            Response.Cookies.Add(new HttpCookie(CustomerId) { Value = cust });
         }
 
 
@@ -66,7 +69,7 @@ namespace Archimedicx.Cms.Controllers
             }
             else
             {
-                Response.Cookies.Add(new HttpCookie("NopCustomerId") { Value = nopCustomerId });
+                Response.Cookies.Add(new HttpCookie(CustomerId) { Value = nopCustomerId });
             }
 
         }
