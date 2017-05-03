@@ -14,6 +14,7 @@ namespace NopStarterKit.Web.Controllers
         [AllowAnonymous]
         public void GetAccessToken(string code, string state)
         {
+
             if (ModelState.IsValid && !string.IsNullOrEmpty(code))
             {
                 try
