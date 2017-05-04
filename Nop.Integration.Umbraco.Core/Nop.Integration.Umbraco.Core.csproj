@@ -261,6 +261,8 @@
     <Compile Include="Class1.cs" />
     <Compile Include="Controllers\AuthorizationController.cs" />
     <Compile Include="Controllers\DefaultController.cs" />
+    <Compile Include="Controllers\NopOrdersApiController.cs" />
+    <Compile Include="Controllers\NopProductsApiController.cs" />
     <Compile Include="Controllers\NopShoppingCardController.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Services\UserContext.cs" />

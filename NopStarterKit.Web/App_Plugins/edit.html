@@ -1,0 +1,43 @@
+﻿<script>
+
+    function CustomSectionEditController($scope, $routeParams) {
+        $scope.content = { tabs: [{ id: 1, label: "Tab 1" }, { id: 2, label: "Tab 2" }] };
+
+        $scope.EditMode = function() {
+            return $routeParams.create == 'true';
+        };
+    }
+</script>
+
+<div ng-controller="CustomSectionEditController">
+
+    <umb-panel>
+        <umb-header tabs="content.tabs">
+            <div class="umb-headline-editor-wrapper span12 ng-scope">
+                <h1 class="ng-binding">My custom section {{id}}</h1>
+            </div>
+        </umb-header>
+
+        <umb-tab-view>
+            <umb-tab id="tab1" rel="svensson">
+
+                <div class="umb-pane">
+                    This is tab content for tab 1<br />
+                    <p ng-show="EditMode()">
+                        <span class="label label-warning">In create mode, this label is only showed when the controller sees the create-querystring item.</span>
+                    </p>
+                </div>
+            </umb-tab>
+
+            <umb-tab id="tab2" rel="kalle">
+
+                <div class="umb-pane">
+
+                    This is tab content for tab 2
+                </div>
+            </umb-tab>
+
+        </umb-tab-view>
+    </umb-panel>
+
+</div>

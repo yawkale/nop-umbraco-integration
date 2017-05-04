@@ -50,6 +50,8 @@
     <Compile Include="Customer\Customer.cs" />
     <Compile Include="Image\Image.cs" />
     <Compile Include="Nop\NopApiService.cs" />
+    <Compile Include="Order\OrderRootObject.cs" />
+    <Compile Include="Order\Order.cs" />
     <Compile Include="Product\Product.cs" />
     <Compile Include="Product\ProductAttributeMapping.cs" />
     <Compile Include="Product\ProductAttributeValue.cs" />

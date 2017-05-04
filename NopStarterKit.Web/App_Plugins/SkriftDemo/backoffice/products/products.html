@@ -1,0 +1,66 @@
+﻿<style>
+    table {
+        border: 1px solid #d9d9d9;
+    }
+
+    table tr td{
+         border-right: 1px solid #d9d9d9;
+    }
+
+    .pagination {
+        margin: 7px 0;
+    }
+</style>
+
+<div ng-controller="Nop.ProductsController">
+    <div class="row-fluid" ng-if="!isEdit">
+        <div>
+            <table class="table table-striped warranty-table">
+                <thead>
+                    <tr>
+                        <td><span>Name</span></td>
+                        <td><span>Price</span></td>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr ng-repeat="product in viewData">
+                        <td ng-bind="product.name"></td>
+                        <td ng-bind="product.price"></td>
+                    </tr>
+                </tbody>
+                <tfoot ng-show="pagination.length > 1">
+                    <tr>
+                        <th colspan="4">
+                            <div class="pull-left">
+                            </div>
+                            <div class="pagination pagination-right">
+                                <ul>
+                                    <li ng-class="{disabled:options.pageNumber <= 1}">
+                                        <a href="#" ng-click="prev(); resetChanges()" prevent-default>
+                                            <localize key="general_previous">Previous</localize>
+                                        </a>
+                                    </li>
+                                    <li ng-repeat="pgn in pagination"
+                                        ng-class="{active:pgn.isActive}">
+                                        <a href="#" ng-click="goToPage(pgn.val - 1); resetChanges()" prevent-default
+                                           ng-bind="pgn.name ? pgn.name : pgn.val"
+                                           ng-if="pgn.val != '...'"></a>
+                                        <span ng-bind="pgn.val" ng-if="pgn.val == '...'"></span>
+                                    </li>
+                                    <li ng-class="{disabled:options.pageNumber >= totalPages}">
+                                        <a href="#" ng-click="next(); resetChanges()" prevent-default>
+                                            <localize key="general_next">Next</localize>
+                                        </a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </th>
+                    </tr>
+                </tfoot>
+            </table>
+        </div>
+        <div class="no-results" ng-if="viewData.length == 0">
+            No matching results
+        </div>
+    </div>
+</div>

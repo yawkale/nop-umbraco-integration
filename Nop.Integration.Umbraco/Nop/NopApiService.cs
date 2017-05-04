@@ -50,6 +50,28 @@ namespace Nop.Integration.Umbraco.Nop
             return product;
         }
 
+        public List<Product> GetAllProducts()
+        {
+            string jsonUrl = $"/api/products?fields=id,name,price,category_id,images,attributes,order_minimum_quantity,is_gift_card,is_download,customer_enters_price,is_rental,has_tier_prices";
+
+            object productData = _nopApiClient.Get(jsonUrl);
+
+            var products = JsonConvert.DeserializeObject<ProductRootObject>(productData.ToString())?.Products;
+
+            return products;
+        }
+
+        public List<Order> GetAllOrders()
+        {
+            string jsonUrl = $"/api/orders";
+
+            object productData = _nopApiClient.Get(jsonUrl);
+
+            var orders = JsonConvert.DeserializeObject<OrdersRootObject>(productData.ToString())?.Orders;
+
+            return orders;
+        }
+
         public decimal GetProductPrice(int id)
         {
             string jsonUrl = $"/api/products/{id}?fields=price";
