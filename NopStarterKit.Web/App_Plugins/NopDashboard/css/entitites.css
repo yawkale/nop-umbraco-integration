@@ -1,0 +1,29 @@
+﻿table {
+    border: 1px solid #d9d9d9;
+}
+
+    table tr td {
+        border-right: 1px solid #d9d9d9;
+    }
+
+.pagination {
+    margin: 7px 0;
+}
+
+.warranty-table {
+    margin-top: 5px;
+    margin-left: 5px;
+    width: 99%;
+}
+
+#header {
+    height: 94px;
+    padding: 5px 20px 0 20px;
+    white-space: nowrap;
+    background: #f3f3f5;
+    border-bottom: 1px solid #b3afbd;
+}
+
+.umb-panel-header-name {
+    margin-top: 23px;
+}

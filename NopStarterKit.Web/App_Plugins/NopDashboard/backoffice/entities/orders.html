@@ -1,18 +1,10 @@
 ﻿<style>
-    table {
-        border: 1px solid #d9d9d9;
-    }
-
-        table tr td {
-            border-right: 1px solid #d9d9d9;
-        }
-
-    .pagination {
-        margin: 7px 0;
-    }
+   
 </style>
-
-<div ng-controller="Nop.OrdersController">
+<div id="header">
+    <div class="umb-panel-header-name">Orders</div>
+</div>
+<div class="nop-content" ng-controller="Nop.OrdersController">
     <div class="row-fluid" ng-if="!isEdit">
         <div>
             <table class="table table-striped warranty-table">

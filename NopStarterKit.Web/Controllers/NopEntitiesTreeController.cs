@@ -11,9 +11,9 @@ using Umbraco.Web.Trees;
 
 namespace NopStarterKit.Web.Controllers
 {
-    [Tree("skrift", "animals", "Umbraco Animals")]
-    [PluginController("SkriftDemo")]
-    public class SkriftAnimalsTreeController : TreeController
+    [Tree("nopdashboard", "entities", "Nop Dashboard")]
+    [PluginController("NopDashboard")]
+    public class NopEntitiesTreeController : TreeController
     {
         protected override MenuItemCollection GetMenuForNode(string id, FormDataCollection queryStrings)
         {
@@ -25,6 +25,13 @@ namespace NopStarterKit.Web.Controllers
         protected override TreeNodeCollection GetTreeNodes(string id, FormDataCollection queryStrings)
         {
             TreeNodeCollection nodes = new TreeNodeCollection();
+
+            if (id == "-1")
+            {
+                nodes.Add(CreateTreeNode("products", id, queryStrings, "Products", "icon-book", "nopdashboard/entities/products/all"));
+
+                nodes.Add(CreateTreeNode("orders", id, queryStrings, "Orders", "icon-time", "nopdashboard/entities/orders/all"));
+            }
 
             return nodes;
         }

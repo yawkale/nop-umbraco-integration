@@ -63,7 +63,7 @@ namespace Nop.Integration.Umbraco.Nop
 
         public List<Order> GetAllOrders()
         {
-            string jsonUrl = $"/api/orders";
+            string jsonUrl = $"/api/orders?fields=id,order_total,paid_date_utc,payment_status,customer";
 
             object productData = _nopApiClient.Get(jsonUrl);
 

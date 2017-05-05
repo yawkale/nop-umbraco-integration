@@ -1,7 +1,7 @@
 umbraco.interfaces.IDiscoverable
 
 UteamTemplate.CustomSection, UteamTemplate, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
-NopStarterKit.Web.Controllers.SkriftAnimalsTreeController, UteamTemplate, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+NopStarterKit.Web.Controllers.NopEntitiesTreeController, UteamTemplate, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
 NopStarterKit.Web.Controllers.AuthorizationController, Nop.Integration.Umbraco.Core, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
 NopStarterKit.Web.Controllers.NopOrdersApiController, Nop.Integration.Umbraco.Core, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
 NopStarterKit.Web.Controllers.NopProductsApiController, Nop.Integration.Umbraco.Core, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
@@ -582,7 +582,7 @@ Umbraco.Web.Controllers.UmbLoginController, umbraco, Version=1.0.6303.21245, Cul
 
 Umbraco.Web.WebApi.UmbracoApiController
 
-NopStarterKit.Web.Controllers.SkriftAnimalsTreeController, UteamTemplate, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+NopStarterKit.Web.Controllers.NopEntitiesTreeController, UteamTemplate, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
 NopStarterKit.Web.Controllers.NopOrdersApiController, Nop.Integration.Umbraco.Core, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
 NopStarterKit.Web.Controllers.NopProductsApiController, Nop.Integration.Umbraco.Core, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
 Umbraco.Web.Editors.GravatarController, umbraco, Version=1.0.6303.21245, Culture=neutral, PublicKeyToken=null
@@ -764,7 +764,7 @@ umbraco.BusinessLogic.Actions.ActionRestore, cms, Version=1.0.6303.21240, Cultur
 
 Umbraco.Web.Trees.TreeController
 Umbraco.Web.Trees.TreeAttribute
-NopStarterKit.Web.Controllers.SkriftAnimalsTreeController, UteamTemplate, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+NopStarterKit.Web.Controllers.NopEntitiesTreeController, UteamTemplate, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
 Umbraco.Web.Trees.ContentTypeTreeController, umbraco, Version=1.0.6303.21245, Culture=neutral, PublicKeyToken=null
 Umbraco.Web.Trees.PackagesTreeController, umbraco, Version=1.0.6303.21245, Culture=neutral, PublicKeyToken=null
 Umbraco.Web.Trees.MediaTypeTreeController, umbraco, Version=1.0.6303.21245, Culture=neutral, PublicKeyToken=null
@@ -829,4 +829,7 @@ umbraco.loadUsers, umbraco, Version=1.0.6303.21245, Culture=neutral, PublicKeyTo
 umbraco.loadXslt, umbraco, Version=1.0.6303.21245, Culture=neutral, PublicKeyToken=null
 umbraco.cms.presentation.Trees.UserPermissions, umbraco, Version=1.0.6303.21245, Culture=neutral, PublicKeyToken=null
 umbraco.cms.presentation.Trees.UserTypes, umbraco, Version=1.0.6303.21245, Culture=neutral, PublicKeyToken=null
+
+Umbraco.Core.Deploy.IServiceConnector
+
 

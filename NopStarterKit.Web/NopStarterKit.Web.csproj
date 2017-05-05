@@ -415,14 +415,16 @@
     <Content Include="App_Plugins\ModelsBuilder\modelsbuilder.controller.js" />
     <Content Include="App_Plugins\ModelsBuilder\modelsbuilder.htm" />
     <Content Include="App_Plugins\ModelsBuilder\modelsbuilder.resource.js" />
+    <Content Include="App_Plugins\NopDashboard\css\entitites.css" />
+    <Content Include="App_Plugins\NopDashboard\backoffice\entities\edit.html" />
+    <Content Include="App_Plugins\NopDashboard\backoffice\controllers\orders.controller.js" />
+    <Content Include="App_Plugins\NopDashboard\backoffice\entities\orders.html" />
+    <Content Include="App_Plugins\NopDashboard\backoffice\controllers\products.controller.js" />
+    <Content Include="App_Plugins\NopDashboard\backoffice\entities\products.html" />
+    <Content Include="App_Plugins\NopDashboard\resources\order.resources.js" />
+    <Content Include="App_Plugins\NopDashboard\resources\product.resources.js" />
     <Content Include="App_Plugins\RJP.MultiUrlPicker\MultiUrlPicker.html" />
     <Content Include="App_Plugins\RJP.MultiUrlPicker\MultiUrlPicker.js" />
-    <Content Include="App_Plugins\SkriftDemo\backoffice\animals\edit.html" />
-    <Content Include="App_Plugins\SkriftDemo\backoffice\orders\orders.controller.js" />
-    <Content Include="App_Plugins\SkriftDemo\backoffice\orders\orders.html" />
-    <Content Include="App_Plugins\SkriftDemo\backoffice\products\products.html" />
-    <Content Include="App_Plugins\SkriftDemo\resources\order.resources.js" />
-    <Content Include="App_Plugins\SkriftDemo\resources\product.resources.js" />
     <Content Include="config\grid.editors.config.js" />
     <Content Include="config\Lang\cs-CZ.user.xml" />
     <Content Include="config\Lang\da-DK.user.xml" />
@@ -511,7 +513,9 @@
     <Content Include="Views\Partials\Grid\Bootstrap2-Fluid.cshtml" />
     <Content Include="Media\Web.config" />
     <Content Include="config\umbracoSettings.config" />
-    <Content Include="config\trees.config" />
+    <Content Include="config\trees.config">
+      <SubType>Designer</SubType>
+    </Content>
     <Content Include="config\tinyMceConfig.config" />
     <Content Include="config\scripting.config" />
     <Content Include="config\metablogConfig.config" />
@@ -553,8 +557,7 @@
     <Content Include="Views\Shared\GiftCard.cshtml" />
     <Content Include="Views\Shared\CustomerPrice.cshtml" />
     <Content Include="Views\Shared\Rental.cshtml" />
-    <Content Include="App_Plugins\SkriftDemo\backoffice\products\products.controller.js" />
-    <Content Include="App_Plugins\SkriftDemo\package.manifest" />
+    <Content Include="App_Plugins\NopDashboard\package.manifest" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -566,7 +569,7 @@
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Controllers\SkriftAnimalsTreeController.cs" />
+    <Compile Include="Controllers\NopEntitiesTreeController.cs" />
     <Compile Include="CustomSection.cs" />
     <Compile Include="Helpers\Price.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

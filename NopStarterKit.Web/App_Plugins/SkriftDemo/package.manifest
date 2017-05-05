@@ -1,8 +1,0 @@
-{
-  javascript: [
-    "~/App_Plugins/SkriftDemo/resources/product.resources.js",
-    "~/App_Plugins/SkriftDemo/resources/order.resources.js",
-    "~/App_Plugins/SkriftDemo/backoffice/orders/orders.controller.js",
-    "~/App_Plugins/SkriftDemo/backoffice/products/products.controller.js"
-  ]
-}

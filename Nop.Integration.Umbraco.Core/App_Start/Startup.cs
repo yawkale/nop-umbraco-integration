@@ -19,7 +19,7 @@ namespace UteamTemplate.App_Start
         private readonly UserContext _userContext;
         private const string CustomerId = "NopCustomerId";
         private const string PropertyTypeAlias = "nopCustomerId";
-        protected const string SkriftSectionAlias = "skrift";
+        protected const string NopDashboardSectionAlias = "nopdashboard";
 
         public Startup()
         {
@@ -43,14 +43,14 @@ namespace UteamTemplate.App_Start
 
             DefaultRenderMvcControllerResolver.Current.SetDefaultControllerType(typeof(DefaultController));
 
-            Section section = applicationContext.Services.SectionService.GetByAlias(SkriftSectionAlias);
+            Section section = applicationContext.Services.SectionService.GetByAlias(NopDashboardSectionAlias);
             
             if (section != null) return;
 
-            applicationContext.Services.SectionService.MakeNew("Skrift", SkriftSectionAlias, "icon-newspaper");
+            applicationContext.Services.SectionService.MakeNew("NopDashboard", NopDashboardSectionAlias, "icon-newspaper");
             
             //applicationContext.Services.UserService.AddSectionToAllUsers(DashboardAlias);
-        }
+         }
 
         private void MemberService_Saved(Umbraco.Core.Services.IMemberService sender, Umbraco.Core.Events.SaveEventArgs<Umbraco.Core.Models.IMember> e)
         {

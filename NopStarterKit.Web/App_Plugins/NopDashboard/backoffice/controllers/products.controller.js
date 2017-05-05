@@ -52,6 +52,8 @@
 		});
 	};
 
+	$scope.reloadView();
+
 	$scope.next = function () {
 		if ($scope.options.pageNumber < $scope.totalPages) {
 			$scope.options.pageNumber++;
@@ -70,6 +72,4 @@
 			$scope.reloadView();
 		}
 	};
-
-	$scope.reloadView();
 });

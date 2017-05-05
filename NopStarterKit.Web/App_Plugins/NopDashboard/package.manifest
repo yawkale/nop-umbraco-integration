@@ -1,0 +1,11 @@
+{
+  "javascript": [
+    "~/App_Plugins/NopDashboard/resources/product.resources.js",
+    "~/App_Plugins/NopDashboard/resources/order.resources.js",
+    "~/App_Plugins/NopDashboard/backoffice/controllers/orders.controller.js",
+    "~/App_Plugins/NopDashboard/backoffice/controllers/products.controller.js"
+  ],
+  "css": [
+    "~/App_Plugins/NopDashboard/css/entitites.css"
+  ]
+}
