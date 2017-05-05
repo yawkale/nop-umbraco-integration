@@ -66,7 +66,7 @@
                                         </h2>
                                         @if (item.HasValue("previewImage"))
                                         {
-                                            var image = Umbraco.TypedMedia(item.GetPropertyValue<int>("previewImage"));
+                                            var image =item.GetPropertyValue<IPublishedContent>("previewImage");
                                             <div class="picture">
                                                 <a href="@item.Url" title="@title">
                                                     <img alt="@title" src="@image.Url" title="@title">
@@ -107,7 +107,7 @@
                                         }
                                         <div class="details">
                                             <h2 class="product-title">
-                                                <a href="/25-virtual-gift-card">@item.Name</a>
+                                                <a href="@item.Url">@item.Name</a>
                                             </h2>
                                             <div class="description">
                                                 @item.GetPropertyValue("description")
