@@ -1,5 +1,4 @@
 ﻿@inherits Umbraco.Web.Mvc.UmbracoTemplatePage
-@using ContentModels = Umbraco.Web.PublishedContentModels;
 @using NopStarterKit.Web.Helpers
 @using Nop.Integration.Umbraco.Nop
 @{
@@ -36,12 +35,12 @@
                     <div class="product-sorting">
                         <span>Sort by</span>
                         <select id="products-orderby" name="products-orderby" onchange="setLocation(this.value);">
-                            <option selected="selected" value="http://test-nop.uteam-dev.com/desktops?orderby=0">Position</option>
-                            <option value="http://test-nop.uteam-dev.com/desktops?orderby=5">Name: A to Z</option>
-                            <option value="http://test-nop.uteam-dev.com/desktops?orderby=6">Name: Z to A</option>
-                            <option value="http://test-nop.uteam-dev.com/desktops?orderby=10">Price: Low to High</option>
-                            <option value="http://test-nop.uteam-dev.com/desktops?orderby=11">Price: High to Low</option>
-                            <option value="http://test-nop.uteam-dev.com/desktops?orderby=15">Created on</option>
+                            <option selected="selected" value="@(Model.Content.Url)?orderby=0">Position</option>
+                            <option value="@(Model.Content.Url)?orderby=5">Name: A to Z</option>
+                            <option value="@(Model.Content.Url)?orderby=6">Name: Z to A</option>
+                            <option value="@(Model.Content.Url)?orderby=10">Price: Low to High</option>
+                            <option value="@(Model.Content.Url)?orderby=11">Price: High to Low</option>
+                            <option value="@(Model.Content.Url)?orderby=15">Created on</option>
                         </select>
                     </div>
                     <div class="product-page-size">
