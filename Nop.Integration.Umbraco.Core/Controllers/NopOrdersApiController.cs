@@ -1,28 +1,20 @@
-﻿using Nop.Integration.Umbraco.Core.Services;
-using Nop.Integration.Umbraco.Models;
+﻿using System.Collections.Generic;
 using Nop.Integration.Umbraco.Nop;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web.Mvc;
-using Umbraco.Web;
-using Umbraco.Web.Mvc;
 using Umbraco.Web.WebApi;
 
-namespace NopStarterKit.Web.Controllers
+namespace Nop.Integration.Umbraco.Core.Controllers
 {
     public class NopOrdersApiController : UmbracoApiController
     {
         private readonly NopApiService _nopService;
-        private readonly UserContext _userContext;
+        
 
         public NopOrdersApiController()
         {
             _nopService = new NopApiService();
-            _userContext = new UserContext();
         }
 
-        public List<Order> GetOrders()
+        public List<Order.Order> GetOrders()
         {
             var orders = _nopService.GetAllOrders();
 

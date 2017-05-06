@@ -1,19 +1,17 @@
-﻿using Archimedicx.Cms.Controllers;
-using Newtonsoft.Json;
-using Nop.Integration.Umbraco.Core.Services;
-using Nop.Integration.Umbraco.Models;
-using Nop.Integration.Umbraco.Nop;
-using System;
+﻿using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Web;
+using Nop.Integration.Umbraco.Core.Controllers;
+using Nop.Integration.Umbraco.Core.Services;
+using Nop.Integration.Umbraco.Nop;
 using Umbraco.Core;
 using Umbraco.Core.Models;
+using Umbraco.Core.Services;
 using Umbraco.Web.Mvc;
 
-namespace UteamTemplate.App_Start
+namespace Nop.Integration.Umbraco.Core
 {
-    public partial class Startup : IApplicationEventHandler
+    public class Startup : IApplicationEventHandler
     {
         private readonly NopApiService _nopService;
         private readonly UserContext _userContext;
@@ -39,7 +37,7 @@ namespace UteamTemplate.App_Start
 
         public void OnApplicationStarting(UmbracoApplicationBase umbracoApplication, ApplicationContext applicationContext)
         {
-            Umbraco.Core.Services.MemberService.Saved += MemberService_Saved;
+            MemberService.Saved += MemberService_Saved;
 
             DefaultRenderMvcControllerResolver.Current.SetDefaultControllerType(typeof(DefaultController));
 
@@ -52,13 +50,13 @@ namespace UteamTemplate.App_Start
             //applicationContext.Services.UserService.AddSectionToAllUsers(DashboardAlias);
          }
 
-        private void MemberService_Saved(Umbraco.Core.Services.IMemberService sender, Umbraco.Core.Events.SaveEventArgs<Umbraco.Core.Models.IMember> e)
+        private void MemberService_Saved(IMemberService sender, global::Umbraco.Core.Events.SaveEventArgs<IMember> e)
         {
             foreach (var member in e.SavedEntities)
             {
                 if (string.IsNullOrEmpty(member.GetValue<string>(PropertyTypeAlias)))
                 {
-                    var customer = new Customer()
+                    var customer = new Customer.Customer()
                     {
                         roles = new List<int>() { 3 },
                         FirstName = member.Name,
@@ -67,7 +65,7 @@ namespace UteamTemplate.App_Start
                         Email = member.Email
                     };
 
-                    string customerId = "";
+                    string customerId;
 
                     if (string.IsNullOrEmpty(_userContext.CustomerId()))
                     {

@@ -1,21 +1,23 @@
 ﻿using Nop.Api.Adapter;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
-using Nop.Integration.Umbraco.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
+using Nop.Integration.Umbraco.Order;
+using Nop.Integration.Umbraco.Product;
+using Nop.Integration.Umbraco.ShoppingCart;
 
 namespace Nop.Integration.Umbraco.Nop
 {
     public interface INopApiService
     {
-        Product GetProduct(int id);
+        Product.Product GetProduct(int id);
 
         decimal GetProductPrice(int id);
 
-        string CreateCustomer(Customer customer);
+        string CreateCustomer(Customer.Customer customer);
 
         ShoppingCartRootObject GetShoppingCart(string customerId);
 
@@ -25,7 +27,7 @@ namespace Nop.Integration.Umbraco.Nop
 
         void RemoveShoppingCartItem(int shoppingCartItemId);
 
-        string UpdateCustomer(Customer customer, string id);
+        string UpdateCustomer(Customer.Customer customer, string id);
     }
 
     public class NopApiService : INopApiService
@@ -37,7 +39,7 @@ namespace Nop.Integration.Umbraco.Nop
            _nopApiClient = new ApiClient();
         }
 
-        public Product GetProduct(int id)
+        public Product.Product GetProduct(int id)
         {
             string jsonUrl = $"/api/products/{id}?fields=id,name,price,category_id,images,attributes,order_minimum_quantity,is_gift_card,is_download,customer_enters_price,is_rental,has_tier_prices";
 
@@ -50,7 +52,7 @@ namespace Nop.Integration.Umbraco.Nop
             return product;
         }
 
-        public List<Product> GetAllProducts()
+        public List<Product.Product> GetAllProducts()
         {
             string jsonUrl = $"/api/products?fields=id,name,price,category_id,images,attributes,order_minimum_quantity,is_gift_card,is_download,customer_enters_price,is_rental,has_tier_prices";
 
@@ -61,7 +63,7 @@ namespace Nop.Integration.Umbraco.Nop
             return products;
         }
 
-        public List<Order> GetAllOrders()
+        public List<Order.Order> GetAllOrders()
         {
             string jsonUrl = $"/api/orders?fields=id,order_total,paid_date_utc,payment_status,customer";
 
@@ -85,7 +87,7 @@ namespace Nop.Integration.Umbraco.Nop
             return Convert.ToDecimal(data);
         }
 
-        public string CreateCustomer(Customer customer)
+        public string CreateCustomer(Customer.Customer customer)
         {
             string jsonCustomer = JsonConvert.SerializeObject(new
             {
@@ -103,7 +105,7 @@ namespace Nop.Integration.Umbraco.Nop
             return data;
         }
 
-        public string UpdateCustomer(Customer customer, string id)
+        public string UpdateCustomer(Customer.Customer customer, string id)
         {
             string jsonCustomer = JsonConvert.SerializeObject(new
             {

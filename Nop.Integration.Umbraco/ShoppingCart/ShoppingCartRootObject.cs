@@ -1,14 +1,11 @@
-﻿using Newtonsoft.Json;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
+﻿using System.Collections.Generic;
+using Newtonsoft.Json;
 
-namespace Nop.Integration.Umbraco.Models
+namespace Nop.Integration.Umbraco.ShoppingCart
 {
     public class ShoppingCartRootObject
     {
         [JsonProperty("shopping_carts")]
-        public List<ShoppingCartItem> products { get; set; }
+        public List<ShoppingCartItem> Products { get; set; }
     }
 }

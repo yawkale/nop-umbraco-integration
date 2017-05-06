@@ -257,8 +257,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="App_Start\Startup.cs" />
-    <Compile Include="Class1.cs" />
+    <Compile Include="Startups\Startup.cs" />
     <Compile Include="Controllers\AuthorizationController.cs" />
     <Compile Include="Controllers\DefaultController.cs" />
     <Compile Include="Controllers\NopOrdersApiController.cs" />

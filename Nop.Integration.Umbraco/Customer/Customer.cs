@@ -1,11 +1,8 @@
-﻿using Newtonsoft.Json;
-using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
-using System.Linq;
-using System.Web;
+using Newtonsoft.Json;
 
-namespace Nop.Integration.Umbraco.Models
+namespace Nop.Integration.Umbraco.Customer
 {
     [JsonObject(Title = "customer")]
     public class Customer

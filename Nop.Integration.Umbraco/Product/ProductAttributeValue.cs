@@ -1,10 +1,6 @@
 ﻿using Newtonsoft.Json;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
 
-namespace Nop.Integration.Umbraco.Models
+namespace Nop.Integration.Umbraco.Product
 {
     [JsonObject(Title = "attribute_value")]
     public class ProductAttributeValue
@@ -25,7 +21,7 @@ namespace Nop.Integration.Umbraco.Models
         public string ColorSquaresRgb { get; set; }
 
         [JsonProperty("image_squares_image")]
-        public Image ImageSquaresImage { get; set; }
+        public Image.Image ImageSquaresImage { get; set; }
 
         [JsonProperty("price_adjustment")]
         public decimal? PriceAdjustment { get; set; }

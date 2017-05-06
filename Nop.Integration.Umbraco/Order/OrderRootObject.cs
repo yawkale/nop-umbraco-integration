@@ -1,11 +1,7 @@
-﻿using Newtonsoft.Json;
-using Nop.Integration.Umbraco.Models;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
+﻿using System.Collections.Generic;
+using Newtonsoft.Json;
 
-namespace Nop.Integration.Umbraco.Models
+namespace Nop.Integration.Umbraco.Order
 {
     public class OrdersRootObject
     {

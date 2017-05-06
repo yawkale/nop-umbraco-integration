@@ -1,10 +1,6 @@
 ﻿using Newtonsoft.Json;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
 
-namespace Nop.Integration.Umbraco.Models
+namespace Nop.Integration.Umbraco.Order
 {
     public class Order
     {
@@ -20,6 +16,6 @@ namespace Nop.Integration.Umbraco.Models
         [JsonProperty("payment_status")]
         public string PaymentStatus { get; set; }
 
-        public Customer Customer { get; set; }
+        public Customer.Customer Customer { get; set; }
     }
 }
