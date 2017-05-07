@@ -2,19 +2,14 @@
     Layout = null;
 }
 
-@using Nop.Integration.Umbraco.Models;
-
-@inherits Umbraco.Web.Mvc.UmbracoViewPage<List<ShoppingCartItem>>
+@inherits Umbraco.Web.Mvc.UmbracoViewPage<List<Nop.Integration.Umbraco.ShoppingCart.ShoppingCartItem>>
 
 <style>
-    table, th, td {
-        border: 1px solid black;
-        border-collapse: collapse;
-    }
+    table, th, td { border: 1px solid black; border-collapse: collapse; }
 </style>
 
 
-@{ 
+@{
     var umbracoHelper = new UmbracoHelper(UmbracoContext.Current);
 
     var page = umbracoHelper.AssignedContentItem.Id;
@@ -29,29 +24,29 @@
 
 
 @*<div style="padding:10px;">
-    <table style="width:30%">
-        <tr>
-            <th>Name</th>
-            <th>Price</th>
-            <th>Count</th>
-            <th></th>
-        </tr>
-        @foreach (var p in Model)
-        {
+        <table style="width:30%">
             <tr>
-                <td>@p.Product.Name</td>
-                <td>@((p.Product.Price * p.Quantity).ToString("#.##"))</td>
-                <td style="text-align:center;">@Html.TextBoxFor(m => p.Quantity, new { @class = "count", @type = "number", @style = "width: 50px;" })</td>
-                <td style="text-align: center;">
-                    <button style="margin-bottom: 4px;" id="@p.Id" class="remove">Remove</button>
-                    <button style="margin-bottom: 4px;" id="@p.Id" class="update">Update</button>
-                </td>
+                <th>Name</th>
+                <th>Price</th>
+                <th>Count</th>
+                <th></th>
             </tr>
-        }
-    </table>
+            @foreach (var p in Model)
+            {
+                <tr>
+                    <td>@p.Product.Name</td>
+                    <td>@((p.Product.Price * p.Quantity).ToString("#.##"))</td>
+                    <td style="text-align:center;">@Html.TextBoxFor(m => p.Quantity, new { @class = "count", @type = "number", @style = "width: 50px;" })</td>
+                    <td style="text-align: center;">
+                        <button style="margin-bottom: 4px;" id="@p.Id" class="remove">Remove</button>
+                        <button style="margin-bottom: 4px;" id="@p.Id" class="update">Update</button>
+                    </td>
+                </tr>
+            }
+        </table>
 
-    <span>Total: @total.ToString("#.##")</span>
-</div>*@
+        <span>Total: @total.ToString("#.##")</span>
+    </div>*@
 
 
 <div class="master-column-wrapper">
@@ -62,88 +57,89 @@
             </div>
             <div class="page-body">
                 <div class="order-summary-content">
-                    <form action="/cart" enctype="multipart/form-data" id="shopping-cart-form" method="post" novalidate="novalidate">
-                        <input  type="hidden" value="T8KlU4Lr2uBV6rBkjluUtVvCu9hCZaWw4Yu469MGFHpLdUWC-FCGiWbGXqw4yeWgNLX8OXKNYYnCwc2B0fZBCn8ODUGVSryODjd7TD2q6EM1">       <div class="table-wrapper">
-                            <table class="cart">
-                                <colgroup>
-                                    <col width="1">
-                                    <col width="1">
-                                    <col>
-                                    <col width="1">
-                                    <col width="1">
-                                    <col width="1">
-                                </colgroup>
-                                <thead>
-                                    <tr>
-                                        <th class="remove-from-cart">
-                                            Remove
-                                        </th>
-                                        <th class="product-picture">
-                                            Image
-                                        </th>
-                                        <th class="product">
-                                            Product(s)
-                                        </th>
-                                        <th class="unit-price">
-                                            Price
-                                        </th>
-                                        <th class="quantity">
-                                            Qty.
-                                        </th>
-                                        <th class="subtotal">
-                                            Total
-                                        </th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    @foreach (var p in Model)
+
+
+                    <div class="table-wrapper">
+                        <table class="cart">
+                            <colgroup>
+                                <col width="1">
+                                <col width="1">
+                                <col>
+                                <col width="1">
+                                <col width="1">
+                                <col width="1">
+                            </colgroup>
+                            <thead>
+                                <tr>
+                                    <th class="remove-from-cart">
+                                        Remove
+                                    </th>
+                                    <th class="product-picture">
+                                        Image
+                                    </th>
+                                    <th class="product">
+                                        Product(s)
+                                    </th>
+                                    <th class="unit-price">
+                                        Price
+                                    </th>
+                                    <th class="quantity">
+                                        Qty.
+                                    </th>
+                                    <th class="subtotal">
+                                        Total
+                                    </th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach (var p in Model)
                                     {
                                         var prod = productOverview.Children.FirstOrDefault(x => x.GetPropertyValue<string>("nopId") == p.Product.Id.ToString());
 
                                         List<IPublishedContent> images = null;
-                                        
-                                        if(prod != null)
+
+                                        if (prod != null)
                                         {
-                                           images = prod.GetPropertyValue<List<IPublishedContent>>("productImage");
+                                            images = prod.GetPropertyValue<List<IPublishedContent>>("productImage");
                                         }
 
                                         var image = images.Any() ? images[0].Url : "";
 
-                                        <tr>
-                                            <td class="remove-from-cart">
-                                                <label class="td-title">Remove:</label>
-                                                <input type="checkbox" name="removefromcart" value="@p.Id">
-                                            </td>
-                                            <td class="product-picture">
-                                                <a href="@prod.Url"><img alt="Picture of @prod.Name" src="http://test-umbraco-kit.uteam-dev.com/@image" title="Show details for @prod.Name"></a>
-                                            </td>
-                                            <td class="product">
-                                                @p.Product.Name
-                                                @*<a href="/build-your-own-computer" class="product-name">Build your own computer</a>
+                                    <tr>
+                                        <td class="remove-from-cart">
+                                            <label class="td-title">Remove:</label>
+                                            <input type="checkbox" name="removefromcart" value="@p.Id">
+                                        </td>
+                                        <td class="product-picture">
+                                            <a href="@prod.Url"><img alt="@prod.Name" src="@image" title="@prod.Name"></a>
+                                        </td>
+                                        <td class="product">
+                                            @p.Product.Name
+                                            @*<a href="/build-your-own-computer" class="product-name">Build your own computer</a>
                                                 <div class="attributes">
                                                     Processor: 2.5 GHz Intel Pentium Dual-Core E2200 [+$15.00]<br>RAM: 2 GB<br>HDD: 320 GB<br>OS: Vista Home [+$50.00]<br>Software: Microsoft Office [+$50.00]
                                                 </div>*@
-                                                @*<div class="edit-item">
+                                            @*<div class="edit-item">
                                                     <a href="/build-your-own-computer?updatecartitemid=25">Edit</a>
                                                 </div>*@
-                                            </td>
-                                            <td class="unit-price">
-                                                <label class="td-title">Price:</label>
-                                                <span class="product-unit-price">@Html.Partial("price", p.Product.Price)</span>
-                                            </td>
-                                            <td class="quantity">
-                                                <label class="td-title">Qty.:</label>
-                                                <input name="@p.Id" type="text" value="@p.Quantity" class="qty-input">
-                                            </td>
-                                            <td class="subtotal">
-                                                <label class="td-title">Total:</label>
-                                                <span class="product-subtotal">@Html.Partial("price", p.Product.Price * p.Quantity)</span>
-                                            </td>
-                                        </tr>
-                                       
+                                        </td>
+                                        <td class="unit-price">
+                                            <label class="td-title">Price:</label>
+                                            <span class="product-unit-price">@Html.Partial("price", p.Product.Price)</span>
+                                        </td>
+                                        <td class="quantity">
+                                            <label class="td-title">Qty.:</label>
+                                            <input name="@p.Id" type="text" value="@p.Quantity" class="qty-input">
+                                        </td>
+                                        <td class="subtotal">
+                                            <label class="td-title">Total:</label>
+                                            <span class="product-subtotal">@Html.Partial("price", p.Product.Price * p.Quantity)</span>
+                                        </td>
+                                    </tr>
+
                                     }
-                                    
-                                    @*<tr>
+
+                                @*<tr>
                                         <td class="remove-from-cart">
                                             <label class="td-title">Remove:</label>
                                             <input type="checkbox" name="removefromcart" value="25">
@@ -203,15 +199,15 @@
                                             <span class="product-subtotal">$1,415.00</span>
                                         </td>
                                     </tr>*@
-                                </tbody>
-                            </table>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div class="cart-options">
+                        <div class="common-buttons">
+                            <input value="Update shopping cart" class="button-2 update-cart-button">
+                            <input value="Continue shopping" class="button-2 continue-shopping-button">
                         </div>
-                        <div class="cart-options">
-                            <div class="common-buttons">
-                                <input  value="Update shopping cart" class="button-2 update-cart-button">
-                                <input value="Continue shopping" class="button-2 continue-shopping-button">
-                            </div>
-                            <script type="text/javascript">
+                        <script type="text/javascript">
                                 $(document).ready(function () {
                                     checkoutAttributeChange();
                                     $('#checkout_attribute_1').change(function () { checkoutAttributeChange(); });
@@ -239,7 +235,7 @@
                                         data: $('#shopping-cart-form').serialize(),
                                         type: 'post',
                                         success: function (data) {
-                                            
+
                                         }
                                     });
                                 }
@@ -266,71 +262,71 @@
                                         }
                                     });
                                 }
-                            </script>
-                        </div>
-                        <div class="cart-footer">
-                            <div class="totals">
-                                <div class="total-info">
-                                    <table class="cart-total">
-                                        <tbody>
-                                            <tr class="order-subtotal">
-                                                <td class="cart-total-left">
-                                                    <label>Sub-Total:</label>
-                                                </td>
-                                                <td class="cart-total-right">
-                                                    <span class="value-summary">@Html.Partial("price", total)</span>
-                                                </td>
-                                            </tr>
-                                            <tr class="shipping-cost">
-                                                <td class="cart-total-left">
-                                                    <label>Shipping:</label>
-                                                </td>
-                                                <td class="cart-total-right">
-                                                    <span class="value-summary">$0.00</span>
-                                                </td>
-                                            </tr>
-                                            <tr class="tax-value">
-                                                <td class="cart-total-left">
-                                                    <label>Tax:</label>
-                                                </td>
-                                                <td class="cart-total-right">
-                                                    <span class="value-summary">$0.00</span>
-                                                </td>
-                                            </tr>
-                                            <tr class="order-total">
-                                                <td class="cart-total-left">
-                                                    <label>Total:</label>
-                                                </td>
-                                                <td class="cart-total-right">
-                                                    <span class="value-summary"><strong>@Html.Partial("price", total)</strong></span>
-                                                </td>
-                                            </tr>
-                                        </tbody>
-                                    </table>
-                                </div>
+                        </script>
+                    </div>
+                    <div class="cart-footer">
+                        <div class="totals">
+                            <div class="total-info">
+                                <table class="cart-total">
+                                    <tbody>
+                                        <tr class="order-subtotal">
+                                            <td class="cart-total-left">
+                                                <label>Sub-Total:</label>
+                                            </td>
+                                            <td class="cart-total-right">
+                                                <span class="value-summary">@Html.Partial("price", total)</span>
+                                            </td>
+                                        </tr>
+                                        <tr class="shipping-cost">
+                                            <td class="cart-total-left">
+                                                <label>Shipping:</label>
+                                            </td>
+                                            <td class="cart-total-right">
+                                                <span class="value-summary">$0.00</span>
+                                            </td>
+                                        </tr>
+                                        <tr class="tax-value">
+                                            <td class="cart-total-left">
+                                                <label>Tax:</label>
+                                            </td>
+                                            <td class="cart-total-right">
+                                                <span class="value-summary">$0.00</span>
+                                            </td>
+                                        </tr>
+                                        <tr class="order-total">
+                                            <td class="cart-total-left">
+                                                <label>Total:</label>
+                                            </td>
+                                            <td class="cart-total-right">
+                                                <span class="value-summary"><strong>@Html.Partial("price", total)</strong></span>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
 
-                                <div id="terms-of-service-warning-box" title="Terms of service" style="display: none;">
-                                    <p>Please accept the terms of service before the next step.</p>
-                                </div>
-                                <div class="terms-of-service">
-                                    <input id="termsofservice" type="checkbox" name="termsofservice">
-                                    <span>
-                                        I agree with the terms of service and I adhere to them unconditionally
-                                        <a class="read" id="read-terms">
-                                            (read)
-                                        </a>
-                                    </span>
-                                    <script>
+                            <div id="terms-of-service-warning-box" title="Terms of service" style="display: none;">
+                                <p>Please accept the terms of service before the next step.</p>
+                            </div>
+                            <div class="terms-of-service">
+                                <input id="termsofservice" type="checkbox" name="termsofservice">
+                                <span>
+                                    I agree with the terms of service and I adhere to them unconditionally
+                                    <a class="read" id="read-terms">
+                                        (read)
+                                    </a>
+                                </span>
+                                <script>
                                         $(document).ready(function () {
                                             $('#read-terms').on('click', function (e) {
                                                 e.preventDefault();
                                                 displayPopupContentFromUrl('/t-popup/conditionsofuse', 'Terms of service');
                                             });
                                         });
-                                    </script>
-                                </div>
-                                <div class="checkout-buttons">
-                                    <script type="text/javascript">
+                                </script>
+                            </div>
+                            <div class="checkout-buttons">
+                                <script type="text/javascript">
                                         $(document).ready(function () {
                                             $('#checkout').click(function () {
                                                 //terms of service
@@ -347,18 +343,18 @@
                                                 return termOfServiceOk;
                                             });
                                         });
-                                    </script>
-                                    <button type="submit" id="checkout" name="checkout" value="checkout" class="button-1 checkout-button">
-                                        Checkout
-                                    </button>
-                                </div>
-                                <div class="addon-buttons">
+                                </script>
+                                <button type="submit" id="checkout" name="checkout" value="checkout" class="button-1 checkout-button">
+                                    Checkout
+                                </button>
+                            </div>
+                            <div class="addon-buttons">
 
 
-                                </div>
                             </div>
                         </div>
-                    </form>
+                    </div>
+
                 </div>
             </div>
         </div>
@@ -370,7 +366,7 @@
         $('.remove').click(function () {
             var _this = this;
             $.post('/umbraco/surface/ShoppingCard/Remove?shoppingCartItemId=' + this.id).success(function (result) {
-                window.location.reload()
+                window.location.reload();
             })
         })
         $(".continue-shopping-button").click(function () {
@@ -380,7 +376,7 @@
             var _this = this;
             var count = $(_this).closest('tr').find('.count').val();
             $.post('/umbraco/surface/ShoppingCard/Update', { shoppingCartId: _this.id, quantity: count }).success(function (result) {
-                window.location.reload()
+                window.location.reload();
             })
         })
     })

@@ -1,10 +1,8 @@
-﻿using Newtonsoft.Json;
-using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
-using System.Web;
+using Newtonsoft.Json;
 
-namespace Nop.Integration.Umbraco.Models
+namespace Nop.Integration.Umbraco.Product
 {
     public class Product
     {
@@ -18,7 +16,7 @@ namespace Nop.Integration.Umbraco.Models
         public decimal Price { get; set; }
 
         [JsonProperty("images")]
-        public List<Image> Images { get; set; }
+        public List<Image.Image> Images { get; set; }
 
         [JsonProperty("attributes")]
         public List<ProductAttributeMapping> Attributes { get; set; }

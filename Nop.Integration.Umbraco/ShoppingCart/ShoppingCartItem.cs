@@ -1,10 +1,6 @@
 ﻿using Newtonsoft.Json;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
 
-namespace Nop.Integration.Umbraco.Models
+namespace Nop.Integration.Umbraco.ShoppingCart
 {
     public class ShoppingCartItem
     {
@@ -24,6 +20,6 @@ namespace Nop.Integration.Umbraco.Models
         public int CustomerId { get; set; }
 
         [JsonProperty("product")]
-        public Product Product { get; set; }
+        public Product.Product Product { get; set; }
     }
 }

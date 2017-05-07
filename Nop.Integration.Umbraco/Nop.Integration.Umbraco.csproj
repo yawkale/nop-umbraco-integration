@@ -46,7 +46,6 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Authorization\Authorization.cs" />
-    <Compile Include="Class1.cs" />
     <Compile Include="Customer\Customer.cs" />
     <Compile Include="Image\Image.cs" />
     <Compile Include="Nop\NopApiService.cs" />

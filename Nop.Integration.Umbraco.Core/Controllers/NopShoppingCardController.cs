@@ -1,14 +1,13 @@
-﻿using Nop.Integration.Umbraco.Core.Services;
-using Nop.Integration.Umbraco.Models;
-using Nop.Integration.Umbraco.Nop;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web.Mvc;
-using Umbraco.Web;
+using Nop.Integration.Umbraco.Core.Services;
+using Nop.Integration.Umbraco.Nop;
+using Nop.Integration.Umbraco.ShoppingCart;
 using Umbraco.Web.Mvc;
 
-namespace NopStarterKit.Web.Controllers
+namespace Nop.Integration.Umbraco.Core.Controllers
 {
     public class NopShoppingCardController : SurfaceController
     {
@@ -25,7 +24,7 @@ namespace NopStarterKit.Web.Controllers
         {
             var card = _nopService.GetShoppingCart(_userContext.CustomerId());
 
-            var products = card.products;
+            var products = card.Products;
 
             return View("~/Views/Partials/ShoppingCart.cshtml", products);
         }
@@ -43,7 +42,7 @@ namespace NopStarterKit.Web.Controllers
                 toRemove = new List<int>();
             }
 
-            var card = _nopService.GetShoppingCart(_userContext.CustomerId()).products.Where(x => !toRemove.Contains(x.Id));
+            var card = _nopService.GetShoppingCart(_userContext.CustomerId()).Products.Where(x => !toRemove.Contains(x.Id));
 
             var updatedCard = card.Select(i => { i.Quantity = int.Parse(form.Get(i.Id.ToString())); return i; });
 

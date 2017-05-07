@@ -1,15 +1,14 @@
 ﻿using System;
-using System.Web.Mvc;
-using Umbraco.Web.Mvc;
-using Umbraco.Web.Models;
-using System.Web;
 using System.Collections.Generic;
-using Nop.Integration.Umbraco.Nop;
-using Nop.Integration.Umbraco.Models;
-using Umbraco.Core.Models;
+using System.Web;
+using System.Web.Mvc;
 using Nop.Integration.Umbraco.Core.Services;
+using Nop.Integration.Umbraco.Nop;
+using Umbraco.Core.Models;
+using Umbraco.Web.Models;
+using Umbraco.Web.Mvc;
 
-namespace Archimedicx.Cms.Controllers
+namespace Nop.Integration.Umbraco.Core.Controllers
 {
     public class DefaultController : RenderMvcController
     {
@@ -44,7 +43,7 @@ namespace Archimedicx.Cms.Controllers
 
         public void CreateTemporalNopCustomer()
         {
-            var customer = new Customer()
+            var customer = new Customer.Customer()
             {
                 roles = new List<int>() { 3 },
                 FirstName = "Temp",
@@ -63,7 +62,7 @@ namespace Archimedicx.Cms.Controllers
         {
             var nopCustomerId = member.GetProperty("nopCustomerId")?.Value.ToString();
 
-            if (string.IsNullOrEmpty(nopCustomerId.ToString()))
+            if (string.IsNullOrEmpty(nopCustomerId))
             {
                 CreateNopCustomer(member);
             }
@@ -80,7 +79,7 @@ namespace Archimedicx.Cms.Controllers
 
             var currentMember = memberService.GetById(member.Id);
 
-            var customer = new Customer()
+            var customer = new Customer.Customer()
             {
                 roles = new List<int>() { 3 },
                 FirstName = currentMember.Name,

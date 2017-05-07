@@ -6,7 +6,7 @@ using Nop.Api.Adapter;
 using Nop.Api.Adapter.Managers;
 using Umbraco.Web.Mvc;
 
-namespace NopStarterKit.Web.Controllers
+namespace Nop.Integration.Umbraco.Core.Controllers
 {
     public class AuthorizationController : SurfaceController
     {
@@ -34,11 +34,11 @@ namespace NopStarterKit.Web.Controllers
                         Code = code
                     };
 
-                    var nopAuthorizationManager = new Nop.Api.Adapter.Managers.AuthorizationManager();
+                    var nopAuthorizationManager = new AuthorizationManager();
 
                     string responseJson = nopAuthorizationManager.GetAuthorizationData(authParameters);
 
-                    Nop.Integration.Umbraco.Models.Authorization authorizationModel = JsonConvert.DeserializeObject<Nop.Integration.Umbraco.Models.Authorization>(responseJson);
+                    var authorizationModel = JsonConvert.DeserializeObject<Authorization.Authorization>(responseJson);
 
                     AccessProvider.Token = authorizationModel.AccessToken;
                 }
