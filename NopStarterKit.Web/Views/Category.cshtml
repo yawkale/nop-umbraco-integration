@@ -140,7 +140,7 @@
                                             </div>
                                             <div class="add-info">
                                                 <div class="prices">
-                                                    <span class="price actual-price">$@Price.GetPrice(nopId)</span>
+                                                    <span class="price actual-price">@Html.Partial("price", prod.Price)</span>
                                                 </div>
                                                 <div class="buttons">
                                                     <input type="button" value="Add to cart" class="button-2 product-box-add-to-cart-button" onclick="addProductToCart('@nopId','@product.Url','@prod.Redirect.ToString()'); return false;" />

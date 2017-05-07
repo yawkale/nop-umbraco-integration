@@ -68,7 +68,7 @@
                                         <div class="product-price">
                                             <span itemprop="price" content="27.56" class="price-value-25">
                                                 &nbsp;
-                                                $@Price.GetPrice(nopId)
+                                                @Html.Partial("price", prod.Price)
                                             </span>
                                         </div>
                                         <meta itemprop="priceCurrency" content="USD" />
