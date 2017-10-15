@@ -27,4 +27,5 @@ Installation:
 # Umbraco site confiuration - starter kit
 1. Install Start Kit
 2. Chanage client details - from nopCommerce site 
+![umbraco_config](https://user-images.githubusercontent.com/10168594/31589150-55254b08-b205-11e7-8dcb-a86f43ae44f9.png)
 
