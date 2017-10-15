@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<language alias="en_us" intName="English (US)" localName="English (US)" lcid="" culture="en-US">
+  <creator>
+    <name>Carlos Casalicchio</name>
+    <link>http://www.ccasalicchio.com</link>
+  </creator>
+  <area alias="inputlimit">
+    <key alias="youhave">You have</key>
+    <key alias="charleft">characters left</key>
+    <key alias="limitReachedOnly">Only</key>
+    <key alias="limitReachedAllowed">characters allowed!</key>
+  </area>
+</language>

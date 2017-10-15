@@ -1,0 +1,24 @@
+{
+    propertyEditors: [
+        {
+		alias: "Nop.CategoryPicker",
+		name: "Category Id",
+		isParameterEditor: true,
+      	"icon": "icon-stop-hand",
+		editor: {
+				view: "~/App_Plugins/NopCategoryPicker/views/view.html",
+				"valueType": "STRING"
+			},
+        }
+    ]
+    ,
+    javascript: [
+		"~/App_Plugins/NopCategoryPicker/resources/categories.resources.js",
+		'~/App_Plugins/NopCategoryPicker/js/autocomplete.directive.js',
+        '~/App_Plugins/NopCategoryPicker/js/categoryPicker.controller.js',
+    ],
+    css: [
+	"~/App_Plugins/NopCategoryPicker/css/jquery-ui.css",
+    "~/App_Plugins/NopCategoryPicker/css/style.css"
+  ]
+}

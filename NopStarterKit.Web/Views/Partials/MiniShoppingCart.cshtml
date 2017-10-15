@@ -1,0 +1,49 @@
+﻿@inherits UmbracoViewPage<List<Nop.Integration.Umbraco.ShoppingCart.ShoppingCartItem>>
+@using Nop.Integration.Umbraco.ShoppingCart
+@{
+    var products = (List<ShoppingCartItem>)ViewData.Model;
+    var foreachIndex = 1;
+    var productOverview = Umbraco.TypedContent(1071);
+    var total = products.Sum(s => Convert.ToDecimal(s.Product.Price) * s.Quantity);
+    var productsCount = products.Sum(s => s.Quantity);
+}
+<div id="flyout-cart" class="flyout-cart">
+    <div class="mini-shopping-cart">
+        @if (productsCount > 0)
+        {
+            <div class="count">
+                There are <a href="/cart">@productsCount item(s)</a> in your cart.
+            </div>
+            <div class="items">
+                @foreach (var item in products)
+                {
+                    var prod = productOverview.Children.FirstOrDefault(x => x.GetPropertyValue<string>("nopId") == item.Product.Id.ToString());
+                    <div class="item @(foreachIndex == 1 ? "first" : "")">
+                        <div class="picture">
+                            <a href="@prod.Url" title="Show details for Digital Storm VANQUISH 3 Custom Performance PC">
+                                <img alt="@item.Product.Name" src="@(item.Product.Images.Any() ? item.Product.Images[0].Src : "")" title="Show details for Digital Storm VANQUISH 3 Custom Performance PC" />
+                            </a>
+                        </div>
+                        <div class="product">
+                            <div class="name">
+                                <a href="@prod.Url">@item.Product.Name</a>
+                            </div>
+                            <div class="price">Unit price: <span>@Html.Partial("price", item.Product.Price)</span></div>
+                            <div class="quantity">Quantity: <span>@item.Quantity</span></div>
+                        </div>
+                    </div>
+                }
+            </div>
+            <div class="totals">Sub-Total: <strong>@Html.Partial("price", total)</strong></div>
+            <div class="buttons">
+                <input type="button" value="Go to cart" class="button-1 cart-button" onclick="setLocation('/cart')" />
+            </div>
+        }
+        else
+        {
+            <div class="count">
+                You have no items in your shopping cart.
+            </div>
+        }
+    </div>
+</div>

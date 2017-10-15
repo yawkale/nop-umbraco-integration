@@ -10,22 +10,25 @@
             <table class="table table-striped warranty-table">
                 <thead>
                     <tr>
+                        <td><span>Id</span></td>
+                        <td><span>Sku</span></td>
                         <td><span>Name</span></td>
                         <td><span>Price</span></td>
                     </tr>
                 </thead>
                 <tbody>
                     <tr ng-repeat="product in viewData">
+                        <td ng-bind="product.id"></td>
+                        <td ng-bind="product.sku"></td>
                         <td ng-bind="product.name"></td>
-                        <td ng-bind="product.price"></td>
+                        <td ng-bind='product.price | currency:"$"'></td>
                     </tr>
                 </tbody>
                 <tfoot ng-show="pagination.length > 1">
                     <tr>
                         <th colspan="4">
-                            <div class="pull-left">
-                            </div>
-                            <div class="pagination pagination-right">
+                            
+                            <div class="pagination text-center">
                                 <ul>
                                     <li ng-class="{disabled:options.pageNumber <= 1}">
                                         <a href="#" ng-click="prev(); resetChanges()" prevent-default>

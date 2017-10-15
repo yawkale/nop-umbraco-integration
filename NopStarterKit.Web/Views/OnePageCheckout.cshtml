@@ -1,0 +1,969 @@
+﻿@using UteamTemplate.Model.Common
+@inherits Umbraco.Web.Mvc.UmbracoTemplatePage
+@{
+    Layout = "_Layout.cshtml";
+    //scripts
+
+    <script src="/scripts/public.accordion.js"></script>
+    @*<script src="/scripts/public.onepagecheckout.js"></script>*@
+var storeLocation = "http://localhost:64146";
+    <script src="/scripts/OnePageCheckout.js"></script>
+}
+
+<button class="btn-primary" onclick="CreateOrder()">Api Create Test Order </button>
+<div class="page checkout-page">
+    <div class="page-title">
+        <h1>Checkout</h1>
+    </div>
+    <div class="page-body checkout-data">
+
+        <ol class="opc" id="checkout-steps">
+            <li id="opc-billing" class="tab-section allow">
+                <div class="step-title">
+                    <span class="number">1</span>
+                    <h2 class="title">Billing address</h2>
+                </div>
+
+                <div id="checkout-step-billing" class="step a-item">
+                    <form id="co-billing-form" action="">
+                        <div id="checkout-billing-load">
+
+
+                            @*temp static html*@
+                            @*@Html.Action("OpcBillingForm", "Checkout")*@
+                            <div class="section select-billing-address">
+                                <label for="billing-address-select">Select a billing address from your address book or enter a new address.</label>
+                                <div>
+                                    <select name="billing_address_id" id="billing-address-select" class="address-select"
+                                            title="" onchange="Billing.newAddress(!this.value)">
+
+                                        <option value="1">John Smith, 21 West 52nd Street, New York, New York 10021, United States</option>
+                                        <option value="" selected="selected">New Address</option>
+                                    </select>
+
+                                    @*<select name="billing_address_id" id="billing-address-select" class="address-select" title="" onchange="Billing.newAddress(!this.value)">
+                                            <option value="1">John Smith, 21 West 52nd Street, New York, New York 10021, United States</option>
+                                            <option value="">New Address</option>
+                                        </select>*@
+                                </div>
+                            </div>
+
+
+
+                        </div>
+                    </form>
+                    <script type="text/javascript">
+                        Billing.init('#co-billing-form', '@(storeLocation)checkout/OpcSaveBilling/', false @*@(Model.DisableBillingAddressCheckoutStep.ToString().ToLowerInvariant())*@);
+                        if ($("#billing-address-select").length > 0) {
+                            Billing.newAddress(!$('#billing-address-select').val());
+                        }
+                    </script> <div class="section new-billing-address" id="billing-new-address-form">
+                        <div class="enter-address">
+                            @Html.Partial("_CreateOrUpdateAddress", new AddressModel())
+                        </div>
+                    </div>
+
+                    <div class="buttons" id="billing-buttons-container">
+                        <input type="button" title="Continue" class="button-1 new-address-next-step-button" onclick="Billing.save()" value="Continue" />
+                        <span class="please-wait" id="billing-please-wait" style="display: none;">Loading Next Step</span>
+                    </div>
+                </div>
+            </li>
+            @*@if (Model.ShippingRequired)
+                {*@
+            <li id="opc-shipping" class="tab-section">
+                <div class="step-title">
+                    <span class="number">2</span>
+                    <h2 class="title">ShippingAddress</h2>
+                </div>
+
+
+                @*temp static html*@
+                <div id="checkout-step-shipping" class="step a-item" style="display: none;">
+                    <form action="" id="co-shipping-form">
+                        <div id="checkout-shipping-load">
+
+
+
+
+                            @*shipping address content will be loaded here*@
+                            <div class="checkout-data">
+                                <div class="section pickup-in-store">
+                                    <p class="selector">
+                                        <input id="PickUpInStore" name="PickUpInStore" onclick="Shipping.togglePickUpInStore(this)" type="checkbox" value="true"><input name="PickUpInStore" type="hidden" value="false">
+                                        <label for="PickUpInStore">
+                                            Pickup
+                                        </label>
+                                    </p>
+                                    <p class="description">
+                                        <i>Pick up your items at the store</i>
+                                    </p>
+                                    <script type="text/javascript">
+                                        $(document).ready(function () {
+                                            Shipping.togglePickUpInStore($('#PickUpInStore'));
+                                        });
+                                    </script>
+                                </div>
+                                <div class="section pickup-points" id="pickup-points-form" style="display: none;">
+                                    <div class="select-pickup-points">
+                                        <input id="pickup-points-id" name="pickup-points-id" type="hidden" value="1___Pickup.PickupInStore">
+                                        <div class="single-pickup-point">
+                                            <ul>
+                                                <li class="single-pickup-point name">New York store</li>
+                                                <li class="single-pickup-point address">21 West 52nd Street New York United States</li>
+                                                <li class="single-pickup-point fee">$1.99</li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                    <div class="message-error">
+                                        <ul></ul>
+                                    </div>
+                                </div>
+                                <div class="shipping-addresses" id="shipping-addresses-form">
+
+                                    <div class="section select-shipping-address">
+                                        <label for="shipping-address-select">Select a shipping address from your address book or enter a new address.</label>
+                                        <div>
+                                            <select name="shipping_address_id" id="shipping-address-select" class="address-select" title="" onchange="Shipping.newAddress(!this.value)">
+                                                <option value="1">John Smith, 21 West 52nd Street, New York, New York 10021, United States</option>
+                                                <option value="">New Address</option>
+                                            </select>
+                                        </div>
+                                    </div>
+
+                                    <div class="section new-shipping-address" id="shipping-new-address-form" style="display: block;">
+                                        <div class="enter-address">
+
+                                            <script type="text/javascript">
+                                                $(document).ready(function () {
+                                                    $("#ShippingNewAddress_CountryId").change(function () {
+                                                        var selectedItem = $(this).val();
+                                                        var ddlStates = $("#ShippingNewAddress_StateProvinceId");
+                                                        var statesProgress = $("#states-loading-progress");
+                                                        statesProgress.show();
+                                                        $.ajax({
+                                                            cache: false,
+                                                            type: "GET",
+                                                            url: "/country/getstatesbycountryid",
+                                                            data: { "countryId": selectedItem, "addSelectStateItem": "true" },
+                                                            success: function (data) {
+                                                                ddlStates.html('');
+                                                                $.each(data, function (id, option) {
+                                                                    ddlStates.append($('<option></option>').val(option.id).html(option.name));
+                                                                });
+                                                                statesProgress.hide();
+                                                            },
+                                                            error: function (xhr, ajaxOptions, thrownError) {
+                                                                alert('Failed to retrieve states.');
+                                                                statesProgress.hide();
+                                                            }
+                                                        });
+                                                    });
+                                                });
+                                            </script>
+                                            <input data-val="true" data-val-number="The field Id must be a number." data-val-required="'Id' must not be empty." id="ShippingNewAddress_Id" name="ShippingNewAddress.Id" type="hidden" value="0">
+                                            <div class="edit-address">
+                                                <div class="inputs">
+                                                    <label for="ShippingNewAddress_FirstName">First name:</label>
+                                                    <input class="text-box single-line" data-val="true" data-val-required="First name is required." id="ShippingNewAddress_FirstName" name="ShippingNewAddress.FirstName" type="text" value="John">
+                                                    <span class="required">*</span>
+                                                    <span class="field-validation-valid" data-valmsg-for="ShippingNewAddress.FirstName" data-valmsg-replace="true"></span>
+                                                </div>
+                                                <div class="inputs">
+                                                    <label for="ShippingNewAddress_LastName">Last name:</label>
+                                                    <input class="text-box single-line" data-val="true" data-val-required="Last name is required." id="ShippingNewAddress_LastName" name="ShippingNewAddress.LastName" type="text" value="Smith">
+                                                    <span class="required">*</span>
+                                                    <span class="field-validation-valid" data-valmsg-for="ShippingNewAddress.LastName" data-valmsg-replace="true"></span>
+
+                                                </div>
+                                                <div class="inputs">
+                                                    <label for="ShippingNewAddress_Email">Email:</label>
+                                                    <input class="text-box single-line" data-val="true" data-val-email="Wrong email" data-val-required="Email is required." id="ShippingNewAddress_Email" name="ShippingNewAddress.Email" type="text" value="alex@uteam.co.il">
+                                                    <span class="required">*</span>
+                                                    <span class="field-validation-valid" data-valmsg-for="ShippingNewAddress.Email" data-valmsg-replace="true"></span>
+                                                </div>
+                                                <div class="inputs">
+                                                    <label for="ShippingNewAddress_Company">Company:</label>
+                                                    <input class="text-box single-line" id="ShippingNewAddress_Company" name="ShippingNewAddress.Company" type="text" value="">
+                                                    <span class="field-validation-valid" data-valmsg-for="ShippingNewAddress.Company" data-valmsg-replace="true"></span>
+                                                </div>
+                                                <div class="inputs">
+                                                    <label for="ShippingNewAddress_CountryId">Country:</label>
+                                                    <select data-val="true" data-val-number="The field Country must be a number." data-val-required="Country is required." id="ShippingNewAddress_CountryId" name="ShippingNewAddress.CountryId">
+                                                        <option value="0">Select country</option>
+                                                        <option value="1">United States</option>
+                                                        <option value="88">Afghanistan</option>
+                                                        <option value="89">Albania</option>
+                                                        <option value="90">Algeria</option>
+                                                        <option value="91">American Samoa</option>
+                                                        <option value="92">Andorra</option>
+                                                        <option value="93">Angola</option>
+                                                        <option value="94">Anguilla</option>
+                                                        <option value="95">Antarctica</option>
+                                                        <option value="96">Antigua and Barbuda</option>
+                                                        <option value="3">Argentina</option>
+                                                        <option value="4">Armenia</option>
+                                                        <option value="5">Aruba</option>
+                                                        <option value="6">Australia</option>
+                                                        <option value="7">Austria</option>
+                                                        <option value="8">Azerbaijan</option>
+                                                        <option value="9">Bahamas</option>
+                                                        <option value="97">Bahrain</option>
+                                                        <option value="10">Bangladesh</option>
+                                                        <option value="98">Barbados</option>
+                                                        <option value="11">Belarus</option>
+                                                        <option value="12">Belgium</option>
+                                                        <option value="13">Belize</option>
+                                                        <option value="99">Benin</option>
+                                                        <option value="14">Bermuda</option>
+                                                        <option value="100">Bhutan</option>
+                                                        <option value="15">Bolivia</option>
+                                                        <option value="16">Bosnia and Herzegowina</option>
+                                                        <option value="101">Botswana</option>
+                                                        <option value="102">Bouvet Island</option>
+                                                        <option value="17">Brazil</option>
+                                                        <option value="103">British Indian Ocean Territory</option>
+                                                        <option value="104">Brunei Darussalam</option>
+                                                        <option value="18">Bulgaria</option>
+                                                        <option value="105">Burkina Faso</option>
+                                                        <option value="106">Burundi</option>
+                                                        <option value="107">Cambodia</option>
+                                                        <option value="108">Cameroon</option>
+                                                        <option value="2">Canada</option>
+                                                        <option value="109">Cape Verde</option>
+                                                        <option value="19">Cayman Islands</option>
+                                                        <option value="110">Central African Republic</option>
+                                                        <option value="111">Chad</option>
+                                                        <option value="20">Chile</option>
+                                                        <option value="21">China</option>
+                                                        <option value="112">Christmas Island</option>
+                                                        <option value="113">Cocos (Keeling) Islands</option>
+                                                        <option value="22">Colombia</option>
+                                                        <option value="114">Comoros</option>
+                                                        <option value="115">Congo</option>
+                                                        <option value="116">Congo (Democratic Republic of the)</option>
+                                                        <option value="117">Cook Islands</option>
+                                                        <option value="23">Costa Rica</option>
+                                                        <option value="118">Cote D'Ivoire</option>
+                                                        <option value="24">Croatia</option>
+                                                        <option value="25">Cuba</option>
+                                                        <option value="26">Cyprus</option>
+                                                        <option value="27">Czech Republic</option>
+                                                        <option value="28">Denmark</option>
+                                                        <option value="119">Djibouti</option>
+                                                        <option value="120">Dominica</option>
+                                                        <option value="29">Dominican Republic</option>
+                                                        <option value="30">East Timor</option>
+                                                        <option value="31">Ecuador</option>
+                                                        <option value="32">Egypt</option>
+                                                        <option value="121">El Salvador</option>
+                                                        <option value="122">Equatorial Guinea</option>
+                                                        <option value="123">Eritrea</option>
+                                                        <option value="124">Estonia</option>
+                                                        <option value="125">Ethiopia</option>
+                                                        <option value="126">Falkland Islands (Malvinas)</option>
+                                                        <option value="127">Faroe Islands</option>
+                                                        <option value="128">Fiji</option>
+                                                        <option value="33">Finland</option>
+                                                        <option value="34">France</option>
+                                                        <option value="129">French Guiana</option>
+                                                        <option value="130">French Polynesia</option>
+                                                        <option value="131">French Southern Territories</option>
+                                                        <option value="132">Gabon</option>
+                                                        <option value="133">Gambia</option>
+                                                        <option value="35">Georgia</option>
+                                                        <option value="36">Germany</option>
+                                                        <option value="134">Ghana</option>
+                                                        <option value="37">Gibraltar</option>
+                                                        <option value="38">Greece</option>
+                                                        <option value="135">Greenland</option>
+                                                        <option value="136">Grenada</option>
+                                                        <option value="137">Guadeloupe</option>
+                                                        <option value="138">Guam</option>
+                                                        <option value="39">Guatemala</option>
+                                                        <option value="139">Guinea</option>
+                                                        <option value="140">Guinea-bissau</option>
+                                                        <option value="141">Guyana</option>
+                                                        <option value="142">Haiti</option>
+                                                        <option value="143">Heard and Mc Donald Islands</option>
+                                                        <option value="144">Honduras</option>
+                                                        <option value="40">Hong Kong</option>
+                                                        <option value="41">Hungary</option>
+                                                        <option value="145">Iceland</option>
+                                                        <option value="42">India</option>
+                                                        <option value="43">Indonesia</option>
+                                                        <option value="146">Iran (Islamic Republic of)</option>
+                                                        <option value="147">Iraq</option>
+                                                        <option value="44">Ireland</option>
+                                                        <option value="45">Israel</option>
+                                                        <option value="46">Italy</option>
+                                                        <option value="47">Jamaica</option>
+                                                        <option value="48">Japan</option>
+                                                        <option value="49">Jordan</option>
+                                                        <option value="50">Kazakhstan</option>
+                                                        <option value="148">Kenya</option>
+                                                        <option value="149">Kiribati</option>
+                                                        <option value="150">Korea</option>
+                                                        <option value="51">Korea, Democratic People's Republic of</option>
+                                                        <option value="52">Kuwait</option>
+                                                        <option value="151">Kyrgyzstan</option>
+                                                        <option value="152">Lao People's Democratic Republic</option>
+                                                        <option value="153">Latvia</option>
+                                                        <option value="154">Lebanon</option>
+                                                        <option value="155">Lesotho</option>
+                                                        <option value="156">Liberia</option>
+                                                        <option value="157">Libyan Arab Jamahiriya</option>
+                                                        <option value="158">Liechtenstein</option>
+                                                        <option value="159">Lithuania</option>
+                                                        <option value="160">Luxembourg</option>
+                                                        <option value="161">Macau</option>
+                                                        <option value="162">Macedonia</option>
+                                                        <option value="163">Madagascar</option>
+                                                        <option value="164">Malawi</option>
+                                                        <option value="53">Malaysia</option>
+                                                        <option value="165">Maldives</option>
+                                                        <option value="166">Mali</option>
+                                                        <option value="167">Malta</option>
+                                                        <option value="168">Marshall Islands</option>
+                                                        <option value="169">Martinique</option>
+                                                        <option value="170">Mauritania</option>
+                                                        <option value="171">Mauritius</option>
+                                                        <option value="172">Mayotte</option>
+                                                        <option value="54">Mexico</option>
+                                                        <option value="173">Micronesia</option>
+                                                        <option value="174">Moldova</option>
+                                                        <option value="175">Monaco</option>
+                                                        <option value="176">Mongolia</option>
+                                                        <option value="177">Montenegro</option>
+                                                        <option value="178">Montserrat</option>
+                                                        <option value="179">Morocco</option>
+                                                        <option value="180">Mozambique</option>
+                                                        <option value="181">Myanmar</option>
+                                                        <option value="182">Namibia</option>
+                                                        <option value="183">Nauru</option>
+                                                        <option value="184">Nepal</option>
+                                                        <option value="55">Netherlands</option>
+                                                        <option value="185">Netherlands Antilles</option>
+                                                        <option value="186">New Caledonia</option>
+                                                        <option value="56">New Zealand</option>
+                                                        <option value="187">Nicaragua</option>
+                                                        <option value="188">Niger</option>
+                                                        <option value="189">Nigeria</option>
+                                                        <option value="190">Niue</option>
+                                                        <option value="191">Norfolk Island</option>
+                                                        <option value="192">Northern Mariana Islands</option>
+                                                        <option value="57">Norway</option>
+                                                        <option value="193">Oman</option>
+                                                        <option value="58">Pakistan</option>
+                                                        <option value="194">Palau</option>
+                                                        <option value="59">Palestine</option>
+                                                        <option value="195">Panama</option>
+                                                        <option value="196">Papua New Guinea</option>
+                                                        <option value="60">Paraguay</option>
+                                                        <option value="61">Peru</option>
+                                                        <option value="62">Philippines</option>
+                                                        <option value="197">Pitcairn</option>
+                                                        <option value="63">Poland</option>
+                                                        <option value="64">Portugal</option>
+                                                        <option value="65">Puerto Rico</option>
+                                                        <option value="66">Qatar</option>
+                                                        <option value="198">Reunion</option>
+                                                        <option value="67">Romania</option>
+                                                        <option value="68">Russian Federation</option>
+                                                        <option value="199">Rwanda</option>
+                                                        <option value="200">Saint Kitts and Nevis</option>
+                                                        <option value="201">Saint Lucia</option>
+                                                        <option value="202">Saint Vincent and the Grenadines</option>
+                                                        <option value="203">Samoa</option>
+                                                        <option value="204">San Marino</option>
+                                                        <option value="205">Sao Tome and Principe</option>
+                                                        <option value="69">Saudi Arabia</option>
+                                                        <option value="206">Senegal</option>
+                                                        <option value="87">Serbia</option>
+                                                        <option value="207">Seychelles</option>
+                                                        <option value="208">Sierra Leone</option>
+                                                        <option value="70">Singapore</option>
+                                                        <option value="71">Slovakia (Slovak Republic)</option>
+                                                        <option value="72">Slovenia</option>
+                                                        <option value="209">Solomon Islands</option>
+                                                        <option value="210">Somalia</option>
+                                                        <option value="73">South Africa</option>
+                                                        <option value="211">South Georgia &amp; South Sandwich Islands</option>
+                                                        <option value="212">South Sudan</option>
+                                                        <option value="74">Spain</option>
+                                                        <option value="213">Sri Lanka</option>
+                                                        <option value="214">St. Helena</option>
+                                                        <option value="215">St. Pierre and Miquelon</option>
+                                                        <option value="216">Sudan</option>
+                                                        <option value="217">Suriname</option>
+                                                        <option value="218">Svalbard and Jan Mayen Islands</option>
+                                                        <option value="219">Swaziland</option>
+                                                        <option value="75">Sweden</option>
+                                                        <option value="76">Switzerland</option>
+                                                        <option value="220">Syrian Arab Republic</option>
+                                                        <option value="77">Taiwan</option>
+                                                        <option value="221">Tajikistan</option>
+                                                        <option value="222">Tanzania</option>
+                                                        <option value="78">Thailand</option>
+                                                        <option value="223">Togo</option>
+                                                        <option value="224">Tokelau</option>
+                                                        <option value="225">Tonga</option>
+                                                        <option value="226">Trinidad and Tobago</option>
+                                                        <option value="227">Tunisia</option>
+                                                        <option value="79">Turkey</option>
+                                                        <option value="228">Turkmenistan</option>
+                                                        <option value="229">Turks and Caicos Islands</option>
+                                                        <option value="230">Tuvalu</option>
+                                                        <option value="231">Uganda</option>
+                                                        <option value="80">Ukraine</option>
+                                                        <option value="81">United Arab Emirates</option>
+                                                        <option value="82">United Kingdom</option>
+                                                        <option value="83">United States minor outlying islands</option>
+                                                        <option value="84">Uruguay</option>
+                                                        <option value="85">Uzbekistan</option>
+                                                        <option value="232">Vanuatu</option>
+                                                        <option value="233">Vatican City State (Holy See)</option>
+                                                        <option value="86">Venezuela</option>
+                                                        <option value="234">Viet Nam</option>
+                                                        <option value="235">Virgin Islands (British)</option>
+                                                        <option value="236">Virgin Islands (U.S.)</option>
+                                                        <option value="237">Wallis and Futuna Islands</option>
+                                                        <option value="238">Western Sahara</option>
+                                                        <option value="239">Yemen</option>
+                                                        <option value="240">Zambia</option>
+                                                        <option value="241">Zimbabwe</option>
+                                                    </select>
+                                                    <span class="required">*</span>
+                                                    <span class="field-validation-valid" data-valmsg-for="ShippingNewAddress.CountryId" data-valmsg-replace="true"></span>
+                                                </div>
+
+                                                <div class="inputs">
+                                                    <label for="ShippingNewAddress_StateProvinceId">State / province:</label>
+                                                    <select data-val="true" data-val-number="The field State / province must be a number." id="ShippingNewAddress_StateProvinceId" name="ShippingNewAddress.StateProvinceId">
+                                                        <option value="0">Select state</option>
+                                                    </select>
+                                                    <span id="states-loading-progress" style="display: none;" class="please-wait">Wait...</span>
+                                                    <span class="field-validation-valid" data-valmsg-for="ShippingNewAddress.StateProvinceId" data-valmsg-replace="true"></span>
+                                                </div>
+                                                <div class="inputs">
+                                                    <label for="ShippingNewAddress_City">City:</label>
+                                                    <input class="text-box single-line" data-val="true" data-val-required="City is required" id="ShippingNewAddress_City" name="ShippingNewAddress.City" type="text" value="">
+
+                                                    <span class="required">*</span>            <span class="field-validation-valid" data-valmsg-for="ShippingNewAddress.City" data-valmsg-replace="true"></span>
+                                                </div>
+                                                <div class="inputs">
+                                                    <label for="ShippingNewAddress_Address1">Address 1:</label>
+                                                    <input class="text-box single-line" data-val="true" data-val-required="Street address is required" id="ShippingNewAddress_Address1" name="ShippingNewAddress.Address1" type="text" value="">
+                                                    <span class="required">*</span>            <span class="field-validation-valid" data-valmsg-for="ShippingNewAddress.Address1" data-valmsg-replace="true"></span>
+                                                </div>
+                                                <div class="inputs">
+                                                    <label for="ShippingNewAddress_Address2">Address 2:</label>
+                                                    <input class="text-box single-line" id="ShippingNewAddress_Address2" name="ShippingNewAddress.Address2" type="text" value="">
+                                                    <span class="field-validation-valid" data-valmsg-for="ShippingNewAddress.Address2" data-valmsg-replace="true"></span>
+                                                </div>
+                                                <div class="inputs">
+                                                    <label for="ShippingNewAddress_ZipPostalCode">Zip / postal code:</label>
+                                                    <input class="text-box single-line" data-val="true" data-val-required="Zip / postal code is required" id="ShippingNewAddress_ZipPostalCode" name="ShippingNewAddress.ZipPostalCode" type="text" value="">
+                                                    <span class="required">*</span>            <span class="field-validation-valid" data-valmsg-for="ShippingNewAddress.ZipPostalCode" data-valmsg-replace="true"></span>
+                                                </div>
+                                                <div class="inputs">
+                                                    <label for="ShippingNewAddress_PhoneNumber">Phone number:</label>
+                                                    <input class="text-box single-line" data-val="true" data-val-required="Phone is required" id="ShippingNewAddress_PhoneNumber" name="ShippingNewAddress.PhoneNumber" type="text" value="">
+                                                    <span class="required">*</span>            <span class="field-validation-valid" data-valmsg-for="ShippingNewAddress.PhoneNumber" data-valmsg-replace="true"></span>
+                                                </div>
+                                                <div class="inputs">
+                                                    <label for="ShippingNewAddress_FaxNumber">Fax number:</label>
+                                                    <input class="text-box single-line" id="ShippingNewAddress_FaxNumber" name="ShippingNewAddress.FaxNumber" type="text" value="">
+                                                    <span class="field-validation-valid" data-valmsg-for="ShippingNewAddress.FaxNumber" data-valmsg-replace="true"></span>
+                                                </div>
+                                            </div>
+
+                                        </div>
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                    <script type="text/javascript">
+                        Shipping.init('#co-shipping-form', '@(storeLocation)checkout/OpcSaveShipping/');
+                        if ($("#shipping-address-select").length > 0) {
+                            Shipping.newAddress(!$('#shipping-address-select').val());
+                        }
+                    </script>
+                    <div class="buttons" id="shipping-buttons-container">
+                        @*@if (!Model.DisableBillingAddressCheckoutStep)
+                            {*@
+                        <p class="back-link">
+                            <a href="#" onclick="Checkout.back(); return false; "><small>&laquo; </small>Back</a>
+                        </p>
+                        @*}*@
+                        <input type="button" class="button-1 new-address-next-step-button" title="Continue" onclick="Shipping.save()" value="Continue" />
+                        <span id="shipping-please-wait" class="please-wait" style="display: none;"> LoadingNextStep</span>
+                    </div>
+                </div>
+
+
+
+            </li>
+            <li id="opc-shipping_method" class="tab-section">
+                <div class="step-title">
+                    <span class="number">3</span>
+                    <h2 class="title">ShippingMethod</h2>
+                </div>
+                <div id="checkout-step-shipping-method" class="step a-item" style="display: none;">
+                    <form id="co-shipping-method-form" action="">
+                        <div id="checkout-shipping-method-load">
+                            @*shipping methods content will be loaded here*@
+
+
+                            <div class="checkout-data">
+                                <div class="section shipping-method">
+
+                                    <ul class="method-list">
+                                        <li>
+                                            <div class="method-name">
+                                                <input id="shippingoption_0" type="radio" name="shippingoption" value="Ground___Shipping.FixedRate" checked="checked">
+                                                <label for="shippingoption_0">Ground ($0.00)</label>
+                                            </div>
+                                            <div class="method-description">
+                                                Compared to other shipping methods, ground shipping is carried out closer to the earth
+                                            </div>
+                                        </li>
+                                        <li>
+                                            <div class="method-name">
+                                                <input id="shippingoption_1" type="radio" name="shippingoption" value="Next Day Air___Shipping.FixedRate">
+                                                <label for="shippingoption_1">Next Day Air ($0.00)</label>
+                                            </div>
+                                            <div class="method-description">
+                                                The one day air shipping
+                                            </div>
+                                        </li>
+                                        <li>
+                                            <div class="method-name">
+                                                <input id="shippingoption_2" type="radio" name="shippingoption" value="2nd Day Air___Shipping.FixedRate">
+                                                <label for="shippingoption_2">2nd Day Air ($0.00)</label>
+                                            </div>
+                                            <div class="method-description">
+                                                The two day air shipping
+                                            </div>
+                                        </li>
+                                    </ul>
+
+                                </div>
+                            </div>
+
+
+
+
+
+                        </div>
+                        <script type="text/javascript">
+                                ShippingMethod.init('#co-shipping-method-form', '@(storeLocation)checkout/OpcSaveShippingMethod/');
+                        </script>
+                        <div class="buttons" id="shipping-method-buttons-container">
+                            <p class="back-link">
+                                <a href="#" onclick="Checkout.back(); return false;"><small>&laquo; </small>Back</a>
+                            </p>
+                            <input type="button" class="button-1 shipping-method-next-step-button" onclick="ShippingMethod.save()" value="Continue" />
+                            <span id="shipping-method-please-wait" class="please-wait" style="display: none;">Loading next step</span>
+                        </div>
+                    </form>
+                </div>
+            </li>
+            @*}*@
+            <li id="opc-payment_method" class="tab-section">
+                <div class="step-title">
+                    <span class="number">4</span>
+                    <h2 class="title">Payment method</h2>
+                </div>
+                <div id="checkout-step-payment-method" class="step a-item" style="display: none;">
+                    <form action="" id="co-payment-method-form">
+                        <div id="checkout-payment-method-load">
+                            @*payment methods content will be loaded here*@
+
+                            <div class="checkout-data">
+
+                                <div class="section payment-method">
+                                    <ul class="method-list">
+                                        <li>
+                                            <div class="method-name">
+                                                <div class="payment-logo">
+                                                    <label for="paymentmethod_0">
+                                                        <img src="http://test-nop.uteam-dev.com/plugins/Payments.CheckMoneyOrder/logo.jpg" alt="Check / Money Order">
+                                                    </label>
+                                                </div>
+                                                <div class="payment-details">
+                                                    <input id="paymentmethod_0" type="radio" name="paymentmethod" value="Payments.CheckMoneyOrder" checked="checked">
+                                                    <label for="paymentmethod_0">Check / Money Order</label>
+                                                </div>
+                                            </div>
+                                        </li>
+                                        <li>
+                                            <div class="method-name">
+                                                <div class="payment-logo">
+                                                    <label for="paymentmethod_1">
+                                                        <img src="http://test-nop.uteam-dev.com/plugins/Payments.Manual/logo.jpg" alt="Credit Card">
+                                                    </label>
+                                                </div>
+                                                <div class="payment-details">
+                                                    <input id="paymentmethod_1" type="radio" name="paymentmethod" value="Payments.Manual">
+                                                    <label for="paymentmethod_1">Credit Card</label>
+                                                </div>
+                                            </div>
+                                        </li>
+                                        <li>
+                                            <div class="method-name">
+                                                <div class="payment-logo">
+                                                    <label for="paymentmethod_2">
+                                                        <img src="http://test-nop.uteam-dev.com/plugins/Payments.PurchaseOrder/logo.jpg" alt="Purchase Order">
+                                                    </label>
+                                                </div>
+                                                <div class="payment-details">
+                                                    <input id="paymentmethod_2" type="radio" name="paymentmethod" value="Payments.PurchaseOrder">
+                                                    <label for="paymentmethod_2">Purchase Order</label>
+                                                </div>
+                                            </div>
+                                        </li>
+                                    </ul>
+                                </div>
+
+                            </div>
+
+
+
+                        </div>
+                    </form>
+                    <script type="text/javascript">
+                        PaymentMethod.init('#co-payment-method-form', '@(storeLocation)checkout/OpcSavePaymentMethod/');
+                    </script>
+                    <div class="buttons" id="payment-method-buttons-container">
+                        <p class="back-link">
+                            <a href="#" onclick="Checkout.back(); return false;"><small>&laquo; </small>Back</a>
+                        </p>
+                        <input type="button" class="button-1 payment-method-next-step-button" onclick="PaymentMethod.save()" value="Continue" />
+                        <span class="please-wait" id="payment-method-please-wait" style="display: none;">Loading next step</span>
+                    </div>
+                </div>
+            </li>
+            <li id="opc-payment_info" class="tab-section">
+                <div class="step-title">
+                    <span class="number">5</span>
+                    <h2 class="title">Payment info</h2>
+                </div>
+                <div id="checkout-step-payment-info" class="step a-item">
+                    <form action="" id="co-payment-info-form">
+                        <div id="checkout-payment-info-load">
+                            @*payment info content will be loaded here*@
+                            <div class="checkout-data">
+
+                                <div class="section payment-info">
+                                    <div class="info">
+
+                                        <table width="100%" cellpadding="0" cellspacing="0">
+                                            <tbody>
+                                                <tr>
+                                                    <td>
+                                                        <p>Mail Personal or Business Check, Cashier's Check or money order to:</p><p><br><b>NOP SOLUTIONS</b> <br><b>your address here,</b> <br><b>New York, NY 10001 </b> <br><b>USA</b></p><p>Notice that if you pay by Personal or Business Check, your order may be held for up to 10 days after we receive your check to allow enough time for the check to clear.  If you want us to ship faster upon receipt of your payment, then we recommend your send a money order or Cashier's check.</p><p>P.S. You can edit this text from admin panel.</p>
+                                                    </td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+
+                                    </div>
+
+                                    <div class="message-error">
+                                        <div class="validation-summary-valid" data-valmsg-summary="true">
+                                            <ul>
+                                                <li style="display:none"></li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </div>
+
+                        </div>
+                    </form>
+                    <script type="text/javascript">
+                        PaymentInfo.init('#co-payment-info-form', '@(storeLocation)checkout/OpcSavePaymentInfo/');
+                    </script>
+                    <div class="buttons" id="payment-info-buttons-container">
+                        <p class="back-link">
+                            <a href="#" onclick="Checkout.back(); return false;"><small>&laquo; </small>Back</a>
+                        </p>
+                        <input type="button" class="button-1 payment-info-next-step-button" onclick="PaymentInfo.save()" value="Continue" />
+                        <span class="please-wait" id="payment-info-please-wait" style="display: none;">LoadingNextStep</span>
+                    </div>
+                </div>
+            </li>
+            <li id="opc-confirm_order" class="tab-section">
+                <div class="step-title">
+                    <span class="number">6</span>
+                    <h2 class="title">Confirm order</h2>
+                </div>
+                <div id="checkout-step-confirm-order" class="step a-item">
+                    <div id="checkout-confirm-order-load">
+                        @*confirm order content will be loaded here*@
+                        <div class="checkout-data">
+
+
+                            <div class="section order-summary">
+
+                                <div class="order-summary-content">
+
+                                    <div class="order-review-data">
+                                        <div class="billing-info-wrap">
+                                            <div class="title">
+                                                <strong>Billing Address</strong>
+                                            </div>
+                                            <div class="info-content">
+                                                <ul class="billing-info">
+                                                    <li class="name">
+                                                        John Smith
+                                                    </li>
+                                                    <li class="email">
+                                                        Email: alex@uteam.co.il
+                                                    </li>
+                                                    <li class="phone">
+                                                        Phone: 12345678
+                                                    </li>
+                                                    <li class="fax">
+                                                        Fax:
+                                                    </li>
+                                                    <li class="company">
+                                                        Nop Solutions Ltd
+                                                    </li>
+                                                    <li class="address1">
+                                                        21 West 52nd Street
+                                                    </li>
+                                                    <li class="city-state-zip">
+                                                        New York                                                            ,
+                                                        New York                            10021
+                                                    </li>
+                                                    <li class="country">
+                                                        United States
+                                                    </li>
+                                                </ul>
+                                                <div class="side-list-wrap">
+                                                    <ul class="side-list">
+                                                        <li class="title">
+                                                            Payment
+                                                        </li>
+                                                        <li class="payment-method">
+                                                            <span class="label">
+                                                                Payment Method:
+                                                            </span>
+                                                            <span class="value">
+                                                                Check / Money Order
+                                                            </span>
+                                                        </li>
+                                                    </ul>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="shipping-info-wrap">
+                                            <div class="title">
+                                                <strong>Shipping Address</strong>
+                                            </div>
+                                            <div class="info-content">
+                                                <ul class="shipping-info">
+                                                    <li class="name">
+                                                        John Smith
+                                                    </li>
+                                                    <li class="email">
+                                                        Email: alex@uteam.co.il
+                                                    </li>
+                                                    <li class="phone">
+                                                        Phone: 12345678
+                                                    </li>
+                                                    <li class="fax">
+                                                        Fax:
+                                                    </li>
+                                                    <li class="company">
+                                                        Nop Solutions Ltd
+                                                    </li>
+                                                    <li class="address1">
+                                                        21 West 52nd Street
+                                                    </li>
+                                                    <li class="city-state-zip">
+                                                        New York                                                                            ,
+                                                        New York                                    10021
+                                                    </li>
+                                                    <li class="country">
+                                                        United States
+                                                    </li>
+                                                </ul>
+                                                <div class="side-list-wrap">
+                                                    <ul class="side-list">
+                                                        <li class="title">
+                                                            Shipping
+                                                        </li>
+                                                        <li class="shipping-method">
+                                                            <span class="label">
+                                                                Shipping Method:
+                                                            </span>
+                                                            <span class="value">
+                                                                Ground
+                                                            </span>
+                                                        </li>
+                                                    </ul>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <form action="/cart" enctype="multipart/form-data" id="shopping-cart-form" method="post">
+                                        <input name="__RequestVerificationToken" type="hidden" value="QwndEwbnYM56-T1UzApNd0rHVuGOkO4YHsE85C-KgP5HKcEq6pTgTOnH6eKndGjUclQsxT1lJulTgvn21c3PeC1x7SaD9F0wGY4FgPeAB9Ue5PrU1z3Ap1LDjDzs3_TY0">       <div class="table-wrapper">
+                                            <table class="cart">
+                                                <colgroup>
+                                                    <col width="1">
+                                                    <col>
+                                                    <col width="1">
+                                                    <col width="1">
+                                                    <col width="1">
+                                                </colgroup>
+                                                <thead>
+                                                    <tr>
+                                                        <th class="product-picture">
+                                                            Image
+                                                        </th>
+                                                        <th class="product">
+                                                            Product(s)
+                                                        </th>
+                                                        <th class="unit-price">
+                                                            Price
+                                                        </th>
+                                                        <th class="quantity">
+                                                            Qty.
+                                                        </th>
+                                                        <th class="subtotal">
+                                                            Total
+                                                        </th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                                    <tr>
+                                                        <td class="product-picture">
+                                                            <a href="/build-your-own-computer"><img alt="Picture of Build your own computer" src="http://test-nop.uteam-dev.com/content/images/thumbs/0000020_build-your-own-computer_80.jpeg" title="Show details for Build your own computer"></a>
+                                                        </td>
+                                                        <td class="product">
+                                                            <a href="/build-your-own-computer" class="product-name">Build your own computer</a>
+                                                            <div class="attributes">
+                                                                Processor: 2.5 GHz Intel Pentium Dual-Core E2200 [+$15.00]<br>RAM: 2 GB<br>HDD: 400 GB [+$100.00]<br>OS: Vista Home [+$50.00]<br>Software: Microsoft Office [+$50.00]
+                                                            </div>
+                                                        </td>
+                                                        <td class="unit-price">
+                                                            <label class="td-title">Price:</label>
+                                                            <span class="product-unit-price">$1,415.00</span>
+                                                        </td>
+                                                        <td class="quantity">
+                                                            <label class="td-title">Qty.:</label>
+                                                            <span class="product-quantity">1</span>
+                                                        </td>
+                                                        <td class="subtotal">
+                                                            <label class="td-title">Total:</label>
+                                                            <span class="product-subtotal">$1,415.00</span>
+                                                        </td>
+                                                    </tr>
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                        <div class="cart-options">
+                                            <div class="selected-checkout-attributes">
+                                                Gift wrapping: No
+                                            </div>
+                                        </div>
+                                        <div class="cart-footer">
+
+                                            <div class="totals">
+                                                <div class="total-info">
+                                                    <table class="cart-total">
+                                                        <tbody>
+                                                            <tr class="order-subtotal">
+                                                                <td class="cart-total-left">
+                                                                    <label>Sub-Total:</label>
+                                                                </td>
+                                                                <td class="cart-total-right">
+                                                                    <span class="value-summary">$1,415.00</span>
+                                                                </td>
+                                                            </tr>
+                                                            <tr class="shipping-cost">
+                                                                <td class="cart-total-left">
+                                                                    <label>Shipping:</label>
+                                                                    <span class="selected-shipping-method">(Ground)</span>
+                                                                </td>
+                                                                <td class="cart-total-right">
+                                                                    <span class="value-summary">$0.00</span>
+                                                                </td>
+                                                            </tr>
+                                                            <tr class="tax-value">
+                                                                <td class="cart-total-left">
+                                                                    <label>Tax:</label>
+                                                                </td>
+                                                                <td class="cart-total-right">
+                                                                    <span class="value-summary">$0.00</span>
+                                                                </td>
+                                                            </tr>
+                                                            <tr class="order-total">
+                                                                <td class="cart-total-left">
+                                                                    <label>Total:</label>
+                                                                </td>
+                                                                <td class="cart-total-right">
+                                                                    <span class="value-summary"><strong>$1,415.00</strong></span>
+                                                                </td>
+                                                            </tr>
+                                                            <tr class="earn-reward-points">
+                                                                <td class="cart-total-left">
+                                                                    <label>You will earn:</label>
+                                                                </td>
+                                                                <td class="cart-total-right">
+                                                                    <span class="value-summary">141 points</span>
+                                                                </td>
+                                                            </tr>
+                                                        </tbody>
+                                                    </table>
+                                                </div>
+
+                                            </div>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                    <script type="text/javascript">
+                        ConfirmOrder.init('@(storeLocation)checkout/OpcConfirmOrder/', '@(storeLocation)checkout/completed/');
+                    </script>
+                    <div class="buttons" id="confirm-order-buttons-container">
+                        <p class="back-link">
+                            <a href="#" onclick="Checkout.back(); return false;"><small>&laquo; </small>Back</a>
+                        </p>
+                        <input type="button" class="button-1 confirm-order-next-step-button" onclick="ConfirmOrder.save()" value="Confirm" />
+                        <span class="please-wait" id="confirm-order-please-wait" style="display: none;">SubmittingOrder</span>
+                    </div>
+                </div>
+            </li>
+        </ol>
+        @*@Html.Widget("opc_content_after")*@
+    </div>
+    <script type="text/javascript">
+        Accordion.init('checkout-steps', '.step-title', true);
+        Accordion.openSection('#opc-billing');
+        Checkout.init('@(storeLocation)cart/');
+        if (Billing.disableBillingAddressCheckoutStep) {
+            Accordion.hideSection('#opc-billing');
+            Billing.save();
+        }
+
+        function CreateOrder() {
+            $.post("/umbraco/api/NopOrdersApi/CreateOrder", function (data) {
+                console.log(data);
+            });
+        }
+
+
+    </script>
+</div>

@@ -12,6 +12,9 @@ namespace Nop.Integration.Umbraco.Customer
             roles = new List<int>() { 3 };
         }
 
+        [JsonProperty("id")]
+        public int Id { get; set; }
+
         [JsonProperty("role_ids")]
         public List<int> roles { get; set; }
 

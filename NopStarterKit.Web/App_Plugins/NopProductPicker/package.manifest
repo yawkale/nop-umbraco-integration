@@ -1,0 +1,24 @@
+{
+    propertyEditors: [
+        {
+		alias: "Nop.ProductPicker",
+		name: "Nop Id",
+		isParameterEditor: true,
+      	"icon": "icon-stop-hand",
+		editor: {
+				view: "~/App_Plugins/NopProductPicker/views/view.html",
+				"valueType": "STRING"
+			},
+        }
+    ]
+    ,
+    javascript: [
+		'~/App_Plugins/NopProductPicker/resources/products.resources.js',
+		'~/App_Plugins/NopProductPicker/js/autocomplete.directive.js',
+        '~/App_Plugins/NopProductPicker/js/productPicker.controller.js',
+    ],
+    css: [
+	"~/App_Plugins/NopProductPicker/css/jquery-ui.css",
+    "~/App_Plugins/NopProductPicker/css/style.css"
+  ]
+}

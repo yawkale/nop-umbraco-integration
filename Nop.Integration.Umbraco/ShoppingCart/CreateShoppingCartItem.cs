@@ -1,9 +1,15 @@
 ﻿using Newtonsoft.Json;
+using System.Collections.Generic;
 
 namespace Nop.Integration.Umbraco.ShoppingCart
 {
     public class CreateShoppingCartItem
-    {
+    {   
+        public CreateShoppingCartItem()
+        {
+            Attributes = new List<ShoppingCartProductAttribute>();
+        }
+
         [JsonProperty("id")]
         public int Id { get; set; }
 
@@ -18,5 +24,8 @@ namespace Nop.Integration.Umbraco.ShoppingCart
 
         [JsonProperty("customer_id")]
         public string CustomerId { get; set; }
+
+        [JsonProperty("product_attributes")]
+        public List<ShoppingCartProductAttribute> Attributes { get; set; }
     }
 }

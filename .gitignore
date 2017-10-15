@@ -241,11 +241,12 @@ ModelManifest.xml
 # FAKE - F# Make
 .fake/
 .vs
-/NopStarterKit.Web/Umbraco_Client
-/NopStarterKit.Web/Umbraco
-/NopStarterKit.Web/Media
-/NopStarterKit.Web/App_Data
-/NopStarterKit.Web/umbraco_client
-/NopStarterKit.Web/umbraco
-/NopStarterKit.Web/Media
+NopStarterKit.Web/App_Data
+NopStarterKit.Web/Umbraco_Client
+NopStarterKit.Web/Umbraco
+NopStarterKit.Web/Media
+NopStarterKit.Web/App_Data
+NopStarterKit.Web/umbraco_client
+NopStarterKit.Web/umbraco
+NopStarterKit.Web/Media
 

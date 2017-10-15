@@ -30,8 +30,8 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="Newtonsoft.Json, Version=9.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
-      <HintPath>..\packages\Newtonsoft.Json.9.0.1\lib\net45\Newtonsoft.Json.dll</HintPath>
+    <Reference Include="Newtonsoft.Json, Version=10.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\packages\Newtonsoft.Json.10.0.2\lib\net45\Newtonsoft.Json.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="System" />
@@ -45,31 +45,39 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Address.cs" />
     <Compile Include="Authorization\Authorization.cs" />
+    <Compile Include="Category\CategoriesRootObject.cs" />
+    <Compile Include="Category\Category.cs" />
+    <Compile Include="Category\PostCategoryObject.cs" />
     <Compile Include="Customer\Customer.cs" />
+    <Compile Include="Products\PostProductObject.cs" />
+    <Compile Include="Search\DataSearchModel.cs" />
+    <Compile Include="Customer\CustomersRootObject.cs" />
     <Compile Include="Image\Image.cs" />
     <Compile Include="Nop\NopApiService.cs" />
-    <Compile Include="Order\OrderRootObject.cs" />
-    <Compile Include="Order\Order.cs" />
-    <Compile Include="Product\Product.cs" />
-    <Compile Include="Product\ProductAttributeMapping.cs" />
-    <Compile Include="Product\ProductAttributeValue.cs" />
-    <Compile Include="Product\ProductRootObject.cs" />
+    <Compile Include="Orders\OrderItem.cs" />
+    <Compile Include="Orders\OrderRootObject.cs" />
+    <Compile Include="Orders\Order.cs" />
+    <Compile Include="Products\Product.cs" />
+    <Compile Include="Products\ProductAttributeMapping.cs" />
+    <Compile Include="Products\ProductAttributeValue.cs" />
+    <Compile Include="Products\ProductRootObject.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ShoppingCart\CreateShoppingCartItem.cs" />
     <Compile Include="ShoppingCart\ShoppingCartItem.cs" />
+    <Compile Include="ShoppingCart\ShoppingCartProductAttribute.cs" />
     <Compile Include="ShoppingCart\ShoppingCartRootObject.cs" />
     <Compile Include="ShoppingCart\UpdateShoppingCartItem.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Commerce.Api.Adapter\Nop.Api.Adapter.csproj">
+    <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Nop.Api.Adapter\Nop.Api.Adapter.csproj">
       <Project>{4610675e-85f6-4608-9c7a-65157397f91e}</Project>
       <Name>Nop.Api.Adapter</Name>
     </ProjectReference>
-  </ItemGroup>
-  <ItemGroup />
-  <ItemGroup>
-    <None Include="packages.config" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

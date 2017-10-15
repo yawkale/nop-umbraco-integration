@@ -1,0 +1,49 @@
+/*.input-limit .counter{
+	-webkit-transition: all 0.8s ease-in-out;
+	-moz-transition: all 0.8s ease-in-out;
+	-ms-transition: all 0.8s ease-in-out;
+	-o-transition: all 0.8s ease-in-out;
+	transition: all 0.8s ease-in-out;
+}
+
+.input-limit .thumb-up,.input-limit .alert,.input-limit .stop-hand{
+	padding: 5px 10px;
+}
+
+.input-limit .thumb-up{
+	background:#4FA23C;
+	color:#fff;
+}
+
+.input-limit .alert{
+	background: #B8860B;
+	color: #fff;
+}
+
+.input-limit .stop-hand{
+	color: #fff;
+	background: #DD793F;
+}*/
+
+.ui-autocomplete {
+    z-index: 9999 !important
+}
+
+.ui-menu-item {
+    cursor: pointer;
+    padding: 5px !important;
+    border-bottom: solid 1px lightgray !important;
+}
+
+#autocomplete-block input{
+    min-width: 56.6%;
+}
+
+.btn.btn-primary {
+    padding-top: 3px !important;
+    padding-bottom: 3px !important;
+}
+
+.on-create-hover {
+      box-shadow: inset 0 0 10px #FFA500;
+}

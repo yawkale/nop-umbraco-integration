@@ -1,0 +1,9 @@
+{
+  "javascript": [
+    "~/App_Plugins/Global/js/createNopItem.controller.js",
+	"~/App_Plugins/Global/js/updateNopItem.controller.js"
+  ],
+    css: [
+	"~/App_Plugins/Global/css/style.css"
+  ]
+}

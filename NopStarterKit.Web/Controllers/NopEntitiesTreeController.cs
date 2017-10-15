@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Net.Http.Formatting;
-using System.Web;
-using System.Web.Mvc;
-using umbraco.BusinessLogic.Actions;
+﻿using System.Net.Http.Formatting;
 using Umbraco.Web.Models.Trees;
 using Umbraco.Web.Mvc;
 using Umbraco.Web.Trees;
@@ -25,7 +19,7 @@ namespace NopStarterKit.Web.Controllers
         protected override TreeNodeCollection GetTreeNodes(string id, FormDataCollection queryStrings)
         {
             TreeNodeCollection nodes = new TreeNodeCollection();
-
+            
             if (id == "-1")
             {
                 nodes.Add(CreateTreeNode("products", id, queryStrings, "Products", "icon-book", "nopdashboard/entities/products/all"));

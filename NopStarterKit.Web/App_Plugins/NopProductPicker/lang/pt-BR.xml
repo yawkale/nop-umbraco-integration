@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<language alias="pt_br" intName="Portuguese Brazil" localName="Portuguese Brazil" lcid="" culture="pt-BR">
+  <creator>
+    <name>Carlos Casalicchio</name>
+    <link>http://www.ccasalicchio.com</link>
+  </creator>
+  <area alias="inputlimit">
+    <key alias="youhave">Você tem</key>
+    <key alias="charleft">caracteres sobrando</key>
+    <key alias="limitReachedOnly">Somente</key>
+    <key alias="limitReachedAllowed">caracteres permitidos!</key>
+  </area>
+</language>

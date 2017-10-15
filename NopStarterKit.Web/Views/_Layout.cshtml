@@ -166,7 +166,8 @@
     </div>
 
     <script type="text/javascript">
-        AjaxCart.init(false, '.header-links .cart-qty', '.header-links .wishlist-qty', '#flyout-cart');
+        AjaxCart.init(false, '.header-links .cart-qty', '.header-links .wishlist-qty', '#flyout-cart', "/umbraco/surface/NopShoppingCard/RenderMiniCartViewToString");
+        
     </script>
     @Html.Partial("TopNavigation")
     <div class="master-wrapper-content">

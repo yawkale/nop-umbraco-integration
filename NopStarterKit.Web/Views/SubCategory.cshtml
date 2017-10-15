@@ -1,10 +1,20 @@
-﻿@inherits Umbraco.Web.Mvc.UmbracoTemplatePage
+﻿@inherits UmbracoTemplatePage
+@using PagedList
+@using PagedList.Mvc
 @using NopStarterKit.Web.Helpers
 @using Nop.Integration.Umbraco.Nop
+
+
 @{
     Layout = "_Layout.cshtml";
-    var root = Model.Content.AncestorOrSelf(1);
-    var products = root.Descendants("productsOverview").FirstOrDefault().Children().Where(x => x.IsVisible());
+
+
+    int page;
+
+    if (!int.TryParse(Request["page"], out page))
+    {
+        page = 1;
+    }
 
     var pageSize = 6;
 
@@ -13,24 +23,72 @@
     {
         pageSize = pageSelect;
     }
+
+    var root = Model.Content.AncestorOrSelf(1);
+    var categories = root.Descendants("categoryOverview").FirstOrDefault().Children().Where(x => x.IsVisible());
+    var products = root.Descendants("productsOverview").FirstOrDefault().Children().OrderBy(x => x.CreateDate);
+
+    var list = products.Where(x => x.GetPropertyValue<IEnumerable<IPublishedContent>>("category").Any(y => y.Parent.Id == Model.Content.Id || y.Id == Model.Content.Id));
+
+    var totalPages = (int)Math.Ceiling((double)list.Count() / (double)pageSize);
+
+    if (page > totalPages)
+    {
+        page = totalPages;
+    }
+
+    else if (page < 1)
+    {
+        page = 1;
+    }
+
+    var currentlist = list.Skip((page - 1) * pageSize).Take(pageSize);
     var _nopService = new NopApiService();
- 
 }
 
+
 <div class="master-column-wrapper">
- @Html.Partial("Categories")
+    @Html.Partial("Categories")
     <div class="center-2">
         <div class="page category-page">
             <div class="page-title">
                 <h1>@Model.Content.GetPropertyValue("pageTitle", Model.Content.Name)</h1>
             </div>
             <div class="page-body">
+                @if (Model.Content.Children().Any())
+                {
+                    <div class="category-grid sub-category-grid">
+                        <div class="item-grid">
+                            @foreach (var subCategory in Model.Content.Children().Where(x => x.IsVisible()))
+                            {
+                                var title = subCategory.GetPropertyValue("pageTitle", subCategory.Name);
+                                <div class="item-box">
+                                    <div class="sub-category-item">
+                                        <h2 class="title">
+                                            <a href="@subCategory.Url" title="@title">
+                                                @subCategory.Name
+                                            </a>
+                                        </h2>
+                                        @if (subCategory.HasValue("image"))
+                                        {
+                                            var image = Umbraco.TypedMedia(subCategory.GetPropertyValue<int>("image"));
+                                            <div class="picture">
+                                                <a href="@subCategory.Url" title="@title">
+                                                    <img alt="@title" src="@image.Url" title="@title" />
+                                                </a>
+                                            </div>
+                                        }
+                                    </div>
+                                </div>
+                            }
+                        </div>
+                    </div>
+                }
                 <div class="product-selectors">
-
                     <div class="product-viewmode">
                         <span>View as</span>
-                        <a class="viewmode-icon grid selected" href="http://test-nop.uteam-dev.com/desktops?viewmode=grid" title="Grid">Grid</a>
-                        <a class="viewmode-icon list " href="http://test-nop.uteam-dev.com/desktops?viewmode=list" title="List">List</a>
+                        <a class="viewmode-icon grid selected" href="@(Model.Content.Url)?viewmode=grid" title="Grid">Grid</a>
+                        <a class="viewmode-icon list " href="@(Model.Content.Url)?viewmode=list" title="List">List</a>
                     </div>
                     <div class="product-sorting">
                         <span>Sort by</span>
@@ -53,17 +111,17 @@
                         <span>per page</span>
                     </div>
                 </div>
-                <div class="product-grid">
-                    <div class="item-grid">
-                        @foreach (var product in products)
-                        {
-                            var nopId = Convert.ToInt32(product.GetPropertyValue("nopId"));
-                            var prod = _nopService.GetProduct(nopId);
-                            var category = product.GetPropertyValue<IEnumerable<IPublishedContent>>("category").Where(x => x.Id == Model.Content.Id);
-                            if (category.Any())
+
+                @if (currentlist.Any())
+                {
+                    <div class="product-grid">
+                        <div class="item-grid">
+                            @foreach (var product in currentlist)
                             {
+                                var nopId = Convert.ToInt32(product.GetPropertyValue("nopId"));
+                                var prod = _nopService.GetProduct(nopId);
                                 <div class="item-box">
-                                    <div class="product-item" data-productid="1">
+                                    <div class="product-item" data-productid="@prod.Id">
                                         @if (product.HasValue("productImage"))
                                         {
                                             var imagesList = product.GetPropertyValue<IEnumerable<IPublishedContent>>("productImage");
@@ -78,7 +136,7 @@
                                                 <a href="@product.Url">@product.Name</a>
                                             </h2>
                                             <div class="description">
-                                                Build it
+                                                @product.GetPropertyValue("description")
                                             </div>
                                             <div class="add-info">
                                                 <div class="prices">
@@ -86,23 +144,55 @@
                                                 </div>
                                                 <div class="buttons">
                                                     <input type="button" value="Add to cart" class="button-2 product-box-add-to-cart-button" onclick="addProductToCart('@nopId','@product.Url','@prod.Redirect.ToString()'); return false;" />
-                                                    @*<input type="button" value="Add to compare list" title="Add to compare list" class="button-2 add-to-compare-list-button" onclick="AjaxCart.addproducttocomparelist('/compareproducts/add/1');return false;" />
-                                                    <input type="button" value="Add to wishlist" title="Add to wishlist" class="button-2 add-to-wishlist-button" onclick="AjaxCart.addproducttocart_catalog('/addproducttocart/catalog/1/2/1');return false;" />*@
+                                                    @*<input type="button" value="Add to compare list" title="Add to compare list" class="button-2 add-to-compare-list-button" onclick="AjaxCart.addproducttocomparelist('/compareproducts/add/10');return false;" />
+                                                        <input type="button" value="Add to wishlist" title="Add to wishlist" class="button-2 add-to-wishlist-button" onclick="AjaxCart.addproducttocart_catalog('/addproducttocart/catalog/10/2/1');return false;" />*@
                                                 </div>
-
                                             </div>
                                         </div>
                                     </div>
                                 </div>
                             }
-                        }
+                        </div>
                     </div>
-                </div>
+                    if (totalPages > 1)
+                    {
+
+                        var list2 = new StaticPagedList<IPublishedContent>(currentlist, page, pageSize, list.Count());
+
+                        @Html.PagedListPager(list2, nextPage => Request.Path + "?page=" + nextPage + "&pagesize=" + pageSize,
+                                                    new PagedListRenderOptions()
+                                                    {
+                                                        ContainerDivClasses = new[] { "pager" },
+                                                        UlElementClasses = new[] { "paging-list" },
+                                                        DisplayLinkToPreviousPage = PagedListDisplayMode.IfNeeded,
+                                                        DisplayLinkToNextPage = PagedListDisplayMode.IfNeeded,
+                                                        MaximumPageNumbersToDisplay = 5,
+                                                        LinkToPreviousPageFormat = "Previous",
+                                                        LinkToNextPageFormat = "Next",
+                                                        DisplayLinkToFirstPage = PagedListDisplayMode.IfNeeded,
+                                                        DisplayLinkToLastPage = PagedListDisplayMode.IfNeeded,
+                                                        LinkToFirstPageFormat = "{0}",
+                                                        LinkToLastPageFormat = "{0}"
+
+                                                    })
+
+
+                    }
+                }
+                else
+                {
+                    <div>
+                        NoItems
+                    </div>
+                }
+
+                @*<div class="pager">
+                        <ul><li class="current-page"><span>1</span></li><li class="individual-page"><a href="/computers?pagenumber=2">2</a></li><li class="next-page"><a href="/computers?pagenumber=2">Next</a></li></ul>
+                    </div>*@
             </div>
         </div>
     </div>
 </div>
-
 <script>
     function addProductToCart(nopId, url, isRedirect) {
         if (isRedirect == "True") {
@@ -111,6 +201,10 @@
         }
         AjaxCart.addproducttocart_details('/umbraco/surface/NopShoppingCard/AddToShoppingCart?productId=' + nopId + '&quantity=' + 1, '#product-details-form')
     }
+
+    $(document).ready(function () {
+        $@*.get('/umbraco/surface/NopProduct/GetProductPrice?id=' + '@Model.Content.GetPropertyValue("nopId")').done(function (response) {
+            $('.product-price span').html('$' + response.slice(0, -2))
+        })*@
+    })
 </script>
-
-

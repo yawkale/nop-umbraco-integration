@@ -27,7 +27,6 @@
     <li>
         @using (Html.BeginUmbracoForm<UmbLoginStatusController>("HandleLogout"))
         {
-            <legend>Logout</legend>
             <button class="ico-logout btn">Logout</button>
 
             @Html.HiddenFor(m => logoutModel.RedirectUrl)

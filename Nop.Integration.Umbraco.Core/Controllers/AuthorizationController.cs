@@ -19,10 +19,10 @@ namespace Nop.Integration.Umbraco.Core.Controllers
             {
                 try
                 {
-                    string clientId = AccessProvider.ClientId;
-                    string clientSecret = AccessProvider.ClientSecret;
-                    string serverUrl = AccessProvider.ServerUrl;
-                    string redirectUrl = AccessProvider.RedirectUrl;
+                    var clientId = AccessProvider.ClientId;
+                    var clientSecret = AccessProvider.ClientSecret;
+                    var serverUrl = AccessProvider.ServerUrl;
+                    var redirectUrl = AccessProvider.RedirectUrl;
 
                     var authParameters = new AuthParameters()
                     {
@@ -36,7 +36,7 @@ namespace Nop.Integration.Umbraco.Core.Controllers
 
                     var nopAuthorizationManager = new AuthorizationManager();
 
-                    string responseJson = nopAuthorizationManager.GetAuthorizationData(authParameters);
+                    var responseJson = nopAuthorizationManager.GetAuthorizationData(authParameters);
 
                     var authorizationModel = JsonConvert.DeserializeObject<Authorization.Authorization>(responseJson);
 
@@ -44,7 +44,7 @@ namespace Nop.Integration.Umbraco.Core.Controllers
                 }
                 catch (Exception e)
                 {
-                    throw new Exception("error");
+                    throw new Exception("Get access token error",e);
                 }
             }
         }

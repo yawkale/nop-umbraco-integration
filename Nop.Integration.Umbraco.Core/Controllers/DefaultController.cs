@@ -5,6 +5,7 @@ using System.Web.Mvc;
 using Nop.Integration.Umbraco.Core.Services;
 using Nop.Integration.Umbraco.Nop;
 using Umbraco.Core.Models;
+using Umbraco.Web;
 using Umbraco.Web.Models;
 using Umbraco.Web.Mvc;
 
@@ -15,7 +16,7 @@ namespace Nop.Integration.Umbraco.Core.Controllers
         private readonly NopApiService _nopService;
         private readonly UserContext _userContext;
         private const string CustomerType = "NopCustomerType";
-        private const string CustomerId = "NopCustomerId";
+      
 
         public DefaultController()
         {
@@ -52,25 +53,26 @@ namespace Nop.Integration.Umbraco.Core.Controllers
                 Email = "temp@temp.temp"
             };
 
-            var cust = _nopService.CreateCustomer(customer);
+            var customerId = _nopService.CreateCustomer(customer);
 
-            Response.Cookies.Add(new HttpCookie(CustomerId) { Value = cust });
+            _userContext.SetCustomerId(int.Parse( customerId));
+           
         }
 
 
         public void SetCurrentMemberNopId(IPublishedContent member)
         {
-            var nopCustomerId = member.GetProperty("nopCustomerId")?.Value.ToString();
+            var nopCustomerId = Convert.ToInt32( member.GetPropertyValue("nopCustomerId"));
 
-            if (string.IsNullOrEmpty(nopCustomerId))
+            if (nopCustomerId==0)
             {
                 CreateNopCustomer(member);
             }
             else
             {
-                Response.Cookies.Add(new HttpCookie(CustomerId) { Value = nopCustomerId });
+                _userContext.SetCustomerId(nopCustomerId);
+               
             }
-
         }
 
         public void CreateNopCustomer(IPublishedContent member)

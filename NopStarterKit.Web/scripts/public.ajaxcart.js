@@ -10,12 +10,31 @@ var AjaxCart = {
     topwishlistselector: '',
     flyoutcartselector: '',
 
-    init: function (usepopupnotifications, topcartselector, topwishlistselector, flyoutcartselector) {
+    init: function (usepopupnotifications, topcartselector, topwishlistselector, flyoutcartselector, renderMiniShopCartUrl) {
         this.loadWaiting = false;
         this.usepopupnotifications = usepopupnotifications;
         this.topcartselector = topcartselector;
         this.topwishlistselector = topwishlistselector;
         this.flyoutcartselector = flyoutcartselector;
+        this.miniShoppingCartInit(renderMiniShopCartUrl);
+    },
+
+    miniShoppingCartInit: function(urladd) {
+        $.ajax({
+            url: urladd,
+            type: 'get',
+            success: function (response) {
+                if (response.updatetopcartsectionhtml) {
+                    $(AjaxCart.topcartselector).html(response.updatetopcartsectionhtml);
+                }
+                if (response.updatetopwishlistsectionhtml) {
+                    $(AjaxCart.topwishlistselector).html(response.updatetopwishlistsectionhtml);
+                }
+                if (response.updateflyoutcartsectionhtml) {
+                    $(AjaxCart.flyoutcartselector).replaceWith(response.updateflyoutcartsectionhtml);
+                }
+            },
+        });
     },
 
     setLoadWaiting: function (display) {

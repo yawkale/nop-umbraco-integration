@@ -1,7 +1,16 @@
 
 
 /*********** CSS RESET **********/
+.checkout-data h2 {
+    margin: 0;
+}
+.checkout-data label {
+    font-weight: normal
+}
 
+.checkout-page input[type="checkbox"] {
+    margin: 0;
+}
 
 * {
 	margin: 0;
@@ -23,6 +32,14 @@ ol, ul {
 }
 a img {
 	border: none;
+}
+
+.checkout-page label {
+    margin: 0;
+}
+
+#checkout-shipping-load .checkout-data .pickup-in-store label {
+    font-weight: bold;
 }
 
 a:active {

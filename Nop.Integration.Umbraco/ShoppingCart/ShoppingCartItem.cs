@@ -20,6 +20,6 @@ namespace Nop.Integration.Umbraco.ShoppingCart
         public int CustomerId { get; set; }
 
         [JsonProperty("product")]
-        public Product.Product Product { get; set; }
+        public Products.Product Product { get; set; }
     }
 }

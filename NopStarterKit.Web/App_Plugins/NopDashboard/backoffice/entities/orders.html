@@ -10,26 +10,27 @@
             <table class="table table-striped warranty-table">
                 <thead>
                     <tr>
-                        <td><span>Order Total</span></td>
+                        <td><span>Id</span></td>
                         <td><span>Paid Date</span></td>
+                        <td><span>Order Total</span></td>
                         <td><span>Payment Status</span></td>
                         <td><span>Customer</span></td>
                     </tr>
                 </thead>
                 <tbody>
                     <tr ng-repeat="order in viewData">
-                        <td ng-bind="order.order_total"></td>
+                        <td ng-bind='order.id'></td>
                         <td ng-bind="order.paid_date_utc | date:'MM/dd/yyyy'"></td>
+                        <td ng-bind='order.order_total | currency:"$"'></td>
                         <td ng-bind="order.payment_status"></td>
-                        <td>{{order.Customer.first_name + ' ' + order.Customer.last_name}}</td>
+                        <td>{{order.customer.first_name + ' ' + order.customer.last_name}}</td>
                     </tr>
                 </tbody>
                 <tfoot ng-show="pagination.length > 1">
                     <tr>
-                        <th colspan="4">
-                            <div class="pull-left">
-                            </div>
-                            <div class="pagination pagination-right">
+                        <th colspan="5">
+                           
+                            <div class="pagination text-center">
                                 <ul>
                                     <li ng-class="{disabled:options.pageNumber <= 1}">
                                         <a href="#" ng-click="prev(); resetChanges()" prevent-default>

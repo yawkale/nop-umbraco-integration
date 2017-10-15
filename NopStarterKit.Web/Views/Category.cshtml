@@ -87,18 +87,18 @@
                 <div class="product-selectors">
                     <div class="product-viewmode">
                         <span>View as</span>
-                        <a class="viewmode-icon grid selected" href="http://test-nop.uteam-dev.com/computers?viewmode=grid" title="Grid">Grid</a>
-                        <a class="viewmode-icon list " href="http://test-nop.uteam-dev.com/computers?viewmode=list" title="List">List</a>
+                        <a class="viewmode-icon grid selected" href="@(Model.Content.Url)?viewmode=grid" title="Grid">Grid</a>
+                        <a class="viewmode-icon list " href="@(Model.Content.Url)?viewmode=list" title="List">List</a>
                     </div>
                     <div class="product-sorting">
                         <span>Sort by</span>
                         <select id="products-orderby" name="products-orderby" onchange="setLocation(this.value);">
-                            <option selected="selected" value="http://test-nop.uteam-dev.com/computers?orderby=0">Position</option>
-                            <option value="http://test-nop.uteam-dev.com/computers?orderby=5">Name: A to Z</option>
-                            <option value="http://test-nop.uteam-dev.com/computers?orderby=6">Name: Z to A</option>
-                            <option value="http://test-nop.uteam-dev.com/computers?orderby=10">Price: Low to High</option>
-                            <option value="http://test-nop.uteam-dev.com/computers?orderby=11">Price: High to Low</option>
-                            <option value="http://test-nop.uteam-dev.com/computers?orderby=15">Created on</option>
+                            <option selected="selected" value="@(Model.Content.Url)?orderby=0">Position</option>
+                            <option value="@(Model.Content.Url)?orderby=5">Name: A to Z</option>
+                            <option value="@(Model.Content.Url)?orderby=6">Name: Z to A</option>
+                            <option value="@(Model.Content.Url)?orderby=10">Price: Low to High</option>
+                            <option value="@(Model.Content.Url)?orderby=11">Price: High to Low</option>
+                            <option value="@(Model.Content.Url)?orderby=15">Created on</option>
                         </select>
                     </div>
                     <div class="product-page-size">
@@ -121,7 +121,7 @@
                                 var nopId = Convert.ToInt32(product.GetPropertyValue("nopId"));
                                 var prod = _nopService.GetProduct(nopId);
                                 <div class="item-box">
-                                    <div class="product-item" data-productid="10">
+                                    <div class="product-item" data-productid="@prod.Id">
                                         @if (product.HasValue("productImage"))
                                         {
                                             var imagesList = product.GetPropertyValue<IEnumerable<IPublishedContent>>("productImage");

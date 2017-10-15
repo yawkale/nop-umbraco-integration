@@ -5,11 +5,11 @@ VisualStudioVersion = 14.0.25420.1
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NopStarterKit.Web", "NopStarterKit.Web\NopStarterKit.Web.csproj", "{F5754F95-5A38-4B25-AA54-84DEEEE75BDC}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Nop.Api.Adapter", "Commerce.Api.Adapter\Nop.Api.Adapter.csproj", "{4610675E-85F6-4608-9C7A-65157397F91E}"
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Nop.Integration.Umbraco", "Nop.Integration.Umbraco\Nop.Integration.Umbraco.csproj", "{54A9A9A8-F592-41A3-8CD2-ABB28CDC4730}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Nop.Integration.Umbraco.Core", "Nop.Integration.Umbraco.Core\Nop.Integration.Umbraco.Core.csproj", "{2B954321-DDA1-45E4-A87E-93D5A77AB96E}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Nop.Api.Adapter", "Nop.Api.Adapter\Nop.Api.Adapter.csproj", "{4610675E-85F6-4608-9C7A-65157397F91E}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -21,10 +21,6 @@ Global
 		{F5754F95-5A38-4B25-AA54-84DEEEE75BDC}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{F5754F95-5A38-4B25-AA54-84DEEEE75BDC}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{F5754F95-5A38-4B25-AA54-84DEEEE75BDC}.Release|Any CPU.Build.0 = Release|Any CPU
-		{4610675E-85F6-4608-9C7A-65157397F91E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{4610675E-85F6-4608-9C7A-65157397F91E}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{4610675E-85F6-4608-9C7A-65157397F91E}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{4610675E-85F6-4608-9C7A-65157397F91E}.Release|Any CPU.Build.0 = Release|Any CPU
 		{54A9A9A8-F592-41A3-8CD2-ABB28CDC4730}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{54A9A9A8-F592-41A3-8CD2-ABB28CDC4730}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{54A9A9A8-F592-41A3-8CD2-ABB28CDC4730}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -33,6 +29,10 @@ Global
 		{2B954321-DDA1-45E4-A87E-93D5A77AB96E}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{2B954321-DDA1-45E4-A87E-93D5A77AB96E}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{2B954321-DDA1-45E4-A87E-93D5A77AB96E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4610675E-85F6-4608-9C7A-65157397F91E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4610675E-85F6-4608-9C7A-65157397F91E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4610675E-85F6-4608-9C7A-65157397F91E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4610675E-85F6-4608-9C7A-65157397F91E}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

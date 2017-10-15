@@ -6,14 +6,16 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using Nop.Integration.Umbraco.Order;
-using Nop.Integration.Umbraco.Product;
 using Nop.Integration.Umbraco.ShoppingCart;
+using Nop.Integration.Umbraco.Category;
+using Nop.Integration.Umbraco.Orders;
+using Nop.Integration.Umbraco.Products;
 
 namespace Nop.Integration.Umbraco.Nop
 {
     public interface INopApiService
     {
-        Product.Product GetProduct(int id);
+        Products.Product GetProduct(int id);
 
         decimal GetProductPrice(int id);
 
@@ -28,6 +30,17 @@ namespace Nop.Integration.Umbraco.Nop
         void RemoveShoppingCartItem(int shoppingCartItemId);
 
         string UpdateCustomer(Customer.Customer customer, string id);
+
+        List<Orders.Order> GetAllOrders();
+        Orders.Order CreateOrder(Orders.Order order);
+
+        string CreateProduct(PostProductObject prod);
+
+        string CreateCategory(PostCategoryObject product);
+
+        string UpdateCategory(PostCategoryObject category);
+
+        void UpdateProduct(PostProductObject product);
     }
 
     public class NopApiService : INopApiService
@@ -39,22 +52,51 @@ namespace Nop.Integration.Umbraco.Nop
            _nopApiClient = new ApiClient();
         }
 
-        public Product.Product GetProduct(int id)
+        public Products.Product GetProduct(int id)
         {
+            if (id == 0)
+            {
+                throw  new ArgumentNullException(nameof(id),"id must be greater that 0");
+            }
             string jsonUrl = $"/api/products/{id}?fields=id,name,price,category_id,images,attributes,order_minimum_quantity,is_gift_card,is_download,customer_enters_price,is_rental,has_tier_prices";
 
-            object productData = _nopApiClient.Get(jsonUrl);
+            var productData = _nopApiClient.Get(jsonUrl);
 
             var product = JsonConvert.DeserializeObject<ProductRootObject>(productData.ToString())?.Products.FirstOrDefault();
 
-            product.Attributes = product.Attributes ?? new List<ProductAttributeMapping>();
+            if (product == null)
+            {
+                throw new Exception($"Product not found {id}");
+            }
+            else
+            {
+                product.Attributes = product.Attributes ?? new List<ProductAttributeMapping>();
 
-            return product;
+                return product;
+            }
         }
 
-        public List<Product.Product> GetAllProducts()
+        public string CreateProduct(PostProductObject product)
         {
-            string jsonUrl = $"/api/products?fields=id,name,price,category_id,images,attributes,order_minimum_quantity,is_gift_card,is_download,customer_enters_price,is_rental,has_tier_prices";
+            string jsonCustomer = JsonConvert.SerializeObject(new
+            {
+                product = product
+            });
+
+            string jsonUrl = $"/api/products";
+
+            object productData = _nopApiClient.Post(jsonUrl, jsonCustomer);
+
+            var jo = JObject.Parse(productData.ToString());
+
+            var data = jo["products"][0]["id"].ToString();
+
+            return data;
+        }
+
+        public List<Products.Product> GetAllProducts()
+        {
+            string jsonUrl = $"/api/products?limit=250&fields=id,name,price,category_id,images,attributes,sku,order_minimum_quantity,is_gift_card,is_download,customer_enters_price,is_rental,has_tier_prices";
 
             object productData = _nopApiClient.Get(jsonUrl);
 
@@ -63,7 +105,67 @@ namespace Nop.Integration.Umbraco.Nop
             return products;
         }
 
-        public List<Order.Order> GetAllOrders()
+        public CategoriesRootObject GetCategories()
+        {
+            string jsonUrl = $"/api/categories?fields=id,name";
+
+            object categoriesData = _nopApiClient.Get(jsonUrl);
+
+            var categories = JsonConvert.DeserializeObject<CategoriesRootObject>(categoriesData.ToString());
+
+            return categories;
+        }
+
+        public string CreateCategory(PostCategoryObject category)
+        {
+            string jsonCategory = JsonConvert.SerializeObject(new
+            {
+                category = category
+            });
+
+            string jsonUrl = $"/api/categories";
+
+            object categoryData = _nopApiClient.Post(jsonUrl, jsonCategory);
+
+            var jo = JObject.Parse(categoryData.ToString());
+
+            var data = jo["categories"][0]["id"].ToString();
+
+            return data;
+        }
+
+        public string UpdateCategory(PostCategoryObject category)
+        {
+            string jsonCategory = JsonConvert.SerializeObject(new
+            {
+                category = category
+            });
+
+            string jsonUrl = $"/api/categories/{category.Id}";
+
+            object categoryData = _nopApiClient.Put(jsonUrl, jsonCategory);
+
+            var jo = JObject.Parse(categoryData.ToString());
+
+            var data = jo["categories"][0]["id"].ToString();
+
+            return data;
+        }
+
+        public void UpdateProduct(PostProductObject product)
+        {
+            string jsonProduct = JsonConvert.SerializeObject(new
+            {
+                product = product
+            });
+
+            string jsonUrl = $"/api/products/{product.Id}";
+
+            _nopApiClient.Put(jsonUrl, jsonProduct);
+        }
+
+        #region OrderService
+        public List<Orders.Order> GetAllOrders()
         {
             string jsonUrl = $"/api/orders?fields=id,order_total,paid_date_utc,payment_status,customer";
 
@@ -72,6 +174,33 @@ namespace Nop.Integration.Umbraco.Nop
             var orders = JsonConvert.DeserializeObject<OrdersRootObject>(productData.ToString())?.Orders;
 
             return orders;
+        }
+
+        public Orders.Order CreateOrder(Orders.Order order)
+        {
+            string jsonUrl = "api/orders";
+
+            string jsonOrder = JsonConvert.SerializeObject(new
+            {
+                order = order
+            });
+            object orderData = _nopApiClient.Post(jsonUrl, jsonOrder);
+            var newOrder = JsonConvert.DeserializeObject<Orders.Order>(orderData.ToString());
+            return newOrder;
+        }
+
+        #endregion
+
+
+        public CustomersRootObject GetCustomers()
+        {
+            string jsonUrl = $"/api/customers?fields=first_name,last_name,id,email";
+
+            object response = _nopApiClient.Get(jsonUrl);
+
+            var customers = JsonConvert.DeserializeObject<CustomersRootObject>(response.ToString());
+
+            return customers;
         }
 
         public decimal GetProductPrice(int id)
@@ -177,5 +306,17 @@ namespace Nop.Integration.Umbraco.Nop
 
             _nopApiClient.Delete(jsonUrl);
         }
+
+        //private string SearchCategoryByName(string name)
+        //{
+        //    string jsonUrl = $"/api/categories/search";
+
+        //    object categoriesData =_nopApiClient.Get(jsonUrl);
+
+        //    var categories = JsonConvert.DeserializeObject<CategoriesRootObject>(categoriesData.ToString());
+        //    var jo = JObject.Parse(categoriesData.ToString());
+
+        //    return "sas";
+        //}
     }
 }

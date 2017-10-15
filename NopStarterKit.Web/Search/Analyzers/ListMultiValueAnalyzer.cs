@@ -1,5 +1,4 @@
 using Lucene.Net.Analysis;
-using Lucene.Net.Analysis.Standard;
 using NopStarterKit.Web.Search.Tokenizers;
 
 namespace NopStarterKit.Web.Search.Analyzers

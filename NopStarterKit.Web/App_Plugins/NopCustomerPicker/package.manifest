@@ -1,0 +1,24 @@
+{
+    propertyEditors: [
+        {
+		alias: "Nop.CustomerPicker",
+		name: "Nop Customer Id",
+		isParameterEditor: true,
+      	"icon": "icon-stop-hand",
+		editor: {
+				view: "~/App_Plugins/NopCustomerPicker/views/view.html",
+				"valueType": "STRING"
+			},
+        }
+    ]
+    ,
+    javascript: [
+		"~/App_Plugins/NopCustomerPicker/resources/customer.resources.js",
+		'~/App_Plugins/NopCustomerPicker/js/autocomplete.directive.js',
+        '~/App_Plugins/NopCustomerPicker/js/customerPicker.controller.js',
+    ],
+    css: [
+	"~/App_Plugins/NopCustomerPicker/css/jquery-ui.css",
+    "~/App_Plugins/NopCustomerPicker/css/style.css"
+  ]
+}

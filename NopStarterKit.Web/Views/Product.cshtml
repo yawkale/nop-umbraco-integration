@@ -49,21 +49,19 @@
                                 <div class="short-description">
                                     @Model.Content.GetPropertyValue("description")
                                 </div>
-
                                 <div class="attributes">
                                     @foreach (var attribute in prod.Attributes)
                                     {
                                         @Html.EditorFor(a => attribute, attribute.AttributeControlType)
                                     }
                                 </div>
+                               
                                 @if (prod.IsGiftCard)
                                 {
                                     @Html.Partial("giftCard", prod)
                                 }
                                 @if (!prod.CustomerEnterPrice)
                                 {
-                                    
-
                                     <div class="prices" itemprop="offers" itemscope itemtype="http://schema.org/Offer">
                                         <div class="product-price">
                                             <span itemprop="price" content="27.56" class="price-value-25">
@@ -199,7 +197,7 @@
                             </div>
 
                         </div>
-                        
+
                         @if (relatedProducts.Any())
                         {
                             <div class="related-products-grid product-grid">
@@ -252,7 +250,7 @@
                                 </div>
                             </div>
                         }
-                    
+
 
                     </div>
                 </form>
