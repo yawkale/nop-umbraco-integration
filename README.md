@@ -21,4 +21,4 @@ Installation:
 
 # Confiuration of nopCommerce site
 1. Install api plugin for nopcommerce  https://www.nopcommerce.com/p/2464/api-plugin.aspx
-2. Open api configuration - /Plugins/ManageClientsAdmin/List and add new client
+2. Open api configuration - /Plugins/ManageClientsAdmin/List and add new client ![addclient](https://user-images.githubusercontent.com/10168594/31589105-58f761f4-b204-11e7-909d-64763add59b4.png)
