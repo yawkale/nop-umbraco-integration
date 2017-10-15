@@ -15,3 +15,10 @@ T12345678
 
 Nop installation, should be used only like backend system:
 http://nop.nopintegra.com
+
+
+Installation:
+
+# Confiuration of nopCommerce site
+1. Install api plugin for nopcommerce  https://www.nopcommerce.com/p/2464/api-plugin.aspx
+2. Open api configuration - /Plugins/ManageClientsAdmin/List and add new client
