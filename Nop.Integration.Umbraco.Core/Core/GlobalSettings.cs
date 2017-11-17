@@ -8,6 +8,19 @@
     public class GlobalUmbracoSettings
     {
         public string CustomerIdFieldName => "NopCustomerId";
+
+        public string ProductDocumentTypeAlias => "product";
+
+        public string ProductIdPropertyAlias => "nopProductId";
+
+        public string CategoryDocumentTypeAlias => "category";
+        public string CategoryIdPropertyAlias => "nopCategoryId";
+
+
+        public string MemberIdPropertyAlias => "nopCustomerId";
+
+        
+
     }
 
     public static class GlobalSettings

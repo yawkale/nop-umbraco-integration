@@ -18,7 +18,7 @@ namespace Nop.Integration.Umbraco.Core.Controllers
         }
 
         [HttpGet]
-        public List<Products.Product> GetProducts(FormDataCollection queryStrings)
+        public List<Product> GetProducts(FormDataCollection queryStrings)
         {
             var products = _nopService.GetAllProducts();
 

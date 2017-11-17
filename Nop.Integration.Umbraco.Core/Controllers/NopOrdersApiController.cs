@@ -1,9 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Web.Mvc;
 using Nop.Integration.Umbraco.Core.Services;
 using Nop.Integration.Umbraco.Nop;
-using Nop.Integration.Umbraco.Order;
 using Nop.Integration.Umbraco.Orders;
 using Umbraco.Web.WebApi;
 
@@ -70,7 +70,7 @@ namespace Nop.Integration.Umbraco.Core.Controllers
                 ShippingAddress = shippingAddress,
                 BillingAddress=billingAddress,
                 CreatedOnUtc = DateTime.UtcNow,
-                PaidDateUtc = DateTime.UtcNow.ToString(),
+                PaidDateUtc = DateTime.UtcNow.ToString(CultureInfo.InvariantCulture),
                 PaymentMethodSystemName = "Payments.Manual"
 
             };

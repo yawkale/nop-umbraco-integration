@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Web;
 using Nop.Integration.Umbraco.Core.Controllers;
 using Nop.Integration.Umbraco.Core.Services;
 using Nop.Integration.Umbraco.Nop;
@@ -11,7 +10,9 @@ using Umbraco.Web.Mvc;
 using Umbraco.Core.Events;
 using Nop.Integration.Umbraco.Category;
 using System.Web.Configuration;
+using Nop.Integration.Umbraco.Core.Core;
 using Nop.Integration.Umbraco.Products;
+using Umbraco.Core.Logging;
 using Umbraco.Web.Trees;
 using Umbraco.Web.Models.Trees;
 
@@ -22,9 +23,10 @@ namespace Nop.Integration.Umbraco.Core
         private readonly NopApiService _nopService;
         private readonly UserContext _userContext;
         //private const string CustomerId = "NopCustomerId";
-        private const string PropertyTypeAlias = "nopCustomerId";
-        private const string NopCategoryId = "nopCategoryId";
-        private const string NopProductId = "nopProductId";
+        //private const string PropertyTypeAlias = "nopCustomerId";
+        //private const string NopCategoryId = "nopCategoryId";
+        //private const string NopProductId = "nopProductId";
+
         protected const string NopDashboardSectionAlias = "nopdashboard";
 
         private readonly bool _autoCreateNopItem;
@@ -76,9 +78,12 @@ namespace Nop.Integration.Umbraco.Core
             {
                 foreach (var entity in e.SavedEntities)
                 {
-                    if (entity.ContentType.Alias == "category")
+                    if (entity.ContentType.Alias == GlobalSettings.UmbracoSettings.CategoryDocumentTypeAlias)
                     {
-                        if (string.IsNullOrEmpty(entity.GetValue<string>(NopCategoryId)))
+                        LogHelper.Info<Startup>($"Creating new category [{entity.Name}] in nopCommerce");
+
+                        
+                        if (string.IsNullOrEmpty(entity.GetValue<string>(GlobalSettings.UmbracoSettings.CategoryIdPropertyAlias)))
                         {
                             var category = new PostCategoryObject()
                             {
@@ -87,13 +92,21 @@ namespace Nop.Integration.Umbraco.Core
 
                             var categoryId = _nopService.CreateCategory(category);
 
-                            entity.SetValue(NopCategoryId, categoryId);
+                            entity.SetValue(GlobalSettings.UmbracoSettings.CategoryIdPropertyAlias, categoryId);
+
+                            LogHelper.Info<Startup>($"Category [{entity.Name}] created, NopId is [{categoryId}]");
+                        }
+                        else
+                        {
+                            LogHelper.Info<Startup>($"Category [{entity.Name}] was skipped");
                         }
                     }
 
-                    if (entity.ContentType.Alias == "product")
+                    if (entity.ContentType.Alias == GlobalSettings.UmbracoSettings.ProductDocumentTypeAlias)
                     {
-                        if (string.IsNullOrEmpty(entity.GetValue<string>(NopProductId)))
+                        LogHelper.Info<Startup>($"Creating new product [{entity.Name}] in nopCommerce");
+
+                        if (string.IsNullOrEmpty(entity.GetValue<string>(GlobalSettings.UmbracoSettings.ProductIdPropertyAlias)))
                         {
                             var product = new PostProductObject()
                             {
@@ -102,7 +115,13 @@ namespace Nop.Integration.Umbraco.Core
 
                             var productId = _nopService.CreateProduct(product);
 
-                            entity.SetValue(NopProductId, productId);
+                            entity.SetValue(GlobalSettings.UmbracoSettings.ProductIdPropertyAlias, productId);
+
+                            LogHelper.Info<Startup>($"Product [{entity.Name}] created, NopId is [{productId}]");
+                        }
+                        else
+                        {
+                            LogHelper.Info<Startup>($"Poduct [{entity.Name}] was skipped");
                         }
                     }
                 }
@@ -114,7 +133,7 @@ namespace Nop.Integration.Umbraco.Core
         {
             foreach (var member in e.SavedEntities)
             {
-                if (string.IsNullOrEmpty(member.GetValue<string>(PropertyTypeAlias)))
+                if (string.IsNullOrEmpty(member.GetValue<string>(GlobalSettings.UmbracoSettings.MemberIdPropertyAlias)))
                 {
                     var customer = new Customer.Customer()
                     {
@@ -139,7 +158,7 @@ namespace Nop.Integration.Umbraco.Core
                         customerId = _nopService.UpdateCustomer(customer, nopCustomerId);
                     }
 
-                    member.SetValue(PropertyTypeAlias, customerId);
+                    member.SetValue(GlobalSettings.UmbracoSettings.MemberIdPropertyAlias, customerId);
                 }
             }
         }

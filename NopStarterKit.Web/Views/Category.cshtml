@@ -71,7 +71,7 @@
                                         </h2>
                                         @if (subCategory.HasValue("image"))
                                         {
-                                            var image = Umbraco.TypedMedia(subCategory.GetPropertyValue<int>("image"));
+                                            var image = subCategory.GetPropertyValue<IPublishedContent>("image");
                                             <div class="picture">
                                                 <a href="@subCategory.Url" title="@title">
                                                     <img alt="@title" src="@image.Url" title="@title" />
