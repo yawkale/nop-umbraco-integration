@@ -4,10 +4,10 @@
 
         Checkout.setLoadWaiting('billing');
         Accordion.closeSection('#opc-billing');
-       var section = $('#opc-shipping');
+        var section = $('#opc-shipping');
         section.addClass('allow');
         Accordion.openSection(section);
-       
+
 
     },
     init: function (form, saveUrl, disableBillingAddressCheckoutStep) {
@@ -17,7 +17,7 @@
     },
 
     newAddress: function (isNew) {
-       if (isNew) {
+        if (isNew) {
             this.resetSelectedAddress();
             $('#billing-new-address-form').show();
         } else {
@@ -71,19 +71,21 @@ var Shipping = {
     },
 
     save: function () {
-        if (Checkout.loadWaiting != false) return;
-
+        //if (Checkout.loadWaiting != false) return;
         Checkout.setLoadWaiting('shipping');
-
-        $.ajax({
-            cache: false,
-            url: this.saveUrl,
-            data: $(this.form).serialize(),
-            type: 'post',
-            success: this.nextStep,
-            complete: this.resetLoadWaiting,
-            error: Checkout.ajaxFailure
-        });
+        Accordion.closeSection('#opc-shipping');
+        var section = $('#opc-shipping_method');
+        section.addClass('allow');
+        Accordion.openSection(section);
+        //$.ajax({
+        //    cache: false,
+        //    url: this.saveUrl,
+        //    data: $(this.form).serialize(),
+        //    type: 'post',
+        //    success: this.nextStep,
+        //    complete: this.resetLoadWaiting,
+        //    error: Checkout.ajaxFailure
+        //});
     },
 
     resetLoadWaiting: function () {
@@ -133,20 +135,26 @@ var ShippingMethod = {
     },
 
     save: function () {
-        if (Checkout.loadWaiting != false) return;
+        //if (Checkout.loadWaiting != false) return;
+
+        Checkout.setLoadWaiting('shipping-method');
+        Accordion.closeSection('#opc-shipping_method');
+        var section = $('#opc-payment_method');
+        section.addClass('allow');
+        Accordion.openSection(section);
 
         if (this.validate()) {
             Checkout.setLoadWaiting('shipping-method');
 
-            $.ajax({
-                cache: false,
-                url: this.saveUrl,
-                data: $(this.form).serialize(),
-                type: 'post',
-                success: this.nextStep,
-                complete: this.resetLoadWaiting,
-                error: Checkout.ajaxFailure
-            });
+            //$.ajax({
+            //    cache: false,
+            //    url: this.saveUrl,
+            //    data: $(this.form).serialize(),
+            //    type: 'post',
+            //    success: this.nextStep,
+            //    complete: this.resetLoadWaiting,
+            //    error: Checkout.ajaxFailure
+            //});
         }
     },
 
@@ -197,19 +205,25 @@ var PaymentMethod = {
     },
 
     save: function () {
-        if (Checkout.loadWaiting != false) return;
+        //if (Checkout.loadWaiting != false) return;
+
+        Checkout.setLoadWaiting('payment-method');
+        Accordion.closeSection('#opc-payment_method');
+        var section = $('#opc-payment_info');
+        section.addClass('allow');
+        Accordion.openSection(section);
 
         if (this.validate()) {
             Checkout.setLoadWaiting('payment-method');
-            $.ajax({
-                cache: false,
-                url: this.saveUrl,
-                data: $(this.form).serialize(),
-                type: 'post',
-                success: this.nextStep,
-                complete: this.resetLoadWaiting,
-                error: Checkout.ajaxFailure
-            });
+            //$.ajax({
+            //    cache: false,
+            //    url: this.saveUrl,
+            //    data: $(this.form).serialize(),
+            //    type: 'post',
+            //    success: this.nextStep,
+            //    complete: this.resetLoadWaiting,
+            //    error: Checkout.ajaxFailure
+            //});
         }
     },
 
@@ -244,18 +258,23 @@ var PaymentInfo = {
     },
 
     save: function () {
-        if (Checkout.loadWaiting != false) return;
+        //if (Checkout.loadWaiting != false) return;
+        Checkout.setLoadWaiting('payment-info');
+        Accordion.closeSection('#opc-payment_info');
+        var section = $('#opc-confirm_order');
+        section.addClass('allow');
+        Accordion.openSection(section);
 
         Checkout.setLoadWaiting('payment-info');
-        $.ajax({
-            cache: false,
-            url: this.saveUrl,
-            data: $(this.form).serialize(),
-            type: 'post',
-            success: this.nextStep,
-            complete: this.resetLoadWaiting,
-            error: Checkout.ajaxFailure
-        });
+        //$.ajax({
+        //    cache: false,
+        //    url: this.saveUrl,
+        //    data: $(this.form).serialize(),
+        //    type: 'post',
+        //    success: this.nextStep,
+        //    complete: this.resetLoadWaiting,
+        //    error: Checkout.ajaxFailure
+        //});
     },
 
     resetLoadWaiting: function () {
@@ -290,7 +309,7 @@ var ConfirmOrder = {
     },
 
     save: function () {
-        if (Checkout.loadWaiting != false) return;
+        //if (Checkout.loadWaiting != false) return;
 
         //terms of service
         var termOfServiceOk = true;
@@ -305,14 +324,14 @@ var ConfirmOrder = {
         }
         if (termOfServiceOk) {
             Checkout.setLoadWaiting('confirm-order');
-            $.ajax({
-                cache: false,
-                url: this.saveUrl,
-                type: 'post',
-                success: this.nextStep,
-                complete: this.resetLoadWaiting,
-                error: Checkout.ajaxFailure
-            });
+            //$.ajax({
+            //    cache: false,
+            //    url: this.saveUrl,
+            //    type: 'post',
+            //    success: this.nextStep,
+            //    complete: this.resetLoadWaiting,
+            //    error: Checkout.ajaxFailure
+            //});
         } else {
             return false;
         }
@@ -405,14 +424,24 @@ var Checkout = {
     },
 
     gotoSection: function (section) {
+        debugger;
         section = $('#opc-' + section);
         section.addClass('allow');
         Accordion.openSection(section);
     },
 
     back: function () {
-        if (this.loadWaiting) return;
+        //Checkout.loadWaiting = false;
+        //if (this.loadWaiting) return;
+        Checkout.setLoadWaiting();
+        Checkout.loadWaiting = false;
         Accordion.openPrevSection(true, true);
+    },
+
+    goCurrentSection: function (section) {
+        Checkout.setLoadWaiting(section);
+        Checkout.loadWaiting = false;
+        Accordion.openSection(true, true);
     },
 
     setStepResponse: function (response) {

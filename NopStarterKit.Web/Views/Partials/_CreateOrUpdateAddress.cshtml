@@ -36,13 +36,11 @@
     <div class="inputs">
         @Html.LabelFor(model => model.FirstName, new { }):
         @Html.EditorFor(model => model.FirstName)
-     
         @Html.ValidationMessageFor(model => model.FirstName)
     </div>
     <div class="inputs">
         @Html.LabelFor(model => model.LastName, new { }):
         @Html.EditorFor(model => model.LastName)
-      
         @Html.ValidationMessageFor(model => model.LastName)
 
     </div>
@@ -50,7 +48,6 @@
       
         @Html.LabelFor(model => model.Email, new {}):
         @Html.EditorFor(model => model.Email)
-
         @Html.ValidationMessageFor(model => model.Email)
     </div>
     @if (Model.CompanyEnabled)
@@ -58,7 +55,6 @@
         <div class="inputs">
             @Html.LabelFor(model => model.Company, new { }):
             @Html.EditorFor(model => model.Company)
-       
             @Html.ValidationMessageFor(model => model.Company)
         </div>
     }
@@ -330,8 +326,6 @@
         <div class="inputs">
             @Html.LabelFor(model => model.City, new { }):
             @Html.EditorFor(model => model.City)
-
-        
             @Html.ValidationMessageFor(model => model.City)
         </div>
     @*}*@
@@ -340,7 +334,6 @@
         <div class="inputs">
             @Html.LabelFor(model => model.Address1, new { }):
             @Html.EditorFor(model => model.Address1)
-       
             @Html.ValidationMessageFor(model => model.Address1)
         </div>
     @*}*@
@@ -349,7 +342,6 @@
         <div class="inputs">
             @Html.LabelFor(model => model.Address2, new { }):
             @Html.EditorFor(model => model.Address2)
-       
             @Html.ValidationMessageFor(model => model.Address2)
         </div>
     }
@@ -358,7 +350,6 @@
         <div class="inputs">
             @Html.LabelFor(model => model.ZipPostalCode, new { }):
             @Html.EditorFor(model => model.ZipPostalCode)
-          
             @Html.ValidationMessageFor(model => model.ZipPostalCode)
         </div>
     @*}*@
@@ -367,7 +358,6 @@
         <div class="inputs">
             @Html.LabelFor(model => model.PhoneNumber, new { }):
             @Html.EditorFor(model => model.PhoneNumber)
-       
             @Html.ValidationMessageFor(model => model.PhoneNumber)
         </div>
     @*}*@
@@ -376,7 +366,6 @@
         <div class="inputs">
             @Html.LabelFor(model => model.FaxNumber, new { }):
             @Html.EditorFor(model => model.FaxNumber)
-        
             @Html.ValidationMessageFor(model => model.FaxNumber)
         </div>
     }

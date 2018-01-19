@@ -19,7 +19,7 @@ using Umbraco.ModelsBuilder;
 using Umbraco.ModelsBuilder.Umbraco;
 
 [assembly: PureLiveAssembly]
-[assembly:ModelsBuilderAssembly(PureLive = true, SourceHash = "e025c7ddf9f1c1e7")]
+[assembly:ModelsBuilderAssembly(PureLive = true, SourceHash = "3130f4c917e7b495")]
 [assembly:System.Reflection.AssemblyVersion("0.0.0.1")]
 
 namespace Umbraco.Web.PublishedContentModels
@@ -327,6 +327,69 @@ namespace Umbraco.Web.PublishedContentModels
 		}
 
 		///<summary>
+		/// Logo
+		///</summary>
+		[ImplementPropertyType("logo")]
+		public string Logo
+		{
+			get { return this.GetPropertyValue<string>("logo"); }
+		}
+
+		///<summary>
+		/// News
+		///</summary>
+		[ImplementPropertyType("news")]
+		public Archetype.Models.ArchetypeModel News
+		{
+			get { return this.GetPropertyValue<Archetype.Models.ArchetypeModel>("news"); }
+		}
+
+		///<summary>
+		/// News Bottom Link
+		///</summary>
+		[ImplementPropertyType("newsBottomLink")]
+		public RJP.MultiUrlPicker.Models.MultiUrls NewsBottomLink
+		{
+			get { return this.GetPropertyValue<RJP.MultiUrlPicker.Models.MultiUrls>("newsBottomLink"); }
+		}
+
+		///<summary>
+		/// News Title
+		///</summary>
+		[ImplementPropertyType("newsTitle")]
+		public string NewsTitle
+		{
+			get { return this.GetPropertyValue<string>("newsTitle"); }
+		}
+
+		///<summary>
+		/// Related Category
+		///</summary>
+		[ImplementPropertyType("relatedCategory")]
+		public IEnumerable<IPublishedContent> RelatedCategory
+		{
+			get { return this.GetPropertyValue<IEnumerable<IPublishedContent>>("relatedCategory"); }
+		}
+
+		///<summary>
+		/// Related News
+		///</summary>
+		[ImplementPropertyType("relatedNews")]
+		public IEnumerable<IPublishedContent> RelatedNews
+		{
+			get { return this.GetPropertyValue<IEnumerable<IPublishedContent>>("relatedNews"); }
+		}
+
+		///<summary>
+		/// Related Products
+		///</summary>
+		[ImplementPropertyType("relatedProducts")]
+		public IEnumerable<IPublishedContent> RelatedProducts
+		{
+			get { return this.GetPropertyValue<IEnumerable<IPublishedContent>>("relatedProducts"); }
+		}
+
+		///<summary>
 		/// Rss
 		///</summary>
 		[ImplementPropertyType("rss")]
@@ -342,6 +405,33 @@ namespace Umbraco.Web.PublishedContentModels
 		public string SiteScript
 		{
 			get { return this.GetPropertyValue<string>("siteScript"); }
+		}
+
+		///<summary>
+		/// Slider
+		///</summary>
+		[ImplementPropertyType("slider")]
+		public Archetype.Models.ArchetypeModel Slider
+		{
+			get { return this.GetPropertyValue<Archetype.Models.ArchetypeModel>("slider"); }
+		}
+
+		///<summary>
+		/// Topic Text
+		///</summary>
+		[ImplementPropertyType("topicText")]
+		public IHtmlString TopicText
+		{
+			get { return this.GetPropertyValue<IHtmlString>("topicText"); }
+		}
+
+		///<summary>
+		/// Topic Title
+		///</summary>
+		[ImplementPropertyType("topicTitle")]
+		public string TopicTitle
+		{
+			get { return this.GetPropertyValue<string>("topicTitle"); }
 		}
 
 		///<summary>
@@ -956,7 +1046,7 @@ namespace Umbraco.Web.PublishedContentModels
 
 	/// <summary>Category Overview</summary>
 	[PublishedContentModel("categoryOverview")]
-	public partial class CategoryOverview : PublishedContentModel
+	public partial class CategoryOverview : PublishedContentModel, IBasePage
 	{
 #pragma warning disable 0109 // new is redundant
 		public new const string ModelTypeAlias = "categoryOverview";
@@ -978,11 +1068,137 @@ namespace Umbraco.Web.PublishedContentModels
 		{
 			return PublishedContentModelUtility.GetModelPropertyType(GetModelContentType(), selector);
 		}
+
+		///<summary>
+		/// Canonical
+		///</summary>
+		[ImplementPropertyType("canonical")]
+		public IPublishedContent Canonical
+		{
+			get { return Umbraco.Web.PublishedContentModels.BasePage.GetCanonical(this); }
+		}
+
+		///<summary>
+		/// Header Page Title: The title of document. When left empty, node's name will be used.
+		///</summary>
+		[ImplementPropertyType("headerPageTitle")]
+		public string HeaderPageTitle
+		{
+			get { return Umbraco.Web.PublishedContentModels.BasePage.GetHeaderPageTitle(this); }
+		}
+
+		///<summary>
+		/// Hide Children
+		///</summary>
+		[ImplementPropertyType("hideChildren")]
+		public bool HideChildren
+		{
+			get { return Umbraco.Web.PublishedContentModels.BasePage.GetHideChildren(this); }
+		}
+
+		///<summary>
+		/// Meta Description
+		///</summary>
+		[ImplementPropertyType("metaDescription")]
+		public string MetaDescription
+		{
+			get { return Umbraco.Web.PublishedContentModels.BasePage.GetMetaDescription(this); }
+		}
+
+		///<summary>
+		/// Meta Keywords
+		///</summary>
+		[ImplementPropertyType("metaKeywords")]
+		public string MetaKeywords
+		{
+			get { return Umbraco.Web.PublishedContentModels.BasePage.GetMetaKeywords(this); }
+		}
+
+		///<summary>
+		/// No Follow
+		///</summary>
+		[ImplementPropertyType("noFollow")]
+		public bool NoFollow
+		{
+			get { return Umbraco.Web.PublishedContentModels.BasePage.GetNoFollow(this); }
+		}
+
+		///<summary>
+		/// No Index
+		///</summary>
+		[ImplementPropertyType("noIndex")]
+		public bool NoIndex
+		{
+			get { return Umbraco.Web.PublishedContentModels.BasePage.GetNoIndex(this); }
+		}
+
+		///<summary>
+		/// Old Url
+		///</summary>
+		[ImplementPropertyType("oldUrl")]
+		public string OldUrl
+		{
+			get { return Umbraco.Web.PublishedContentModels.BasePage.GetOldUrl(this); }
+		}
+
+		///<summary>
+		/// Page Script: Script on this page
+		///</summary>
+		[ImplementPropertyType("pageScript")]
+		public string PageScript
+		{
+			get { return Umbraco.Web.PublishedContentModels.BasePage.GetPageScript(this); }
+		}
+
+		///<summary>
+		/// Title
+		///</summary>
+		[ImplementPropertyType("pageTitle")]
+		public string PageTitle
+		{
+			get { return Umbraco.Web.PublishedContentModels.BasePage.GetPageTitle(this); }
+		}
+
+		///<summary>
+		/// Hide in Navigation: Use this property if you wish to hide this page in the navigation.
+		///</summary>
+		[ImplementPropertyType("umbracoNaviHide")]
+		public bool UmbracoNaviHide
+		{
+			get { return Umbraco.Web.PublishedContentModels.BasePage.GetUmbracoNaviHide(this); }
+		}
+
+		///<summary>
+		/// Umbraco Redirect: Pick a node you wish to redirect to if the user lands on this node.
+		///</summary>
+		[ImplementPropertyType("umbracoRedirect")]
+		public IPublishedContent UmbracoRedirect
+		{
+			get { return Umbraco.Web.PublishedContentModels.BasePage.GetUmbracoRedirect(this); }
+		}
+
+		///<summary>
+		/// Umbraco URL Alias: Use this to give a node multiple urls.eg: home,homepage/another-level
+		///</summary>
+		[ImplementPropertyType("umbracoUrlAlias")]
+		public string UmbracoUrlAlias
+		{
+			get { return Umbraco.Web.PublishedContentModels.BasePage.GetUmbracoUrlAlias(this); }
+		}
+
+		///<summary>
+		/// Umbraco URL Name: If you wish to change the URL of the node without changing the node name fill this in.eg: warren
+		///</summary>
+		[ImplementPropertyType("umbracoUrlName")]
+		public string UmbracoUrlName
+		{
+			get { return Umbraco.Web.PublishedContentModels.BasePage.GetUmbracoUrlName(this); }
+		}
 	}
 
 	/// <summary>Category</summary>
 	[PublishedContentModel("category")]
-	public partial class Category : PublishedContentModel
+	public partial class Category : PublishedContentModel, IBasePage
 	{
 #pragma warning disable 0109 // new is redundant
 		public new const string ModelTypeAlias = "category";
@@ -1004,11 +1220,155 @@ namespace Umbraco.Web.PublishedContentModels
 		{
 			return PublishedContentModelUtility.GetModelPropertyType(GetModelContentType(), selector);
 		}
+
+		///<summary>
+		/// Nop Category Id
+		///</summary>
+		[ImplementPropertyType("nopCategoryId")]
+		public object NopCategoryId
+		{
+			get { return this.GetPropertyValue("nopCategoryId"); }
+		}
+
+		///<summary>
+		/// Preview Image
+		///</summary>
+		[ImplementPropertyType("previewImage")]
+		public IPublishedContent PreviewImage
+		{
+			get { return this.GetPropertyValue<IPublishedContent>("previewImage"); }
+		}
+
+		///<summary>
+		/// Canonical
+		///</summary>
+		[ImplementPropertyType("canonical")]
+		public IPublishedContent Canonical
+		{
+			get { return Umbraco.Web.PublishedContentModels.BasePage.GetCanonical(this); }
+		}
+
+		///<summary>
+		/// Header Page Title: The title of document. When left empty, node's name will be used.
+		///</summary>
+		[ImplementPropertyType("headerPageTitle")]
+		public string HeaderPageTitle
+		{
+			get { return Umbraco.Web.PublishedContentModels.BasePage.GetHeaderPageTitle(this); }
+		}
+
+		///<summary>
+		/// Hide Children
+		///</summary>
+		[ImplementPropertyType("hideChildren")]
+		public bool HideChildren
+		{
+			get { return Umbraco.Web.PublishedContentModels.BasePage.GetHideChildren(this); }
+		}
+
+		///<summary>
+		/// Meta Description
+		///</summary>
+		[ImplementPropertyType("metaDescription")]
+		public string MetaDescription
+		{
+			get { return Umbraco.Web.PublishedContentModels.BasePage.GetMetaDescription(this); }
+		}
+
+		///<summary>
+		/// Meta Keywords
+		///</summary>
+		[ImplementPropertyType("metaKeywords")]
+		public string MetaKeywords
+		{
+			get { return Umbraco.Web.PublishedContentModels.BasePage.GetMetaKeywords(this); }
+		}
+
+		///<summary>
+		/// No Follow
+		///</summary>
+		[ImplementPropertyType("noFollow")]
+		public bool NoFollow
+		{
+			get { return Umbraco.Web.PublishedContentModels.BasePage.GetNoFollow(this); }
+		}
+
+		///<summary>
+		/// No Index
+		///</summary>
+		[ImplementPropertyType("noIndex")]
+		public bool NoIndex
+		{
+			get { return Umbraco.Web.PublishedContentModels.BasePage.GetNoIndex(this); }
+		}
+
+		///<summary>
+		/// Old Url
+		///</summary>
+		[ImplementPropertyType("oldUrl")]
+		public string OldUrl
+		{
+			get { return Umbraco.Web.PublishedContentModels.BasePage.GetOldUrl(this); }
+		}
+
+		///<summary>
+		/// Page Script: Script on this page
+		///</summary>
+		[ImplementPropertyType("pageScript")]
+		public string PageScript
+		{
+			get { return Umbraco.Web.PublishedContentModels.BasePage.GetPageScript(this); }
+		}
+
+		///<summary>
+		/// Title
+		///</summary>
+		[ImplementPropertyType("pageTitle")]
+		public string PageTitle
+		{
+			get { return Umbraco.Web.PublishedContentModels.BasePage.GetPageTitle(this); }
+		}
+
+		///<summary>
+		/// Hide in Navigation: Use this property if you wish to hide this page in the navigation.
+		///</summary>
+		[ImplementPropertyType("umbracoNaviHide")]
+		public bool UmbracoNaviHide
+		{
+			get { return Umbraco.Web.PublishedContentModels.BasePage.GetUmbracoNaviHide(this); }
+		}
+
+		///<summary>
+		/// Umbraco Redirect: Pick a node you wish to redirect to if the user lands on this node.
+		///</summary>
+		[ImplementPropertyType("umbracoRedirect")]
+		public IPublishedContent UmbracoRedirect
+		{
+			get { return Umbraco.Web.PublishedContentModels.BasePage.GetUmbracoRedirect(this); }
+		}
+
+		///<summary>
+		/// Umbraco URL Alias: Use this to give a node multiple urls.eg: home,homepage/another-level
+		///</summary>
+		[ImplementPropertyType("umbracoUrlAlias")]
+		public string UmbracoUrlAlias
+		{
+			get { return Umbraco.Web.PublishedContentModels.BasePage.GetUmbracoUrlAlias(this); }
+		}
+
+		///<summary>
+		/// Umbraco URL Name: If you wish to change the URL of the node without changing the node name fill this in.eg: warren
+		///</summary>
+		[ImplementPropertyType("umbracoUrlName")]
+		public string UmbracoUrlName
+		{
+			get { return Umbraco.Web.PublishedContentModels.BasePage.GetUmbracoUrlName(this); }
+		}
 	}
 
 	/// <summary>Products Overview</summary>
 	[PublishedContentModel("productsOverview")]
-	public partial class ProductsOverview : PublishedContentModel
+	public partial class ProductsOverview : PublishedContentModel, IBasePage
 	{
 #pragma warning disable 0109 // new is redundant
 		public new const string ModelTypeAlias = "productsOverview";
@@ -1030,11 +1390,137 @@ namespace Umbraco.Web.PublishedContentModels
 		{
 			return PublishedContentModelUtility.GetModelPropertyType(GetModelContentType(), selector);
 		}
+
+		///<summary>
+		/// Canonical
+		///</summary>
+		[ImplementPropertyType("canonical")]
+		public IPublishedContent Canonical
+		{
+			get { return Umbraco.Web.PublishedContentModels.BasePage.GetCanonical(this); }
+		}
+
+		///<summary>
+		/// Header Page Title: The title of document. When left empty, node's name will be used.
+		///</summary>
+		[ImplementPropertyType("headerPageTitle")]
+		public string HeaderPageTitle
+		{
+			get { return Umbraco.Web.PublishedContentModels.BasePage.GetHeaderPageTitle(this); }
+		}
+
+		///<summary>
+		/// Hide Children
+		///</summary>
+		[ImplementPropertyType("hideChildren")]
+		public bool HideChildren
+		{
+			get { return Umbraco.Web.PublishedContentModels.BasePage.GetHideChildren(this); }
+		}
+
+		///<summary>
+		/// Meta Description
+		///</summary>
+		[ImplementPropertyType("metaDescription")]
+		public string MetaDescription
+		{
+			get { return Umbraco.Web.PublishedContentModels.BasePage.GetMetaDescription(this); }
+		}
+
+		///<summary>
+		/// Meta Keywords
+		///</summary>
+		[ImplementPropertyType("metaKeywords")]
+		public string MetaKeywords
+		{
+			get { return Umbraco.Web.PublishedContentModels.BasePage.GetMetaKeywords(this); }
+		}
+
+		///<summary>
+		/// No Follow
+		///</summary>
+		[ImplementPropertyType("noFollow")]
+		public bool NoFollow
+		{
+			get { return Umbraco.Web.PublishedContentModels.BasePage.GetNoFollow(this); }
+		}
+
+		///<summary>
+		/// No Index
+		///</summary>
+		[ImplementPropertyType("noIndex")]
+		public bool NoIndex
+		{
+			get { return Umbraco.Web.PublishedContentModels.BasePage.GetNoIndex(this); }
+		}
+
+		///<summary>
+		/// Old Url
+		///</summary>
+		[ImplementPropertyType("oldUrl")]
+		public string OldUrl
+		{
+			get { return Umbraco.Web.PublishedContentModels.BasePage.GetOldUrl(this); }
+		}
+
+		///<summary>
+		/// Page Script: Script on this page
+		///</summary>
+		[ImplementPropertyType("pageScript")]
+		public string PageScript
+		{
+			get { return Umbraco.Web.PublishedContentModels.BasePage.GetPageScript(this); }
+		}
+
+		///<summary>
+		/// Title
+		///</summary>
+		[ImplementPropertyType("pageTitle")]
+		public string PageTitle
+		{
+			get { return Umbraco.Web.PublishedContentModels.BasePage.GetPageTitle(this); }
+		}
+
+		///<summary>
+		/// Hide in Navigation: Use this property if you wish to hide this page in the navigation.
+		///</summary>
+		[ImplementPropertyType("umbracoNaviHide")]
+		public bool UmbracoNaviHide
+		{
+			get { return Umbraco.Web.PublishedContentModels.BasePage.GetUmbracoNaviHide(this); }
+		}
+
+		///<summary>
+		/// Umbraco Redirect: Pick a node you wish to redirect to if the user lands on this node.
+		///</summary>
+		[ImplementPropertyType("umbracoRedirect")]
+		public IPublishedContent UmbracoRedirect
+		{
+			get { return Umbraco.Web.PublishedContentModels.BasePage.GetUmbracoRedirect(this); }
+		}
+
+		///<summary>
+		/// Umbraco URL Alias: Use this to give a node multiple urls.eg: home,homepage/another-level
+		///</summary>
+		[ImplementPropertyType("umbracoUrlAlias")]
+		public string UmbracoUrlAlias
+		{
+			get { return Umbraco.Web.PublishedContentModels.BasePage.GetUmbracoUrlAlias(this); }
+		}
+
+		///<summary>
+		/// Umbraco URL Name: If you wish to change the URL of the node without changing the node name fill this in.eg: warren
+		///</summary>
+		[ImplementPropertyType("umbracoUrlName")]
+		public string UmbracoUrlName
+		{
+			get { return Umbraco.Web.PublishedContentModels.BasePage.GetUmbracoUrlName(this); }
+		}
 	}
 
 	/// <summary>Product</summary>
 	[PublishedContentModel("product")]
-	public partial class Product : PublishedContentModel
+	public partial class Product : PublishedContentModel, IBasePage
 	{
 #pragma warning disable 0109 // new is redundant
 		public new const string ModelTypeAlias = "product";
@@ -1079,9 +1565,9 @@ namespace Umbraco.Web.PublishedContentModels
 		/// Nop Id
 		///</summary>
 		[ImplementPropertyType("nopId")]
-		public string NopId
+		public object NopId
 		{
-			get { return this.GetPropertyValue<string>("nopId"); }
+			get { return this.GetPropertyValue("nopId"); }
 		}
 
 		///<summary>
@@ -1110,11 +1596,137 @@ namespace Umbraco.Web.PublishedContentModels
 		{
 			get { return this.GetPropertyValue<IEnumerable<IPublishedContent>>("relatedProducts"); }
 		}
+
+		///<summary>
+		/// Canonical
+		///</summary>
+		[ImplementPropertyType("canonical")]
+		public IPublishedContent Canonical
+		{
+			get { return Umbraco.Web.PublishedContentModels.BasePage.GetCanonical(this); }
+		}
+
+		///<summary>
+		/// Header Page Title: The title of document. When left empty, node's name will be used.
+		///</summary>
+		[ImplementPropertyType("headerPageTitle")]
+		public string HeaderPageTitle
+		{
+			get { return Umbraco.Web.PublishedContentModels.BasePage.GetHeaderPageTitle(this); }
+		}
+
+		///<summary>
+		/// Hide Children
+		///</summary>
+		[ImplementPropertyType("hideChildren")]
+		public bool HideChildren
+		{
+			get { return Umbraco.Web.PublishedContentModels.BasePage.GetHideChildren(this); }
+		}
+
+		///<summary>
+		/// Meta Description
+		///</summary>
+		[ImplementPropertyType("metaDescription")]
+		public string MetaDescription
+		{
+			get { return Umbraco.Web.PublishedContentModels.BasePage.GetMetaDescription(this); }
+		}
+
+		///<summary>
+		/// Meta Keywords
+		///</summary>
+		[ImplementPropertyType("metaKeywords")]
+		public string MetaKeywords
+		{
+			get { return Umbraco.Web.PublishedContentModels.BasePage.GetMetaKeywords(this); }
+		}
+
+		///<summary>
+		/// No Follow
+		///</summary>
+		[ImplementPropertyType("noFollow")]
+		public bool NoFollow
+		{
+			get { return Umbraco.Web.PublishedContentModels.BasePage.GetNoFollow(this); }
+		}
+
+		///<summary>
+		/// No Index
+		///</summary>
+		[ImplementPropertyType("noIndex")]
+		public bool NoIndex
+		{
+			get { return Umbraco.Web.PublishedContentModels.BasePage.GetNoIndex(this); }
+		}
+
+		///<summary>
+		/// Old Url
+		///</summary>
+		[ImplementPropertyType("oldUrl")]
+		public string OldUrl
+		{
+			get { return Umbraco.Web.PublishedContentModels.BasePage.GetOldUrl(this); }
+		}
+
+		///<summary>
+		/// Page Script: Script on this page
+		///</summary>
+		[ImplementPropertyType("pageScript")]
+		public string PageScript
+		{
+			get { return Umbraco.Web.PublishedContentModels.BasePage.GetPageScript(this); }
+		}
+
+		///<summary>
+		/// Title
+		///</summary>
+		[ImplementPropertyType("pageTitle")]
+		public string PageTitle
+		{
+			get { return Umbraco.Web.PublishedContentModels.BasePage.GetPageTitle(this); }
+		}
+
+		///<summary>
+		/// Hide in Navigation: Use this property if you wish to hide this page in the navigation.
+		///</summary>
+		[ImplementPropertyType("umbracoNaviHide")]
+		public bool UmbracoNaviHide
+		{
+			get { return Umbraco.Web.PublishedContentModels.BasePage.GetUmbracoNaviHide(this); }
+		}
+
+		///<summary>
+		/// Umbraco Redirect: Pick a node you wish to redirect to if the user lands on this node.
+		///</summary>
+		[ImplementPropertyType("umbracoRedirect")]
+		public IPublishedContent UmbracoRedirect
+		{
+			get { return Umbraco.Web.PublishedContentModels.BasePage.GetUmbracoRedirect(this); }
+		}
+
+		///<summary>
+		/// Umbraco URL Alias: Use this to give a node multiple urls.eg: home,homepage/another-level
+		///</summary>
+		[ImplementPropertyType("umbracoUrlAlias")]
+		public string UmbracoUrlAlias
+		{
+			get { return Umbraco.Web.PublishedContentModels.BasePage.GetUmbracoUrlAlias(this); }
+		}
+
+		///<summary>
+		/// Umbraco URL Name: If you wish to change the URL of the node without changing the node name fill this in.eg: warren
+		///</summary>
+		[ImplementPropertyType("umbracoUrlName")]
+		public string UmbracoUrlName
+		{
+			get { return Umbraco.Web.PublishedContentModels.BasePage.GetUmbracoUrlName(this); }
+		}
 	}
 
 	/// <summary>Sub Category</summary>
 	[PublishedContentModel("subCategory")]
-	public partial class SubCategory : PublishedContentModel
+	public partial class SubCategory : PublishedContentModel, IBasePage
 	{
 #pragma warning disable 0109 // new is redundant
 		public new const string ModelTypeAlias = "subCategory";
@@ -1144,6 +1756,132 @@ namespace Umbraco.Web.PublishedContentModels
 		public IPublishedContent Image
 		{
 			get { return this.GetPropertyValue<IPublishedContent>("image"); }
+		}
+
+		///<summary>
+		/// Canonical
+		///</summary>
+		[ImplementPropertyType("canonical")]
+		public IPublishedContent Canonical
+		{
+			get { return Umbraco.Web.PublishedContentModels.BasePage.GetCanonical(this); }
+		}
+
+		///<summary>
+		/// Header Page Title: The title of document. When left empty, node's name will be used.
+		///</summary>
+		[ImplementPropertyType("headerPageTitle")]
+		public string HeaderPageTitle
+		{
+			get { return Umbraco.Web.PublishedContentModels.BasePage.GetHeaderPageTitle(this); }
+		}
+
+		///<summary>
+		/// Hide Children
+		///</summary>
+		[ImplementPropertyType("hideChildren")]
+		public bool HideChildren
+		{
+			get { return Umbraco.Web.PublishedContentModels.BasePage.GetHideChildren(this); }
+		}
+
+		///<summary>
+		/// Meta Description
+		///</summary>
+		[ImplementPropertyType("metaDescription")]
+		public string MetaDescription
+		{
+			get { return Umbraco.Web.PublishedContentModels.BasePage.GetMetaDescription(this); }
+		}
+
+		///<summary>
+		/// Meta Keywords
+		///</summary>
+		[ImplementPropertyType("metaKeywords")]
+		public string MetaKeywords
+		{
+			get { return Umbraco.Web.PublishedContentModels.BasePage.GetMetaKeywords(this); }
+		}
+
+		///<summary>
+		/// No Follow
+		///</summary>
+		[ImplementPropertyType("noFollow")]
+		public bool NoFollow
+		{
+			get { return Umbraco.Web.PublishedContentModels.BasePage.GetNoFollow(this); }
+		}
+
+		///<summary>
+		/// No Index
+		///</summary>
+		[ImplementPropertyType("noIndex")]
+		public bool NoIndex
+		{
+			get { return Umbraco.Web.PublishedContentModels.BasePage.GetNoIndex(this); }
+		}
+
+		///<summary>
+		/// Old Url
+		///</summary>
+		[ImplementPropertyType("oldUrl")]
+		public string OldUrl
+		{
+			get { return Umbraco.Web.PublishedContentModels.BasePage.GetOldUrl(this); }
+		}
+
+		///<summary>
+		/// Page Script: Script on this page
+		///</summary>
+		[ImplementPropertyType("pageScript")]
+		public string PageScript
+		{
+			get { return Umbraco.Web.PublishedContentModels.BasePage.GetPageScript(this); }
+		}
+
+		///<summary>
+		/// Title
+		///</summary>
+		[ImplementPropertyType("pageTitle")]
+		public string PageTitle
+		{
+			get { return Umbraco.Web.PublishedContentModels.BasePage.GetPageTitle(this); }
+		}
+
+		///<summary>
+		/// Hide in Navigation: Use this property if you wish to hide this page in the navigation.
+		///</summary>
+		[ImplementPropertyType("umbracoNaviHide")]
+		public bool UmbracoNaviHide
+		{
+			get { return Umbraco.Web.PublishedContentModels.BasePage.GetUmbracoNaviHide(this); }
+		}
+
+		///<summary>
+		/// Umbraco Redirect: Pick a node you wish to redirect to if the user lands on this node.
+		///</summary>
+		[ImplementPropertyType("umbracoRedirect")]
+		public IPublishedContent UmbracoRedirect
+		{
+			get { return Umbraco.Web.PublishedContentModels.BasePage.GetUmbracoRedirect(this); }
+		}
+
+		///<summary>
+		/// Umbraco URL Alias: Use this to give a node multiple urls.eg: home,homepage/another-level
+		///</summary>
+		[ImplementPropertyType("umbracoUrlAlias")]
+		public string UmbracoUrlAlias
+		{
+			get { return Umbraco.Web.PublishedContentModels.BasePage.GetUmbracoUrlAlias(this); }
+		}
+
+		///<summary>
+		/// Umbraco URL Name: If you wish to change the URL of the node without changing the node name fill this in.eg: warren
+		///</summary>
+		[ImplementPropertyType("umbracoUrlName")]
+		public string UmbracoUrlName
+		{
+			get { return Umbraco.Web.PublishedContentModels.BasePage.GetUmbracoUrlName(this); }
 		}
 	}
 
@@ -1764,6 +2502,480 @@ namespace Umbraco.Web.PublishedContentModels
 		}
 	}
 
+	/// <summary>News Overview</summary>
+	[PublishedContentModel("newsOverview")]
+	public partial class NewsOverview : PublishedContentModel, IBasePage
+	{
+#pragma warning disable 0109 // new is redundant
+		public new const string ModelTypeAlias = "newsOverview";
+		public new const PublishedItemType ModelItemType = PublishedItemType.Content;
+#pragma warning restore 0109
+
+		public NewsOverview(IPublishedContent content)
+			: base(content)
+		{ }
+
+#pragma warning disable 0109 // new is redundant
+		public new static PublishedContentType GetModelContentType()
+		{
+			return PublishedContentType.Get(ModelItemType, ModelTypeAlias);
+		}
+#pragma warning restore 0109
+
+		public static PublishedPropertyType GetModelPropertyType<TValue>(Expression<Func<NewsOverview, TValue>> selector)
+		{
+			return PublishedContentModelUtility.GetModelPropertyType(GetModelContentType(), selector);
+		}
+
+		///<summary>
+		/// Canonical
+		///</summary>
+		[ImplementPropertyType("canonical")]
+		public IPublishedContent Canonical
+		{
+			get { return Umbraco.Web.PublishedContentModels.BasePage.GetCanonical(this); }
+		}
+
+		///<summary>
+		/// Header Page Title: The title of document. When left empty, node's name will be used.
+		///</summary>
+		[ImplementPropertyType("headerPageTitle")]
+		public string HeaderPageTitle
+		{
+			get { return Umbraco.Web.PublishedContentModels.BasePage.GetHeaderPageTitle(this); }
+		}
+
+		///<summary>
+		/// Hide Children
+		///</summary>
+		[ImplementPropertyType("hideChildren")]
+		public bool HideChildren
+		{
+			get { return Umbraco.Web.PublishedContentModels.BasePage.GetHideChildren(this); }
+		}
+
+		///<summary>
+		/// Meta Description
+		///</summary>
+		[ImplementPropertyType("metaDescription")]
+		public string MetaDescription
+		{
+			get { return Umbraco.Web.PublishedContentModels.BasePage.GetMetaDescription(this); }
+		}
+
+		///<summary>
+		/// Meta Keywords
+		///</summary>
+		[ImplementPropertyType("metaKeywords")]
+		public string MetaKeywords
+		{
+			get { return Umbraco.Web.PublishedContentModels.BasePage.GetMetaKeywords(this); }
+		}
+
+		///<summary>
+		/// No Follow
+		///</summary>
+		[ImplementPropertyType("noFollow")]
+		public bool NoFollow
+		{
+			get { return Umbraco.Web.PublishedContentModels.BasePage.GetNoFollow(this); }
+		}
+
+		///<summary>
+		/// No Index
+		///</summary>
+		[ImplementPropertyType("noIndex")]
+		public bool NoIndex
+		{
+			get { return Umbraco.Web.PublishedContentModels.BasePage.GetNoIndex(this); }
+		}
+
+		///<summary>
+		/// Old Url
+		///</summary>
+		[ImplementPropertyType("oldUrl")]
+		public string OldUrl
+		{
+			get { return Umbraco.Web.PublishedContentModels.BasePage.GetOldUrl(this); }
+		}
+
+		///<summary>
+		/// Page Script: Script on this page
+		///</summary>
+		[ImplementPropertyType("pageScript")]
+		public string PageScript
+		{
+			get { return Umbraco.Web.PublishedContentModels.BasePage.GetPageScript(this); }
+		}
+
+		///<summary>
+		/// Title
+		///</summary>
+		[ImplementPropertyType("pageTitle")]
+		public string PageTitle
+		{
+			get { return Umbraco.Web.PublishedContentModels.BasePage.GetPageTitle(this); }
+		}
+
+		///<summary>
+		/// Hide in Navigation: Use this property if you wish to hide this page in the navigation.
+		///</summary>
+		[ImplementPropertyType("umbracoNaviHide")]
+		public bool UmbracoNaviHide
+		{
+			get { return Umbraco.Web.PublishedContentModels.BasePage.GetUmbracoNaviHide(this); }
+		}
+
+		///<summary>
+		/// Umbraco Redirect: Pick a node you wish to redirect to if the user lands on this node.
+		///</summary>
+		[ImplementPropertyType("umbracoRedirect")]
+		public IPublishedContent UmbracoRedirect
+		{
+			get { return Umbraco.Web.PublishedContentModels.BasePage.GetUmbracoRedirect(this); }
+		}
+
+		///<summary>
+		/// Umbraco URL Alias: Use this to give a node multiple urls.eg: home,homepage/another-level
+		///</summary>
+		[ImplementPropertyType("umbracoUrlAlias")]
+		public string UmbracoUrlAlias
+		{
+			get { return Umbraco.Web.PublishedContentModels.BasePage.GetUmbracoUrlAlias(this); }
+		}
+
+		///<summary>
+		/// Umbraco URL Name: If you wish to change the URL of the node without changing the node name fill this in.eg: warren
+		///</summary>
+		[ImplementPropertyType("umbracoUrlName")]
+		public string UmbracoUrlName
+		{
+			get { return Umbraco.Web.PublishedContentModels.BasePage.GetUmbracoUrlName(this); }
+		}
+	}
+
+	/// <summary>News</summary>
+	[PublishedContentModel("news")]
+	public partial class News : PublishedContentModel, IBasePage
+	{
+#pragma warning disable 0109 // new is redundant
+		public new const string ModelTypeAlias = "news";
+		public new const PublishedItemType ModelItemType = PublishedItemType.Content;
+#pragma warning restore 0109
+
+		public News(IPublishedContent content)
+			: base(content)
+		{ }
+
+#pragma warning disable 0109 // new is redundant
+		public new static PublishedContentType GetModelContentType()
+		{
+			return PublishedContentType.Get(ModelItemType, ModelTypeAlias);
+		}
+#pragma warning restore 0109
+
+		public static PublishedPropertyType GetModelPropertyType<TValue>(Expression<Func<News, TValue>> selector)
+		{
+			return PublishedContentModelUtility.GetModelPropertyType(GetModelContentType(), selector);
+		}
+
+		///<summary>
+		/// Date
+		///</summary>
+		[ImplementPropertyType("date")]
+		public DateTime Date
+		{
+			get { return this.GetPropertyValue<DateTime>("date"); }
+		}
+
+		///<summary>
+		/// Description
+		///</summary>
+		[ImplementPropertyType("description")]
+		public IHtmlString Description
+		{
+			get { return this.GetPropertyValue<IHtmlString>("description"); }
+		}
+
+		///<summary>
+		/// Canonical
+		///</summary>
+		[ImplementPropertyType("canonical")]
+		public IPublishedContent Canonical
+		{
+			get { return Umbraco.Web.PublishedContentModels.BasePage.GetCanonical(this); }
+		}
+
+		///<summary>
+		/// Header Page Title: The title of document. When left empty, node's name will be used.
+		///</summary>
+		[ImplementPropertyType("headerPageTitle")]
+		public string HeaderPageTitle
+		{
+			get { return Umbraco.Web.PublishedContentModels.BasePage.GetHeaderPageTitle(this); }
+		}
+
+		///<summary>
+		/// Hide Children
+		///</summary>
+		[ImplementPropertyType("hideChildren")]
+		public bool HideChildren
+		{
+			get { return Umbraco.Web.PublishedContentModels.BasePage.GetHideChildren(this); }
+		}
+
+		///<summary>
+		/// Meta Description
+		///</summary>
+		[ImplementPropertyType("metaDescription")]
+		public string MetaDescription
+		{
+			get { return Umbraco.Web.PublishedContentModels.BasePage.GetMetaDescription(this); }
+		}
+
+		///<summary>
+		/// Meta Keywords
+		///</summary>
+		[ImplementPropertyType("metaKeywords")]
+		public string MetaKeywords
+		{
+			get { return Umbraco.Web.PublishedContentModels.BasePage.GetMetaKeywords(this); }
+		}
+
+		///<summary>
+		/// No Follow
+		///</summary>
+		[ImplementPropertyType("noFollow")]
+		public bool NoFollow
+		{
+			get { return Umbraco.Web.PublishedContentModels.BasePage.GetNoFollow(this); }
+		}
+
+		///<summary>
+		/// No Index
+		///</summary>
+		[ImplementPropertyType("noIndex")]
+		public bool NoIndex
+		{
+			get { return Umbraco.Web.PublishedContentModels.BasePage.GetNoIndex(this); }
+		}
+
+		///<summary>
+		/// Old Url
+		///</summary>
+		[ImplementPropertyType("oldUrl")]
+		public string OldUrl
+		{
+			get { return Umbraco.Web.PublishedContentModels.BasePage.GetOldUrl(this); }
+		}
+
+		///<summary>
+		/// Page Script: Script on this page
+		///</summary>
+		[ImplementPropertyType("pageScript")]
+		public string PageScript
+		{
+			get { return Umbraco.Web.PublishedContentModels.BasePage.GetPageScript(this); }
+		}
+
+		///<summary>
+		/// Title
+		///</summary>
+		[ImplementPropertyType("pageTitle")]
+		public string PageTitle
+		{
+			get { return Umbraco.Web.PublishedContentModels.BasePage.GetPageTitle(this); }
+		}
+
+		///<summary>
+		/// Hide in Navigation: Use this property if you wish to hide this page in the navigation.
+		///</summary>
+		[ImplementPropertyType("umbracoNaviHide")]
+		public bool UmbracoNaviHide
+		{
+			get { return Umbraco.Web.PublishedContentModels.BasePage.GetUmbracoNaviHide(this); }
+		}
+
+		///<summary>
+		/// Umbraco Redirect: Pick a node you wish to redirect to if the user lands on this node.
+		///</summary>
+		[ImplementPropertyType("umbracoRedirect")]
+		public IPublishedContent UmbracoRedirect
+		{
+			get { return Umbraco.Web.PublishedContentModels.BasePage.GetUmbracoRedirect(this); }
+		}
+
+		///<summary>
+		/// Umbraco URL Alias: Use this to give a node multiple urls.eg: home,homepage/another-level
+		///</summary>
+		[ImplementPropertyType("umbracoUrlAlias")]
+		public string UmbracoUrlAlias
+		{
+			get { return Umbraco.Web.PublishedContentModels.BasePage.GetUmbracoUrlAlias(this); }
+		}
+
+		///<summary>
+		/// Umbraco URL Name: If you wish to change the URL of the node without changing the node name fill this in.eg: warren
+		///</summary>
+		[ImplementPropertyType("umbracoUrlName")]
+		public string UmbracoUrlName
+		{
+			get { return Umbraco.Web.PublishedContentModels.BasePage.GetUmbracoUrlName(this); }
+		}
+	}
+
+	/// <summary>One page checkout</summary>
+	[PublishedContentModel("onePageCheckout")]
+	public partial class OnePageCheckout : PublishedContentModel, IBasePage
+	{
+#pragma warning disable 0109 // new is redundant
+		public new const string ModelTypeAlias = "onePageCheckout";
+		public new const PublishedItemType ModelItemType = PublishedItemType.Content;
+#pragma warning restore 0109
+
+		public OnePageCheckout(IPublishedContent content)
+			: base(content)
+		{ }
+
+#pragma warning disable 0109 // new is redundant
+		public new static PublishedContentType GetModelContentType()
+		{
+			return PublishedContentType.Get(ModelItemType, ModelTypeAlias);
+		}
+#pragma warning restore 0109
+
+		public static PublishedPropertyType GetModelPropertyType<TValue>(Expression<Func<OnePageCheckout, TValue>> selector)
+		{
+			return PublishedContentModelUtility.GetModelPropertyType(GetModelContentType(), selector);
+		}
+
+		///<summary>
+		/// Canonical
+		///</summary>
+		[ImplementPropertyType("canonical")]
+		public IPublishedContent Canonical
+		{
+			get { return Umbraco.Web.PublishedContentModels.BasePage.GetCanonical(this); }
+		}
+
+		///<summary>
+		/// Header Page Title: The title of document. When left empty, node's name will be used.
+		///</summary>
+		[ImplementPropertyType("headerPageTitle")]
+		public string HeaderPageTitle
+		{
+			get { return Umbraco.Web.PublishedContentModels.BasePage.GetHeaderPageTitle(this); }
+		}
+
+		///<summary>
+		/// Hide Children
+		///</summary>
+		[ImplementPropertyType("hideChildren")]
+		public bool HideChildren
+		{
+			get { return Umbraco.Web.PublishedContentModels.BasePage.GetHideChildren(this); }
+		}
+
+		///<summary>
+		/// Meta Description
+		///</summary>
+		[ImplementPropertyType("metaDescription")]
+		public string MetaDescription
+		{
+			get { return Umbraco.Web.PublishedContentModels.BasePage.GetMetaDescription(this); }
+		}
+
+		///<summary>
+		/// Meta Keywords
+		///</summary>
+		[ImplementPropertyType("metaKeywords")]
+		public string MetaKeywords
+		{
+			get { return Umbraco.Web.PublishedContentModels.BasePage.GetMetaKeywords(this); }
+		}
+
+		///<summary>
+		/// No Follow
+		///</summary>
+		[ImplementPropertyType("noFollow")]
+		public bool NoFollow
+		{
+			get { return Umbraco.Web.PublishedContentModels.BasePage.GetNoFollow(this); }
+		}
+
+		///<summary>
+		/// No Index
+		///</summary>
+		[ImplementPropertyType("noIndex")]
+		public bool NoIndex
+		{
+			get { return Umbraco.Web.PublishedContentModels.BasePage.GetNoIndex(this); }
+		}
+
+		///<summary>
+		/// Old Url
+		///</summary>
+		[ImplementPropertyType("oldUrl")]
+		public string OldUrl
+		{
+			get { return Umbraco.Web.PublishedContentModels.BasePage.GetOldUrl(this); }
+		}
+
+		///<summary>
+		/// Page Script: Script on this page
+		///</summary>
+		[ImplementPropertyType("pageScript")]
+		public string PageScript
+		{
+			get { return Umbraco.Web.PublishedContentModels.BasePage.GetPageScript(this); }
+		}
+
+		///<summary>
+		/// Title
+		///</summary>
+		[ImplementPropertyType("pageTitle")]
+		public string PageTitle
+		{
+			get { return Umbraco.Web.PublishedContentModels.BasePage.GetPageTitle(this); }
+		}
+
+		///<summary>
+		/// Hide in Navigation: Use this property if you wish to hide this page in the navigation.
+		///</summary>
+		[ImplementPropertyType("umbracoNaviHide")]
+		public bool UmbracoNaviHide
+		{
+			get { return Umbraco.Web.PublishedContentModels.BasePage.GetUmbracoNaviHide(this); }
+		}
+
+		///<summary>
+		/// Umbraco Redirect: Pick a node you wish to redirect to if the user lands on this node.
+		///</summary>
+		[ImplementPropertyType("umbracoRedirect")]
+		public IPublishedContent UmbracoRedirect
+		{
+			get { return Umbraco.Web.PublishedContentModels.BasePage.GetUmbracoRedirect(this); }
+		}
+
+		///<summary>
+		/// Umbraco URL Alias: Use this to give a node multiple urls.eg: home,homepage/another-level
+		///</summary>
+		[ImplementPropertyType("umbracoUrlAlias")]
+		public string UmbracoUrlAlias
+		{
+			get { return Umbraco.Web.PublishedContentModels.BasePage.GetUmbracoUrlAlias(this); }
+		}
+
+		///<summary>
+		/// Umbraco URL Name: If you wish to change the URL of the node without changing the node name fill this in.eg: warren
+		///</summary>
+		[ImplementPropertyType("umbracoUrlName")]
+		public string UmbracoUrlName
+		{
+			get { return Umbraco.Web.PublishedContentModels.BasePage.GetUmbracoUrlName(this); }
+		}
+	}
+
 	/// <summary>Folder</summary>
 	[PublishedContentModel("Folder")]
 	public partial class Folder : PublishedContentModel
@@ -1949,12 +3161,12 @@ namespace Umbraco.Web.PublishedContentModels
 		}
 
 		///<summary>
-		/// NopCustomerId
+		/// Nop Customer Id
 		///</summary>
 		[ImplementPropertyType("nopCustomerId")]
-		public string NopCustomerId
+		public object NopCustomerId
 		{
-			get { return this.GetPropertyValue<string>("nopCustomerId"); }
+			get { return this.GetPropertyValue("nopCustomerId"); }
 		}
 
 		///<summary>
