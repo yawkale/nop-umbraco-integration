@@ -24,8 +24,8 @@ namespace NopStarterKit.Web.Controllers
                 SetExpressCheckoutRequestDetails = new SetExpressCheckoutRequestDetailsType() 
                 {
                     OrderTotal = new BasicAmountType(CurrencyCodeType.USD, "20"),
-                    CancelURL = "http://localhost:64146/umbraco/surface/PayPal/HandleCancelExpressCheckout",
-                    ReturnURL = "http://localhost:64146/umbraco/surface/PayPal/GetExpressCheckout",
+                    CancelURL = ConfigurationManager.AppSettings["PAYPAL_CANCEL_URL"],
+                    ReturnURL = ConfigurationManager.AppSettings["PAYPAL_RETURN_URL"],
                 }
             };
 
