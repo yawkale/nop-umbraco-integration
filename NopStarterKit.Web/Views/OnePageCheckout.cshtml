@@ -11,6 +11,8 @@ var storeLocation = "http://localhost:64146";
 }
 
 <button class="btn-primary" onclick="CreateOrder()">Api Create Test Order </button>
+<a id="paypal-button-container" class="btn-primary" href="~/umbraco/surface/PayPal/PayPalCreateRequest">Test PAy PAl</a>
+
 <div class="page checkout-page">
     <div class="page-title">
         <h1>Checkout</h1>
@@ -960,8 +962,12 @@ var storeLocation = "http://localhost:64146";
 
         function CreateOrder() {
             $.post("/umbraco/api/NopOrdersApi/CreateOrder", function (data) {
-                console.log(data);
-            });
+               });
+        }
+
+        function CreatePayPalPayment() {
+            $.post("/umbraco/surface/PayPal/PayPalCreateRequest", function (data) {
+               });
         }
 
 
