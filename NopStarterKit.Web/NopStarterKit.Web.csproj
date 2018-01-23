@@ -498,6 +498,7 @@
     <Content Include="images\logo.png" />
     <Content Include="images\menu-icon.png" />
     <Content Include="images\next.png" />
+    <Content Include="images\paypal-mark.jpg" />
     <Content Include="images\prev.png" />
     <Content Include="images\rating1.png" />
     <Content Include="images\rating2.png" />
@@ -608,6 +609,8 @@
     <Content Include="config\EmbeddedMedia.config" />
     <Content Include="config\BaseRestExtensions.config" />
     <Content Include="config\404handlers.config" />
+    <Content Include="Views\ErrorPage.cshtml" />
+    <Content Include="Views\SuccessPage.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -621,6 +624,7 @@
     </Content>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Controllers\CheckoutController.cs" />
     <Compile Include="Controllers\NopEntitiesTreeController.cs" />
     <Compile Include="Controllers\PayPalController.cs" />
     <Compile Include="CustomSection.cs" />
@@ -650,6 +654,7 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
+    <Folder Include="Views\Checkout\" />
     <Folder Include="Views\content\" />
   </ItemGroup>
   <PropertyGroup>

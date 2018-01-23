@@ -34,3 +34,18 @@ tbody .product-picture img {
 .header-links .ico-logout.btn:hover {
    color: #4ab2f1;
 }
+
+.order-error .details {
+    margin: 0;
+    padding: 15px;
+    text-align: center;
+    color: #444;
+}
+
+.order-error .details div {
+        margin: 5px 0;
+}
+
+.order-error .details a {
+    color: #4ab2f1;
+}

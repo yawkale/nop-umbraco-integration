@@ -1,0 +1,39 @@
+﻿@inherits Umbraco.Web.Mvc.UmbracoTemplatePage
+@using RJP.MultiUrlPicker.Models
+@{
+    Layout = "_Layout.cshtml";
+    var root = Model.Content.AncestorOrSelf(1);
+}
+<div class="master-wrapper-content">
+    <div class="master-column-wrapper">
+        <div class="center-1">
+            <div class="page checkout-page order-error-page">
+                <div class="page-title">
+                    <h1>@Model.Content.Name</h1>
+                </div>
+                <div class="page-body checkout-data">
+                    <div class="section order-error">
+                        @if (Model.Content.HasValue("pageTitle"))
+                        {
+                            <div class="title">
+                                <strong>@Model.Content.GetPropertyValue("pageTitle")</strong>
+                            </div>
+                        }
+                        <div class="details">
+                            @if (Model.Content.HasValue("link"))
+                            {
+                                var link = Model.Content.GetPropertyValue<MultiUrls>("link").FirstOrDefault();
+                                <div class="details-link">
+                                    <a href="@link.Url" target="@link.Target">@link.Name</a>
+                                </div>
+                            }
+                        </div>
+                        <div class="buttons">
+                            <a href="@root.Url" type="button" class="button-1 order-error-continue-button">Continue</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
