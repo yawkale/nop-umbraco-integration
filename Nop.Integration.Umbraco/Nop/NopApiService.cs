@@ -185,8 +185,8 @@ namespace Nop.Integration.Umbraco.Nop
                 order = order
             });
             object orderData = _nopApiClient.Post(jsonUrl, jsonOrder);
-            var newOrder = JsonConvert.DeserializeObject<Orders.Order>(orderData.ToString());
-            return newOrder;
+            var newOrder = JsonConvert.DeserializeObject<OrdersRootObject>(orderData.ToString());
+            return newOrder.Orders.FirstOrDefault();
         }
 
         #endregion
