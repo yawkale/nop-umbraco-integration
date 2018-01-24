@@ -198,6 +198,26 @@ namespace Nop.Integration.Umbraco.Nop
             return orders;
         }
 
+        public Orders.Order GetOrder(int id)
+        {
+            if (id == 0)
+            {
+                throw new ArgumentNullException(nameof(id), "id must be greater that 0");
+            }
+            string jsonUrl = $"/api/orders/{id}";
+
+            var orderData = _nopApiClient.Get(jsonUrl);
+
+            var order = JsonConvert.DeserializeObject<OrdersRootObject>(orderData.ToString())?.Orders.FirstOrDefault();
+
+            if (order == null)
+            {
+                throw new Exception($"Order not found {id}");
+            }
+            return order;
+        }
+
+
         public Orders.Order CreateOrder(Orders.Order order)
         {
             string jsonUrl = "api/orders";

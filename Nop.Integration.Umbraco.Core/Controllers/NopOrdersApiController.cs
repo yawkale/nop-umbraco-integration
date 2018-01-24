@@ -35,6 +35,11 @@ namespace Nop.Integration.Umbraco.Core.Controllers
             _nopService.UpdateOrder(order);
         }
 
+        public void GetOrder(int id)
+        {
+            _nopService.GetOrder(id);
+        }
+
         public ActionResult CreateOrder()
         {
 

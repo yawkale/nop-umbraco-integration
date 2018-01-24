@@ -79,12 +79,7 @@ namespace Nop.Integration.Umbraco.Core.Services
 
             };
             
-            var order = _nopService.CreateOrder(stubOrder);
-            //var order2 = _nopService.GetAllOrders().FirstOrDefault(x => x.Id == order.Id);
-            //order.PaymentStatus = PaymentStatus.Paid.ToString();
-            //order.PaidDateUtc = DateTime.UtcNow.ToString();
-
-            //_nopService.UpdateOrder(order);
+            var order = _nopService.CreateOrder(stubOrder);         
             return order.Id;
         }
 
@@ -104,9 +99,17 @@ namespace Nop.Integration.Umbraco.Core.Services
 
             return true;
         }
+
+        public Orders.Order GetOrderById(int id)
+        {      
+           return  _nopService.GetOrder(id);       
+        }
+
         public bool MarkOrderAsPaid(string orderId)
         {
-            var order = _nopService.GetAllOrders().FirstOrDefault(x => x.Id == orderId);
+            int Id = 0;
+            Int32.TryParse(orderId, out Id);
+            var order = GetOrderById(Id);
             if (!CanMarkOrderAsPaid(order)) return false;
             order.PaymentStatus = PaymentStatus.Paid.ToString();
             order.PaidDateUtc = DateTime.UtcNow.ToString();
