@@ -46,7 +46,7 @@ namespace Nop.Integration.Umbraco.Products
         {
             get
             {
-                return (Attributes.Any() || MinQuantity > 1 || IsGiftCard || IsDownload || CustomerEnterPrice || IsRental || HasTierPrices) ? true : false;
+                return (Attributes != null &&  Attributes.Any() || MinQuantity > 1 || IsGiftCard || IsDownload || CustomerEnterPrice || IsRental || HasTierPrices) ? true : false;
             }
         }
     }

@@ -5,6 +5,7 @@ using System.Web.Mvc;
 using Nop.Integration.Umbraco.Core.Services;
 using Nop.Integration.Umbraco.Nop;
 using Nop.Integration.Umbraco.Orders;
+using Nop.Integration.Umbraco.Products;
 using Umbraco.Web.WebApi;
 
 namespace Nop.Integration.Umbraco.Core.Controllers
@@ -28,6 +29,12 @@ namespace Nop.Integration.Umbraco.Core.Controllers
             return orders;
         }
 
+        [HttpPost]
+        public void Update(Orders.Order order)
+        {
+            _nopService.UpdateOrder(order);
+        }
+
         public ActionResult CreateOrder()
         {
 
@@ -44,7 +51,8 @@ namespace Nop.Integration.Umbraco.Core.Controllers
                 PhoneNumber = "12345678",
                 ZipPostalCode = "10021",
                 CountryId = 1,
-                CreatedOnUtc = DateTime.UtcNow
+                CreatedOnUtc = DateTime.UtcNow,
+                 
             };
             var billingAddress = new Address
             {
@@ -72,6 +80,7 @@ namespace Nop.Integration.Umbraco.Core.Controllers
                 CreatedOnUtc = DateTime.UtcNow,
                 PaidDateUtc = DateTime.UtcNow.ToString(CultureInfo.InvariantCulture),
                 PaymentMethodSystemName = "Payments.Manual"
+                
 
             };
 
@@ -79,6 +88,8 @@ namespace Nop.Integration.Umbraco.Core.Controllers
          
             return new EmptyResult();
         }
+
+
 
     }
 }

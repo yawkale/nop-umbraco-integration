@@ -1,8 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Globalization;
+using System.Linq;
 using Nop.Integration.Umbraco.Nop;
 using Nop.Integration.Umbraco.Orders;
+using Nop.Integration.Umbraco.Payment;
 
 namespace Nop.Integration.Umbraco.Core.Services
 {
@@ -16,6 +18,11 @@ namespace Nop.Integration.Umbraco.Core.Services
         {
             _nopService = new NopApiService();
             _userContext = new UserContext();
+        }
+
+        public Orders.Order UpdateOrder(Orders.Order order)
+        {
+           return _nopService.UpdateOrder(order);
         }
 
         public List<Orders.Order> GetOrders()
@@ -71,9 +78,40 @@ namespace Nop.Integration.Umbraco.Core.Services
                 PaymentMethodSystemName = "Payments.Manual"
 
             };
-
+            
             var order = _nopService.CreateOrder(stubOrder);
+            //var order2 = _nopService.GetAllOrders().FirstOrDefault(x => x.Id == order.Id);
+            //order.PaymentStatus = PaymentStatus.Paid.ToString();
+            //order.PaidDateUtc = DateTime.UtcNow.ToString();
+
+            //_nopService.UpdateOrder(order);
             return order.Id;
+        }
+
+        public bool CanMarkOrderAsPaid(Orders.Order order)
+        {
+            if (order == null)
+                throw new ArgumentNullException("order");
+
+            // OrderStatus.Cancelled
+            if (order.OrderStatus == "40")
+                return false;
+
+            if (order.PaymentStatus == PaymentStatus.Paid.ToString() ||
+                order.PaymentStatus == PaymentStatus.Refunded.ToString() ||
+                order.PaymentStatus == PaymentStatus.Voided.ToString())
+                return false;
+
+            return true;
+        }
+        public bool MarkOrderAsPaid(string orderId)
+        {
+            var order = _nopService.GetAllOrders().FirstOrDefault(x => x.Id == orderId);
+            if (!CanMarkOrderAsPaid(order)) return false;
+            order.PaymentStatus = PaymentStatus.Paid.ToString();
+            order.PaidDateUtc = DateTime.UtcNow.ToString();
+            UpdateOrder(order);
+            return true;
         }
     }
 }

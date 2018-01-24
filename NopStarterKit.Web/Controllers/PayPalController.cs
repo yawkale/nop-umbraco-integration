@@ -14,7 +14,7 @@ namespace NopStarterKit.Web.Controllers
     public class PayPalController : SurfaceController
     {
         // GET: PayPal
-        public ActionResult PayPalCreateRequest()
+        public ActionResult PayPalCreateRequest(string orderId)
         {
             Dictionary<string, string> config = ConfigManager.Instance.GetProperties();
             PayPalAPIInterfaceServiceService service = new PayPalAPIInterfaceServiceService(config);
@@ -70,14 +70,14 @@ namespace NopStarterKit.Web.Controllers
 
         public ActionResult ErrorTransaction()
         {
-            return Content("Error");
+            var page = Umbraco.TypedContentAtXPath("//errorPage").FirstOrDefault();
+            return RedirectToUmbracoPage(page);
         }
 
         public ActionResult SuccessTransaction()
         {
-            return Content("OK");
+            var page = Umbraco.TypedContentAtXPath("//successPage").FirstOrDefault();
+            return RedirectToUmbracoPage(page);
         }
-
-       
     }
 }

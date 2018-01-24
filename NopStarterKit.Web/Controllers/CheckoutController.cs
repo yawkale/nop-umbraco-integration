@@ -20,8 +20,9 @@ namespace NopStarterKit.Web.Controllers
         // GET: Checkout
         public ActionResult ConfirmOrder()
         {
-            var orderId = orderService.CreateOrder();
-            return RedirectToAction("PayPalCreateRequest", "PayPal");
+            var id = orderService.CreateOrder();
+            return RedirectToAction("PayPalCreateRequest", "PayPal", new { orderId  = id });
         }
+
     }
 }

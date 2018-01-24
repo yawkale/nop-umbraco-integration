@@ -51,6 +51,7 @@
     <Compile Include="Category\Category.cs" />
     <Compile Include="Category\PostCategoryObject.cs" />
     <Compile Include="Customer\Customer.cs" />
+    <Compile Include="Payment\PaymentStatus.cs" />
     <Compile Include="Products\PostProductObject.cs" />
     <Compile Include="Search\DataSearchModel.cs" />
     <Compile Include="Customer\CustomersRootObject.cs" />
