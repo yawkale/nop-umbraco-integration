@@ -268,6 +268,7 @@
     <Compile Include="Controllers\NopCategoryApiController.cs" />
     <Compile Include="Controllers\NopCustomerApiController.cs" />
     <Compile Include="Core\GlobalSettings.cs" />
+    <Compile Include="Services\OrderService.cs" />
     <Compile Include="Startups\Startup.cs" />
     <Compile Include="Controllers\AuthorizationController.cs" />
     <Compile Include="Controllers\DefaultController.cs" />

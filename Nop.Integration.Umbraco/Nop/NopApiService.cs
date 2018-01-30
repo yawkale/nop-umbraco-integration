@@ -3,6 +3,7 @@ using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
 using System.Web;
 using Nop.Integration.Umbraco.Order;
@@ -164,7 +165,28 @@ namespace Nop.Integration.Umbraco.Nop
             _nopApiClient.Put(jsonUrl, jsonProduct);
         }
 
+
+
         #region OrderService
+
+        public Orders.Order UpdateOrder(Orders.Order order)
+        {
+         
+            string jsonOrder = JsonConvert.SerializeObject(new
+            {
+                order = order
+            });
+
+            var id = order.Id;
+
+            string jsonUrl = $"/api/orders/{id}";
+
+            var orderData =  _nopApiClient.Put(jsonUrl, jsonOrder);
+
+            var newOrder = JsonConvert.DeserializeObject<OrdersRootObject>(orderData.ToString());
+            return newOrder.Orders.FirstOrDefault();
+        }
+
         public List<Orders.Order> GetAllOrders()
         {
             string jsonUrl = $"/api/orders?fields=id,order_total,paid_date_utc,payment_status,customer";
@@ -176,6 +198,26 @@ namespace Nop.Integration.Umbraco.Nop
             return orders;
         }
 
+        public Orders.Order GetOrder(int id)
+        {
+            if (id == 0)
+            {
+                throw new ArgumentNullException(nameof(id), "id must be greater that 0");
+            }
+            string jsonUrl = $"/api/orders/{id}";
+
+            var orderData = _nopApiClient.Get(jsonUrl);
+
+            var order = JsonConvert.DeserializeObject<OrdersRootObject>(orderData.ToString())?.Orders.FirstOrDefault();
+
+            if (order == null)
+            {
+                throw new Exception($"Order not found {id}");
+            }
+            return order;
+        }
+
+
         public Orders.Order CreateOrder(Orders.Order order)
         {
             string jsonUrl = "api/orders";
@@ -185,8 +227,8 @@ namespace Nop.Integration.Umbraco.Nop
                 order = order
             });
             object orderData = _nopApiClient.Post(jsonUrl, jsonOrder);
-            var newOrder = JsonConvert.DeserializeObject<Orders.Order>(orderData.ToString());
-            return newOrder;
+            var newOrder = JsonConvert.DeserializeObject<OrdersRootObject>(orderData.ToString());
+            return newOrder.Orders.FirstOrDefault();
         }
 
         #endregion

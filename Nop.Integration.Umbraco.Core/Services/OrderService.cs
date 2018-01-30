@@ -1,25 +1,28 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Globalization;
-using System.Web.Mvc;
-using Nop.Integration.Umbraco.Core.Services;
+using System.Linq;
 using Nop.Integration.Umbraco.Nop;
 using Nop.Integration.Umbraco.Orders;
-using Nop.Integration.Umbraco.Products;
-using Umbraco.Web.WebApi;
+using Nop.Integration.Umbraco.Payment;
 
-namespace Nop.Integration.Umbraco.Core.Controllers
+namespace Nop.Integration.Umbraco.Core.Services
 {
-    public class NopOrdersApiController : UmbracoApiController
+    public class OrderService
     {
         private readonly NopApiService _nopService;
         private readonly UserContext _userContext;
 
 
-        public NopOrdersApiController()
+        public OrderService()
         {
             _nopService = new NopApiService();
             _userContext = new UserContext();
+        }
+
+        public Orders.Order UpdateOrder(Orders.Order order)
+        {
+           return _nopService.UpdateOrder(order);
         }
 
         public List<Orders.Order> GetOrders()
@@ -29,18 +32,7 @@ namespace Nop.Integration.Umbraco.Core.Controllers
             return orders;
         }
 
-        [HttpPost]
-        public void Update(Orders.Order order)
-        {
-            _nopService.UpdateOrder(order);
-        }
-
-        public void GetOrder(int id)
-        {
-            _nopService.GetOrder(id);
-        }
-
-        public ActionResult CreateOrder()
+        public string CreateOrder()
         {
 
             int customerIdParseResult;
@@ -56,8 +48,7 @@ namespace Nop.Integration.Umbraco.Core.Controllers
                 PhoneNumber = "12345678",
                 ZipPostalCode = "10021",
                 CountryId = 1,
-                CreatedOnUtc = DateTime.UtcNow,
-                 
+                CreatedOnUtc = DateTime.UtcNow
             };
             var billingAddress = new Address
             {
@@ -70,7 +61,7 @@ namespace Nop.Integration.Umbraco.Core.Controllers
                 ZipPostalCode = "10021",
                 CountryId = 1,
                 CreatedOnUtc = DateTime.UtcNow,
-                
+
             };
 
 
@@ -81,20 +72,49 @@ namespace Nop.Integration.Umbraco.Core.Controllers
                 ShippingMethod = "Shipping.FixedRate",
                 ShippingRateComputationMethodSystemName = " Shipping Rate Computation Method System Name",
                 ShippingAddress = shippingAddress,
-                BillingAddress=billingAddress,
+                BillingAddress = billingAddress,
                 CreatedOnUtc = DateTime.UtcNow,
                 PaidDateUtc = DateTime.UtcNow.ToString(CultureInfo.InvariantCulture),
                 PaymentMethodSystemName = "Payments.Manual"
-                
 
             };
-
-            var order = _nopService.CreateOrder(stubOrder);
-         
-            return new EmptyResult();
+            
+            var order = _nopService.CreateOrder(stubOrder);         
+            return order.Id;
         }
 
+        public bool CanMarkOrderAsPaid(Orders.Order order)
+        {
+            if (order == null)
+                throw new ArgumentNullException("order");
 
+            // OrderStatus.Cancelled
+            if (order.OrderStatus == "40")
+                return false;
 
+            if (order.PaymentStatus == PaymentStatus.Paid.ToString() ||
+                order.PaymentStatus == PaymentStatus.Refunded.ToString() ||
+                order.PaymentStatus == PaymentStatus.Voided.ToString())
+                return false;
+
+            return true;
+        }
+
+        public Orders.Order GetOrderById(int id)
+        {      
+           return  _nopService.GetOrder(id);       
+        }
+
+        public bool MarkOrderAsPaid(string orderId)
+        {
+            int Id = 0;
+            Int32.TryParse(orderId, out Id);
+            var order = GetOrderById(Id);
+            if (!CanMarkOrderAsPaid(order)) return false;
+            order.PaymentStatus = PaymentStatus.Paid.ToString();
+            order.PaidDateUtc = DateTime.UtcNow.ToString();
+            UpdateOrder(order);
+            return true;
+        }
     }
 }

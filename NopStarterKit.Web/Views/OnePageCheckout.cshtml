@@ -6,12 +6,12 @@
 
     <script src="/scripts/public.accordion.js"></script>
     @*<script src="/scripts/public.onepagecheckout.js"></script>*@
-var storeLocation = "http://localhost:64146";
+    var storeLocation = "http://localhost:64146";
     <script src="/scripts/OnePageCheckout.js"></script>
 }
 
 <button class="btn-primary" onclick="CreateOrder()">Api Create Test Order </button>
-<a id="paypal-button-container" class="btn-primary" href="~/umbraco/surface/PayPal/PayPalCreateRequest">Test PAy PAl</a>
+<a id="paypal-button-container" class="btn-primary" href="~//umbraco/surface/Checkout/ConfirmOrder">Test PAy PAl</a>
 
 <div class="page checkout-page">
     <div class="page-title">
@@ -592,16 +592,16 @@ var storeLocation = "http://localhost:64146";
                                             <div class="method-name">
                                                 <div class="payment-logo">
                                                     <label for="paymentmethod_0">
-                                                        <img src="http://test-nop.uteam-dev.com/plugins/Payments.CheckMoneyOrder/logo.jpg" alt="Check / Money Order">
+                                                        <img src="/images/paypal-mark.jpg" alt="Pay with Paypal">
                                                     </label>
                                                 </div>
                                                 <div class="payment-details">
                                                     <input id="paymentmethod_0" type="radio" name="paymentmethod" value="Payments.CheckMoneyOrder" checked="checked">
-                                                    <label for="paymentmethod_0">Check / Money Order</label>
+                                                    <label for="paymentmethod_0">Pay with Paypal</label>
                                                 </div>
                                             </div>
                                         </li>
-                                        <li>
+                                        @*<li>
                                             <div class="method-name">
                                                 <div class="payment-logo">
                                                     <label for="paymentmethod_1">
@@ -626,7 +626,7 @@ var storeLocation = "http://localhost:64146";
                                                     <label for="paymentmethod_2">Purchase Order</label>
                                                 </div>
                                             </div>
-                                        </li>
+                                        </li>*@
                                     </ul>
                                 </div>
 
@@ -653,7 +653,7 @@ var storeLocation = "http://localhost:64146";
                     <span class="number">5</span>
                     <h2 class="title">Payment info</h2>
                 </div>
-                <div id="checkout-step-payment-info" class="step a-item">
+                <div id="checkout-step-payment-info" class="step a-item" style="display: none">
                     <form action="" id="co-payment-info-form">
                         <div id="checkout-payment-info-load">
                             @*payment info content will be loaded here*@
@@ -704,7 +704,7 @@ var storeLocation = "http://localhost:64146";
                     <span class="number">6</span>
                     <h2 class="title">Confirm order</h2>
                 </div>
-                <div id="checkout-step-confirm-order" class="step a-item">
+                <div id="checkout-step-confirm-order" class="step a-item"  style="display: none">
                     <div id="checkout-confirm-order-load">
                         @*confirm order content will be loaded here*@
                         <div class="checkout-data">
@@ -959,17 +959,10 @@ var storeLocation = "http://localhost:64146";
             Accordion.hideSection('#opc-billing');
             Billing.save();
         }
-
-        function CreateOrder() {
-            $.post("/umbraco/api/NopOrdersApi/CreateOrder", function (data) {
+        $(".step-title").click(function(e) {
+                
+                    var section = $(this).closest(".tab-section").attr("id");
+                   Checkout.goCurrentSection(section);
                });
-        }
-
-        function CreatePayPalPayment() {
-            $.post("/umbraco/surface/PayPal/PayPalCreateRequest", function (data) {
-               });
-        }
-
-
     </script>
 </div>

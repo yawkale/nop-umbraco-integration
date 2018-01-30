@@ -1,8 +1,10 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Configuration;
 using System.Linq;
 using System.Web.Mvc;
 using Microsoft.Owin.Security.Provider;
+using Nop.Integration.Umbraco.Core.Services;
 using PayPal.Manager;
 using PayPal.PayPalAPIInterfaceService;
 using PayPal.PayPalAPIInterfaceService.Model;
@@ -13,8 +15,9 @@ namespace NopStarterKit.Web.Controllers
 {
     public class PayPalController : SurfaceController
     {
+        OrderService orderService;
         // GET: PayPal
-        public ActionResult PayPalCreateRequest()
+        public ActionResult PayPalCreateRequest(string orderId)
         {
             Dictionary<string, string> config = ConfigManager.Instance.GetProperties();
             PayPalAPIInterfaceServiceService service = new PayPalAPIInterfaceServiceService(config);
@@ -24,8 +27,8 @@ namespace NopStarterKit.Web.Controllers
                 SetExpressCheckoutRequestDetails = new SetExpressCheckoutRequestDetailsType() 
                 {
                     OrderTotal = new BasicAmountType(CurrencyCodeType.USD, "20"),
-                    CancelURL = "http://localhost:64146/umbraco/surface/PayPal/HandleCancelExpressCheckout",
-                    ReturnURL = "http://localhost:64146/umbraco/surface/PayPal/GetExpressCheckout",
+                    CancelURL = ConfigurationManager.AppSettings["PAYPAL_CANCEL_URL"],
+                    ReturnURL = ConfigurationManager.AppSettings["PAYPAL_RETURN_URL"] +"/?orderId="+orderId,
                 }
             };
 
@@ -45,7 +48,7 @@ namespace NopStarterKit.Web.Controllers
             return ErrorTransaction();
         }
 
-        public ActionResult GetExpressCheckout(string token)
+        public ActionResult GetExpressCheckout(string token, string orderId)
         {
             Dictionary<string, string> config = ConfigManager.Instance.GetProperties();
             PayPalAPIInterfaceServiceService service = new PayPalAPIInterfaceServiceService(config);
@@ -59,7 +62,15 @@ namespace NopStarterKit.Web.Controllers
 
             var response = service.GetExpressCheckoutDetails(request);
             if (response.Ack.ToString().Trim().ToUpper().Equals(AckCodeType.SUCCESS.ToString()))
+            {
+                orderService = new OrderService();
+                bool isMarked = orderService.MarkOrderAsPaid(orderId);
+                // TODO check this
+                if (!isMarked)
+                    throw new Exception("Order was not marked as paid");
                 return SuccessTransaction();
+            }
+           
             return ErrorTransaction();
         }
         public RedirectToUmbracoPageResult HandleCancelExpressCheckout()
@@ -70,14 +81,14 @@ namespace NopStarterKit.Web.Controllers
 
         public ActionResult ErrorTransaction()
         {
-            return Content("Error");
+            var page = Umbraco.TypedContentAtXPath("//errorPage").FirstOrDefault();
+            return RedirectToUmbracoPage(page);
         }
 
         public ActionResult SuccessTransaction()
         {
-            return Content("OK");
+            var page = Umbraco.TypedContentAtXPath("//successPage").FirstOrDefault();
+            return RedirectToUmbracoPage(page);
         }
-
-       
     }
 }
