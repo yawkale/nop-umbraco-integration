@@ -3,9 +3,7 @@ using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 using System;
 using System.Collections.Generic;
-using System.Globalization;
 using System.Linq;
-using System.Web;
 using Nop.Integration.Umbraco.Order;
 using Nop.Integration.Umbraco.ShoppingCart;
 using Nop.Integration.Umbraco.Category;
@@ -42,12 +40,14 @@ namespace Nop.Integration.Umbraco.Nop
         string UpdateCategory(PostCategoryObject category);
 
         void UpdateProduct(PostProductObject product);
+        Orders.Order UpdateOrder(Orders.Order order);
+        Orders.Order GetOrder(int id);
+
     }
 
     public class NopApiService : INopApiService
     {
         private readonly ApiClient _nopApiClient;
-
         public NopApiService()
         {
            _nopApiClient = new ApiClient();

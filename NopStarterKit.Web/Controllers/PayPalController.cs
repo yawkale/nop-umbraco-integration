@@ -5,6 +5,7 @@ using System.Linq;
 using System.Web.Mvc;
 using Microsoft.Owin.Security.Provider;
 using Nop.Integration.Umbraco.Core.Services;
+using Nop.Integration.Umbraco.Services.Order;
 using PayPal.Manager;
 using PayPal.PayPalAPIInterfaceService;
 using PayPal.PayPalAPIInterfaceService.Model;
@@ -65,7 +66,7 @@ namespace NopStarterKit.Web.Controllers
             {
                 orderService = new OrderService();
                 bool isMarked = orderService.MarkOrderAsPaid(orderId);
-                // TODO check this
+                // TODO process this exception
                 if (!isMarked)
                     throw new Exception("Order was not marked as paid");
                 return SuccessTransaction();
