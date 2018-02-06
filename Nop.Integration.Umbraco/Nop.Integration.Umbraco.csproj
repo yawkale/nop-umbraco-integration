@@ -65,6 +65,9 @@
     <Compile Include="Products\ProductAttributeValue.cs" />
     <Compile Include="Products\ProductRootObject.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Services\Order\OrderProcessingService.cs" />
+    <Compile Include="Services\Order\OrderService.cs" />
+    <Compile Include="Services\ShoppingCart\ShoppingCartService.cs" />
     <Compile Include="ShoppingCart\CreateShoppingCartItem.cs" />
     <Compile Include="ShoppingCart\ShoppingCartItem.cs" />
     <Compile Include="ShoppingCart\ShoppingCartProductAttribute.cs" />
