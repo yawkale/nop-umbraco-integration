@@ -3,13 +3,10 @@ using System.Collections.Generic;
 using System.Configuration;
 using System.Linq;
 using System.Web.Mvc;
-using Microsoft.Owin.Security.Provider;
-using Nop.Integration.Umbraco.Core.Services;
 using Nop.Integration.Umbraco.Services.Order;
 using PayPal.Manager;
 using PayPal.PayPalAPIInterfaceService;
 using PayPal.PayPalAPIInterfaceService.Model;
-using Umbraco.Core.Models;
 using Umbraco.Web.Mvc;
 
 namespace NopStarterKit.Web.Controllers
