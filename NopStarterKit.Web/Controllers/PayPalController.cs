@@ -1,8 +1,8 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Configuration;
 using System.Linq;
 using System.Web.Mvc;
+using Nop.Integration.Umbraco.Core.Core;
 using Nop.Integration.Umbraco.Services.Order;
 using PayPal.Manager;
 using PayPal.PayPalAPIInterfaceService;
@@ -13,24 +13,24 @@ namespace NopStarterKit.Web.Controllers
 {
     public class PayPalController : SurfaceController
     {
-        OrderService orderService;
+        OrderService _orderService;
         // GET: PayPal
         public ActionResult PayPalCreateRequest(string orderId)
         {
-            Dictionary<string, string> config = ConfigManager.Instance.GetProperties();
-            PayPalAPIInterfaceServiceService service = new PayPalAPIInterfaceServiceService(config);
+            var config = ConfigManager.Instance.GetProperties();
+            var service = new PayPalAPIInterfaceServiceService(config);
 
             var setExpressCheckoutRequestType = new SetExpressCheckoutRequestType
             {
                 SetExpressCheckoutRequestDetails = new SetExpressCheckoutRequestDetailsType() 
                 {
                     OrderTotal = new BasicAmountType(CurrencyCodeType.USD, "20"),
-                    CancelURL = ConfigurationManager.AppSettings["PAYPAL_CANCEL_URL"],
-                    ReturnURL = ConfigurationManager.AppSettings["PAYPAL_RETURN_URL"] +"/?orderId="+orderId,
+                    CancelURL = GlobalSettings.PayPalSettings.PayPalCancelUrl,
+                    ReturnURL = GlobalSettings.PayPalSettings.PayPalReturnUrl + "/?orderId="+orderId,
                 }
             };
 
-            SetExpressCheckoutReq request = new SetExpressCheckoutReq
+            var request = new SetExpressCheckoutReq
             {
                 SetExpressCheckoutRequest = setExpressCheckoutRequestType
 
@@ -39,8 +39,8 @@ namespace NopStarterKit.Web.Controllers
             var response = service.SetExpressCheckout(request);
             if (!response.Ack.ToString().Trim().ToUpper().Equals(AckCodeType.FAILURE.ToString()) && !response.Ack.ToString().Trim().ToUpper().Equals(AckCodeType.FAILUREWITHWARNING.ToString()))
             {
-               var redirectUrl = ConfigurationManager.AppSettings["PAYPAL_REDIRECT_URL"] + "_express-checkout&token=" + response.Token;
-               return Redirect(redirectUrl);
+                var redirectUrl = GlobalSettings.PayPalSettings.PayPalRedirectUrl + "_express-checkout&token=" + response.Token;
+                return Redirect(redirectUrl);
             }
 
             return ErrorTransaction();
@@ -48,9 +48,9 @@ namespace NopStarterKit.Web.Controllers
 
         public ActionResult GetExpressCheckout(string token, string orderId)
         {
-            Dictionary<string, string> config = ConfigManager.Instance.GetProperties();
-            PayPalAPIInterfaceServiceService service = new PayPalAPIInterfaceServiceService(config);
-            GetExpressCheckoutDetailsReq request = new GetExpressCheckoutDetailsReq
+            var config = ConfigManager.Instance.GetProperties();
+            var service = new PayPalAPIInterfaceServiceService(config);
+            var request = new GetExpressCheckoutDetailsReq
             {
                 GetExpressCheckoutDetailsRequest = new GetExpressCheckoutDetailsRequestType
                 {
@@ -61,8 +61,8 @@ namespace NopStarterKit.Web.Controllers
             var response = service.GetExpressCheckoutDetails(request);
             if (response.Ack.ToString().Trim().ToUpper().Equals(AckCodeType.SUCCESS.ToString()))
             {
-                orderService = new OrderService();
-                bool isMarked = orderService.MarkOrderAsPaid(orderId);
+                _orderService = new OrderService();
+                var isMarked = _orderService.MarkOrderAsPaid(orderId);
                 // TODO process this exception
                 if (!isMarked)
                     throw new Exception("Order was not marked as paid");
