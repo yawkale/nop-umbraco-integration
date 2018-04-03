@@ -15,12 +15,9 @@
 
         public string CategoryDocumentTypeAlias => "category";
         public string CategoryIdPropertyAlias => "nopCategoryId";
-
-
-        public string MemberIdPropertyAlias => "nopCustomerId";
-
         
-
+        public string MemberIdPropertyAlias => "nopCustomerId";
+        
     }
 
     public static class GlobalSettings

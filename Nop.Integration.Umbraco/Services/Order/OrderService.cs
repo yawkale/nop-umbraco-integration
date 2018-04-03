@@ -9,12 +9,12 @@ namespace Nop.Integration.Umbraco.Services.Order
     public class OrderService
     {
         private readonly NopApiService _nopService;
-        private readonly OrderProcessingService orderProcessingService;
+        private readonly OrderProcessingService _orderProcessingService;
 
         public OrderService()
         {
             _nopService = new NopApiService();
-            orderProcessingService = new OrderProcessingService();
+            _orderProcessingService = new OrderProcessingService();
         }
 
         public Orders.Order UpdateOrder(Orders.Order order)
@@ -31,7 +31,7 @@ namespace Nop.Integration.Umbraco.Services.Order
 
         public string PlaceOrder(int userId)
         {
-            var placingOrder = orderProcessingService.PreparePlaceOrderDetails(userId);
+            var placingOrder = _orderProcessingService.PreparePlaceOrderDetails(userId);
             var placedOrder = _nopService.CreateOrder(placingOrder);         
             return placedOrder.Id;
         }
@@ -60,9 +60,9 @@ namespace Nop.Integration.Umbraco.Services.Order
 
         public bool MarkOrderAsPaid(string orderId)
         {
-            int Id = 0;
-            Int32.TryParse(orderId, out Id);
-            var order = GetOrderById(Id);
+            int id;
+            int.TryParse(orderId, out id);
+            var order = GetOrderById(id);
             if (!CanMarkOrderAsPaid(order)) return false;
             order.PaymentStatus = PaymentStatus.Paid.ToString();
             order.PaidDateUtc = DateTime.UtcNow.ToString(CultureInfo.InvariantCulture);

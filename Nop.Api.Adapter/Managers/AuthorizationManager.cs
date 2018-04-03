@@ -1,5 +1,4 @@
-﻿using Nop.Api.Adapter;
-using System;
+﻿using System;
 
 
 namespace Nop.Api.Adapter.Managers
@@ -38,7 +37,7 @@ namespace Nop.Api.Adapter.Managers
             ValidateParameter("GrantType", authParameters.GrantType);
 
             // get the access token
-            string accessToken = _apiAuthorizer.AuthorizeClient(authParameters.Code, authParameters.GrantType, authParameters.RedirectUrl);
+            var accessToken = _apiAuthorizer.AuthorizeClient(authParameters.Code, authParameters.GrantType, authParameters.RedirectUrl);
 
             return accessToken;
         }
@@ -57,7 +56,7 @@ namespace Nop.Api.Adapter.Managers
             ValidateParameter("RefreshToken", authParameters.RefreshToken);
 
             // get the access token
-            string accessToken = _apiAuthorizer.RefreshToken(authParameters.RefreshToken, authParameters.GrantType);
+            var accessToken = _apiAuthorizer.RefreshToken(authParameters.RefreshToken, authParameters.GrantType);
 
             return accessToken;
         }
@@ -66,7 +65,7 @@ namespace Nop.Api.Adapter.Managers
         {
             if (string.IsNullOrWhiteSpace(parameterValue))
             {
-                throw new Exception(string.Format("{0} parameter is missing", parameterName));
+                throw new Exception($"{parameterName} parameter is missing");
             }
         }
     }

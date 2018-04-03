@@ -5,7 +5,6 @@ using System.Web.Mvc;
 using Nop.Integration.Umbraco.Core.Services;
 using Nop.Integration.Umbraco.Nop;
 using Nop.Integration.Umbraco.Orders;
-using Nop.Integration.Umbraco.Products;
 using Umbraco.Web.WebApi;
 
 namespace Nop.Integration.Umbraco.Core.Controllers
