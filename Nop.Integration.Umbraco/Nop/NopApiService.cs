@@ -108,7 +108,7 @@ namespace Nop.Integration.Umbraco.Nop
 
         public CategoriesRootObject GetCategories()
         {
-            string jsonUrl = $"/api/categories?fields=id,name";
+            string jsonUrl = $"/api/categories?fields=id,name,store_ids";
 
             object categoriesData = _nopApiClient.Get(jsonUrl);
 

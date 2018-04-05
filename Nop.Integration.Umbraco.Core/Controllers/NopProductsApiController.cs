@@ -23,8 +23,7 @@ namespace Nop.Integration.Umbraco.Core.Controllers
         [HttpGet]
         public List<Product> GetProducts(FormDataCollection queryStrings)
         {
-            int storeId;
-            int.TryParse(GlobalSettings.UmbracoSettings.NopStoreId, out storeId);
+            var storeId = GlobalSettings.UmbracoSettings.NopStoreId;
             var isGetProductLimitToStore = GlobalSettings.UmbracoSettings.GetProductLimitToStore;
             var products = storeId != 0 && isGetProductLimitToStore ?_nopService.GetAllProducts().Where(product => product.StoreIds.Contains(storeId)).ToList() : _nopService.GetAllProducts();
 
@@ -34,16 +33,15 @@ namespace Nop.Integration.Umbraco.Core.Controllers
         [HttpPost]
         public string Create([System.Web.Http.FromBody]string name)
         {
-            int storeId;
-            int.TryParse(GlobalSettings.UmbracoSettings.NopStoreId, out storeId);
-            var isCreateProductLImitToStore = GlobalSettings.UmbracoSettings.CreateProductLImitToStore;
+            var storeId = GlobalSettings.UmbracoSettings.NopStoreId;
+            var isCreateProductLimitToStore = GlobalSettings.UmbracoSettings.CreateProductLImitToStore;
 
             var product = new PostProductObject()
             {
                 Name = name
             };
 
-            if (storeId != 0 && isCreateProductLImitToStore)
+            if (storeId != 0 && isCreateProductLimitToStore)
                 product.StoreIds = new[] {storeId};
 
             var productId = _nopService.CreateProduct(product);
