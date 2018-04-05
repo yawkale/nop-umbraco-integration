@@ -48,7 +48,7 @@ namespace Nop.Integration.Umbraco.Core.Controllers
             var shippingAddress = new Address
             {
                 Address1 = "21 West 52nd Street",
-                Email = "alex@uteam.co.il",
+                Email = "user@nopintergra.com",
                 FirstName = "John",
                 LastName = "Smith",
                 City = "New York",
@@ -61,7 +61,7 @@ namespace Nop.Integration.Umbraco.Core.Controllers
             var billingAddress = new Address
             {
                 Address1 = "21 West 52nd Street",
-                Email = "alex@uteam.co.il",
+                Email = "user@nopintergra.com",
                 FirstName = "John",
                 LastName = "Smith",
                 City = "New York",

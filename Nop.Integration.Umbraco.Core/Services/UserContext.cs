@@ -16,7 +16,7 @@ namespace Nop.Integration.Umbraco.Core.Services
 
         public string CustomerType()
         {
-            return HttpContext.Current.Request.Cookies["NopCustomerType"]?.Value;
+            return HttpContext.Current.Request.Cookies[GlobalSettings.ClientSettings.CustomerTypeCookieName]?.Value;
         }
 
         

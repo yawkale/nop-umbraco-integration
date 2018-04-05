@@ -3,6 +3,8 @@
     public class GlobalClientSettings
     {
         public string CustomerIdCookieName => "NopCustomerId";
+
+        public string CustomerTypeCookieName => "NopCustomerType";
     }
 
     public class GlobalUmbracoSettings

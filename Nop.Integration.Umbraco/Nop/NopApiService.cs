@@ -4,6 +4,7 @@ using Newtonsoft.Json.Linq;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using Nop.Api.Adapter.SettingsProvider;
 using Nop.Integration.Umbraco.Order;
 using Nop.Integration.Umbraco.ShoppingCart;
 using Nop.Integration.Umbraco.Category;
@@ -48,20 +49,22 @@ namespace Nop.Integration.Umbraco.Nop
     public class NopApiService : INopApiService
     {
         private readonly ApiClient _nopApiClient;
+        private readonly ISettingsProvider _settings;
         public NopApiService()
         {
-           _nopApiClient = new ApiClient();
+            _settings = new WebConfigurationSettingsProvider();
+            _nopApiClient = new ApiClient(_settings);
         }
 
-        public Products.Product GetProduct(int id)
+        public Product GetProduct(int id)
         {
             if (id == 0)
             {
                 throw  new ArgumentNullException(nameof(id),"id must be greater that 0");
             }
-            string jsonUrl = $"/api/products/{id}?fields=id,name,price,category_id,images,attributes,order_minimum_quantity,is_gift_card,is_download,customer_enters_price,is_rental,has_tier_prices";
+            var url = $"/api/products/{id}?fields=id,name,price,category_id,images,attributes,order_minimum_quantity,is_gift_card,is_download,customer_enters_price,is_rental,has_tier_prices";
 
-            var productData = _nopApiClient.Get(jsonUrl);
+            var productData = _nopApiClient.Get(url);
 
             var product = JsonConvert.DeserializeObject<ProductRootObject>(productData.ToString())?.Products.FirstOrDefault();
 

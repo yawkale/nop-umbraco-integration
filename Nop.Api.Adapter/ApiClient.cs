@@ -2,13 +2,20 @@
 using System.Collections.Specialized;
 using System.IO;
 using System.Net;
+using Nop.Api.Adapter.Managers;
+using Nop.Api.Adapter.SettingsProvider;
 
 namespace Nop.Api.Adapter
 {
     public class ApiClient
     {
+        private readonly ISettingsProvider _settings;
         protected const string DefaultContentType = "application/json";
 
+        public ApiClient(ISettingsProvider settings)
+        {
+            _settings = settings;
+        }
         public object Call(HttpMethods method, string path)
         {
             return Call(method, path, string.Empty);
@@ -16,7 +23,7 @@ namespace Nop.Api.Adapter
 
         public object Call(HttpMethods method, string path, object callParams)
         {
-            string requestUriString = $"{AccessProvider.ServerUrl}/{path}";
+            var requestUriString = $"{_settings.ServerUrl}/{path}";
 
             var httpWebRequest = (HttpWebRequest)WebRequest.Create(requestUriString);
 
@@ -59,9 +66,9 @@ namespace Nop.Api.Adapter
                     var resp = (HttpWebResponse)ex.Response;
                     if (resp.StatusCode == HttpStatusCode.Unauthorized)
                     {
-                        var provider = new AccessProvider();
+                        
 
-                        provider.GetAccessToken();
+                        GetAccessToken();
                         
                         return Call(method, path, callParams);
                     }
@@ -69,7 +76,7 @@ namespace Nop.Api.Adapter
                 throw new Exception($"Error call api {ex.Status}, request is {requestUriString}",ex);
             }
 
-            string encodedData = string.Empty;
+            var encodedData = string.Empty;
 
             using (var responseStream = httpWebResponse.GetResponseStream())
             {
@@ -107,6 +114,18 @@ namespace Nop.Api.Adapter
         public object Delete(string path)
         {
             return Call(HttpMethods.Delete, path, null);
+        }
+        private void GetAccessToken()
+        {
+            var nopAuthorizationManager = new AuthorizationManager(_settings);
+
+            var authUrl = nopAuthorizationManager.BuildAuthUrl(_settings.RedirectUrl, new string[] { });
+
+            var request = WebRequest.Create(authUrl);
+
+            request.Credentials = CredentialCache.DefaultCredentials;
+
+            var response = request.GetResponse();
         }
     }
 }

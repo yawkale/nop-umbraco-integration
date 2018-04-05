@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Web;
 using System.Web.Mvc;
+using Nop.Integration.Umbraco.Core.Core;
 using Nop.Integration.Umbraco.Core.Services;
 using Nop.Integration.Umbraco.Nop;
 using Umbraco.Core.Models;
@@ -15,8 +16,8 @@ namespace Nop.Integration.Umbraco.Core.Controllers
     {
         private readonly NopApiService _nopService;
         private readonly UserContext _userContext;
-        private const string CustomerType = "NopCustomerType";
-      
+        private static string CustomerTypeCookieName => GlobalSettings.ClientSettings.CustomerTypeCookieName;
+
 
         public DefaultController()
         {
@@ -30,12 +31,12 @@ namespace Nop.Integration.Umbraco.Core.Controllers
           
             if (currentUser != null)
             {
-                Response.Cookies.Add(new HttpCookie(CustomerType) { Value = "active" });
+                Response.Cookies.Add(new HttpCookie(CustomerTypeCookieName) { Value = "active" });
                 SetCurrentMemberNopId(currentUser);
             }
             else if (_userContext.CustomerId() == null || _userContext.CustomerType() != "temporary")
             {
-                Response.Cookies.Add(new HttpCookie(CustomerType) { Value = "temporary" });
+                Response.Cookies.Add(new HttpCookie(CustomerTypeCookieName) { Value = "temporary" });
                 CreateTemporalNopCustomer();
             }
 
@@ -62,7 +63,7 @@ namespace Nop.Integration.Umbraco.Core.Controllers
 
         public void SetCurrentMemberNopId(IPublishedContent member)
         {
-            var nopCustomerId = Convert.ToInt32( member.GetPropertyValue("nopCustomerId"));
+            var nopCustomerId = Convert.ToInt32( member.GetPropertyValue(GlobalSettings.UmbracoSettings.MemberIdPropertyAlias));
 
             if (nopCustomerId==0)
             {
@@ -92,7 +93,7 @@ namespace Nop.Integration.Umbraco.Core.Controllers
 
             var customerId = _nopService.CreateCustomer(customer);
 
-            currentMember.SetValue("NopCustomerId", customerId);
+            currentMember.SetValue(GlobalSettings.UmbracoSettings.MemberIdPropertyAlias, customerId);
 
             memberService.Save(currentMember);
         }

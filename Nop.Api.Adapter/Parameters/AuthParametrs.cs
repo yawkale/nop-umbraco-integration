@@ -1,4 +1,4 @@
-﻿namespace Nop.Api.Adapter.Managers
+﻿namespace Nop.Api.Adapter.Parameters
 {
     public class AuthParameters
     {

@@ -4,12 +4,20 @@ using System.Web.Mvc;
 using Newtonsoft.Json;
 using Nop.Api.Adapter;
 using Nop.Api.Adapter.Managers;
+using Nop.Api.Adapter.Parameters;
+using Nop.Api.Adapter.SettingsProvider;
 using Umbraco.Web.Mvc;
 
 namespace Nop.Integration.Umbraco.Core.Controllers
 {
     public class AuthorizationController : SurfaceController
     {
+        private readonly ISettingsProvider _settings;
+
+        public AuthorizationController()
+        {
+            _settings = new WebConfigurationSettingsProvider();
+        }
         [HttpGet]
         [AllowAnonymous]
         public void GetAccessToken(string code, string state)
@@ -19,10 +27,10 @@ namespace Nop.Integration.Umbraco.Core.Controllers
             {
                 try
                 {
-                    var clientId = AccessProvider.ClientId;
-                    var clientSecret = AccessProvider.ClientSecret;
-                    var serverUrl = AccessProvider.ServerUrl;
-                    var redirectUrl = AccessProvider.RedirectUrl;
+                    var clientId = _settings.ClientId;
+                    var clientSecret = _settings.ClientSecret;
+                    var serverUrl = _settings.ServerUrl;
+                    var redirectUrl = _settings.RedirectUrl;
 
                     var authParameters = new AuthParameters()
                     {
@@ -34,7 +42,7 @@ namespace Nop.Integration.Umbraco.Core.Controllers
                         Code = code
                     };
 
-                    var nopAuthorizationManager = new AuthorizationManager();
+                    var nopAuthorizationManager = new AuthorizationManager(_settings);
 
                     var responseJson = nopAuthorizationManager.GetAuthorizationData(authParameters);
 

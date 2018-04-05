@@ -1,14 +1,18 @@
 ﻿using System;
-
+using Nop.Api.Adapter.Parameters;
+using Nop.Api.Adapter.SettingsProvider;
 
 namespace Nop.Api.Adapter.Managers
 {
     public class AuthorizationManager
     {
+        private readonly ISettingsProvider _settings;
         private readonly ApiAuthorizer _apiAuthorizer;
 
-        public AuthorizationManager() {
-            _apiAuthorizer = new ApiAuthorizer(AccessProvider.ClientId, AccessProvider.ClientSecret, AccessProvider.ServerUrl);
+        public AuthorizationManager(ISettingsProvider settings)
+        {
+            _settings = settings;
+            _apiAuthorizer = new ApiAuthorizer(_settings.ClientId, _settings.ClientSecret, _settings.ServerUrl);
         }
 
         public string BuildAuthUrl(string redirectUrl, string[] requestedPermissions, string state = null)
@@ -23,7 +27,7 @@ namespace Nop.Api.Adapter.Managers
 
         public string GetAuthorizationData(AuthParameters authParameters)
         {
-            if (!String.IsNullOrEmpty(authParameters.Error))
+            if (!string.IsNullOrEmpty(authParameters.Error))
             {
                 throw new Exception(authParameters.Error);
             }
@@ -44,7 +48,7 @@ namespace Nop.Api.Adapter.Managers
 
         public string RefreshAuthorizationData(AuthParameters authParameters)
         {
-            if (!String.IsNullOrEmpty(authParameters.Error))
+            if (!string.IsNullOrEmpty(authParameters.Error))
             {
                 throw new Exception(authParameters.Error);
             }
