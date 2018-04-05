@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace Nop.Integration.Umbraco.Payment
+﻿namespace Nop.Integration.Umbraco.Payment
 {
     /// <summary>
     /// Represents a payment status enumeration
