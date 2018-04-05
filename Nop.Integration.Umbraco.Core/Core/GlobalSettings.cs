@@ -1,4 +1,4 @@
-﻿namespace Nop.Integration.Umbraco.Core.Core
+namespace Nop.Integration.Umbraco.Core.Core
 {
     public class GlobalClientSettings
     {
@@ -12,7 +12,6 @@
         public string ProductIdPropertyAlias => "nopProductId";
         public string CategoryDocumentTypeAlias => "category";
         public string CategoryIdPropertyAlias => "nopCategoryId";
-        public string MemberIdPropertyAlias => "nopCustomerId";
         public string NopStoreId => "1";
         public bool CreateProductLImitToStore => false;
         public bool GetProductLimitToStore => false;
@@ -23,7 +22,8 @@
     {
         public string PayPalRedirectUrl => "https://www.sandbox.paypal.com/webscr&cmd=";
         public string PayPalCancelUrl => "http://localhost:64146/umbraco/surface/PayPal/HandleCancelExpressCheckout";
-        public string PayPalReturnUrl => "http://localhost:64146/umbraco/surface/PayPal/GetExpressCheckout";
+        public string PayPalReturnUrl => "http://localhost:64146/umbraco/surface/PayPal/GetExpressCheckout";      
+        public string MemberIdPropertyAlias => "nopCustomerId";        
     }
 
     public static class GlobalSettings

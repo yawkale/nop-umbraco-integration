@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using Nop.Integration.Umbraco.Orders;
 using Nop.Integration.Umbraco.Products;
@@ -8,18 +8,20 @@ namespace Nop.Integration.Umbraco.Services.Order
 {
     public class OrderProcessingService
     {
-        private ShoppingCartService shoppingCartService;
+        private readonly ShoppingCartService _shoppingCartService;
 
         public OrderProcessingService()
         {
-            this.shoppingCartService = new ShoppingCartService();
+            _shoppingCartService = new ShoppingCartService();
         }
 
         public Orders.Order PreparePlaceOrderDetails(int userId)
         {
 
             var orderItems = new List<OrderItem>();/* { new OrderItem() { Quantity = 2, ProductId = 38 }, new OrderItem() { Quantity = 1, ProductId = 2 } };*/
-            var cart = shoppingCartService.GetShoppingCart(userId.ToString());
+
+            var cart = _shoppingCartService.GetShoppingCart(userId.ToString());
+
             var products = cart.Products;
 
             // TODO make it with mapper

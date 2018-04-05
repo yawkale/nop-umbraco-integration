@@ -25,7 +25,7 @@ Installation:
 3. Add new client ![addclient](https://user-images.githubusercontent.com/10168594/31589105-58f761f4-b204-11e7-909d-64763add59b4.png)
 
 
-# Umbraco site confiuration - starter kit
+# Umbraco site configuration - starter kit
 1. Install Starter Kit
 2. Change client details - from nopCommerce site
 ![umbraco_config](https://user-images.githubusercontent.com/10168594/31589150-55254b08-b205-11e7-8dcb-a86f43ae44f9.png)

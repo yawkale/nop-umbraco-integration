@@ -50,7 +50,7 @@
     <Compile Include="ApiClient.cs" />
     <Compile Include="HttpMethods.cs" />
     <Compile Include="Managers\AuthorizationManager.cs" />
-    <Compile Include="Parametrs\AuthParametrs.cs" />
+    <Compile Include="Parameters\AuthParametrs.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

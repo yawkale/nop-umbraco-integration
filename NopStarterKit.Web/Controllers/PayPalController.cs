@@ -61,8 +61,10 @@ namespace NopStarterKit.Web.Controllers
             var response = service.GetExpressCheckoutDetails(request);
             if (response.Ack.ToString().Trim().ToUpper().Equals(AckCodeType.SUCCESS.ToString()))
             {
+
                 _orderService = new OrderService();
                 var isMarked = _orderService.MarkOrderAsPaid(orderId);
+
                 // TODO process this exception
                 if (!isMarked)
                     throw new Exception("Order was not marked as paid");
