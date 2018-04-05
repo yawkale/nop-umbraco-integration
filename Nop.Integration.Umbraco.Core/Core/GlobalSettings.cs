@@ -13,6 +13,10 @@
         public string CategoryDocumentTypeAlias => "category";
         public string CategoryIdPropertyAlias => "nopCategoryId";
         public string MemberIdPropertyAlias => "nopCustomerId";
+        public string NopStoreId => "1";
+        public bool CreateProductLImitToStore => false;
+        public bool GetProductLimitToStore => false;
+
     }
 
     public class PayPalSettings

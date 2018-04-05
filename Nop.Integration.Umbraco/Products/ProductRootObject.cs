@@ -7,5 +7,6 @@ namespace Nop.Integration.Umbraco.Products
     {
         [JsonProperty("products")]
         public List<Product> Products { get; set; }
+
     }
 }

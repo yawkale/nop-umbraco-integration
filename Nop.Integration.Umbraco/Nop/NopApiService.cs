@@ -97,12 +97,12 @@ namespace Nop.Integration.Umbraco.Nop
 
         public List<Products.Product> GetAllProducts()
         {
-            string jsonUrl = $"/api/products?limit=250&fields=id,name,price,category_id,images,attributes,sku,order_minimum_quantity,is_gift_card,is_download,customer_enters_price,is_rental,has_tier_prices";
+            string jsonUrl = $"/api/products?limit=250&fields=id,name,price,category_id,images,attributes,sku,order_minimum_quantity,is_gift_card,is_download,customer_enters_price,is_rental,has_tier_prices,store_ids";
 
             object productData = _nopApiClient.Get(jsonUrl);
 
             var products = JsonConvert.DeserializeObject<ProductRootObject>(productData.ToString())?.Products;
-
+  
             return products;
         }
 
