@@ -1,43 +1,25 @@
-﻿using System.Linq;
-using System.Web.Configuration;
-
-namespace Nop.Integration.Umbraco.Core.Core
+﻿namespace Nop.Integration.Umbraco.Core.Core
 {
     public class GlobalClientSettings
     {
-        public string CustomerIdCookieName => GetSetting("CustomerIdCookieName", "NopCustomerId");
+        public string CustomerIdCookieName => "NopCustomerId";
 
-        public string CustomerTypeCookieName => GetSetting("NopCustomerType", "NopCustomerType");
-
-        private string GetSetting(string key, string defaultvalue)
-        {
-            if (key == null)
-                return defaultvalue;
-
-            if (!WebConfigurationManager.AppSettings.AllKeys.Contains(key))
-                return defaultvalue;
-
-            return WebConfigurationManager.AppSettings[key];
-        }
+        public string CustomerTypeCookieName => "NopCustomerType";
     }
 
     public class GlobalUmbracoSettings
     {
-        public string ProductDocumentTypeAlias => GetSetting("ProductDocumentTypeAlias", "product");
-        public string ProductIdPropertyAlias => GetSetting("ProductIdPropertyAlias", "nopProductId");
-        public string CategoryDocumentTypeAlias => GetSetting("CategoryDocumentTypeAlias", "category");
-        public string CategoryIdPropertyAlias => GetSetting("CategoryIdPropertyAlias", "nopCategoryId");
-        public string MemberIdPropertyAlias => GetSetting("MemberIdPropertyAlias", "nopCustomerId");
-        private string GetSetting(string key, string defaultvalue)
-        {
-            if (key == null)
-                return defaultvalue;
+        public string CustomerIdFieldName => "NopCustomerId";
 
-            if (!WebConfigurationManager.AppSettings.AllKeys.Contains(key))
-                return defaultvalue;
+        public string ProductDocumentTypeAlias => "product";
 
-            return WebConfigurationManager.AppSettings[key];
-        }
+        public string ProductIdPropertyAlias => "nopProductId";
+
+        public string CategoryDocumentTypeAlias => "category";
+        public string CategoryIdPropertyAlias => "nopCategoryId";
+        
+        public string MemberIdPropertyAlias => "nopCustomerId";
+        
     }
 
     public static class GlobalSettings
@@ -47,8 +29,8 @@ namespace Nop.Integration.Umbraco.Core.Core
 
         static GlobalSettings()
         {
-            ClientSettings = new GlobalClientSettings();
-            UmbracoSettings = new GlobalUmbracoSettings();
+            ClientSettings=new GlobalClientSettings();
+            UmbracoSettings=new GlobalUmbracoSettings();
         }
 
     }
