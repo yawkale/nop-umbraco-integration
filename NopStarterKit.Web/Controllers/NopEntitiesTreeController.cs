@@ -18,7 +18,7 @@ namespace NopStarterKit.Web.Controllers
 
         protected override TreeNodeCollection GetTreeNodes(string id, FormDataCollection queryStrings)
         {
-            TreeNodeCollection nodes = new TreeNodeCollection();
+            var nodes = new TreeNodeCollection();
             
             if (id == "-1")
             {

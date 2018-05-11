@@ -1,43 +1,49 @@
-using System.Linq;
-using System.Web.Configuration;
-
 namespace Nop.Integration.Umbraco.Core.Core
 {
     public class GlobalClientSettings
     {
-        public string CustomerIdCookieName => GetSetting("CustomerIdCookieName", "NopCustomerId");
+        private readonly IConfigurationProvider _configurationProvider;
 
-        public string CustomerTypeCookieName => GetSetting("NopCustomerType", "NopCustomerType");
-
-        private string GetSetting(string key, string defaultvalue)
+        public GlobalClientSettings(IConfigurationProvider configurationProvider)
         {
-            if (key == null)
-                return defaultvalue;
-
-            if (!WebConfigurationManager.AppSettings.AllKeys.Contains(key))
-                return defaultvalue;
-
-            return WebConfigurationManager.AppSettings[key];
+            _configurationProvider = configurationProvider;
         }
+
+        public string CustomerIdCookieName => _configurationProvider.GetCongurationValue("CustomerIdCookieName", "NopCustomerId");
+        public string CustomerTypeCookieName => _configurationProvider.GetCongurationValue("NopCustomerType", "NopCustomerType");
     }
 
     public class GlobalUmbracoSettings
     {
-        public string ProductDocumentTypeAlias => GetSetting("ProductDocumentTypeAlias", "product");
-        public string ProductIdPropertyAlias => GetSetting("ProductIdPropertyAlias", "nopProductId");
-        public string CategoryDocumentTypeAlias => GetSetting("CategoryDocumentTypeAlias", "category");
-        public string CategoryIdPropertyAlias => GetSetting("CategoryIdPropertyAlias", "nopCategoryId");
-        public string MemberIdPropertyAlias => GetSetting("MemberIdPropertyAlias", "nopCustomerId");
-        private string GetSetting(string key, string defaultvalue)
+        private readonly IConfigurationProvider _configurationProvider;
+
+        public GlobalUmbracoSettings(IConfigurationProvider configurationProvider)
         {
-            if (key == null)
-                return defaultvalue;
-
-            if (!WebConfigurationManager.AppSettings.AllKeys.Contains(key))
-                return defaultvalue;
-
-            return WebConfigurationManager.AppSettings[key];
+            _configurationProvider = configurationProvider;
         }
+        public string ProductDocumentTypeAlias => _configurationProvider.GetCongurationValue("ProductDocumentTypeAlias", "product");
+        public string ProductIdPropertyAlias => _configurationProvider.GetCongurationValue("ProductIdPropertyAlias", "nopProductId");
+        public string CategoryDocumentTypeAlias => _configurationProvider.GetCongurationValue("CategoryDocumentTypeAlias", "category");
+        public string CategoryIdPropertyAlias => _configurationProvider.GetCongurationValue("CategoryIdPropertyAlias", "nopCategoryId");
+        public string MemberIdPropertyAlias => _configurationProvider.GetCongurationValue("MemberIdPropertyAlias", "nopCustomerId");
+
+        public int NopStoreId => _configurationProvider.GetCongurationValue("NopStoreId", 1);
+        public bool CreateProductLimitToStore => _configurationProvider.GetCongurationValue("CreateProductLimitToStore", false);
+        public bool GetProductLimitToStore => _configurationProvider.GetCongurationValue("GetProductLimitToStore", false);
+    }
+
+    public class PayPalSettings
+    {
+        private readonly IConfigurationProvider _configurationProvider;
+
+        public PayPalSettings(IConfigurationProvider configurationProvider)
+        {
+            _configurationProvider = configurationProvider;
+        }
+        public string PayPalRedirectUrl => "https://www.sandbox.paypal.com/webscr&cmd=";
+        public string PayPalCancelUrl => "http://localhost:64146/umbraco/surface/PayPal/HandleCancelExpressCheckout";
+        public string PayPalReturnUrl => "http://localhost:64146/umbraco/surface/PayPal/GetExpressCheckout";
+        //public string MemberIdPropertyAlias => "nopCustomerId";
     }
 
     public static class GlobalSettings
@@ -48,9 +54,10 @@ namespace Nop.Integration.Umbraco.Core.Core
 
         static GlobalSettings()
         {
-            ClientSettings = new GlobalClientSettings();
-            UmbracoSettings = new GlobalUmbracoSettings();
-            PayPalSettings = new PayPalSettings();
+            IConfigurationProvider configurationProvider = new WebConfigurationProvider();
+            ClientSettings = new GlobalClientSettings(configurationProvider);
+            UmbracoSettings = new GlobalUmbracoSettings(configurationProvider);
+            PayPalSettings = new PayPalSettings(configurationProvider);
         }
 
     }

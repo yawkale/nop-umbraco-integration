@@ -41,7 +41,7 @@ namespace Nop.Integration.Umbraco.Core.Controllers
         public string Create([System.Web.Http.FromBody]string name)
         {
             var storeId = GlobalSettings.UmbracoSettings.NopStoreId;
-            var isCreateProductLimitToStore = GlobalSettings.UmbracoSettings.CreateProductLImitToStore;
+            var isCreateProductLimitToStore = GlobalSettings.UmbracoSettings.CreateProductLimitToStore;
 
             var category = new PostCategoryObject()
             {
