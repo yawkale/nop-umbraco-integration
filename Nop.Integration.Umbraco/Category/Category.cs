@@ -9,5 +9,8 @@ namespace Nop.Integration.Umbraco.Category
 
         [JsonProperty("name")]
         public string Name { get; set; }
+
+        [JsonProperty("store_ids")]
+        public int[] StoreIds { get; set; }
     }
 }

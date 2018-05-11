@@ -42,6 +42,9 @@ namespace Nop.Integration.Umbraco.Products
         [JsonProperty("sku", NullValueHandling = NullValueHandling.Ignore)]
         public string SKU { get; set; }
 
+        [JsonProperty("store_ids")]
+        public int[] StoreIds { get; set; }
+
         public bool Redirect
         {
             get

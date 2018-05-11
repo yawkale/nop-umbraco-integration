@@ -41,7 +41,7 @@ namespace Nop.Integration.Umbraco.Core.Controllers
 
         public ActionResult CreateOrder()
         {
-
+            // uncomment for postman customerIdParseResult = 1
             int customerIdParseResult;
             int.TryParse(_userContext.CustomerId(), out customerIdParseResult);
             var orderItems = new List<OrderItem> { new OrderItem() { Quantity = 2, ProductId = 38 }, new OrderItem() { Quantity = 1, ProductId = 2 } };
@@ -80,7 +80,7 @@ namespace Nop.Integration.Umbraco.Core.Controllers
                 ShippingMethod = "Shipping.FixedRate",
                 ShippingRateComputationMethodSystemName = " Shipping Rate Computation Method System Name",
                 ShippingAddress = shippingAddress,
-                BillingAddress=billingAddress,
+                BillingAddress= billingAddress,
                 CreatedOnUtc = DateTime.UtcNow,
                 PaidDateUtc = DateTime.UtcNow.ToString(CultureInfo.InvariantCulture),
                 PaymentMethodSystemName = "Payments.Manual"

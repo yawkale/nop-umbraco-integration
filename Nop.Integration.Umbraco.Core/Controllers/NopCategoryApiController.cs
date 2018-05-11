@@ -5,6 +5,7 @@ using Umbraco.Web.WebApi;
 using Nop.Integration.Umbraco.Customer;
 using System.Linq;
 using Nop.Integration.Umbraco.Category;
+using Nop.Integration.Umbraco.Core.Core;
 
 namespace Nop.Integration.Umbraco.Core.Controllers
 {
@@ -21,9 +22,13 @@ namespace Nop.Integration.Umbraco.Core.Controllers
         [HttpGet]
         public IEnumerable<DataSearchModel> GetCategories()
         {
-            var response = _nopService.GetCategories();
+            var storeId = GlobalSettings.UmbracoSettings.NopStoreId;
+            var isGetProductLimitToStore = GlobalSettings.UmbracoSettings.GetProductLimitToStore;
 
-            var data = response.Categories.Select(c => new DataSearchModel()
+            var response = _nopService.GetCategories();
+            var categories = storeId != 0 && isGetProductLimitToStore ? response.Categories.Where(category => category.StoreIds.Contains(storeId)).ToList() : response.Categories;
+
+            var data = categories.Select(c => new DataSearchModel()
             {
                 Label = c.Name,
                 Value = c.Id
@@ -35,10 +40,17 @@ namespace Nop.Integration.Umbraco.Core.Controllers
         [HttpPost]
         public string Create([System.Web.Http.FromBody]string name)
         {
+            var storeId = GlobalSettings.UmbracoSettings.NopStoreId;
+            var isCreateProductLimitToStore = GlobalSettings.UmbracoSettings.CreateProductLImitToStore;
+
             var category = new PostCategoryObject()
             {
                 Name = name
             };
+
+
+            if (storeId != 0 && isCreateProductLimitToStore)
+                category.StoreIds = new[] { storeId };
 
             var categoryId = _nopService.CreateCategory(category);
 

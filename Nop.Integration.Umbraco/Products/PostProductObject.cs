@@ -10,5 +10,8 @@ namespace Nop.Integration.Umbraco.Products
 
         [JsonProperty("name")]
         public string Name { get; set; }
+
+        [JsonProperty("store_ids")]
+        public int[] StoreIds { get; set; }
     }
 }
