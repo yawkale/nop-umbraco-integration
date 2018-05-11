@@ -30,3 +30,16 @@ Installation:
 2. Change client details - from nopCommerce site
 ![umbraco_config](https://user-images.githubusercontent.com/10168594/31589150-55254b08-b205-11e7-8dcb-a86f43ae44f9.png)
 
+
+Basic Client configuration
+    <add key="ClientId" value="6eb94fe0-5347-4725-87dc-0d2ec8bdb8a7" />
+    <add key="ClientSecret" value="1156bf6c-7e66-40d2-bf86-592cfd0364af" />
+    <add key="ServerUrl" value="http://nop.nopintegra.com/" />
+    <add key="RedirectUrl" value="http://localhost:64146/umbraco/surface/Authorization/GetAccessToken" />
+    
+    Multi-store configuration
+    <add key="NopStoreId" value="1" />
+    <add key="CreateProductLimitToStore" value="false" />
+    <add key="GetProductLimitToStore" value="false" />
+    
+
