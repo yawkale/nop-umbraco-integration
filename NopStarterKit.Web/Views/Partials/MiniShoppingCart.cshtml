@@ -17,7 +17,16 @@
             <div class="items">
                 @foreach (var item in products)
                 {
+                    if (item.Product==null || string.IsNullOrEmpty(item.Product.Id))
+                    {
+                        continue;
+                    }
                     var prod = productOverview.Children.FirstOrDefault(x => x.GetPropertyValue<string>("nopId") == item.Product.Id.ToString());
+
+                    if (prod == null)
+                    {
+                        continue;
+                    }
                     <div class="item @(foreachIndex == 1 ? "first" : "")">
                         <div class="picture">
                             <a href="@prod.Url" title="Show details for Digital Storm VANQUISH 3 Custom Performance PC">

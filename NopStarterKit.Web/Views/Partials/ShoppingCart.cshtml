@@ -207,15 +207,15 @@
                         </div>
                         <div class="cart-options">
                             <div class="common-buttons">
-                                <input value="Update shopping cart" class="button-2 update-cart-button">
-                                <input value="Continue shopping" class="button-2 continue-shopping-button">
+                                <input value="Update shopping cart" class="button-2 update-cart-button"  type="button">
+                                <input value="Continue shopping" class="button-2 continue-shopping-button" type="button">
                             </div>
                             <script type="text/javascript">
                                 $(document).ready(function () {
                                     checkoutAttributeChange();
                                     $('#checkout_attribute_1').change(function () { checkoutAttributeChange(); });
-                                    $('.update-cart-button').click(function () {
-                                        var itemsToDelete = $(".remove-from-cart input:checked").map(function () {
+                                    $('.update-cart-button').click(function() {
+                                        var itemsToDelete = $(".remove-from-cart input:checked").map(function() {
                                             return $(this).val();
                                         }).get();
                                         $.ajax({
@@ -223,11 +223,11 @@
                                             url: '/umbraco/surface/NopShoppingCard/Update',
                                             data: $('#shopping-cart-form').serialize(),
                                             type: 'post',
-                                            success: function (data) {
+                                            success: function(data) {
                                                 location.reload();
                                             }
                                         });
-                                    })
+                                    });
 
                                 });
 
